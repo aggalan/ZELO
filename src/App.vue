@@ -10,7 +10,6 @@
 <script setup lang="ts">
 import {computed, provide} from 'vue'
 import Navbar from './components/Landing/landingNavbar.vue'
-import ZeloLanding from './components/Landing/Home/landingComponent.vue'
 import {useRoute} from "vue-router";
 
 // You can provide global state or functions here if needed
