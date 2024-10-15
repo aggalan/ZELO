@@ -6,10 +6,10 @@
       <v-img block src="../assets/logo.png"  alt="Logo" class="custom-logo align-center justify-center"></v-img>
       <v-row class="mt-4">
         <v-col>
-          <v-btn dark block class="transfer-btn">Transferir</v-btn>
+          <ActionButton color="#49475A" :action="goToTransference" block customClass="transfer-btn">Transferir</ActionButton>
         </v-col>
         <v-col>
-          <v-btn outlined block class="deposit-btn">Ingresar</v-btn>
+          <ActionButton color="#49475A" block customClass="transfer-btn">Ingresar</ActionButton>
         </v-col>
       </v-row>
     </v-card-text>
@@ -18,6 +18,12 @@
 
 <script setup>
 //
+import ActionButton from "@/components/miniComponents/ActionButton.vue";
+import router from "@/router/router";
+
+const goToTransference = ()=>{
+router.push("/transference");
+}
 </script>
 
 <style scoped>

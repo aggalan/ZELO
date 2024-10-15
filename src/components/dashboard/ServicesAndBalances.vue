@@ -2,24 +2,24 @@
   <v-card class="services-card">
     <v-card-title class="d-flex justify-space-between align-center text-grey-darken-3">
       Servicios y Saldos
-      <v-btn dark class="add-btn text-black">
-        <v-icon left>mdi-plus</v-icon>
+      <ActionButton color = "white" class="ma-3">
         Agregar
-      </v-btn>
+        <v-icon right>mdi-plus</v-icon>
+      </ActionButton>
     </v-card-title>
     <v-list class = "services-card">
-      <v-list-item v-for="(service, i) in services" :key="i" >
-        <v-container class="d-flex flex-row w-100 justify-space-between align-center">
+      <v-list-item v-for="(service, i) in services" :key="i"  >
+        <v-row class="d-flex flex-row w-100 justify-space-around align-center pa-3" cols="12">
           <v-icon :color="service.color" class="align-center">{{ service.icon }}</v-icon>
-          <v-container class="d-flex flex-column w-33">
+          <v-col class="d-flex flex-column w-33" cols="12" md="5">
             <v-list-item-title class="font-weight-medium text-black">{{ service.name }}</v-list-item-title>
             <v-list-item-subtitle class="text-caption text-black">{{ service.dueDate }}</v-list-item-subtitle>
-          </v-container>
-          <v-container class="text-subtitle-1 w-25 font-weight-medium text-black">${{ service.amount }}</v-container>
-          <v-container class="w-25">
-            <v-btn color="#8B5CF6" text="true" small class="pay-btn">Pagar</v-btn>
-          </v-container>
-        </v-container>
+          </v-col>
+          <v-col class="text-subtitle-1 w-25 font-weight-medium text-black" md="3">${{ service.amount }}</v-col>
+          <v-col class="w-25" md="2">
+            <ActionButton :action="goToLanding">Pagar</ActionButton>
+          </v-col>
+        </v-row>
       </v-list-item>
     </v-list>
 
@@ -28,6 +28,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/miniComponents/ActionButton.vue";
+import router from "@/router/router";
 
 const services = ref([
   { name: 'Electricidad', dueDate: 'Vence el 15 de Agosto', amount: '20.000', icon: 'mdi-flash', color: 'amber' },
@@ -37,6 +39,10 @@ const services = ref([
   { name: 'Electricidad', dueDate: 'Vence el 21 de Agosto', amount: '20.000', icon: 'mdi-flash', color: 'amber' },
   { name: 'Electricidad', dueDate: 'Vence el 31 de Agosto', amount: '20.000', icon: 'mdi-flash', color: 'amber' },
 ])
+const goToLanding = () => {
+  // Lógica para navegar a otra página
+  router.push('/'); // Requiere importar useRouter si usas Vue Router
+};
 </script>
 
 <style scoped>
@@ -48,7 +54,9 @@ const services = ref([
 .add-btn {
   text-transform: none;
   font-size: 14px;
-  background-color: #f0f0f0
+  background-color: #f0f0f0;
+  border-radius: 12px;
+  margin: 10px;
 }
 .v-list-item__avatar {
   background-color: #EDE9FE;
@@ -57,7 +65,5 @@ const services = ref([
 .v-list-item__avatar .v-icon {
   font-size: 20px;
 }
-.pay-btn {
-  text-transform: none;
-}
+
 </style>

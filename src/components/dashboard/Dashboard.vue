@@ -5,12 +5,12 @@
     <v-main>
       <v-container fluid class="bg-white">
         <v-row>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="5">
             <BalanceCard />
             <QuickActions />
             <RecentTransactions />
           </v-col>
-          <v-col cols="12" md="6">
+          <v-col cols="12" md="7">
             <InvestmentPrices />
             <ServicesAndBalances />
           </v-col>

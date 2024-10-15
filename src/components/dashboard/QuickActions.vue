@@ -5,18 +5,16 @@
         v-for="(action, i) in quickActions"
         :key="i"
         cols="4"
-        class="d-flex justify-center align-center"
+        class="d-flex justify-center align-center text-grey-darken-3  "
       >
-        <div class="d-flex flex-column justify-center align-center" style="height: 100%;">
+        <div class="quick-action-comp d-flex flex-column text-center justify-center align-center text-grey-darken-4" >
           <v-btn
-            block
             dark
-            height="80"
             class="text-capitalize quick-action-btn"
           >
-            <v-icon>{{ action.icon }}</v-icon>
-            {{ action.text }}
+            <v-icon class = "text-white">{{ action.icon }}</v-icon>
           </v-btn>
+          {{ action.text }}
         </div>
       </v-col>
     </v-row>
@@ -39,11 +37,13 @@ const quickActions = ref([
   font-size: 10px;
   border-radius: 12px;
   background-color: #8B5CF6;
+  width: 75px;
   margin: 10px;
+  height: 75px;
 }
 
-.quick-action-btn .v-icon {
-  margin: 0 auto;
+.quick-action-comp{
+  width: 100%;
 }
 
 .my-card {
