@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app elevation="0" color="transparent">
     <div class="d-flex align-center justify-space-between w-100 mx-10">
-      <v-btn class="text-h5 font-weight-bold white--text pl-0">Zelo</v-btn>
+      <v-btn class="text-h5 font-weight-bold white--text pl-0" to="/">Zelo</v-btn>
 
       <div class="d-none d-md-flex justify-center flex-grow-1">
         <v-btn
@@ -18,6 +18,7 @@
         color="white"
         class="black--text text-body-2 font-weight-medium"
         rounded
+        to="/login"
       >
         Iniciar Sesión
       </v-btn>

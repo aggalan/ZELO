@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="main">
+  <v-container fluid class="main mx-16">
     <v-row no-gutters class="fill-height">
       <v-col cols="12" md="7" class="d-flex flex-column justify-center pa-16">
         <h1 class="text-h2 font-weight-bold mb-4 white--text zelo-title">
@@ -17,6 +17,7 @@
             class="text-capitalize font-weight-bold mr-4 px-8 d-flex align-center justify-center py-6 mb-2"
             elevation="0"
             rounded
+            to="/signup"
             @click="openAccount"
           >
             Abrir una cuenta
@@ -25,6 +26,7 @@
             class="text-body-2 bg-transparent white--text mb-2"
             @click="downloadApp"
             elevation="0"
+            to="/dashboard"
           >
             Descarga la app
           </v-btn>
