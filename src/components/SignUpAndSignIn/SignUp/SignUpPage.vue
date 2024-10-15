@@ -1,5 +1,5 @@
 <template>
-  <div class="sign-in-container">
+  <div class="sign-in-container h-100">
     <div class="sign-in-form">
       <Logo />
       <h1>Sign Up</h1>

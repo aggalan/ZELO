@@ -5,10 +5,10 @@ import SignIn from '/src/components/SignUpAndSignIn/SignIn/SignInPage.vue';
 import Dashboard from '/src/components/dashboard/Dashboard.vue'
 
 const routes = [
-  { path: '/', component: HomePage },
-  { path: '/signup', component: SignUp },
-  { path: '/login', component: SignIn },
-  { path: '/dashboard', component: Dashboard },
+  { path: '/', component: HomePage, meta: { showNavbar: true } },
+  { path: '/signup', component: SignUp, meta: { showNavbar: true } },
+  { path: '/login', component: SignIn, meta: { showNavbar: true } },
+  { path: '/dashboard', component: Dashboard, meta: { showNavbar: false } },
 ];
 
 const router = createRouter({

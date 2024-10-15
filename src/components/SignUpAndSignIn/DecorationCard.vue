@@ -1,5 +1,5 @@
 <template>
-  <img src="../../../public/Card_detail.png" alt="Card_detail" class="Card_detail" />
+  <img src="../../../public/card.png" alt="Card_detail" class="Card_detail" />
 </template>
 
 <style scoped>

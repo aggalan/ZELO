@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="main mx-16">
+  <v-container fluid class="main mx-16 h-100">
     <v-row no-gutters class="fill-height">
       <v-col cols="12" md="7" class="d-flex flex-column justify-center pa-16">
         <h1 class="text-h2 font-weight-bold mb-4 white--text zelo-title">
