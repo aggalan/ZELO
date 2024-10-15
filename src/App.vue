@@ -1,13 +1,23 @@
 <template>
-  <v-app>
+  <v-app class="zelo-app">
+    <Navbar />
     <v-main>
-      <HelloWorld />
+      <ZeloLanding />
     </v-main>
-
-    <AppFooter />
   </v-app>
 </template>
 
-<script setup>
-  //
+<script setup lang="ts">
+import { provide } from 'vue'
+import Navbar from './components/landingNavbar.vue'
+import ZeloLanding from './components/landingComponent.vue'
+
+// You can provide global state or functions here if needed
+provide('appName', 'Zelo')
 </script>
+
+<style>
+.zelo-app {
+  background: linear-gradient(to bottom right, #121212, #1E1E1E) !important;
+}
+</style>
