@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import TopBarDashboard from '../TopBarDashboard.vue'
 import SideBar from '../SideBar.vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const transferOptions = ref([
   { title: 'CBU, CVU O ALIAS', color: 'grey-darken-2' },
@@ -93,7 +94,7 @@ const frequentContacts = ref([
                     </template>
                     <v-list-item-title class="font-weight-medium">{{ contact.name }}</v-list-item-title>
                     <template v-slot:append>
-                      <v-btn color="deep-purple" rounded="pill" class="text-none px-6">Transferir</v-btn>
+                      <ActionButton  customClass="text-none px-6">Transferir</ActionButton>
                     </template>
                   </v-list-item>
                 </v-list>

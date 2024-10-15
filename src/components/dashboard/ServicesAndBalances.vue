@@ -28,7 +28,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import ActionButton from "@/components/miniComponents/ActionButton.vue";
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import router from "@/router/router";
 
 const services = ref([

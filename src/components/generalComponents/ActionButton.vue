@@ -2,7 +2,7 @@
   <v-btn
       :color="color"
       text
-      rounded
+      rounded = "pill"
       class="pay-btn"
       @click="handleClick"
       :class = "customClass"
