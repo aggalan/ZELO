@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="fill-height pa-0">
+  <v-container fluid class="main">
     <v-row no-gutters class="fill-height">
       <v-col cols="12" md="7" class="d-flex flex-column justify-center pa-16">
         <h1 class="text-h2 font-weight-bold mb-4 white--text zelo-title">
@@ -14,7 +14,7 @@
           <v-btn
             color="#8B5CF6"
             x-large
-            class="text-capitalize font-weight-bold mr-4 px-8 py-3 mb-2"
+            class="text-capitalize font-weight-bold mr-4 px-8 d-flex align-center justify-center py-6 mb-2"
             elevation="0"
             rounded
             @click="openAccount"
@@ -22,9 +22,9 @@
             Abrir una cuenta
           </v-btn>
           <v-btn
-            text="true"
-            class="text-body-2 white--text mb-2"
+            class="text-body-2 bg-transparent white--text mb-2"
             @click="downloadApp"
+            elevation="0"
           >
             Descarga la app
           </v-btn>
@@ -50,7 +50,7 @@
 import { ref, computed } from 'vue'
 
 const description = ref('Zelo es la revolucion de las billeteras virtuales, con su impecable y sencilla interfaz grafica y la seguridad en tus operacion la hacen la mejor billetera vitual del mercado.')
-const logoUrl = ref('/zelo-logo.png')
+const logoUrl = ref('./src/assets/logo.png')
 const isLogoAnimated = ref(false)
 
 const animateLogo = () => {
@@ -73,6 +73,15 @@ const downloadApp = () => {
 </script>
 
 <style scoped>
+
+.main {
+  //background: linear-gradient(to bottom right, #bc3ed8, #7b61ff);
+  //background: #19181E;
+  height: 100vh;
+  padding: 0;
+}
+
+
 .zelo-title {
   font-size: 4rem;
   line-height: 1.2;

@@ -1,22 +1,27 @@
 <template>
-  <v-app-bar app color="transparent" elevation="0">
-    <v-app-bar-title class="text-h5 font-weight-bold white--text">Zelo</v-app-bar-title>
-    <v-spacer></v-spacer>
-    <v-btn
-      v-for="item in menuItems"
-      :key="item"
-      text="true"
-      class="text-body-2 text-grey-lighten-1 hidden-sm-and-down"
-    >
-      {{ item }}
-    </v-btn>
-    <v-btn
-      color="white"
-      class="black--text text-body-2 font-weight-medium"
-      rounded
-    >
-      Iniciar Sesion
-    </v-btn>
+  <v-app-bar app elevation="0" color="transparent">
+    <div class="d-flex align-center justify-space-between w-100 mx-10">
+      <v-btn class="text-h5 font-weight-bold white--text pl-0">Zelo</v-btn>
+
+      <div class="d-none d-md-flex justify-center flex-grow-1">
+        <v-btn
+          v-for="item in menuItems"
+          :key="item"
+          text="true"
+          class="text-body-2 text-grey-lighten-1 mx-2"
+        >
+          {{ item }}
+        </v-btn>
+      </div>
+
+      <v-btn
+        color="white"
+        class="black--text text-body-2 font-weight-medium"
+        rounded
+      >
+        Iniciar Sesión
+      </v-btn>
+    </div>
   </v-app-bar>
 </template>
 
@@ -29,5 +34,18 @@ const menuItems = ref(['Legales', 'Features', 'Tarjetas', 'Seguridad', 'Sobre no
 <style scoped>
 .v-btn {
   text-transform: none;
+}
+
+
+.v-app-bar {
+  padding: 0 16px;
+
+}
+
+
+@media (max-width: 959px) {
+  .v-app-bar-title {
+    flex-grow: 1;
+  }
 }
 </style>

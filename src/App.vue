@@ -18,6 +18,6 @@ provide('appName', 'Zelo')
 
 <style>
 .zelo-app {
-  background: linear-gradient(to bottom right, #121212, #1E1E1E) !important;
+  background: linear-gradient(to bottom right, #19181e, #22202b) !important;
 }
 </style>
