@@ -5,6 +5,7 @@
       rounded
       class="pay-btn"
       @click="handleClick"
+      :class = "customClass"
   >
     <slot></slot> <!-- Esto permitirá pasar texto u otros elementos dentro del botón -->
   </v-btn>
@@ -20,7 +21,11 @@ const props = defineProps({
   },
   action: {
     type: Function,
-    required: true // La acción es obligatoria
+    default: null // La acción es obligatoria
+  },
+  customClass: {
+    type: String, // Puede ser una cadena de clases CSS
+    default: ''
   }
 });
 
@@ -33,6 +38,9 @@ const handleClick = () => {
 
 <style scoped>
 .pay-btn {
-  
+  background-color: #8B5CF6;
+  border-radius: 12px;
+  text-transform: none;
+  font-size: 12px;
 }
 </style>
