@@ -62,7 +62,7 @@ const selectedItem = ref('Movimientos')
 
 <style scoped>
 .v-list-item {
-  min-height: 100px;
+  min-height: 50px;
   margin-bottom: 40px;
 }
 
