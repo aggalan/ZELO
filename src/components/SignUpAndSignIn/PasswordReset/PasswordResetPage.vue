@@ -1,9 +1,9 @@
 <template>
-  <div class="sign-in-container">
-    <div class="sign-in-form">
+  <div class="password-reset-container">
+    <div class="password-reset-form">
       <Logo />
-      <h1>Sign Up</h1>
-      <SignInForm />
+      <h1>Restablecer Contraseña</h1>
+      <PasswordResetForm />
       <LoginLink />
     </div>
     <div class="decoration">
@@ -14,27 +14,29 @@
 
 <script setup>
 import Logo from '../Logo.vue'
-import SignInForm from './SignUpForm.vue'
-import LoginLink from './SignUpLoginLink.vue'
+import PasswordResetForm from './PasswordResetForm.vue'
+import LoginLink from './LoginLink.vue'
 import DecorationCard from '../DecorationCard.vue'
 </script>
 
 <style scoped>
 :root {
-  --primary-color: #8B5CF6;
-  --secondary-color: #4B5563;
-  --background-color: #19181E;
+  --background-color: #1F2937;
   --text-color: #F3F4F6;
+  --input-border: #4B5563;
+  --input-background: #374151;
+  --primary-color: #8B5CF6;
+  --error-color: #EF4444;
+  --success-color: #10B981;
 }
-
-.sign-in-container {
+.password-reset-container {
   display: flex;
   height: 100vh;
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-.sign-in-form {
+.password-reset-form {
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -45,6 +47,7 @@ import DecorationCard from '../DecorationCard.vue'
 h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: var(--text-color);
 }
 
 .decoration {
@@ -55,7 +58,7 @@ h1 {
 }
 
 @media (max-width: 768px) {
-  .sign-in-container {
+  .password-reset-container {
     flex-direction: column;
   }
 

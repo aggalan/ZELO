@@ -1,23 +1,36 @@
 <template>
-  <v-app class="zelo-app">
-    <Navbar />
-    <v-main>
-      <ZeloLanding />
-    </v-main>
-  </v-app>
+  <div id="app">
+    <ResetPasswordPage />
+  </div>
 </template>
 
-<script setup lang="ts">
-import { provide } from 'vue'
-import Navbar from './components/landingNavbar.vue'
-import ZeloLanding from './components/landingComponent.vue'
-
-// You can provide global state or functions here if needed
-provide('appName', 'Zelo')
+<script setup>
+import ResetPasswordPage from './components/SignUpAndSignIn/PasswordReset/PasswordResetPage.vue'
 </script>
 
 <style>
-.zelo-app {
-  background: linear-gradient(to bottom right, #19181e, #22202b) !important;
+:root {
+  --primary-color: #8B5CF6;
+  --secondary-color: #4B5563;
+  --background-color: #19181e;
+  --text-color: #F3F4F6;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>

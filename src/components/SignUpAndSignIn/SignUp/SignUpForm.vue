@@ -29,7 +29,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import InputField from './InputField.vue'
+import InputField from './SignUpInputField.vue'
 import SubmitButton from '../SubmitButton.vue'
 
 const email = ref('')
