@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import '@mdi/font/css/materialdesignicons.css'
+import router from "@/router/router";
 
 const menuItems = ref([
-  { title: 'Dashboard', icon: 'mdi-view-dashboard-outline' },
+  { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', route: '/dashboard' },
   { title: 'Tarjetas', icon: 'mdi-credit-card-outline' },
   { title: 'Movimientos', icon: 'mdi-swap-horizontal' },
-  { title: 'Inversiones', icon: 'mdi-chart-line' },
+  { title: 'Inversiones', icon: 'mdi-chart-line', route: '/investment' },
   { title: 'Perfil', icon: 'mdi-account-outline' },
 ])
 
@@ -16,6 +17,14 @@ const bottomItems = ref([
 ])
 
 const selectedItem = ref('Movimientos')
+
+const handleItemClick = (item) => {
+  // Actualizar el ítem seleccionado
+  selectedItem.value = item.title
+
+  // Redirigir a la página correspondiente
+  router.push(item.route)
+}
 </script>
 
 <template>
@@ -33,7 +42,7 @@ const selectedItem = ref('Movimientos')
           :key="item.title"
           :value="item.title"
           :class="{ 'selected-item': item.title === selectedItem }"
-          @click="selectedItem = item.title"
+          @click="handleItemClick(item)"
           class="mb-2"
       >
         <template v-slot:prepend>

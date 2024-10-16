@@ -1,6 +1,8 @@
 <template>
   <v-app class="zelo-app">
+    <SideBar v-if="showSidebar"/>
     <Navbar v-if="showNavbar" />
+    <TopBarDashboard v-else/>
     <v-main>
       <router-view/>
     </v-main>
@@ -12,6 +14,8 @@ import {computed, provide} from 'vue'
 import Navbar from './components/Landing/landingNavbar.vue'
 import ZeloLanding from './components/Landing/Home/landingComponent.vue'
 import {useRoute} from "vue-router";
+import SideBar from "@/components/SideBar.vue";
+import TopBarDashboard from "@/components/TopBarDashboard.vue";
 
 // You can provide global state or functions here if needed
 provide('appName', 'Zelo')
@@ -19,10 +23,12 @@ const route = useRoute();
 
 // Use a computed property to check if the Navbar should be shown
 const showNavbar = computed(() => route.meta.showNavbar);
+const showSidebar = computed(() => route.meta.showSidebar);
 </script>
 
 <style>
 .zelo-app {
   background: linear-gradient(to bottom right, #19181e, #22202b) !important;
+  overflow: hidden;
 }
 </style>

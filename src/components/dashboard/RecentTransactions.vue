@@ -1,35 +1,18 @@
 <template>
-  <v-card class="mt-4 transactions-card">
-    <v-card-title class="text-grey-darken-3">Movimientos</v-card-title>
-    <v-list two-line class = "transactions-card">
-      <v-list-item v-for="(transaction, i) in transactions" :key="i">
-        <v-row class="d-flex flex-row w-100 justify-end align-center pa-3" cols="12">
-          <v-col cols="12" md="2">
-            <v-icon v-if="transaction.icon" :color="transaction.color">{{ transaction.icon }}</v-icon>
-            <v-img v-else :src="transaction.image" alt="Transaction"></v-img>
-          </v-col>
-          <v-col md="5">
-            <v-list-item-title class="text-black">{{ transaction.name }}</v-list-item-title>
-            <v-list-item-subtitle class="text-grey">{{ transaction.description }}</v-list-item-subtitle>
-            <router-link to="/Dashboard" class="link-text">
-              Detalles
-            </router-link>
-          </v-col>
-        <v-col md="5" class="d-flex justify-end">
-          <v-list-item-action class="text-grey ">{{ transaction.time }}</v-list-item-action>
-        </v-col>
-        </v-row>
-      </v-list-item>
-    </v-list>
-  </v-card>
+  <ItemList
+    title="Movimientos"
+    :items="transactions"
+    linkText="Detalles"
+  />
 </template>
 
 <script setup>
+import ItemList from '@/components/generalComponents/ItemList.vue'
 import { ref } from 'vue'
 
 const transactions = ref([
   { name: 'Jose', description: 'Te transfirió $10.000', time: 'Ahora', icon: 'mdi-account', color: '#8B5CF6' },
-  { name: 'Open 25', description: 'Pagaste $3000', time: '15m', image: '/placeholder.svg?height=40&width=40', icon:'mdi-account' },
+  { name: 'Open 25', description: 'Pagaste $3000', time: '15m', image: '/placeholder.svg', icon: 'mdi-account' },
   { name: 'Miguel', description: 'Enviaste $3.000', time: '6h', icon: 'mdi-account', color: '#8B5CF6' },
 ])
 </script>

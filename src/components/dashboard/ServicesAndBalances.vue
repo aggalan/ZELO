@@ -1,48 +1,32 @@
 <template>
-  <v-card class="services-card">
-    <v-card-title class="d-flex justify-space-between align-center text-grey-darken-3">
-      Servicios y Saldos
-      <ActionButton color = "white" class="ma-3">
-        Agregar
-        <v-icon right>mdi-plus</v-icon>
-      </ActionButton>
-    </v-card-title>
-    <v-list class = "services-card">
-      <v-list-item v-for="(service, i) in services" :key="i"  >
-        <v-row class="d-flex flex-row w-100 justify-space-around align-center pa-3" cols="12">
-          <v-icon :color="service.color" class="align-center">{{ service.icon }}</v-icon>
-          <v-col class="d-flex flex-column w-33" cols="12" md="5">
-            <v-list-item-title class="font-weight-medium text-black">{{ service.name }}</v-list-item-title>
-            <v-list-item-subtitle class="text-caption text-black">{{ service.dueDate }}</v-list-item-subtitle>
-          </v-col>
-          <v-col class="text-subtitle-1 w-25 font-weight-medium text-black" md="3">${{ service.amount }}</v-col>
-          <v-col class="w-25" md="2">
-            <ActionButton :action="goToLanding">Pagar</ActionButton>
-          </v-col>
-        </v-row>
-      </v-list-item>
-    </v-list>
-
-  </v-card>
+  <ItemListWithButton
+  title="Servicios y saldos"
+  :items="services"
+  buttonText="agregar"
+  buttonColor="#8B5CF6"
+  first-button-color="white"
+  @onButtonClick="goToMovementPage"
+/>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import router from "@/router/router";
+import ItemListWithButton from "@/components/generalComponents/ItemListWithButton.vue";
 
 const services = ref([
-  { name: 'Electricidad', dueDate: 'Vence el 15 de Agosto', amount: '20.000', icon: 'mdi-flash', color: 'amber' },
-  { name: 'Personal', dueDate: 'Vence el 15 de Septiembre', amount: '0.0001', icon: 'mdi-cellphone', color: 'blue' },
-  { name: 'Nike Abasto (cuota 2/6)', dueDate: 'Vence hoy', amount: '15.000', icon: 'mdi-shoe-sneaker', color: 'orange' },
-  { name: 'Impuesto PAIS', dueDate: 'De la compra #1356/7', amount: '15.000', icon: 'mdi-bank', color: 'green' },
-  { name: 'Electricidad', dueDate: 'Vence el 21 de Agosto', amount: '20.000', icon: 'mdi-flash', color: 'amber' },
-  { name: 'Electricidad', dueDate: 'Vence el 31 de Agosto', amount: '20.000', icon: 'mdi-flash', color: 'amber' },
+  { name: 'Electricidad', dueDate: 'Vence el 15 de Agosto', amount: '20.000', icon: 'mdi-flash', iconColor: 'amber', action: 'Viendo', onActionClick: () => {} },
+  { name: 'Personal', dueDate: 'Vence el 15 de Septiembre', amount: '0.0001', icon: 'mdi-cellphone', iconColor: 'blue', action: 'Viendo', onActionClick: () => {} },
+  { name: 'Nike Abasto (cuota 2/6)', dueDate: 'Vence hoy', amount: '15.000', icon: 'mdi-shoe-sneaker', iconColor: 'orange', action: 'Viendo', onActionClick: () => {} },
+  { name: 'Impuesto PAIS', dueDate: 'De la compra #1356/7', amount: '15.000', icon: 'mdi-bank', iconColor: 'green', action: 'Viendo', onActionClick: () => {} },
+  { name: 'Electricidad', dueDate: 'Vence el 21 de Agosto', amount: '20.000', icon: 'mdi-flash', iconColor: 'amber', action: 'Viendo', onActionClick: () => {} },
+  { name: 'Electricidad', dueDate: 'Vence el 31 de Agosto', amount: '20.000', icon: 'mdi-flash', iconColor: 'amber', action: 'Viendo', onActionClick: () => {} },
 ])
-const goToLanding = () => {
+const goToMovementPage = () => {
   // Lógica para navegar a otra página
-  router.push('/'); // Requiere importar useRouter si usas Vue Router
+  router.push('/movement'); // Requiere importar useRouter si usas Vue Router
 };
+
 </script>
 
 <style scoped>
