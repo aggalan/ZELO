@@ -6,16 +6,15 @@ import router from "@/router/router";
 const menuItems = ref([
   { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', route: '/dashboard' },
   { title: 'Tarjetas', icon: 'mdi-credit-card-outline', route: '/cards' },
-  { title: 'Movimientos', icon: 'mdi-swap-horizontal' },
+  { title: 'Movimientos', icon: 'mdi-swap-horizontal', route: '/movements' },
   { title: 'Inversiones', icon: 'mdi-chart-line', route: '/investment' },
-  { title: 'Perfil', icon: 'mdi-account-outline' },
+  { title: 'Perfil', icon: 'mdi-account-outline', route: '/profile' },
 ])
 
 const bottomItems = ref([
-  { title: 'Configuración', icon: 'mdi-cog-outline' },
-  { title: 'Cerrar Sesión', icon: 'mdi-logout-variant' },
+  { title: 'Configuración', icon: 'mdi-cog-outline', route: '/settings' }, // Add a route for Configuración
+  { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' } // Optionally add logout route
 ])
-
 const selectedItem = ref('Dashboard')
 
 const handleItemClick = (item) => {

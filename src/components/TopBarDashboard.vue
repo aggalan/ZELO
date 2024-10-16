@@ -20,7 +20,7 @@
         prepend-icon="mdi-magnify"
         placeholder="Buscar en la página"
         v-model="searchQuery"
-        class="custom-search-field text-black"
+        class="custom-search-field text-black rounded-xl"
         clearable
       ></v-text-field>
 
@@ -36,13 +36,13 @@ const searchQuery = ref('');
 
 <style scoped>
 .custom-search-field {
-  border-radius: 25px; /* Rounded edges */
-  background-color: #f5f5f5; /* Light background */
+  border-radius: 30px; /* Rounded edges */
+  background-color: #ffffff; /* Light background */
   padding-left: 15px; /* Padding to align text and icon */
   padding-right: 15px;
   box-shadow: none; /* Remove default shadow */
-  border: 1px solid transparent; /* Border on focus */
-  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+  border: 0 solid transparent; /* Border on focus */
+  //transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
 /* Remove underline */
@@ -58,17 +58,17 @@ const searchQuery = ref('');
 
 /* Placeholder styling */
 .custom-search-field .v-field__input::placeholder {
-  color: #9e9e9e; /* Lighter gray for placeholder text */
+  color: #ffffff; /* Lighter gray for placeholder text */
 }
 
 /* Focus and hover effects */
 .custom-search-field:focus-within {
   border-color: #1976d2; /* Blue border when focused */
-  box-shadow: 0 0 10px rgba(25, 118, 210, 0.2); /* Subtle shadow on focus */
+  box-shadow: 0 0 0 rgba(0, 118, 210, 0.2); /* Subtle shadow on focus */
 }
 
 .custom-search-field:hover {
-  border-color: #ddd; /* Light gray border on hover */
+  border-color: #ffffff; /* Light gray border on hover */
 }
 
 /* Responsive width */
