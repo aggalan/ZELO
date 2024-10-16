@@ -4,6 +4,8 @@
     :items="investments"
     buttonColor="#8B5CF6"
     @onButtonClick="goToInvestmentPage"
+    selectedText="Viendo"
+    useSelectedText
   ><router-link :to="investment/all" class="link-text">
     Ver todas mis inversiones
   </router-link></ItemListWithButton>>
@@ -15,7 +17,7 @@ import ItemListWithButton from '@/components/generalComponents/ItemListWithButto
 import router from "@/router/router";
 
 const investments = ref([
-  { name: 'Bitcoin', description: '0.45 BTC', amount: '20,000', icon: 'mdi-bitcoin', iconColor: '#F7931A', action: 'Viendo', onActionClick: () => {} },
+  { name: 'Bitcoin', description: '0.45 BTC', amount: '20,000', icon: 'mdi-bitcoin', iconColor: '#F7931A', action: 'Ver', onActionClick: () => {} },
   { name: 'Fondo alfa', description: '-', amount: '15,000', icon: 'mdi-cash', iconColor: '#4CAF50', action: 'Ver', onActionClick: () => {} },
   { name: 'Fondo delta', description: '-', amount: '1,000,000.00', icon: 'mdi-cash-multiple', iconColor: '#2196F3', action: 'Ver', onActionClick: () => {} },
 ]);

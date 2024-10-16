@@ -20,7 +20,7 @@
         v-for="(item, i) in items"
         :key="i"
         @click="selectItem(i)"
-        :class="{ 'selected-item': selectedItem === i }"
+        :class="{ 'selected-item': useSelectedText && selectedItem === i }"
       >
         <v-row class="d-flex flex-row w-100 justify-space-around align-center pa-3" cols="12">
           <v-icon :color="item.iconColor || black">{{ item.icon }}</v-icon>
@@ -33,19 +33,15 @@
             <ActionButton
               v-if="item.action"
               @click="selectItem(i)"
-              :color="selectedItem === i ? 'grey' : buttonColor"
-              :class="selectedItem === i ? { color: 'violet', backgroundColor: 'lightgrey' } : {}"
+              :color="useSelectedText && selectedItem === i ? 'grey' : buttonColor"
+              :class="useSelectedText && selectedItem === i ? { color: 'violet', backgroundColor: 'lightgrey' } : {}"
             >
-              {{ selectedItem === i ? selectedText : item.action }}
+              {{ useSelectedText && selectedItem === i ? selectedText : item.action }}
             </ActionButton>          </v-col>
         </v-row>
       </v-list-item>
     </v-list>
 
-    <!-- Componente adicional que cambia según el ítem seleccionado -->
-    <div v-if="selectedItem !== null" class="additional-content">
-      <p>Contenido adicional para el ítem seleccionado: {{ items[selectedItem].name }}</p>
-    </div>
   </v-card>
 </template>
 
@@ -62,7 +58,8 @@ const props = defineProps({
   firstButtonColor: { type: String, default: null },
   items: { type: Array, required: true },
   onButtonClick: { type: Function, default: () => {} },
-  selectedText: { type: String, default: 'Viendo' },
+  selectedText: { type: String, default: null },
+  useSelectedText: { type: Boolean, default: false },
 });
 
 // Estado reactivo para manejar el ítem seleccionado
