@@ -12,7 +12,7 @@
             dark
             class="text-capitalize quick-action-btn"
           >
-            <v-icon class = "text-white">{{ action.icon }}</v-icon>
+            <v-icon class = "text-white" size="30">{{ action.icon }}</v-icon>
           </v-btn>
           {{ action.text }}
         </div>
