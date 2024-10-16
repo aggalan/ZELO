@@ -56,7 +56,7 @@
             <v-sheet class="d-inline-block background-cards" width="420">
               <v-card-title class="d-flex text-black justify-space-between align-center my-2">
                 Información
-                <v-icon>mdi-eye</v-icon>
+                <v-icon @click="toggleViewInfo(card.id)">{{ card.icon }}</v-icon>
               </v-card-title>
               <v-card-text>
                 <v-container class="bg-grey-lighten-4 d-flex flex-column p-0 rounded-lg">
@@ -69,14 +69,16 @@
                     </v-col>
                     <v-col cols="12" sm="6">
                       <div class="static-text">
-                        <strong>Número de tarjeta</strong><br> {{ card.number }}
+                        <strong>Número de tarjeta</strong><br>
+                        {{card.viewInfo? card.number : maskCardNumber(card.number)}}
                       </div>
                     </v-col>
                   </v-row>
                   <v-row>
                     <v-col cols="12" sm="6">
                       <div class="static-text">
-                        <strong>CVV</strong><br>***
+                        <strong>CVV</strong><br>
+                        {{card.viewInfo? card.cvv : '***'}}
                       </div>
                     </v-col>
                     <v-col cols="12" sm="6">
@@ -110,15 +112,29 @@
 </template>
 
 <script setup lang="ts">
+
 import { ref } from 'vue'
+
+
+const toggleViewInfo = (id: number) => {
+  cards.value = cards.value.map(c => {
+    if (c.id === id) {
+      return { ...c, viewInfo: !c.viewInfo, icon: c.viewInfo ? 'mdi-eye-closed' : 'mdi-eye' };
+    }
+    return c;
+  });
+};
 
 interface CreditCard {
   id: number
   bank: string
   number: string
   expiry: string
+  cvv : Number
   name: string
   color: string
+  icon: string
+  viewInfo: boolean
 }
 
 const cards = ref<CreditCard[]>([
@@ -128,7 +144,10 @@ const cards = ref<CreditCard[]>([
     number: '1234567890123456',
     expiry: '09/25',
     name: 'Jose Benegas',
-    color: 'deep-purple'
+    color: 'deep-purple',
+    cvv: 123,
+    viewInfo: false,
+    icon: 'mdi-eye-closed'
   },
   {
     id: 2,
@@ -136,7 +155,11 @@ const cards = ref<CreditCard[]>([
     number: '9876543210987654',
     expiry: '12/24',
     name: 'Jose Benegas',
-    color: 'red darken-1'
+    color: 'red darken-1',
+    cvv: 234
+    ,
+    viewInfo: false,
+    icon: 'mdi-eye-closed'
   },
   {
     id: 4,
@@ -144,7 +167,11 @@ const cards = ref<CreditCard[]>([
     number: '9876543210987654',
     expiry: '12/24',
     name: 'Jose Benegas',
-    color: 'red darken-1'
+    color: 'green darken-1',
+    cvv: 345
+    ,
+    viewInfo: false,
+    icon: 'mdi-eye-closed'
   },
 {
     id: 6,
@@ -152,7 +179,11 @@ const cards = ref<CreditCard[]>([
     number: '9876543210987654',
     expiry: '12/24',
     name: 'Jose Benegas',
-    color: 'red darken-1'
+    color: 'red darken-1',
+    cvv: 456
+  ,
+    viewInfo: false,
+    icon: 'mdi-eye-closed'
   },
 
   {
@@ -161,7 +192,11 @@ const cards = ref<CreditCard[]>([
     number: '9876543210987654',
     expiry: '12/24',
     name: 'Jose Benegas',
-    color: 'red darken-1'
+    color: 'red darken-1',
+    cvv: 567
+    ,
+    viewInfo: false,
+    icon: 'mdi-eye-closed'
   }
 
 ])
