@@ -12,7 +12,6 @@
 <script setup lang="ts">
 import {computed, provide} from 'vue'
 import Navbar from './components/Landing/landingNavbar.vue'
-import ZeloLanding from './components/Landing/Home/landingComponent.vue'
 import {useRoute} from "vue-router";
 import SideBar from "@/components/SideBar.vue";
 import TopBarDashboard from "@/components/TopBarDashboard.vue";
