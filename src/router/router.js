@@ -4,15 +4,17 @@ import SignUp from '/src/components/SignUpAndSignIn/SignUp/SignUpPage.vue';
 import SignIn from '/src/components/SignUpAndSignIn/SignIn/SignInPage.vue';
 import Dashboard from '/src/components/dashboard/Dashboard.vue'
 import Transference from "@/components/transference/Transference.vue";
+import InvestmentDashboard from "@/components/Investment/InvestmentDashboard.vue";
 import Cards from "@/components/dashboard/Cards/cardsPage.vue";
 
 const routes = [
-  { path: '/', component: HomePage, meta: { showNavbar: true } },
-  { path: '/signup', component: SignUp, meta: { showNavbar: true } },
-  { path: '/login', component: SignIn, meta: { showNavbar: true } },
-  { path: '/dashboard', component: Dashboard, meta: { showNavbar: false }},
-  {path: '/transference', component: Transference, meta: { showNavbar: false } },
-  {path: '/cards', component: Cards, meta: { showNavbar: false } },
+  { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar:false } },
+  { path: '/signup', component: SignUp, meta: { showNavbar: true, showSidebar:false } },
+  { path: '/login', component: SignIn, meta: { showNavbar: true, showSidebar:false } },
+  { path: '/dashboard', component: Dashboard, meta: { showNavbar: false, showSidebar:true }},
+  {path: '/transference', component: Transference, meta: { showNavbar: false, showSidebar:true } },
+  {path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar:true  } },
+  {path: '/cards',component: Cards, meta: { showNavbar: false, showSidebar:true  } },
 ];
 
 const router = createRouter({
