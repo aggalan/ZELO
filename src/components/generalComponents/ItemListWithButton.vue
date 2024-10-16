@@ -11,14 +11,19 @@
         :class="{ 'selected-item': useSelectedText && selectedItem === i }"
       >
         <v-row class="d-flex flex-row w-100 justify-space-around align-center pa-3" cols="12">
-          <v-icon :color="item.iconColor || black">{{ item.icon }}</v-icon>
-          <v-col class="d-flex flex-column w-33" cols="12" md="5">
+          <v-col md="1">
+            <v-icon :color="item.iconColor || black">{{ item.icon }}</v-icon>
+          </v-col>
+          <v-col class="d-flex flex-column w-33" cols="12" md="3">
             <v-list-item-title class="font-weight-medium text-black">{{ item.name }}</v-list-item-title>
             <v-list-item-subtitle class="text-caption text-black">{{ item.description }}</v-list-item-subtitle>
           </v-col>
-          <v-col class="text-subtitle-1 w-25 font-weight-medium text-black" md="3">${{ item.amount }}</v-col>
-          <v-col class="w-25" md="2">
-            <ActionButton
+          <v-col class="text-subtitle-1 w-25 font-weight-medium text-black" md="4">${{ item.amount }}</v-col>
+          <v-col class="d-flex justify-end w-25" md="4">
+            <router-link v-if="useLink" :to="investment/all" class="link-text ">
+              {{buttonText}}
+            </router-link>
+            <ActionButton v-else
               v-if="buttonText"
               @click="selectItem(i)"
               :color="useSelectedText && selectedItem === i ? selectedColor : buttonColor"
@@ -48,7 +53,8 @@ const props = defineProps({
   selectedText: { type: String, default: null },
   useSelectedText: { type: Boolean, default: false },
   selectedColor:{type: String, default: 'grey'},
-  selectedTextColor:{type: String, default: 'white'}
+  selectedTextColor:{type: String, default: 'white'},
+  useLink: { type: Boolean, default: false },
 });
 
 // Estado reactivo para manejar el ítem seleccionado
@@ -64,6 +70,11 @@ const selectItem = (index) => {
 .item-list-card {
   background-color: #f3f4f6;
   border-radius: 12px;
+}
+.link-text {
+  color: #9664FF;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .list-body {

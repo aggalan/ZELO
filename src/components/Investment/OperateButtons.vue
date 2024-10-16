@@ -4,7 +4,7 @@
     <v-card-text>
       <v-row>
         <v-col cols="6">
-          <ActionButton block color="#4B5563" class="oper-button">
+          <ActionButton block color="#49475A" class="oper-button">
             <v-icon left>mdi-cash-plus</v-icon>
             Invertir
           </ActionButton>
@@ -12,7 +12,7 @@
         </v-col>
 
         <v-col cols="6">
-          <ActionButton block color="#4B5563" class="oper-button">
+          <ActionButton block color="#49475A" class="oper-button">
             <v-icon left>mdi-cash-minus</v-icon>
             Rescatar
           </ActionButton>

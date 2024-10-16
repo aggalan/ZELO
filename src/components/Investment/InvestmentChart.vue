@@ -1,4 +1,4 @@
-<template>
+<template class="d-flex">
   <v-card class="mb-4 my-card align-center">
     <v-card-text class="align-center">
       <v-row class="d-flex align-center mb-2">

@@ -2,12 +2,12 @@
       <v-container fluid class="bg-white">
         <h1 class="text-h4 mb-6 text-grey-darken-3">Inversiones</h1>
         <v-row>
-          <v-col cols="12" md="8">
+          <v-col cols="12" md="7">
             <YourPosition class="ma-3"/>
             <InvestmentChart />
             <InvestmentPerformance />
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="5">
             <NextInvestment />
             <OperateButtons />
           </v-col>

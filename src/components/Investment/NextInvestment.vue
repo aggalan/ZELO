@@ -1,6 +1,6 @@
 <template>
 
-    <ItemListWithButton :items="investments" buttonColor="#8B5CF6" buttonText="Mas informacion">
+    <ItemListWithButton :items="investments" useLink buttonColor="#8B5CF6" buttonText="Mas informacion">
       <v-card-title class="bg-white">
       <v-text-field
         v-model="search"

@@ -1,9 +1,14 @@
 <template>
   <v-card class="mb-4 balance-card">
-    <v-card-text>
+    <v-card-title>
       <div class="text-h6 text-grey balance-text">Balance</div>
-      <div class="text-h4 text-black align-center balance-text">$81,910.00</div>
-      <v-img block src="../assets/logo.png"  alt="Logo" class="custom-logo align-center justify-center"></v-img>
+      <div class="text-h2 text-black align-center balance-text">
+        {{viewInfo ? balance: maskBalance}}
+        <v-icon @click="toggleViewInfo()" color="black" size="40">{{ icon }}</v-icon>
+      </div>
+
+    </v-card-title>
+    <v-card-text>
       <v-row class="mt-4">
         <v-col>
           <ActionButton color="#49475A" :action="goToTransference" block customClass="transfer-btn">Transferir</ActionButton>
@@ -20,10 +25,21 @@
 //
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import router from "@/router/router";
+import {computed, ref} from "vue";
 
 const goToTransference = ()=>{
 router.push("/transference");
 }
+const balance = ref('$1000');
+const viewInfo = ref(true);
+
+const toggleViewInfo =() => {
+  viewInfo.value = !viewInfo.value;
+};
+
+const maskBalance= '$****'
+const icon = computed(() => viewInfo.value ? 'mdi-eye' : 'mdi-eye-off');
+
 </script>
 
 <style scoped>

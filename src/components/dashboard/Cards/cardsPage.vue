@@ -16,12 +16,12 @@
             v-for="card in cards"
             :key="card.id"
             :cols="12"
-            class="  d-flex flex-column  "
+            class="  d-flex flex-column mx-3  "
             sm="6"
             md="4"
           >
-            <v-sheet class="overflow-x-auto  d-inline-block w-100">
-              <div class=" background-cards py-4">
+            <v-sheet class="  d-inline-block w-100 background-cards">
+              <div class=" background-cards py-4 ">
                 <v-card
                   width="420"
                   class="flex-shrink-0 rounded-xl"
@@ -173,7 +173,7 @@ const cards = ref<CreditCard[]>([
     viewInfo: false,
     icon: 'mdi-eye-closed'
   },
-{
+  {
     id: 6,
     bank: 'Galicia',
     number: '9876543210987654',
@@ -181,7 +181,7 @@ const cards = ref<CreditCard[]>([
     name: 'Jose Benegas',
     color: 'red darken-1',
     cvv: 456
-  ,
+    ,
     viewInfo: false,
     icon: 'mdi-eye-closed'
   },

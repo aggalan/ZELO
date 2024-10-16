@@ -30,7 +30,12 @@ const vuetify = createVuetify({
   components,
   directives,
   theme: {
-    defaultTheme: 'dark'
+    defaultTheme: 'dark',
+    primary: '#8B5CF6',
+    surface:'#f3f4f6',
+    background: 'white',
+    error: '#ff5252',
+    mainText: 'black'
   }
 })
 
