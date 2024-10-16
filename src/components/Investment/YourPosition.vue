@@ -2,11 +2,11 @@
   <ItemListWithButton
     title="Tu posición"
     :items="investments"
-    buttonText="Ver todas mis inversiones"
-    buttonIcon="mdi-eye"
     buttonColor="#8B5CF6"
     @onButtonClick="goToInvestmentPage"
-  />
+  ><router-link :to="investment/all" class="link-text">
+    Ver todas mis inversiones
+  </router-link></ItemListWithButton>>
 </template>
 
 <script setup>
@@ -24,3 +24,10 @@ const goToInvestmentPage = () => {
   router.push('/investment/all');
 };
 </script>
+<style scoped>
+.link-text {
+  color: #8B5CF6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+</style>
