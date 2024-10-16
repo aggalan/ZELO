@@ -1,6 +1,7 @@
 <template>
   <v-card class="mt-4 reusable-card">
-    <v-card-title class="text-grey-darken-3">{{ title }}</v-card-title>
+    <slot>
+    </slot>
     <v-list two-line class ="list-body">
       <v-list-item v-for="(item, i) in items" :key="i">
         <v-row class="d-flex flex-row w-100 justify-end align-center pa-3" cols="12">

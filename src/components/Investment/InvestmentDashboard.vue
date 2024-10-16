@@ -5,7 +5,7 @@
         <h1 class="text-h4 mb-6 text-grey-darken-3">Inversiones</h1>
         <v-row>
           <v-col cols="12" md="8">
-            <YourPosition />
+            <YourPosition class="ma-3"/>
             <InvestmentChart />
             <InvestmentPerformance />
           </v-col>
@@ -20,8 +20,6 @@
 </template>
 
 <script setup>
-import SideBar from '@/components/SideBar.vue'
-import TopBarDashboard from '@/components/TopBarDashboard.vue'
 import YourPosition from '@/components/investment/YourPosition.vue'
 import InvestmentPerformance from '@/components/investment/InvestmentPerformance.vue'
 import NextInvestment from '@/components/investment/NextInvestment.vue'
@@ -31,8 +29,5 @@ import InvestmentChart from "@/components/Investment/InvestmentChart.vue";
 </script>
 
 <style>
-.v-application {
-  font-family: 'Roboto', sans-serif;
-  background-color: #f3f4f6;
-}
+
 </style>

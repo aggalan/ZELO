@@ -27,7 +27,7 @@ const handleItemClick = (item) => {
 </script>
 
 <template>
-  <v-navigation-drawer permanent width="250" height="100vh" color="white">
+  <v-navigation-drawer permanent width="250" height="100vh" color="background">
     <div class="d-flex justify-center pa-4">
       <div class="d-flex justify-center pa-4">
         <v-avatar size="80" class="mb-4">

@@ -29,5 +29,17 @@ const showSidebar = computed(() => route.meta.showSidebar);
 .zelo-app {
   background: linear-gradient(to bottom right, #19181e, #22202b) !important;
   overflow: hidden;
+  font-family: 'Roboto', sans-serif;
 }
+.custom-search-field {
+  border-radius: 30px; /* Rounded edges */
+  background-color: #ffffff; /* Light background */
+  padding-left: 15px; /* Padding to align text and icon */
+  padding-right: 15px;
+  box-shadow: none; /* Remove default shadow */
+  border: 0 solid transparent; /* Border on focus */
+  //transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+
 </style>

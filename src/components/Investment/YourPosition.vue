@@ -14,7 +14,7 @@
       Ver todas mis inversiones
     </router-link>
     </v-card-title>
-  </ItemListWithButton>>
+  </ItemListWithButton>
 </template>
 
 <script setup>

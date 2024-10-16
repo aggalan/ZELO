@@ -6,6 +6,7 @@ import Dashboard from '/src/components/dashboard/Dashboard.vue'
 import Transference from "@/components/transference/Transference.vue";
 import InvestmentDashboard from "@/components/Investment/InvestmentDashboard.vue";
 import Cards from "@/components/dashboard/Cards/cardsPage.vue";
+import MovementsDashboard from "@/components/movements/MovementsDashboard.vue";
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar:false } },
@@ -15,6 +16,7 @@ const routes = [
   {path: '/transference', component: Transference, meta: { showNavbar: false, showSidebar:true } },
   {path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar:true  } },
   {path: '/cards',component: Cards, meta: { showNavbar: false, showSidebar:true  } },
+  {path:'/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar:true  } },
 ];
 
 const router = createRouter({

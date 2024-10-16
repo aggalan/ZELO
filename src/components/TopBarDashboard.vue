@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="#8B5CF6" dark>
+  <v-app-bar app color="primary" dark>
     <v-container class="d-flex flex-row">
       <v-btn icon>
       <v-icon>mdi-account-circle</v-icon>
@@ -35,15 +35,7 @@ const searchQuery = ref('');
 </script>
 
 <style scoped>
-.custom-search-field {
-  border-radius: 30px; /* Rounded edges */
-  background-color: #ffffff; /* Light background */
-  padding-left: 15px; /* Padding to align text and icon */
-  padding-right: 15px;
-  box-shadow: none; /* Remove default shadow */
-  border: 0 solid transparent; /* Border on focus */
-  //transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
-}
+
 
 /* Remove underline */
 .custom-search-field .v-field__outline {

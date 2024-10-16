@@ -1,14 +1,18 @@
 <template>
   <ItemList
-    title="Movimientos"
     :items="transactions"
     linkText="Detalles"
-  />
+  >  <slot><v-card-title class="text-grey-darken-3">{{ title }}</v-card-title></slot>
+  </ItemList>>
 </template>
 
 <script setup>
 import ItemList from '@/components/generalComponents/ItemList.vue'
-import { ref } from 'vue'
+import { ref, defineProps } from 'vue'
+
+defineProps({
+title: {type: String, default: 'Movimientos'}
+})
 
 const transactions = ref([
   { name: 'Jose', description: 'Te transfirió $10.000', time: 'Ahora', icon: 'mdi-account', color: '#8B5CF6' },
