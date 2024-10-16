@@ -1,12 +1,23 @@
 <template>
   <ItemListWithButton
-  title="Servicios y saldos"
   :items="services"
-  buttonText="agregar"
+  buttonText="pagar"
   buttonColor="#8B5CF6"
   first-button-color="white"
   @onButtonClick="goToMovementPage"
-  />
+  >
+    <v-card-title  class="d-flex justify-space-between align-center text-grey-darken-3">
+      {{ title }}
+      <ActionButton
+        class="ma-3"
+        @click=""
+        color="white"
+      >
+        AGREGAR
+        <v-icon right>mdi-plus</v-icon>
+      </ActionButton>
+    </v-card-title>
+  </ItemListWithButton>>
 </template>
 
 <script setup>
@@ -15,6 +26,7 @@ import router from "@/router/router";
 import ItemListWithButton from "@/components/generalComponents/ItemListWithButton.vue";
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
+const title = "Saldos y Servicios"
 const services = ref([
   { name: 'Electricidad', dueDate: 'Vence el 15 de Agosto', amount: '20.000', icon: 'mdi-flash', iconColor: 'amber', action: 'Pagar', onActionClick: () => {} },
   { name: 'Personal', dueDate: 'Vence el 15 de Septiembre', amount: '0.0001', icon: 'mdi-cellphone', iconColor: 'blue', action: 'Pagar', onActionClick: () => {} },

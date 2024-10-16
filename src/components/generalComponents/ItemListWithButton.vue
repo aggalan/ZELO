@@ -1,20 +1,8 @@
 <template>
   <v-card class="item-list-card">
-    <v-card-title class="d-flex justify-space-between align-center text-grey-darken-3">
-      {{ title }}
-      <slot>
-        <ActionButton
-          class="ma-3"
-          v-if="buttonText"
-          @click="onButtonClick"
-          :color="firstButtonColor || buttonColor"
-        >
-          {{ buttonText }}
-          <v-icon right>{{ buttonIcon }}</v-icon>
-        </ActionButton>
-      </slot>
-    </v-card-title>
+    <slot>
 
+    </slot>
     <v-list class="list-body">
       <v-list-item
         v-for="(item, i) in items"
@@ -31,13 +19,13 @@
           <v-col class="text-subtitle-1 w-25 font-weight-medium text-black" md="3">${{ item.amount }}</v-col>
           <v-col class="w-25" md="2">
             <ActionButton
-              v-if="item.action"
+              v-if="buttonText"
               @click="selectItem(i)"
-              :color="useSelectedText && selectedItem === i ? 'grey' : buttonColor"
-              :class="useSelectedText && selectedItem === i ? { color: 'violet', backgroundColor: 'lightgrey' } : {}"
+              :color="useSelectedText && selectedItem === i ? selectedColor : buttonColor"
             >
-              {{ useSelectedText && selectedItem === i ? selectedText : item.action }}
-            </ActionButton>          </v-col>
+              {{ useSelectedText && selectedItem === i ? selectedText : buttonText }}
+            </ActionButton>
+          </v-col>
         </v-row>
       </v-list-item>
     </v-list>
@@ -51,7 +39,6 @@ import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 // Props
 const props = defineProps({
-  title: { type: String, required: true },
   buttonText: { type: String, default: '' },
   buttonIcon: { type: String, default: 'mdi-plus' },
   buttonColor: { type: String, default: 'white' },
@@ -60,6 +47,8 @@ const props = defineProps({
   onButtonClick: { type: Function, default: () => {} },
   selectedText: { type: String, default: null },
   useSelectedText: { type: Boolean, default: false },
+  selectedColor:{type: String, default: 'grey'},
+  selectedTextColor:{type: String, default: 'white'}
 });
 
 // Estado reactivo para manejar el ítem seleccionado
@@ -81,11 +70,6 @@ const selectItem = (index) => {
   background: #f3f4f6;
 }
 
-/* Estilos para el ítem seleccionado */
-.selected-item-button {
-  background-color: lightgrey;
-  color: violet;
-}
 
 .additional-content {
   padding: 10px;
