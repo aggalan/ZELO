@@ -3,7 +3,7 @@
     :items="transactions"
     linkText="Detalles"
   >  <slot><v-card-title class="text-grey-darken-3">{{ title }}</v-card-title></slot>
-  </ItemList>>
+  </ItemList>
 </template>
 
 <script setup>
@@ -35,9 +35,5 @@ const transactions = ref([
 .v-list-item__avatar .v-icon {
   font-size: 20px;
 }
-.link-text {
-  color: #8B5CF6; /* Cambia el color del texto */
-  text-decoration: underline; /* Subraya el texto */
-  cursor: pointer; /* Cambia el cursor al pasar sobre el texto */
-}
+
 </style>

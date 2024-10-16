@@ -12,7 +12,7 @@
           <v-col md="5">
             <v-list-item-title class="text-black">{{ item.name }}</v-list-item-title>
             <v-list-item-subtitle class="text-grey">{{ item.description }}</v-list-item-subtitle>
-            <router-link :to="item.link" class="link-text" v-if="item.link">
+            <router-link :to="item.link" class="link-text linkColor" v-if="item.link">
               {{ linkText }}
             </router-link>
           </v-col>
@@ -49,7 +49,6 @@ defineProps({
 }
 
 .link-text {
-  color: #8B5CF6;
   text-decoration: underline;
   cursor: pointer;
 }

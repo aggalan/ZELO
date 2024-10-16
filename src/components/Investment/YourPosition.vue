@@ -10,7 +10,7 @@
     useSelectedText
   >    <v-card-title class="d-flex justify-space-between align-center text-grey-darken-3">
     {{ title }}
-    <router-link :to="investment/all" class="link-text">
+    <router-link :to="investment/all" class="link-text ">
       Ver todas mis inversiones
     </router-link>
     </v-card-title>

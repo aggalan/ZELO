@@ -17,7 +17,7 @@
         <v-icon right>mdi-plus</v-icon>
       </ActionButton>
     </v-card-title>
-  </ItemListWithButton>>
+  </ItemListWithButton>
 </template>
 
 <script setup>

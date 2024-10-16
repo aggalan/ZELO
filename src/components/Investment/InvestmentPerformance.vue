@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="my-card">
     <v-card-text>
       <v-chart class="chart" :option="chartOption" />
     </v-card-text>
@@ -12,7 +12,8 @@ import { use } from 'echarts/core'
 import { CanvasRenderer } from 'echarts/renderers'
 import { LineChart } from 'echarts/charts'
 import { GridComponent, TooltipComponent } from 'echarts/components'
-import { provide } from 'vue'
+import  VChart  from 'vue-echarts'; // Asegúrate de importar el componente ECharts
+
 
 use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
 
@@ -54,6 +55,10 @@ onMounted(() => {
 </script>
 
 <style scoped>
+.my-card {
+  background-color: #f3f4f6;
+  border-radius: 12px;
+}
 .chart {
   height: 300px;
 }

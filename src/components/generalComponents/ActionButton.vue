@@ -3,7 +3,7 @@
       :color="color"
       text
       rounded = "pill"
-      class="pay-btn"
+      class="pay-btn "
       @click="handleClick"
       :class = "customClass"
   >
@@ -38,7 +38,6 @@ const handleClick = () => {
 
 <style scoped>
 .pay-btn {
-  background-color: #8B5CF6;
   border-radius: 12px;
   text-transform: none;
   font-size: 12px;

@@ -1,20 +1,21 @@
 <template>
-  <v-card>
-    <v-card-title>Operar</v-card-title>
+  <v-card class="my-card ma-3">
+    <v-card-title class="ma-3">Operar</v-card-title>
     <v-card-text>
       <v-row>
         <v-col cols="6">
-          <v-btn block color="#4B5563" dark class="text-none">
+          <ActionButton block color="#4B5563" class="oper-button">
             <v-icon left>mdi-cash-plus</v-icon>
             Invertir
-          </v-btn>
+          </ActionButton>
+
         </v-col>
 
         <v-col cols="6">
-          <v-btn block outlined color="#4B5563" class="text-none">
+          <ActionButton block color="#4B5563" class="oper-button">
             <v-icon left>mdi-cash-minus</v-icon>
             Rescatar
-          </v-btn>
+          </ActionButton>
         </v-col>
       </v-row>
     </v-card-text>
@@ -23,6 +24,7 @@
 
 <script setup>
 import { defineComponent } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 defineComponent({
   name: 'OperateButtons',
@@ -34,5 +36,13 @@ defineComponent({
   text-transform: none;
   height: 48px;
   font-size: 16px;
+}
+.my-card {
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  color: black;
+}
+.oper-button {
+  margin-top: 10px;
 }
 </style>

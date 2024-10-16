@@ -10,6 +10,7 @@
         <div class="quick-action-comp d-flex flex-column text-center justify-center align-center text-grey-darken-4" >
           <v-btn
             dark
+            color="#8B5CF6"
             class="text-capitalize quick-action-btn"
           >
             <v-icon class = "text-white" size="30">{{ action.icon }}</v-icon>
@@ -32,11 +33,10 @@ const quickActions = ref([
 </script>
 
 <style scoped>
-.quick-action-btn {
+.quick-action-btn{
   text-transform: none;
   font-size: 10px;
   border-radius: 12px;
-  background-color: #8B5CF6;
   width: 75px;
   margin: 10px;
   height: 75px;

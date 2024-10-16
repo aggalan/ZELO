@@ -1,5 +1,5 @@
 <template>
-  <v-app-bar app color="primary" dark>
+  <v-app-bar app color="#8B5CF6" >
     <v-container class="d-flex flex-row">
       <v-btn icon>
       <v-icon>mdi-account-circle</v-icon>
