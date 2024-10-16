@@ -2,7 +2,7 @@
   <v-app class="zelo-app">
     <SideBar v-if="showSidebar"/>
     <Navbar v-if="showNavbar" />
-    <TopBarDashboard v-else/>
+    <TopBarDashboard v-else class="pa-1"/>
     <v-main>
       <router-view/>
     </v-main>

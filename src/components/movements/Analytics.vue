@@ -1,40 +1,32 @@
 <template>
-  <v-card class="mb-4">
-    <v-card-title>Analíticas</v-card-title>
+  <ItemList :items="categories"  class="ma-2 " >
+    <v-card-title >Analíticas</v-card-title>
     <v-card-text>
-      <v-row align="center" justify="center">
-        <v-col cols="6">
-          <v-progress-circular
-            :rotate="360"
-            :size="150"
-            :width="15"
-            :value="13"
-            color="#8B5CF6"
-          >
-            13%
-          </v-progress-circular>
-        </v-col>
-        <v-col cols="6">
-          <div class="text-h6 mb-2">Total Gastado</div>
+      <v-row class="justify-space-around ma-1">
+        <v-progress-circular
+          rotate="270"
+          size="150"
+          width="15"
+          model-value="13"
+          bg-color="#E5E7EB"
+          color="#8B5CF6"
+        >
+          13%
+        </v-progress-circular>
+      </v-row>
+      <v-row >
+        <v-col>
+          <div class="text-h8 mb-2">Total Gastado</div>
           <div class="text-h4 font-weight-bold">$50.000</div>
-          <v-list dense>
-            <v-list-item v-for="(category, index) in categories" :key="index">
-              <v-list-item-icon>
-                <v-icon :color="category.color">{{ category.icon }}</v-icon>
-              </v-list-item-icon>
-              <v-list-item-content>
-                <v-list-item-title>{{ category.name }}</v-list-item-title>
-              </v-list-item-content>
-            </v-list-item>
-          </v-list>
         </v-col>
       </v-row>
-    </v-card-text>
-  </v-card>
+    </v-card-text></ItemList>
+
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ItemList from "@/components/generalComponents/ItemList.vue";
 
 const categories = ref([
   { name: 'Comida', icon: 'mdi-food', color: '#F472B6' },
@@ -43,3 +35,13 @@ const categories = ref([
   { name: 'Servicios', icon: 'mdi-lightning-bolt', color: '#34D399' },
 ])
 </script>
+<style scoped>
+.my-card {
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  color: black;
+}
+.my-list {
+  background-color: #f3f4f6;
+}
+</style>

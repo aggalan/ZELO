@@ -6,7 +6,7 @@
       <v-list-item v-for="(item, i) in items" :key="i">
         <v-row class="d-flex flex-row w-100 justify-end align-center pa-3" cols="12">
           <v-col cols="12" md="2">
-            <v-icon v-if="item.icon" :color="item.color">{{ item.icon }}</v-icon>
+            <v-icon v-if="item.icon" :color="item.color || black">{{ item.icon }}</v-icon>
             <v-img v-else :src="item.image" alt="Item image"></v-img>
           </v-col>
           <v-col md="5">
@@ -26,19 +26,24 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import {computed, defineProps} from 'vue'
 
-defineProps({
+
+const props = defineProps({
   title: String,
   items: Array,
   linkText: String,
 })
+
+const black = 'black'
+
 </script>
 
 <style scoped>
 .reusable-card {
   background: #f3f4f6;
   border-radius: 12px;
+  color: black;
 }
 .list-body {
   background: #f3f4f6;
