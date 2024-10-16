@@ -36,33 +36,6 @@ const searchQuery = ref('');
 
 <style scoped>
 
-
-/* Remove underline */
-.custom-search-field .v-field__outline {
-  display: none; /* Hide the outline (underline) */
-  outline: none; /* Remove default focus outline */
-}
-
-/* Style the input field */
-.custom-search-field .v-field__input {
-  min-height: 45px; /* Control the height */
-}
-
-/* Placeholder styling */
-.custom-search-field .v-field__input::placeholder {
-  color: #ffffff; /* Lighter gray for placeholder text */
-}
-
-/* Focus and hover effects */
-.custom-search-field:focus-within {
-  border-color: #1976d2; /* Blue border when focused */
-  box-shadow: 0 0 0 rgba(0, 118, 210, 0.2); /* Subtle shadow on focus */
-}
-
-.custom-search-field:hover {
-  border-color: #ffffff; /* Light gray border on hover */
-}
-
 /* Responsive width */
 .custom-search-field {
   width: 100%;

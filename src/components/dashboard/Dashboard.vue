@@ -1,6 +1,4 @@
 <template>
-  <v-app>
-    <v-main>
       <v-container fluid class="bg-white">
         <v-row>
           <v-col cols="12" md="5">
@@ -14,8 +12,6 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-main>
-  </v-app>
 </template>
 
 <script setup>

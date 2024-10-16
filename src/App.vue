@@ -38,6 +38,7 @@ const showSidebar = computed(() => route.meta.showSidebar);
   padding-right: 15px;
   box-shadow: none; /* Remove default shadow */
   border: 0 solid transparent; /* Border on focus */
+  min-height: 45px; /* Control the height */
   //transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 

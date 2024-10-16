@@ -55,10 +55,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.my-card {
-  background-color: #f3f4f6;
-  border-radius: 12px;
-}
+
 .chart {
   height: 300px;
 }

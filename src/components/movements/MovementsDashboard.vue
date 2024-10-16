@@ -1,7 +1,5 @@
 <template>
-  <v-app>
-    <v-main class="bg-grey-lighten-4">
-      <v-container fluid>
+      <v-container fluid class="bg-white">
         <h1 class="text-h4 mb-6">Movimientos</h1>
         <v-row>
           <v-col cols="12" md="8">
@@ -24,8 +22,6 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-main>
-  </v-app>
 </template>
 
 <script setup>

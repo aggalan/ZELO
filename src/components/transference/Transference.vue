@@ -25,9 +25,8 @@ const frequentContacts = ref([
 </script>
 
 <template>
-  <v-app>
-    <v-main class="bg-white">
-      <v-container fluid class="pa-8">
+
+      <v-container fluid class="pa-8 bg-white">
         <h1 class="text-h4 font-weight-bold mb-6">Transferencias</h1>
 
         <v-row class="mb-6">
@@ -101,9 +100,7 @@ const frequentContacts = ref([
           </v-col>
         </v-row>
       </v-container>
-    </v-main>
-  </v-app>
-</template>
+    </template>
 
 <style scoped>
 .v-btn {

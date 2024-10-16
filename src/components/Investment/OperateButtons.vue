@@ -37,11 +37,6 @@ defineComponent({
   height: 48px;
   font-size: 16px;
 }
-.my-card {
-  background-color: #f3f4f6;
-  border-radius: 12px;
-  color: black;
-}
 .oper-button {
   margin-top: 10px;
 }

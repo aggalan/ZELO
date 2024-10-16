@@ -37,9 +37,4 @@ const bitcoinTrend = ref([8,9,7,8,9,6,7,8,5,7,8,9,7,6,7])
 </script>
 
 <style scoped>
-.my-card {
-  background-color: #f3f4f6;
-  border-radius: 12px;
-  color: black;
-}
 </style>

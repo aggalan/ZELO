@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mb-4 my-card">
+  <v-card class="mb-4 my-card ma-2 pa-2">
     <v-row>
       <v-col
         v-for="(action, i) in quickActions"
@@ -46,12 +46,4 @@ const quickActions = ref([
   width: 100%;
 }
 
-.my-card {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  background: #f3f4f6;
-  border-radius: 12px;
-  mso-border-shadow: yes;
-  padding: 20px;
-}
 </style>
