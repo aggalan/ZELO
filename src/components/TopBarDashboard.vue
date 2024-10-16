@@ -15,33 +15,67 @@
     <!-- Contenedor para centrar el botón y la barra de búsqueda -->
     <v-container class="search-container d-flex align-center ">
 
-        <v-text-field
-          hide-details
-          prepend-icon="mdi-magnify"
-          single-line
-          placeholder="Buscar en la página"
-          class="ml-4 search-field text-grey-darken-3"
-        ></v-text-field>
+      <v-text-field
+        hide-details
+        prepend-icon="mdi-magnify"
+        placeholder="Buscar en la página"
+        v-model="searchQuery"
+        class="custom-search-field text-black rounded-xl"
+        clearable
+      ></v-text-field>
 
     </v-container>
   </v-app-bar>
 </template>
 
 <script setup>
-// ...
+import { ref } from 'vue';
+
+const searchQuery = ref('');
 </script>
 
 <style scoped>
-.search-container {
-  flex-grow: 1; /* Permite que el contenedor ocupe el espacio disponible */
-  justify-content: flex-end; /* Alinea el contenido a la derecha */
-  background: transparent;
+.custom-search-field {
+  border-radius: 30px; /* Rounded edges */
+  background-color: #ffffff; /* Light background */
+  padding-left: 15px; /* Padding to align text and icon */
+  padding-right: 15px;
+  box-shadow: none; /* Remove default shadow */
+  border: 0 solid transparent; /* Border on focus */
+  //transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
-.search-field {
-  max-width: 300px;
-  border-radius: 30px;
-  background-color: #F0F0F0;
+/* Remove underline */
+.custom-search-field .v-field__outline {
+  display: none; /* Hide the outline (underline) */
+  outline: none; /* Remove default focus outline */
+}
+
+/* Style the input field */
+.custom-search-field .v-field__input {
+  min-height: 45px; /* Control the height */
+}
+
+/* Placeholder styling */
+.custom-search-field .v-field__input::placeholder {
+  color: #ffffff; /* Lighter gray for placeholder text */
+}
+
+/* Focus and hover effects */
+.custom-search-field:focus-within {
+  border-color: #1976d2; /* Blue border when focused */
+  box-shadow: 0 0 0 rgba(0, 118, 210, 0.2); /* Subtle shadow on focus */
+}
+
+.custom-search-field:hover {
+  border-color: #ffffff; /* Light gray border on hover */
+}
+
+/* Responsive width */
+.custom-search-field {
+  width: 100%;
+  max-width: 400px; /* Max width for larger screens */
+  margin: 0 auto; /* Center on small screens */
 }
 
 .v-btn {

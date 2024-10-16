@@ -56,7 +56,7 @@
             <v-sheet class="d-inline-block background-cards" width="420">
               <v-card-title class="d-flex text-black justify-space-between align-center my-2">
                 Información
-                <v-icon>mdi-pencil</v-icon>
+                <v-icon>mdi-eye</v-icon>
               </v-card-title>
               <v-card-text>
                 <v-container class="bg-grey-lighten-4 d-flex flex-column p-0 rounded-lg">
