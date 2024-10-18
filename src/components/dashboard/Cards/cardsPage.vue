@@ -4,9 +4,9 @@
       <v-row class="mb-6 d-flex flex-row" align="center">
         <v-col cols="12" sm="6" class="d-flex flex-row">
           <h1 class="text-h4 text-black mr-4">Tarjetas</h1>
-          <v-btn color="transparent" height="40" class="text-black" elevation="0" style="border: 1px darkgrey solid; border-radius: 16px;">
-            Agregar tarjeta +
-          </v-btn>
+          <ActionButton  height="40"  elevation="0" >
+            AGREGAR TARJETA +
+          </ActionButton>
         </v-col>
       </v-row>
 
@@ -67,13 +67,13 @@
                 <v-icon @click="toggleViewInfo(card.id)">{{ card.icon }}</v-icon>
               </v-card-title>
               <v-card-actions class="justify-center">
-                <v-btn
+                <ActionButton
                   height="50"
                   @click="removeCard(card.id)"
                   class="remove-card-btn text-white px-5"
                 >
                   Remover Tarjeta
-                </v-btn>
+                </ActionButton>
               </v-card-actions>
             </v-sheet>
           </v-col>
@@ -85,6 +85,7 @@
 
 <script setup lang="ts">
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const toggleViewInfo = (id: number) => {
   cards.value = cards.value.map(c => {
@@ -207,7 +208,6 @@ const removeCard = (id: number) => {
 }
 
 .remove-card-btn {
-  border-radius: 20px;
   background-color: #49475A;
 }
 

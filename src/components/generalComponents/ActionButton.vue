@@ -2,8 +2,7 @@
   <v-btn
       :color="color"
       text
-      rounded = "pill"
-      class="pay-btn "
+      class="pay-btn rounded-lg"
       @click="handleClick"
       :class = "customClass"
   >
@@ -38,7 +37,6 @@ const handleClick = () => {
 
 <style scoped>
 .pay-btn {
-  border-radius: 12px;
   text-transform: none;
   font-size: 12px;
 }
