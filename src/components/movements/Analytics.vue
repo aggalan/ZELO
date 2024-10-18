@@ -1,6 +1,6 @@
 <template>
   <ItemList :items="categories"  class="ma-2 " >
-    <v-card-title >Analíticas</v-card-title>
+    <v-card-title >Gastos el último mes</v-card-title>
     <v-card-text>
       <v-row class="justify-space-around ma-1">
         <v-progress-circular

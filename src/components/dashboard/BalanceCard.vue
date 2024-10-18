@@ -1,7 +1,6 @@
 <template>
   <v-card class="mb-4 balance-card">
-    <v-card-title>
-      <div class="text-h6 text-grey balance-text">Balance</div>
+    <v-card-title class="text-grey-darken-3"> Balance
       <div class="text-h2 text-black align-center balance-text">
         {{viewInfo ? balance: maskBalance}}
         <v-icon @click="toggleViewInfo()" color="black" size="40">{{ icon }}</v-icon>

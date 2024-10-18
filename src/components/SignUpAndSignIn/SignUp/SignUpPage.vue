@@ -2,7 +2,7 @@
   <div class="sign-in-container h-100">
     <div class="sign-in-form">
       <Logo />
-      <h1>Sign Up</h1>
+      <h1>Registrarse</h1>
       <SignInForm />
       <LoginLink />
     </div>

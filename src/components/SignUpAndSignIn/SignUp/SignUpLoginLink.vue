@@ -1,6 +1,6 @@
 <template>
   <p class="login-link">
-    Ya tienes una cuenta? <a href="/login">Log In</a>
+    ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
   </p>
 </template>
 

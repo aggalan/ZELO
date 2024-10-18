@@ -1,5 +1,6 @@
 <template>
-  <v-card class="mb-4 my-card ma-2 pa-2">
+  <v-card class="mb-4 my-card pb-2">
+    <v-card-title class="text-grey-darken-3">Acciones rápidas</v-card-title>
     <v-row>
       <v-col
         v-for="(action, i) in quickActions"
@@ -8,13 +9,13 @@
         class="d-flex justify-center align-center text-grey-darken-3  "
       >
         <div class="quick-action-comp d-flex flex-column text-center justify-center align-center text-grey-darken-4" >
-          <v-btn
+          <ActionButton
             dark
             color="#8B5CF6"
             class="text-capitalize quick-action-btn"
           >
             <v-icon class = "text-white" size="30">{{ action.icon }}</v-icon>
-          </v-btn>
+          </ActionButton>
           {{ action.text }}
         </div>
       </v-col>
@@ -24,6 +25,7 @@
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const quickActions = ref([
   { text: 'link de cobro', icon: 'mdi-link' },

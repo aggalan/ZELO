@@ -16,12 +16,12 @@
             v-for="card in cards"
             :key="card.id"
             :cols="12"
-            class="  d-flex flex-column mx-3  "
+            class="d-flex flex-column mx-3"
             sm="6"
             md="4"
           >
-            <v-sheet class="  d-inline-block w-100 background-cards">
-              <div class=" background-cards py-4 ">
+            <v-sheet class="d-inline-block w-100 background-cards">
+              <div class="background-cards py-4">
                 <v-card
                   width="420"
                   class="flex-shrink-0 rounded-xl"
@@ -29,9 +29,9 @@
                   :color="card.color"
                   elevation="2"
                 >
-                  <v-card-text class="h-100 d-flex flex-column justify-space-around">
-                    <div class="d-flex justify-space-between align-center mb-6">
-                      <div class="text-h4 font-weight-bold white--text">
+                  <v-card-text class="h-100 d-flex flex-column justify-space-between pa-6">
+                    <div class="d-flex justify-space-between align-center">
+                      <div class="text-h5 font-weight-bold white--text">
                         {{ card.bank }}
                       </div>
                       <v-img
@@ -40,12 +40,21 @@
                         contain
                       ></v-img>
                     </div>
-                    <div class="d-flex flex-row justify-space-between">
-                      <div class="text-subtitle-1 white--text mb-2">
-                        {{ maskCardNumber(card.number) }}
+                    <div class="text-h6 white--text">
+                      {{  card.viewInfo ? formatCardNumber(card.number) :  maskCardNumber(card.number) }}
+                    </div>
+                    <div class="d-flex justify-space-between align-center">
+                      <div>
+                        <div class="text-caption white--text mb-1">NOMBRE EN TARJETA</div>
+                        <div class="text-body-2 white--text">{{ card.name }}</div>
                       </div>
-                      <div class="text-caption white--text">
-                        {{ card.expiry }}
+                      <div>
+                        <div class="text-caption white--text mb-1">VENCIMIENTO</div>
+                        <div class="text-body-2 white--text">{{ card.expiry }}</div>
+                      </div>
+                      <div>
+                        <div class="text-caption white--text mb-1">CVV</div>
+                        <div class="text-body-2 white--text">{{ card.viewInfo ? card.cvv : '***' }}</div>
                       </div>
                     </div>
                   </v-card-text>
@@ -54,45 +63,10 @@
             </v-sheet>
 
             <v-sheet class="d-inline-block background-cards" width="420">
-              <v-card-title class="d-flex text-black justify-space-between align-center my-2">
-                Información
+              <v-card-title class="d-flex text-black justify-center align-center my-2">
                 <v-icon @click="toggleViewInfo(card.id)">{{ card.icon }}</v-icon>
               </v-card-title>
-              <v-card-text>
-                <v-container class="bg-grey-lighten-4 d-flex flex-column p-0 rounded-lg">
-                  <v-row>
-                    <v-col cols="12" sm="6">
-                      <div class="static-text">
-                        <strong>Nombre en tarjeta</strong><br>
-                        {{ card.name }}
-                      </div>
-                    </v-col>
-                    <v-col cols="12" sm="6">
-                      <div class="static-text">
-                        <strong>Número de tarjeta</strong><br>
-                        {{card.viewInfo? card.number : maskCardNumber(card.number)}}
-                      </div>
-                    </v-col>
-                  </v-row>
-                  <v-row>
-                    <v-col cols="12" sm="6">
-                      <div class="static-text">
-                        <strong>CVV</strong><br>
-                        {{card.viewInfo? card.cvv : '***'}}
-                      </div>
-                    </v-col>
-                    <v-col cols="12" sm="6">
-                      <div class="static-text">
-                        <strong>Válido hasta</strong><br> {{ card.expiry }}
-                      </div>
-                    </v-col>
-                  </v-row>
-
-
-
-                </v-container>
-              </v-card-text>
-              <v-card-actions class=" justify-center">
+              <v-card-actions class="justify-center">
                 <v-btn
                   height="50"
                   @click="removeCard(card.id)"
@@ -102,19 +76,15 @@
                 </v-btn>
               </v-card-actions>
             </v-sheet>
-
           </v-col>
         </div>
       </v-row>
-
     </v-container>
   </v-container>
 </template>
 
 <script setup lang="ts">
-
 import { ref } from 'vue'
-
 
 const toggleViewInfo = (id: number) => {
   cards.value = cards.value.map(c => {
@@ -130,12 +100,15 @@ interface CreditCard {
   bank: string
   number: string
   expiry: string
-  cvv : Number
+  cvv: number
   name: string
   color: string
   icon: string
   viewInfo: boolean
 }
+const formatCardNumber = (number: string): string => {
+  return number.replace(/(\d{4})/g, '$1 ').trim();
+};
 
 const cards = ref<CreditCard[]>([
   {
@@ -156,8 +129,7 @@ const cards = ref<CreditCard[]>([
     expiry: '12/24',
     name: 'Jose Benegas',
     color: 'red darken-1',
-    cvv: 234
-    ,
+    cvv: 234,
     viewInfo: false,
     icon: 'mdi-eye-closed'
   },
@@ -168,8 +140,7 @@ const cards = ref<CreditCard[]>([
     expiry: '12/24',
     name: 'Jose Benegas',
     color: 'green darken-1',
-    cvv: 345
-    ,
+    cvv: 345,
     viewInfo: false,
     icon: 'mdi-eye-closed'
   },
@@ -180,12 +151,10 @@ const cards = ref<CreditCard[]>([
     expiry: '12/24',
     name: 'Jose Benegas',
     color: 'red darken-1',
-    cvv: 456
-    ,
+    cvv: 456,
     viewInfo: false,
     icon: 'mdi-eye-closed'
   },
-
   {
     id: 3,
     bank: 'Galicia',
@@ -193,12 +162,10 @@ const cards = ref<CreditCard[]>([
     expiry: '12/24',
     name: 'Jose Benegas',
     color: 'red darken-1',
-    cvv: 567
-    ,
+    cvv: 567,
     viewInfo: false,
     icon: 'mdi-eye-closed'
   }
-
 ])
 
 const maskCardNumber = (number: string): string => {
@@ -228,17 +195,16 @@ const removeCard = (id: number) => {
 }
 
 .horizontal-scroll {
-  overflow-x: auto; /* Allow horizontal scrolling */
-  white-space: nowrap; /* Prevent wrapping of cards */
-  padding-bottom: 10px; /* Optional: Add padding for better visibility */
-  scrollbar-color: transparent transparent; /* Hide scrollbar */
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  scrollbar-color: transparent transparent;
 }
 
 .scroll-container {
-  display: inline-flex; /* Align items horizontally */
-  gap: 16px; /* Space between cards */
+  display: inline-flex;
+  gap: 16px;
 }
-
 
 .remove-card-btn {
   border-radius: 20px;

@@ -1,5 +1,5 @@
 <template>
-  <button type="submit" class="submit-btn">Confirmar</button>
+  <ActionButton type="submit" class="submit-btn ">Confirmar</ActionButton>
 </template>
 
 <style scoped>
@@ -13,5 +13,9 @@
   cursor: pointer;
   font-size: 1rem;
   margin-top: 1rem;
+  height: 50px;
 }
 </style>
+<script setup lang="ts">
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
+</script>
