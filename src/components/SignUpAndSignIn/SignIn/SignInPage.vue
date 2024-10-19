@@ -1,6 +1,6 @@
 <template>
   <div class="sign-in-container h-100">
-    <div class="sign-in-form">
+    <div class="sign-in-form text-white">
       <Logo />
       <h1>Iniciar sesión</h1>
       <SignInForm />

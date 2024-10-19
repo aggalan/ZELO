@@ -2,12 +2,12 @@
   <v-container fluid class="main mx-16 h-100">
     <v-row no-gutters class="fill-height">
       <v-col cols="12" md="7" class="d-flex flex-column justify-center pa-16">
-        <h1 class="text-h2 font-weight-bold mb-4 white--text zelo-title">
+        <h1 class="text-h2 font-weight-bold mb-4 text-white zelo-title">
           Maneja tu<br>
           dinero con<br>
           <span class="zelo-gradient-text">Zelo</span>
         </h1>
-        <p class="text-body-1 grey-lighten-1--text mb-12" style="max-width: 600px;">
+        <p class="text-body-1 text-grey-lighten-1 mb-12" style="max-width: 600px;">
           {{ description }}
         </p>
         <div class="d-flex align-center flex-wrap">
@@ -23,7 +23,7 @@
             Abrir una cuenta
           </v-btn>
           <v-btn
-            class="text-body-2 bg-transparent white--text mb-2"
+            class="text-body-2 bg-transparent text-white mb-2"
             @click="downloadApp"
             elevation="0"
             to="/dashboard"

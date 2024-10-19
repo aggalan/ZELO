@@ -5,8 +5,9 @@ import SignIn from '/src/components/SignUpAndSignIn/SignIn/SignInPage.vue';
 import Dashboard from '/src/components/dashboard/Dashboard.vue'
 import Transference from "@/components/transference/Transference.vue";
 import InvestmentDashboard from "@/components/Investment/InvestmentDashboard.vue";
-import Cards from "@/components/dashboard/Cards/cardsPage.vue";
+import Cards from "@/components/Cards/cardsPage.vue";
 import MovementsDashboard from "@/components/movements/MovementsDashboard.vue";
+import ProfileDashboard from "@/components/profile/ProfileDashboard.vue";
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar:false } },
@@ -17,6 +18,7 @@ const routes = [
   {path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar:true  } },
   {path: '/cards',component: Cards, meta: { showNavbar: false, showSidebar:true  } },
   {path:'/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar:true  } },
+  {path:'/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar:true  } }
 ];
 
 const router = createRouter({

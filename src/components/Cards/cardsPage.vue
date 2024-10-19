@@ -10,7 +10,7 @@
         </v-col>
       </v-row>
 
-      <v-dialog v-model="dialog" max-width="500px">
+      <v-dialog v-model="dialog" max-width="500px" >
         <v-card class ="my-card">
           <v-card-title class="text-h5 grey lighten-2 d-flex justify-space-between">
             Agrega una tarjeta

@@ -203,6 +203,7 @@ p {
 .bg-primary { background-color: var(--primary); }
 .bg-secondary { background-color: var(--secondary); }
 .bg-success { background-color: var(--success); }
+.bg-surface { background-color: var(--surface); }
 .bg-error { background-color: var(--error); }
 
 .rounded { border-radius: var(--border-radius); }
