@@ -12,17 +12,17 @@ import PasswordReset from "@/components/SignUpAndSignIn/PasswordReset/PasswordRe
 import Help from "@/components/help/HelpPage.vue";
 
 const routes = [
-  { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false } },
-  { path: '/signup', component: SignUp, meta: { showNavbar: true, showSidebar: false } },
-  { path: '/login', component: SignIn, meta: { showNavbar: true, showSidebar: false } },
-  { path: '/dashboard', component: Dashboard, meta: { showNavbar: false, showSidebar: true } },
-  { path: '/transference', component: Transference, meta: { showNavbar: false, showSidebar: true } },
-  { path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar: true } },
-  { path: '/cards', component: Cards, meta: { showNavbar: false, showSidebar: true } },
-  { path: '/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar: true } },
-  { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true } },
-  { path: '/reset-password', component: PasswordReset, meta: { showNavbar: true, showSidebar: false } },
-  { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true } }
+  { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true  } },
+  { path: '/signup', component: SignUp, meta: { showNavbar: true, showSidebar: false, applyBackground: true  } },
+  { path: '/login', component: SignIn, meta: { showNavbar: true, showSidebar: false, applyBackground: true  } },
+  { path: '/dashboard', component: Dashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
+  { path: '/transference', component: Transference, meta: { showNavbar: false, showSidebar: true , applyBackground: false} },
+  { path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar: true , applyBackground: false} },
+  { path: '/cards', component: Cards, meta: { showNavbar: false, showSidebar: true , applyBackground: false} },
+  { path: '/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
+  { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
+  { path: '/reset-password', component: PasswordReset, meta: { showNavbar: true, showSidebar: false, applyBackground: true } },
+  { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false } }
 ];
 
 const router = createRouter({
