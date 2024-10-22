@@ -42,5 +42,11 @@ const showSidebar = computed(() => route.meta.showSidebar);
   //transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
+:root {
+  --checkbox-color: #ffffff; /* Define the checkbox color */
+  --error-color: #ff0000; /* Define the error color */
+  --link-color: #92bad6; /* modificar */
+}
+
 
 </style>

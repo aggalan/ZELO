@@ -58,7 +58,6 @@ input {
   background-color: var(--input-background, #1F1F29);
   border-radius: 1rem;
   border: 1px solid var(--input-border, #ccc);
-  border-radius: 0.25rem;
   color: var(--text-color, #fff);
 }
 

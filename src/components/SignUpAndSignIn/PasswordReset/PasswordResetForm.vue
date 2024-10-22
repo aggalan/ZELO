@@ -15,54 +15,43 @@
           placeholder="Ingrese su contraseña"
         />
       </div>
-      <PasswordRequirements :password="newPassword" />
     </div>
-    <SubmitButton text="Restablecer" />
+
+    <ErrorMessageSignUpSignIn :visible="!passwordsMatch" message="Las contraseñas no coinciden" />
+    <SubmitButton text="Restablecer" class="submit-button"/>
   </form>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import {computed, ref, watch} from 'vue'
 import PasswordInput from './PasswordInput.vue'
 import SubmitButton from '../SubmitButton.vue'
+import ErrorMessageSignUpSignIn from "@/components/SignUpAndSignIn/errorMessageSignUpSignIn.vue";
 
 const newPassword = ref('')
 const confirmPassword = ref('')
+const errorMessage = ref('')
+
+const passwordsMatch = computed(() => newPassword.value === confirmPassword.value)
+
 
 const handleSubmit = () => {
   if (newPassword.value === confirmPassword.value) {
     console.log('Password reset with:', newPassword.value)
-    // Implement your password reset logic here
+    errorMessage.value = ''
   } else {
-    alert('Passwords do not match')
+    errorMessage.value = 'las contraseñas no coinciden'
   }
 }
 
 watch(newPassword, (newValue) => {
-  // You can add additional password validation logic here
   console.log('Password changed:', newValue)
 })
 </script>
 
 <style scoped>
-  .password-reset-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-.form-content {
-  display: flex;
-  gap: 2rem;
+.submit-button {
+  margin-top: 2.5rem; /* Adjust the value as needed */
 }
 
-.input-section {
-  flex: 1;
-}
-
-@media (max-width: 768px) {
-  .form-content {
-    flex-direction: column;
-  }
-}
 </style>

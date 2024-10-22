@@ -1,39 +1,24 @@
 <template>
   <div class="sign-in-container h-100">
     <div class="sign-in-form text-white">
-      <Logo />
-      <h1>Registrarse</h1>
-      <SignInForm />
-      <separator />
-      <LoginLink />
+      <slot name="logo"></slot>
+      <slot name="title"></slot>
+      <slot name="form"></slot>
+      <slot name="additional-links"></slot>
     </div>
     <div class="decoration">
-      <DecorationCard />
+      <slot name="decoration"></slot>
     </div>
   </div>
 </template>
 
-<script setup>
-import Logo from '../Logo.vue'
-import SignInForm from './SignUpForm.vue'
-import LoginLink from './SignUpLoginLink.vue'
-import DecorationCard from '../DecorationCard.vue'
-import Separator from "@/components/SignUpAndSignIn/separator.vue";
-</script>
-
 <style scoped>
-:root {
-  --primary-color: #8B5CF6;
-  --secondary-color: #4B5563;
-  --background-color: #19181E;
-  --text-color: #F3F4F6;
-}
-
 .sign-in-container {
   display: flex;
   height: 100vh;
   background-color: var(--background-color);
   color: var(--text-color);
+  padding-left: 1.7rem;
 }
 
 .sign-in-form {
@@ -47,6 +32,7 @@ import Separator from "@/components/SignUpAndSignIn/separator.vue";
 h1 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: var(--text-color);
 }
 
 .decoration {

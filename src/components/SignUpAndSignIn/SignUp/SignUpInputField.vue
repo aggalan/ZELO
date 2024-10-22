@@ -4,13 +4,18 @@
     <div class="input-wrapper">
       <input
         :id="id"
-        :type="showPassword ? 'text' : 'password'"
+        :type="inputType"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :placeholder="placeholder"
         required
       />
-      <button type="button" class="toggle-visibility" @click="toggleVisibility">
+      <button
+        v-if="type === 'password'"
+        type="button"
+        class="toggle-visibility"
+        @click="toggleVisibility"
+      >
         {{ showPassword ? '👁️' : '👁️‍🗨️' }}
       </button>
     </div>
@@ -18,22 +23,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-defineProps({
+const props = defineProps({
   id: String,
   label: String,
+  type: {
+    type: String,
+    default: 'text'
+  },
   modelValue: String,
   placeholder: String,
 })
 
-defineEmits(['update:modelValue'])
+const emit = defineEmits(['update:modelValue'])
 
 const showPassword = ref(false)
 
 const toggleVisibility = () => {
   showPassword.value = !showPassword.value
 }
+
+const inputType = computed(() => {
+  return props.type === 'password' && showPassword.value ? 'text' : props.type
+})
 </script>
 
 <style scoped>
@@ -49,7 +62,6 @@ label {
 
 .input-wrapper {
   position: relative;
-  border: 1px solid var(--input-border, #ccc);
   border-radius: 0.25rem;
   background-color: var(--input-background);
 }
@@ -59,7 +71,7 @@ input {
   padding: 0.75rem;
   background-color: transparent;
   border-radius: 1rem;
-  border: 1px solid var(--input-border, #ccc);;
+  border: 1px solid var(--input-border, #ccc);
   color: var(--text-color);
 }
 

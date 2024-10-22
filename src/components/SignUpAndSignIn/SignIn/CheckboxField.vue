@@ -31,7 +31,7 @@ input[type="checkbox"] {
   appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid var(--primary-color);
+  border: 2px solid #ffffff; /* White border */
   border-radius: 4px;
   margin-right: 0.5rem;
   cursor: pointer;
@@ -48,7 +48,7 @@ input[type="checkbox"]:checked::after {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: var(--background-color);
+  color: var(--checkbox-color);
   font-size: 14px;
 }
 

@@ -3,7 +3,8 @@
 </template>
 
 <style scoped>
-.logo {
+.decorationCard {
+  display: flex;
   width: 60px;
   height: 60px;
   margin-bottom: 1rem;

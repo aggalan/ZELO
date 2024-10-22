@@ -44,23 +44,23 @@ const toggleVisibility = () => {
 label {
   display: block;
   margin-bottom: 0.5rem;
-  color: var(--text-color);
+  color: white;
 }
 
 .input-wrapper {
   position: relative;
-  border: 1px solid var(--input-border);
-  border-radius: 1rem;
-  background-color: var(--input-background);
+  //border: 1px solid var(--input-border);
+  //border-radius: 1rem;
+  //background-color: var(--input-background);
 }
 
 input {
   width: 100%;
   padding: 0.75rem;
-  background-color: transparent;
+  background-color: var(--input-background, #1F1F29);
   border-radius: 1rem;
   border: 1px solid var(--input-border, #ccc);
-  color: var(--text-color);
+  color: var(--text-color, #fff);
 }
 
 input:focus {

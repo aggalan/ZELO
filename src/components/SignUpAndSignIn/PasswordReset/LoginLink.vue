@@ -1,6 +1,5 @@
 <template>
-  <p class="login-link">
-    Recordaste tu contraseña? <a href="/login">Log In</a>
+  <p class="login-link">¿Recordaste tu contraseña? <a href="/login">Inicia Sesión</a>
   </p>
 </template>
 
@@ -8,7 +7,7 @@
 .login-link {
   margin-top: 1rem;
   text-align: center;
-  color: var(--text-color);
+  color: white;
 }
 
 .login-link a {

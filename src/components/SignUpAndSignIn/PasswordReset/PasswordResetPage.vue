@@ -1,69 +1,40 @@
 <template>
-  <div class="password-reset-container">
-    <div class="password-reset-form">
+  <SignInLayout class="password-reset-layout">
+    <template #logo>
       <Logo />
+    </template>
+    <template #title>
       <h1>Restablecer Contraseña</h1>
+    </template>
+    <template #form>
       <PasswordResetForm />
+    </template>
+    <template #additional-links>
+      <separator />
       <LoginLink />
-    </div>
-    <div class="decoration">
-      <DecorationCard />
-    </div>
-  </div>
+    </template>
+    <template #decoration>
+      <DecorationCard class="decoration-card"/>
+    </template>
+  </SignInLayout>
 </template>
 
 <script setup>
+import SignInLayout from '../LayoutContainer.vue'
 import Logo from '../Logo.vue'
 import PasswordResetForm from './PasswordResetForm.vue'
 import LoginLink from './LoginLink.vue'
 import DecorationCard from '../DecorationCard.vue'
+import Separator from "@/components/SignUpAndSignIn/separator.vue";
 </script>
 
 <style scoped>
-:root {
-  --background-color: #1F2937;
-  --text-color: #F3F4F6;
-  --input-border: #4B5563;
-  --input-background: #374151;
-  --primary-color: #8B5CF6;
-  --error-color: #EF4444;
-  --success-color: #10B981;
-}
-.password-reset-container {
-  display: flex;
-  height: 100vh;
-  background-color: var(--background-color);
-  color: var(--text-color);
+.password-reset-layout {
+  margin-top: -1.8rem; /* Adjust the value as needed */
 }
 
-.password-reset-form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 2rem;
+.decoration-card {
+  margin-top: 3.7rem; /* Adjust the value as needed */
 }
 
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-  color: var(--text-color);
-}
-
-.decoration {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .password-reset-container {
-    flex-direction: column;
-  }
-
-  .decoration {
-    display: none;
-  }
-}
 </style>

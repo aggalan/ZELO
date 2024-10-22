@@ -23,14 +23,16 @@
       placeholder="Ingrese su contraseña"
       :toggle-visibility="toggleConfirmPassword"
     />
+    <ErrorMessageSignUpSignIn :visible="!passwordsMatch" message="Las contraseñas no coinciden" />
     <SubmitButton />
   </form>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import {ref, computed} from 'vue'
 import InputField from './SignUpInputField.vue'
 import SubmitButton from '../SubmitButton.vue'
+import ErrorMessageSignUpSignIn from "@/components/SignUpAndSignIn/errorMessageSignUpSignIn.vue";
 
 const email = ref('')
 const password = ref('')
@@ -51,8 +53,7 @@ const toggleConfirmPassword = () => {
 const handleSubmit = () => {
   if (passwordsMatch.value) {
     console.log('Sign up with:', email.value, password.value)
-  } else {
-    alert('Passwords do not match')
   }
 }
 </script>
+

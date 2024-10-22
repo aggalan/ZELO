@@ -8,6 +8,7 @@ import InvestmentDashboard from "@/components/Investment/InvestmentDashboard.vue
 import Cards from "@/components/Cards/cardsPage.vue";
 import MovementsDashboard from "@/components/movements/MovementsDashboard.vue";
 import ProfileDashboard from "@/components/profile/ProfileDashboard.vue";
+import PasswordReset from "@/components/SignUpAndSignIn/PasswordReset/PasswordResetPage.vue";
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar:false } },
@@ -18,7 +19,8 @@ const routes = [
   {path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar:true  } },
   {path: '/cards',component: Cards, meta: { showNavbar: false, showSidebar:true  } },
   {path:'/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar:true  } },
-  {path:'/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar:true  } }
+  {path:'/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar:true  } },
+  { path: '/reset-password', component: PasswordReset, meta: { showNavbar: true, showSidebar: false } },
 ];
 
 const router = createRouter({
