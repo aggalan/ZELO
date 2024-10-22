@@ -24,8 +24,10 @@ import ServicesAndBalances from './ServicesAndBalances.vue'
 </script>
 
 <style>
+
 .v-application {
   font-family: 'Roboto', sans-serif;
   background-color: #f0f0f0;
 }
+
 </style>

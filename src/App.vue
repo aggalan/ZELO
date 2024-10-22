@@ -27,7 +27,7 @@ const showSidebar = computed(() => route.meta.showSidebar);
 
 <style>
 .zelo-app {
-  background: linear-gradient(to bottom right, #19181e, #22202b) !important;
+  background: white;
   overflow: hidden;
   font-family: 'Roboto', sans-serif;
 }
