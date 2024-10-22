@@ -257,6 +257,11 @@ const removeCard = (id: number) => {
 };
 
 const addCard = () => {
+  if (!newCard.value.number || !newCard.value.name || !newCard.value.expiry || !newCard.value.cvv) {
+    alert('Todos los campos son obligatorios.');
+    return;
+  }
+
   const newCardData: CreditCard = {
     id: Date.now(),
     bank: 'New Bank', // You might want to add a field for bank in the form

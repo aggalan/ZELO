@@ -12,16 +12,13 @@ const menuItems = ref([
 ])
 
 const bottomItems = ref([
-  { title: 'Configuración', icon: 'mdi-cog-outline', route: '/settings' }, // Add a route for Configuración
-  { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' } // Optionally add logout route
+  { title: 'Configuración', icon: 'mdi-cog-outline', route: '/settings' },
+  { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' }
 ])
 const selectedItem = ref('Dashboard')
 
 const handleItemClick = (item) => {
-  // Actualizar el ítem seleccionado
   selectedItem.value = item.title
-
-  // Redirigir a la página correspondiente
   router.push(item.route)
 }
 </script>
@@ -37,12 +34,12 @@ const handleItemClick = (item) => {
     </div>
     <v-list nav>
       <v-list-item
-          v-for="item in menuItems"
-          :key="item.title"
-          :value="item.title"
-          :class="{ 'selected-item': item.title === selectedItem }"
-          @click="handleItemClick(item)"
-          class="mb-2"
+        v-for="item in menuItems"
+        :key="item.title"
+        :value="item.title"
+        :class="{ 'selected-item': item.title === selectedItem && $route.path !== '/help' }"
+        @click="handleItemClick(item)"
+        class="mb-2"
       >
         <template v-slot:prepend>
           <v-icon :icon="item.icon" size="24" class="mr-3"></v-icon>
@@ -53,10 +50,10 @@ const handleItemClick = (item) => {
     <template v-slot:append>
       <v-list nav>
         <v-list-item
-            v-for="item in bottomItems"
-            :key="item.title"
-            :value="item.title"
-            class="mb-2"
+          v-for="item in bottomItems"
+          :key="item.title"
+          :value="item.title"
+          class="mb-2"
         >
           <template v-slot:prepend>
             <v-icon :icon="item.icon" size="24" class="mr-3"></v-icon>
@@ -74,11 +71,11 @@ const handleItemClick = (item) => {
   margin-bottom: 40px;
 }
 
- .avatar-img {
-   width: 100%;
-   height: 100%;
-   object-fit: cover;
- }
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
 .v-list-item__prepend {
   margin-right: 16px;
