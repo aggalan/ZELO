@@ -1,7 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import '@mdi/font/css/materialdesignicons.css'
 import router from "@/router/router";
+import {useRoute} from "vue-router";
+
+const route= useRoute()
 
 const menuItems = ref([
   { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', route: '/dashboard' },
@@ -15,7 +18,17 @@ const bottomItems = ref([
   { title: 'Configuración', icon: 'mdi-cog-outline', route: '/settings' },
   { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' }
 ])
-const selectedItem = ref('Dashboard')
+// Iniciar selectedItem según la ruta actual
+const selectedItem = ref(menuItems.value.find(item => item.route === route.path)?.title || '');
+
+// Observar cambios en la ruta para actualizar selectedItem
+watch(route, (newRoute) => {
+  const foundItem = menuItems.value.find(item => item.route === newRoute.path);
+  if (foundItem) {
+    selectedItem.value = foundItem.title;
+  }
+});
+console.log(selectedItem.value)
 
 const handleItemClick = (item) => {
   selectedItem.value = item.title
