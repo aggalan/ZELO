@@ -71,7 +71,7 @@ export const useCardsStore = defineStore('cards', () => {
 
   // Agregar tarjeta a un usuario
   const addCard = (userId, card) => {
-    if(!card.number || !card.expirationDate || !card.cvv) {
+    if(!card.number || !card.expiry || !card.cvv) {
       throw new Error('Número de tarjeta, fecha de expiración y CVV son requeridos');
     }
     card.name = card.name || users.getUserById(userId).name;
