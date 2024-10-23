@@ -15,24 +15,26 @@ import faq  from "@/components/Landing/Home/faq.vue"
 import SobreNosotros  from "@/components/Landing/Home/SobreNosotros.vue"
 import contactanos  from "@/components/Landing/Home/contactanos.vue"
 import features  from "@/components/Landing/Home/features.vue"
+import {useUsersStore} from "@/store/usersStore";
 
 const routes = [
-  { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true  } },
-  { path: '/signup', component: SignUp, meta: { showNavbar: true, showSidebar: false, applyBackground: true  } },
-  { path: '/login', component: SignIn, meta: { showNavbar: true, showSidebar: false, applyBackground: true  } },
-  { path: '/dashboard', component: Dashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
-  { path: '/transference', component: Transference, meta: { showNavbar: false, showSidebar: true , applyBackground: false} },
-  { path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar: true , applyBackground: false} },
-  { path: '/cards', component: Cards, meta: { showNavbar: false, showSidebar: true , applyBackground: false} },
-  { path: '/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
-  { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
-  { path: '/reset-password', component: PasswordReset, meta: { showNavbar: true, showSidebar: false, applyBackground: true } },
-  { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
-  {path : '/legales', component: Legales, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
-  ,{path : '/faq', component: faq, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
-  ,{path : '/sobre-nosotros', component: SobreNosotros, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
-  ,{path : '/contactanos', component: contactanos, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
-  ,{path : '/features', component: features, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
+  { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true , authProtected: false  } },
+  { path: '/signup', component: SignUp, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false  } },
+  { path: '/login', component: SignIn, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false  } },
+  { path: '/reset-password', component: PasswordReset, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false } },
+  {path : '/legales', component: Legales, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }}
+  ,{path : '/faq', component: faq, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }}
+  ,{path : '/sobre-nosotros', component: SobreNosotros, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }}
+  ,{path : '/contactanos', component: contactanos, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }}
+  ,{path : '/features', component: features, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }},
+  { path: '/dashboard', component: Dashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/transference', component: Transference, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true} },
+  { path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true} },
+  { path: '/cards', component: Cards, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true} },
+  { path: '/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+
 
 ];
 
@@ -40,5 +42,16 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+
+router.beforeEach((to,from) => {
+  const user = useUsersStore()
+  if(to.matched.some(route => route.meta.authProtected) && !user.isAuthenticated) {
+    return {
+      path: '/login',
+      query: { redirect: to.fullPath },
+    }
+  }
+})
 
 export default router;

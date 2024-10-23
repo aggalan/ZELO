@@ -3,8 +3,10 @@ import { ref, watch } from 'vue'
 import '@mdi/font/css/materialdesignicons.css'
 import router from "@/router/router";
 import {useRoute} from "vue-router";
+import {useUsersStore} from "@/store/usersStore";
 
 const route= useRoute()
+const users = useUsersStore()
 
 const menuItems = ref([
   { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', route: '/dashboard' },
@@ -31,6 +33,11 @@ watch(route, (newRoute) => {
 console.log(selectedItem.value)
 
 const handleItemClick = (item) => {
+  if(item.title === selectedItem.value) return;
+  if(item.title === 'Cerrar Sesión') {
+    users.logout();
+    return
+  }
   selectedItem.value = item.title
   router.push(item.route)
 }
@@ -66,6 +73,7 @@ const handleItemClick = (item) => {
           v-for="item in bottomItems"
           :key="item.title"
           :value="item.title"
+          @click="handleItemClick(item)"
           class="mb-2"
         >
           <template v-slot:prepend>

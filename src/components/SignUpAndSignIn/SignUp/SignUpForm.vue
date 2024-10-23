@@ -33,13 +33,15 @@ import {ref, computed} from 'vue'
 import InputField from './SignUpInputField.vue'
 import SubmitButton from '../SubmitButton.vue'
 import ErrorMessageSignUpSignIn from "@/components/SignUpAndSignIn/errorMessageSignUpSignIn.vue";
+import {useUsersStore} from "@/store/usersStore";
+import router from "@/router/router";
 
 const email = ref('')
 const password = ref('')
 const confirmPassword = ref('')
 const showPassword = ref(false)
 const showConfirmPassword = ref(false)
-
+const users = useUsersStore()
 const passwordsMatch = computed(() => password.value === confirmPassword.value)
 
 const togglePassword = () => {
@@ -53,6 +55,10 @@ const toggleConfirmPassword = () => {
 const handleSubmit = () => {
   if (passwordsMatch.value) {
     console.log('Sign up with:', email.value, password.value)
+    users.register(email.value, name || '', password.value)
+    if(users.isAuthenticated) {
+      router.push('/dashboard')
+    }
   }
 }
 </script>
