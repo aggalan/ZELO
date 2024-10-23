@@ -1,10 +1,10 @@
 <template>
   <v-container fluid class="main background-cards pa-4">
     <h1 class="text-h4 mb-6 mt-6 ml-2">Tarjetas</h1>
-    <v-container fluid class="pa-10">
-      <v-row class=" d-flex flex-row" align="center">
-        <v-col cols="12" sm="6" class="d-flex flex-row">
-          <ActionButton @click="toggleDialog" height="40" elevation="0">
+    <v-container fluid class="pa-10 ">
+      <v-row class=" d-flex flex-row " align="center">
+        <v-col cols="12" sm="6" class="d-flex flex-row ">
+          <ActionButton @click="toggleDialog" height="40" elevation="0" class="aux">
             AGREGAR TARJETA +
           </ActionButton>
         </v-col>
@@ -236,7 +236,7 @@ const addCard = () => {
 }
 
 .background-cards {
-  background-color: #f9f9f9;
+  background-color: #ffffff;
 }
 
 .horizontal-scroll {
@@ -249,6 +249,10 @@ const addCard = () => {
 .scroll-container {
   display: inline-flex;
   gap: 16px;
+}
+
+.aux {
+  margin-left: -30px;
 }
 
 .remove-card-btn {
