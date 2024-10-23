@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import {ref, computed, defineProps} from 'vue'
+import {ref, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const props = defineProps({

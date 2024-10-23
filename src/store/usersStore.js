@@ -22,7 +22,8 @@ export const useUsersStore = defineStore('users', () => {
     }
     users.value.push(user);
     console.log(users.value)
-    balances.setBalance(user.id, 0);
+    userId.value = user.id;
+    balances.setBalance(0);
   };
 
   // Obtener un usuario por ID

@@ -13,7 +13,7 @@
           <ActionButton color="#49475A" :action="goToTransference" block customClass="transfer-btn">Transferir</ActionButton>
         </v-col>
         <v-col>
-          <ActionButton color="#49475A" block customClass="transfer-btn">Ingresar</ActionButton>
+          <ActionButton color="#49475A" :action="goToEnter" block customClass="transfer-btn">Ingresar</ActionButton>
         </v-col>
       </v-row>
     </v-card-text>
@@ -25,11 +25,19 @@
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import router from "@/router/router";
 import {computed, ref} from "vue";
+import {useBalanceStore} from "@/store/balanceStore";
+import {useUsersStore} from "@/store/usersStore";
 
+const balanceStore = useBalanceStore();
+const userStore = useUsersStore();
 const goToTransference = ()=>{
 router.push("/transference");
 }
-const balance = ref('$1000');
+const goToEnter = ()=>{
+router.push("/dashboard/enter");
+}
+
+const balance = balanceStore.getBalanceByUserId(userStore.userId) ;
 const viewInfo = ref(true);
 
 const toggleViewInfo =() => {
