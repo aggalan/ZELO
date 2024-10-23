@@ -13,6 +13,7 @@
             dark
             color="#8B5CF6"
             class="text-capitalize quick-action-btn"
+            @click="handleAction(action.text)"
           >
             <v-icon class = "text-white" size="30">{{ action.icon }}</v-icon>
           </ActionButton>
@@ -20,18 +21,36 @@
         </div>
       </v-col>
     </v-row>
+    <!-- Dialogo para Link de Cobro -->
+    <v-dialog v-model="dialog" max-width="500">
+      <template v-slot:default="dialog">
+        <PaymentLinkSection />
+      </template>
+    </v-dialog>
+
   </v-card>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import PaymentLinkSection from "@/components/dashboard/enterMoney/PaymentLinkSection.vue";
 
 const quickActions = ref([
   { text: 'link de cobro', icon: 'mdi-link' },
   { text: 'Tus datos', icon: 'mdi-account' },
   { text: 'Añadir contacto', icon: 'mdi-account-plus' },
 ])
+const dialog = ref(false)
+
+const handleAction = (actionText) => {
+  if (actionText === 'link de cobro') {
+    dialog.value = true
+  }
+  // Agrega más lógica para otras acciones si es necesario
+}
+
+
 </script>
 
 <style scoped>

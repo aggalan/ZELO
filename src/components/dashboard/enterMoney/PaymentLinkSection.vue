@@ -14,9 +14,9 @@
         label="Descripción (opcional)"
         outlined
       ></v-text-field>
-      <v-btn color="#8B5CF6" dark block large @click="generateLink">
+      <ActionButton  dark block large @click="generateLink">
         Generar Link de Pago
-      </v-btn>
+      </ActionButton>
       <v-expand-transition>
         <div v-if="paymentLink">
           <v-divider class="my-4"></v-divider>
@@ -28,9 +28,9 @@
             append-icon="mdi-content-copy"
             @click:append="copyToClipboard"
           ></v-text-field>
-          <v-btn color="primary" text @click="shareLink">
+          <ActionButton @click="shareLink" large>
             Compartir Link
-          </v-btn>
+          </ActionButton>
         </div>
       </v-expand-transition>
     </v-card-text>
@@ -40,6 +40,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useBalanceStore } from '@/store/balanceStore'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const balanceStore = useBalanceStore()
 const amount = ref('')
@@ -49,6 +50,7 @@ const paymentLink = ref('')
 const generateLink = () => {
   // In a real application, this would call an API to generate the link
   paymentLink.value = `https://payment.example.com/${Math.random().toString(36).substr(2, 9)}`
+  balanceStore.enterMoney(amount.value)
 }
 
 const copyToClipboard = () => {
@@ -68,6 +70,5 @@ const shareLink = () => {
     copyToClipboard()
     // Show a message to the user that the link has been copied
   }
-  balanceStore.enterMoney(amount.value)
 }
 </script>

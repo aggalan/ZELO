@@ -16,11 +16,17 @@ export const useBalanceStore = defineStore('balance', () => {
     }
   };
   const enterMoney = ( amount) => {
+    const parsedAmount = Number(amount);
+    // Si parsedAmount no es un número, devuelve o maneja el error
+    if (isNaN(parsedAmount)) {
+      console.error("El monto proporcionado no es un número válido.");
+      return;
+    }
     const userBalance = balances.value.find(balance => balance.userId === userStore.userId);
     if (userBalance) {
-      userBalance.amount += amount;
+      userBalance.amount += parsedAmount;
     } else {
-      balances.value.push({ userId: userStore.userId, amount });
+      balances.value.push({ userId: userStore.userId, amount: parsedAmount });
     }
   };
   const withdrawMoney = ( amount) => {
