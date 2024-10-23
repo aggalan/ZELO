@@ -40,4 +40,8 @@ defineComponent({
 .oper-button {
   margin-top: 10px;
 }
+
+.my-card {
+  width: 600px;
+}
 </style>

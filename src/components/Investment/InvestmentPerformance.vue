@@ -1,6 +1,6 @@
 <template>
   <v-card class="my-card">
-    <v-card-title  class = "ml-4 mt-4">Rendimiento de tus inversiones</v-card-title>
+    <v-card-title  class = "ml-3 mt-4" >Rendimientos</v-card-title>
     <v-card-text class = "mb-5">
       <v-chart class="chart" :option="useInvestmentsStore().currentInvestment.chartOption" />
     </v-card-text>
@@ -26,6 +26,8 @@ onMounted(() => {
 
 <style scoped>
 .chart {
-  height: 300px;
+  height: 400px;
+  width: 100%;
+  display: flex;
 }
 </style>

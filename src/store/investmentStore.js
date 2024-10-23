@@ -6,7 +6,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
   const userStore = useUsersStore();
   const investments = ref([
 
-      { id:1, name: 'Bitcoin', description: '0.45 BTC', amount: '20,000', icon: 'mdi-bitcoin', iconColor: '#F7931A', action: 'Ver', userId: 1, trend:[8,9,7,8,9,6,7,8,5,7,8,9,7,6,7], chartOption: {
+      { id:1, name: 'Plazo fijo 19/3/24', description: '6 meses', amount: '20,000', icon: 'mdi-cash', iconColor: 'black', action: 'Ver', userId: 1, trend:[8,9,7,8,9,6,7,8,5,7,8,9,7,6,7], chartOption: {
           xAxis: {
             type: 'category',
             data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
@@ -36,7 +36,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
             trigger: 'axis'
           }
         } },
-      { id:2, name: 'Fondo alfa', description: '-', amount: '15,000', icon: 'mdi-cash', iconColor: '#4CAF50', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], chartOption: {
+      { id:2, name: 'Plazo Fijo 04/06/24', description: '4 meses', amount: '15,000', icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], chartOption: {
           xAxis: {
             type: 'category',
             data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
