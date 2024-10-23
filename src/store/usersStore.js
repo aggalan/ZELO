@@ -8,10 +8,10 @@ import router from "@/router/router";
 
 
 export const useUsersStore = defineStore('users', () => {
-  const users = ref([]);
+  const users = ref([{id: 1, email: 'nicolaskoron@gmail.com', passwordHash: 'bmNvZGFkb3M=', name: 'Nicolas'}]);
   const balances = useBalanceStore();
   const isAuthenticated = computed(() =>userId.value !== null);
-  const userId = ref(null);
+  const userId = ref(1);
   const errorMessage = ref('');
 
 
