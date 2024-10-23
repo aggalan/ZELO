@@ -215,7 +215,7 @@ const addCard = () => {
     viewInfo: false,
     icon: 'mdi-eye-closed'
   };
-  cards.value.push(newCardData);
+  cardStore.addCard(userStore.userId, newCardData);
   dialog.value = false;
   // Reset the form
   newCard.value = { number: '', name: '', expiry: '', cvv: '' };
