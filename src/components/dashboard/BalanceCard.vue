@@ -2,10 +2,9 @@
   <v-card class="mb-4 balance-card">
     <v-card-title class="text-grey-darken-3"> Balance
       <div class="text-h2 text-black align-center balance-text">
-        {{viewInfo ? balance: maskBalance}}
+        {{ formattedBalance }}
         <v-icon @click="toggleViewInfo()" color="black" size="40">{{ icon }}</v-icon>
       </div>
-
     </v-card-title>
     <v-card-text>
       <v-row class="mt-4">
@@ -21,32 +20,38 @@
 </template>
 
 <script setup>
-//
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import router from "@/router/router";
-import {computed, ref} from "vue";
-import {useBalanceStore} from "@/store/balanceStore";
-import {useUsersStore} from "@/store/usersStore";
+import { computed, ref } from "vue";
+import { useBalanceStore } from "@/store/balanceStore";
+import { useUsersStore } from "@/store/usersStore";
 
 const balanceStore = useBalanceStore();
 const userStore = useUsersStore();
-const goToTransference = ()=>{
-router.push("/transference");
-}
-const goToEnter = ()=>{
-router.push("/dashboard/enter");
-}
+const goToTransference = () => {
+  router.push("/transference");
+};
+const goToEnter = () => {
+  router.push("/dashboard/enter");
+};
 
-const balance = balanceStore.getBalanceByUserId(userStore.userId) ;
+const balance = computed(() => {
+  const userBalance = balanceStore.getBalanceByUserId(userStore.userId);
+  return typeof userBalance === 'number' ? userBalance : 0;
+});
+
 const viewInfo = ref(true);
 
-const toggleViewInfo =() => {
+const toggleViewInfo = () => {
   viewInfo.value = !viewInfo.value;
 };
 
-const maskBalance= '$****'
-const icon = computed(() => viewInfo.value ? 'mdi-eye' : 'mdi-eye-off');
+const maskBalance = "$****";
+const icon = computed(() => (viewInfo.value ? "mdi-eye" : "mdi-eye-off"));
 
+const formattedBalance = computed(() => {
+  return viewInfo.value ? `$${balance.value.toLocaleString()}` : maskBalance;
+});
 </script>
 
 <style scoped>
@@ -61,7 +66,7 @@ const icon = computed(() => viewInfo.value ? 'mdi-eye' : 'mdi-eye-off');
   font-size: 16px;
   border-color: #f3f4f6;
   border-radius: 12px;
-  background: #49475A;
+  background: #49475a;
 }
 .balance-text {
   font-weight: 500;
