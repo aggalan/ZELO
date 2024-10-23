@@ -15,9 +15,9 @@
       </v-row>
       <v-row v-for="(transaction, index) in displayedTransactions" :key="index" class="transaction-row align-center">
         <v-col cols="2">
-          <v-list-item-avatar>
+          <v-list-item>
             <v-icon :color="transaction.color">{{ transaction.icon }}</v-icon>
-          </v-list-item-avatar>
+          </v-list-item>
         </v-col>
         <v-col cols="2">{{ transaction.name }}</v-col>
         <v-col cols="3">{{ transaction.description }}</v-col>
@@ -32,7 +32,7 @@
 </template>
 
 <script setup>
-import {ref, computed, defineProps} from 'vue'
+import {ref, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const props = defineProps({

@@ -17,6 +17,7 @@ import contactanos  from "@/components/Landing/Home/contactanos.vue"
 import features  from "@/components/Landing/Home/features.vue"
 import {useUsersStore} from "@/store/usersStore";
 import Settings from "@/components/settings/settings.vue";
+import EnterMoneyPage from "@/components/dashboard/enterMoney/EnterMoneyPage.vue";
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true , authProtected: false  } },
@@ -36,6 +37,7 @@ const routes = [
   { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/settings', component: Settings, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/dashboard/enter', component: EnterMoneyPage, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
 
 
 ];
