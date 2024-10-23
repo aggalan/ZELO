@@ -10,12 +10,12 @@ export const useInvestmentsStore = defineStore('investments', () => {
           xAxis: {
             type: 'category',
             data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
-            axisLine: {show: false},
+            axisLine: {show: true},
             axisTick: {show: false},
           },
           yAxis: {
             type: 'value',
-            axisLine: {show: false},
+            axisLine: {show: true},
             axisTick: {show: false},
             splitLine: {show: false},
           },

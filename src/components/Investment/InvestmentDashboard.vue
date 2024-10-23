@@ -7,18 +7,18 @@
     </v-row>
 
     <v-row>
-      <v-col cols="12">
+      <v-col cols="120">
         <YourPosition class="mb-6" />
       </v-col>
     </v-row>
 
-    <v-row align="center">
+    <v-row align="center" class = "ml-3">
         <OperateButtons class="mb-6" />
         <InvestmentChart class="chart" />
     </v-row>
 
     <v-row>
-      <v-col cols="12">
+      <v-col cols="10">
         <InvestmentPerformance />
       </v-col>
     </v-row>

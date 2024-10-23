@@ -46,7 +46,7 @@ const goToInvestmentPage = () => {
 
 .my-card {
   width: 100%; /* Ensure the card takes the full width */
-  max-width: 1200px; /* Optional: set a max-width similar to InvestmentChart.vue */
+  max-width: 1320px; /* Optional: set a max-width similar to InvestmentChart.vue */
   margin: 0 auto; /* Center the card */
 }
 </style>
