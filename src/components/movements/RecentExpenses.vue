@@ -1,18 +1,16 @@
 <template>
-  <v-card class="my-card pa-4">
-    <v-select
-      v-model="selectedCategory"
-      :items="categories"
-      item-title="name"
-      item-value="name"
-      return-object
-      class="ma-2 custom-text-field"
-      rounded
-    ></v-select>
-    <ItemList :items="filteredExpenses" class="ma-2 mb-5">
+    <ItemList :items="filteredExpenses" class="my-card pa-2">
+      <v-select
+        v-model="selectedCategory"
+        :items="categories"
+        item-title="name"
+        item-value="name"
+        return-object
+        class="ma-2 custom-text-field"
+        rounded
+      ></v-select>
       <v-card-title>{{ selectedCategory.name }}</v-card-title>
     </ItemList>
-  </v-card>
 </template>
 
 <script setup>
