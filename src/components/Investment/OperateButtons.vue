@@ -1,11 +1,11 @@
 <template>
-  <v-card class="my-card ma-3">
-    <v-card-title class="ma-3">Operar</v-card-title>
+  <v-card class="my-card ma-3 ml-0 mr-0">
+    <v-card-title class="ma-3">Operar en plazo fijo</v-card-title>
     <v-card-text>
       <v-row>
         <v-col cols="6">
           <ActionButton block color="#49475A" class="oper-button">
-            <v-icon left>mdi-cash-plus</v-icon>
+            <v-icon left class="mr-1">mdi-cash-plus</v-icon>
             Invertir
           </ActionButton>
 
@@ -13,7 +13,7 @@
 
         <v-col cols="6">
           <ActionButton block color="#49475A" class="oper-button">
-            <v-icon left>mdi-cash-minus</v-icon>
+            <v-icon left class="mr-1">mdi-cash-minus</v-icon>
             Rescatar
           </ActionButton>
         </v-col>

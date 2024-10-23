@@ -1,20 +1,24 @@
-<template>
-  <ItemListWithButton
-    :items="investments"
-    buttonColor="#8B5CF6"
-    @onButtonClick="goToInvestmentPage"
-    selectedText="Viendo"
-    buttonText="Ver"
-    selectedColor = "grey"
-    selectedTextColor = "#8B5CF6"
-    useSelectedText
-  >    <v-card-title class="d-flex justify-space-between align-center text-grey-darken-3">
-    {{ title }}
-    <router-link :to="investment/all" class="link-text ">
-      Ver todas mis inversiones
-    </router-link>
+<template class="d-flex">
+  <v-card class="mb-4 my-card ml-0">
+    <v-card-title class="ma-3 d-flex justify-space-between align-center text-grey-darken-3">
+      {{ title }}
+      <router-link :to="'/investment/all'" class="link-text">
+        Ver todas mis inversiones
+      </router-link>
     </v-card-title>
-  </ItemListWithButton>
+    <v-card-text>
+      <ItemListWithButton
+        :items="investments"
+        buttonColor="#8B5CF6"
+        @onButtonClick="goToInvestmentPage"
+        selectedText="Viendo"
+        buttonText="Ver"
+        selectedColor="grey"
+        selectedTextColor="#8B5CF6"
+        useSelectedText
+      />
+    </v-card-text>
+  </v-card>
 </template>
 
 <script setup>
@@ -27,16 +31,23 @@ const investments = ref([
   { name: 'Fondo alfa', description: '-', amount: '15,000', icon: 'mdi-cash', iconColor: '#4CAF50', action: 'Ver', onActionClick: () => {} },
   { name: 'Fondo delta', description: '-', amount: '1,000,000.00', icon: 'mdi-cash-multiple', iconColor: '#2196F3', action: 'Ver', onActionClick: () => {} },
 ]);
-const title="Tu posición";
+const title = "Tu posición";
 
 const goToInvestmentPage = () => {
   router.push('/investment/all');
 };
 </script>
+
 <style scoped>
 .link-text {
   color: #8B5CF6;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.my-card {
+  width: 100%; /* Ensure the card takes the full width */
+  max-width: 1200px; /* Optional: set a max-width similar to InvestmentChart.vue */
+  margin: 0 auto; /* Center the card */
 }
 </style>

@@ -1,7 +1,6 @@
 <template>
-
-    <ItemListWithButton :items="investments" useLink buttonColor="primary" buttonText="Mas informacion">
-      <v-card-title class="bg-white">
+  <ItemListWithButton class="mt-3" :items="investments" useLink buttonColor="primary" buttonText="Mas informacion">
+    <v-card-title>
       <v-text-field
         v-model="search"
         prepend-icon="mdi-magnify"
@@ -11,9 +10,10 @@
         filled
         rounded
         dense
+        class="custom-text-field"
       ></v-text-field>
     </v-card-title>
-    </ItemListWithButton>
+  </ItemListWithButton>
 </template>
 
 <script setup>
@@ -34,6 +34,11 @@ const investments = ref([
 .v-list-item__avatar {
   background-color: #EDE9FE;
 }
+
+.custom-text-field :deep(.v-field__outline) {
+  display: none;
+}
+
 .v-list-item__avatar .v-icon {
   font-size: 24px;
 }

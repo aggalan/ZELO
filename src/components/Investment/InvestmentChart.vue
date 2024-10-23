@@ -1,7 +1,7 @@
 <template class="d-flex">
   <v-card class="mb-4 my-card align-center">
     <v-card-text class="align-center">
-      <v-row class="d-flex align-center mb-2">
+      <v-row class="d-flex align-center ml-4">
         <v-col cols="12" md="1"><v-icon left color="#F7931A">mdi-bitcoin</v-icon>
         </v-col>
         <v-col cols="12" md="2">
