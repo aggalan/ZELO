@@ -21,6 +21,7 @@ export const useUsersStore = defineStore('users', () => {
       errorMessage.value = 'Email y contraseña son requeridos';
     }
     users.value.push(user);
+    console.log(users.value)
     balances.setBalance(user.id, 0);
   };
 
@@ -73,6 +74,7 @@ export const useUsersStore = defineStore('users', () => {
     };
 
     addUser(newUser);
+    console.log(newUser)
     login(email, password); // Iniciar sesión automáticamente tras registro
   };
 

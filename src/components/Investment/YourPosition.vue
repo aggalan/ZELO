@@ -10,7 +10,7 @@
       <ItemListWithButton
         :items="investments"
         buttonColor="#8B5CF6"
-        @onButtonClick="goToInvestmentPage"
+        :onButtonClick="setAsCurrentInvestment"
         selectedText="Viendo"
         buttonText="Ver"
         selectedColor="grey"
@@ -22,17 +22,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
 import ItemListWithButton from '@/components/generalComponents/ItemListWithButton.vue'
 import router from "@/router/router";
+import {useInvestmentsStore} from "@/store/investmentStore";
+import {useUsersStore} from "@/store/usersStore";
 
-const investments = ref([
-  { name: 'Bitcoin', description: '0.45 BTC', amount: '20,000', icon: 'mdi-bitcoin', iconColor: '#F7931A', action: 'Ver', onActionClick: () => {} },
-  { name: 'Fondo alfa', description: '-', amount: '15,000', icon: 'mdi-cash', iconColor: '#4CAF50', action: 'Ver', onActionClick: () => {} },
-  { name: 'Fondo delta', description: '-', amount: '1,000,000.00', icon: 'mdi-cash-multiple', iconColor: '#2196F3', action: 'Ver', onActionClick: () => {} },
-]);
+const investments = useInvestmentsStore().getInvestmentsByUserId(useUsersStore().userId);
 const title = "Tu posición";
-
+const setAsCurrentInvestment = (investment) => {
+  useInvestmentsStore().setCurrentInvestment(investment.id);
+};
 const goToInvestmentPage = () => {
   router.push('/investment/all');
 };

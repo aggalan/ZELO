@@ -134,6 +134,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import {useCardsStore} from "@/store/cardsStore";
+import {useUsersStore} from "@/store/usersStore";
 
 interface CreditCard {
   id: number
@@ -154,18 +156,16 @@ const newCard = ref({
   expiry: '',
   cvv: ''
 });
+const cardStore = useCardsStore();
+const userStore = useUsersStore();
+const cards = cardStore.getCardsByUserId(userStore.userId);
 
 const toggleDialog = () => {
   dialog.value = !dialog.value;
 };
 
 const toggleViewInfo = (id: number) => {
-  cards.value = cards.value.map(c => {
-    if (c.id === id) {
-      return { ...c, viewInfo: !c.viewInfo, icon: c.viewInfo ? 'mdi-eye-closed' : 'mdi-eye' };
-    }
-    return c;
-  });
+ cardStore.toggleCardViewInfo(id)
 };
 
 const formatCardNumber = (number: string): string => {
@@ -189,71 +189,13 @@ const formatDate = () => {
   }
 };
 
-const cards = ref<CreditCard[]>([
-  {
-    id: 1,
-    bank: 'Brubank',
-    number: '1234567890123456',
-    expiry: '09/25',
-    name: 'Jose Benegas',
-    color: 'deep-purple',
-    cvv: 123,
-    viewInfo: false,
-    icon: 'mdi-eye-closed'
-  },
-  {
-    id: 2,
-    bank: 'Galicia',
-    number: '9876543210987654',
-    expiry: '12/24',
-    name: 'Jose Benegas',
-    color: 'red darken-1',
-    cvv: 234,
-    viewInfo: false,
-    icon: 'mdi-eye-closed'
-  },
-  {
-    id: 4,
-    bank: 'Galicia',
-    number: '9876543210987654',
-    expiry: '12/24',
-    name: 'Jose Benegas',
-    color: 'green darken-1',
-    cvv: 345,
-    viewInfo: false,
-    icon: 'mdi-eye-closed'
-  },
-  {
-    id: 6,
-    bank: 'Galicia',
-    number: '9876543210987654',
-    expiry: '12/24',
-    name: 'Jose Benegas',
-    color: 'red darken-1',
-    cvv: 456,
-    viewInfo: false,
-    icon: 'mdi-eye-closed'
-  },
-  {
-    id: 3,
-    bank: 'Galicia',
-    number: '9876543210987654',
-    expiry: '12/24',
-    name: 'Jose Benegas',
-    color: 'red darken-1',
-    cvv: 567,
-    viewInfo: false,
-    icon: 'mdi-eye-closed'
-  }
-  // ... (other cards)
-]);
 
 const maskCardNumber = (number: string): string => {
   return '**** **** **** ' + number.slice(-4)
 };
 
 const removeCard = (id: number) => {
-  cards.value = cards.value.filter(card => card.id !== id)
+  cardStore.removeCard(id);
 };
 
 const addCard = () => {

@@ -1,6 +1,16 @@
 <template>
-  <div>
-    <h1 class="text-h4 mb-6">Perfil</h1>
+  <div class="profile-container">
+    <div class="d-flex justify-space-between align-center mb-6">
+      <h1 class="text-h4">Perfil</h1>
+      <v-btn
+        icon
+        color="#8B5CF6"
+        @click="goToSettings"
+        class="settings-btn"
+      >
+        <v-icon>mdi-cog</v-icon>
+      </v-btn>
+    </div>
     <v-card class="mb-6 profile-card" elevation="2">
       <v-card-text class="d-flex align-center">
         <v-avatar color="grey" size="48" class="mr-4">
@@ -16,13 +26,17 @@
         </v-btn>
       </v-card-text>
     </v-card>
+
     <ProfileList :items="profileItems"/>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 import ProfileList from "@/components/profile/ProfileList.vue";
+
+const router = useRouter()
 
 const profileItems = ref([
   { icon: 'mdi-account-check', title: 'Accesibilidad', subtitle: 'Accede a las funciones de accesibilidad de la app' },
@@ -31,10 +45,28 @@ const profileItems = ref([
   { icon: 'mdi-shield-lock', title: 'Privacidad', subtitle: 'Preferencias y control sobre el uso de tus datos' },
   { icon: 'mdi-help-circle', title: 'Ayuda', subtitle: 'Obtenga ayuda sobre su cuenta' },
 ])
+
+const goToSettings = () => {
+  router.push('/settings')
+}
 </script>
 
 <style scoped>
+.profile-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+}
 .profile-card {
   border-radius: 8px;
+}
+.settings-btn {
+  position: absolute;
+  right: 16px;
+  top: 90px;
+  transition: transform 0.2s ease-in-out;
+}
+.settings-btn:hover {
+  transform: rotate(45deg);
 }
 </style>
