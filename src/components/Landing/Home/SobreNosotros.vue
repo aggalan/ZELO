@@ -54,9 +54,9 @@ import { ref, computed } from 'vue'
 const activeTab = ref('mission')
 
 const tabContent = {
-  mission: "Nuestra misión es revolucionar la forma en que los estudiantes manejan sus finanzas, proporcionando una billetera digital intuitiva y segura.",
-  vision: "Aspiramos a ser la aplicación financiera preferida por los estudiantes universitarios en toda Latinoamérica.",
-  story: "Zelo nació como un proyecto para la materia de HCI (Interacción Hombre-Computadora) en el ITBA. Lo que comenzó como un trabajo práctico se convirtió en nuestra pasión por crear una solución financiera innovadora para estudiantes."
+  mission: "Nuestra misión es revolucionar la forma en que los Argentinos manejan sus finanzas, proporcionando una billetera digital intuitiva y segura.",
+  vision: "Aspiramos a ser la aplicación financiera preferida por los Argentinos.",
+  story: "Zelo nació como un proyecto para la materia de HCI (Interacción Hombre-Computadora) en el ITBA. Lo que comenzó como un trabajo práctico se convirtió en nuestra pasión por crear una solución financiera innovadora."
 }
 
 const teamMembers = [

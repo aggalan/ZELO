@@ -1,7 +1,7 @@
 <template>
   <v-container fluid class="pa-0 main mt-15">
     <v-main class="d-flex flex-column align-center justify-center pa-8 text-white">
-      <h1 class="text-h2 font-weight-bold mb-8">Preguntas Frecuentes</h1>
+      <h1 class="text-h2 font-weight-bold mb-8">Caracteristicas destacadas</h1>
       <h2 class="text-h4 mb-12">Con Zelo puedes:</h2>
 
       <v-row>
