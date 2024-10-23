@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 
-const description = ref('Zelo es la revolucion de las billeteras virtuales, con su impecable y sencilla interfaz grafica y la seguridad en tus operacion la hacen la mejor billetera vitual del mercado.')
+const description = ref('Zelo es la revolución de las billeteras virtuales, con su impecable y sencilla interfaz gráfica y la seguridad en tus operación la hacen la mejor billetera vitual del mercado.')
 const logoUrl = ref('./src/assets/logo.png')
 const isLogoAnimated = ref(false)
 

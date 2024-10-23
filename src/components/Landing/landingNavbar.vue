@@ -32,7 +32,7 @@ import { ref, computed } from 'vue'
 
 const menuItems = ref([
   { name: 'Legales', route: '/legales' },
-  { name: 'Features', route: '/features' },
+  { name: 'Caracteristicas', route: '/features' },
   { name: 'Contáctanos', route: '/contactanos' },
   { name: 'FAQ', route: '/faq' },
   { name: 'Sobre nosotros', route: '/sobre-nosotros' }
