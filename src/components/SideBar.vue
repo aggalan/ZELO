@@ -13,11 +13,10 @@ const menuItems = ref([
   { title: 'Tarjetas', icon: 'mdi-credit-card-outline', route: '/cards' },
   { title: 'Movimientos', icon: 'mdi-swap-horizontal', route: '/movements' },
   { title: 'Inversiones', icon: 'mdi-chart-line', route: '/investment' },
-  { title: 'Perfil', icon: 'mdi-account-outline', route: '/profile' },
 ])
 
 const bottomItems = ref([
-  { title: 'Configuración', icon: 'mdi-cog-outline', route: '/settings' },
+  { title: 'Perfil', icon: 'mdi-account-outline', route: '/profile' },
   { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' }
 ])
 // Iniciar selectedItem según la ruta actual
