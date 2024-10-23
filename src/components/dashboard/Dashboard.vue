@@ -1,5 +1,5 @@
 <template>
-      <v-container fluid class="bg-white">
+      <v-container fluid class="bg-white main-container">
         <v-row>
           <v-col cols="12" md="5">
             <BalanceCard />
@@ -24,6 +24,10 @@ import ServicesAndBalances from './ServicesAndBalances.vue'
 </script>
 
 <style>
+
+.main-container {
+  margin-top: 10gitpx; /* Ajusta este valor según tus necesidades */
+}
 
 .v-application {
   font-family: 'Roboto', sans-serif;
