@@ -22,9 +22,15 @@
       </v-col>
     </v-row>
     <!-- Dialogo para Link de Cobro -->
-    <v-dialog v-model="dialog" max-width="500">
-      <template v-slot:default="dialog">
+    <v-dialog v-model="dialogLink" max-width="500">
+      <template v-slot:default="dialogLink">
         <PaymentLinkSection />
+      </template>
+    </v-dialog>
+
+    <v-dialog v-model="dialogContact" max-width="500">
+      <template v-slot:default="dialogContact">
+        <AddContactForm />
       </template>
     </v-dialog>
 
@@ -35,17 +41,24 @@
 import { ref } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import PaymentLinkSection from "@/components/dashboard/enterMoney/PaymentLinkSection.vue";
+import AddContactForm from "@/components/transference/AddContactForm.vue";
 
 const quickActions = ref([
   { text: 'link de cobro', icon: 'mdi-link' },
   { text: 'Tus datos', icon: 'mdi-account' },
   { text: 'Añadir contacto', icon: 'mdi-account-plus' },
 ])
-const dialog = ref(false)
+const dialogLink = ref(false)
+
+const dialogContact = ref(false)
 
 const handleAction = (actionText) => {
   if (actionText === 'link de cobro') {
-    dialog.value = true
+    dialogLink.value = true
+  } else if (actionText === 'Tus datos') {
+    console.log('Tus datos')
+  } else if (actionText === 'Añadir contacto') {
+    dialogContact.value = true
   }
   // Agrega más lógica para otras acciones si es necesario
 }
