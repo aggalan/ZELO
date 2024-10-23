@@ -1,6 +1,6 @@
 <template>
   <v-card class="my-card pa-6">
-    <v-form @submit.prevent="submitTransfer">
+    <v-form @submit.prevent="verifyAndShowConfirmationDialog">
       <v-text-field
         v-model="cbuAlias"
         label="CBU / ALIAS"
@@ -42,6 +42,15 @@
         Cancelar
       </ActionButton>
     </v-form>
+    <!-- Reusable Confirmation Dialog -->
+    <ConfirmationComponent
+      v-model="showConfirmationDialog"
+      :cbuAlias="cbuAlias"
+      :amount="amount"
+      :concept="concept"
+      @confirm="confirmTransfer"
+      @cancel="showConfirmationDialog = false"
+    />
   </v-card>
 </template>
 
@@ -50,17 +59,37 @@ import { ref } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import {useRouter } from "vue-router";
 import {useBalanceStore} from "@/store/balanceStore";
+import ConfirmationComponent from "@/components/transference/ConfirmationComponent.vue";
 
+const balanceStore = useBalanceStore();
 const router = useRouter();
 const cbuAlias = ref('')
 const amount = ref('')
 const concept = ref('')
+const showConfirmationDialog = ref(false); // Para controlar el popup
 
-const submitTransfer = () => {
-  // Handle transfer submission
-  useBalanceStore().withdrawMoney(amount.value)
-  console.log('Transfer submitted:', { cbuAlias: cbuAlias.value, amount: amount.value, concept: concept.value })
+const verifyAndShowConfirmationDialog = () => {
+  if (cbuAlias.value && balanceStore.canWithdraw( amount.value)) {
+    showConfirmationDialog.value = true; // Mostrar el popup
+  } else {
+    alert('Por favor, complete todos los campos y verifique que tiene saldo suficiente');
+  }
+}
 
+
+// Confirmar la transferencia desde el popup
+const confirmTransfer = () => {
+  balanceStore.withdrawMoney(parseFloat(amount.value));
+  console.log('Transferencia confirmada:', {
+    cbuAlias: cbuAlias.value,
+    amount: amount.value,
+    concept: concept.value,
+  });
+  showConfirmationDialog.value = false; // Cerrar el popup
+  cbuAlias.value = '';
+  amount.value = '';
+  concept.value = '';
+  goToTransference();
 }
 const goToTransference = () => {
   router.push({path: '/transference'});

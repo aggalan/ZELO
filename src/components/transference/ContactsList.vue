@@ -1,5 +1,5 @@
 <template>
-  <v-card class="rounded-lg bg-grey-lighten-4">
+  <v-card class="my-card">
     <slot/>
     <v-card-text class="pa-4">
       <v-text-field
