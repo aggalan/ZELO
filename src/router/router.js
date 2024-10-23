@@ -10,6 +10,11 @@ import MovementsDashboard from "@/components/movements/MovementsDashboard.vue";
 import ProfileDashboard from "@/components/profile/ProfileDashboard.vue";
 import PasswordReset from "@/components/SignUpAndSignIn/PasswordReset/PasswordResetPage.vue";
 import Help from "@/components/help/HelpPage.vue";
+import Legales from "@/components/Landing/Home/Legales.vue";
+import faq  from "@/components/Landing/Home/faq.vue"
+import SobreNosotros  from "@/components/Landing/Home/SobreNosotros.vue"
+import contactanos  from "@/components/Landing/Home/contactanos.vue"
+import features  from "@/components/Landing/Home/features.vue"
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true  } },
@@ -22,7 +27,13 @@ const routes = [
   { path: '/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
   { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
   { path: '/reset-password', component: PasswordReset, meta: { showNavbar: true, showSidebar: false, applyBackground: true } },
-  { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false } }
+  { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false } },
+  {path : '/legales', component: Legales, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
+  ,{path : '/faq', component: faq, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
+  ,{path : '/sobre-nosotros', component: SobreNosotros, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
+  ,{path : '/contactanos', component: contactanos, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
+  ,{path : '/features', component: features, meta: { showNavbar: true, showSidebar: false, applyBackground: true }}
+
 ];
 
 const router = createRouter({

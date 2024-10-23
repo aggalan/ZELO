@@ -4,7 +4,9 @@
     <Navbar v-if="showNavbar" />
     <TopBarDashboard v-else class="pa-1"/>
     <v-main>
-      <router-view/>
+      <transition name="fade" mode="out-in">
+        <router-view/>
+      </transition>
     </v-main>
   </v-app>
 </template>
@@ -56,5 +58,12 @@ const appClass = computed(() => applyBackground.value ? 'zelo-app' : 'white-back
   --link-color: #92bad6; /* modificar */
 }
 
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s;
+}
 
+
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
+}
 </style>

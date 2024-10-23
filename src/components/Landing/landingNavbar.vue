@@ -1,55 +1,109 @@
 <template>
-  <v-app-bar app elevation="0" color="transparent">
+  <v-app-bar app elevation="0" color="transparent" height="90px" class="d-flex">
     <div class="d-flex align-center justify-space-between w-100 mx-10">
-      <v-btn class="text-h5 font-weight-bold text-white pl-0" to="/" >Zelo</v-btn>
+      <router-link class="text-h4 font-weight-bold text-white zelo-btn no-underline" to="/" @click.native="resetSlider">Zelo</router-link>
 
-      <div class="d-none d-md-flex justify-center flex-grow-1">
-        <v-btn
-          v-for="item in menuItems"
-          :key="item"
-          text="true"
-          class="text-body-2 text-grey-lighten-1 mx-2"
+      <div class="d-none d-md-flex justify-start flex-grow-1 position-relative options-container">
+        <div class="slider" :style="sliderStyle"></div>
+        <router-link
+          v-for="(item, index) in menuItems"
+          :key="item.name"
+          :to="item.route"
+          class="text-body-1 text-grey-lighten-1 mx-3 no-underline"
+          @click.native="moveSlider(index, $event)"
         >
-          {{ item }}
-        </v-btn>
+          {{ item.name }}
+        </router-link>
       </div>
 
-      <v-btn
-        color="white"
-        class="text-black text-body-2 font-weight-medium"
-        rounded
+      <router-link
+        class="text-white text-body-1 font-weight-medium no-underline"
         to="/login"
+        @click.native="resetSlider"
       >
         Iniciar Sesión
-      </v-btn>
+      </router-link>
     </div>
   </v-app-bar>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
-const menuItems = ref(['Legales', 'Features', 'Tarjetas', 'Seguridad', 'Sobre nosotros'])
+const menuItems = ref([
+  { name: 'Legales', route: '/legales' },
+  { name: 'Features', route: '/features' },
+  { name: 'Contáctanos', route: '/contactanos' },
+  { name: 'FAQ', route: '/faq' },
+  { name: 'Sobre nosotros', route: '/sobre-nosotros' }
+])
+const sliderPosition = ref(0)
+const sliderWidth = ref(0)
+
+const moveSlider = (index: number, event: MouseEvent) => {
+  const target = event.currentTarget as HTMLElement
+  sliderPosition.value = target.offsetLeft
+  sliderWidth.value = target.offsetWidth
+}
+
+const resetSlider = () => {
+  sliderPosition.value = 0
+  sliderWidth.value = 0
+}
+
+const sliderStyle = computed(() => ({
+  transform: `translateX(${sliderPosition.value}px)`,
+  width: `${sliderWidth.value}px`
+}))
 </script>
 
 <style scoped>
 .v-btn {
   text-transform: none;
+  position: relative;
+  z-index: 1;
 }
-
 
 .v-app-bar {
-  padding: 0 16px;
-
+  padding: 30px; /* Increase padding */
+  height: 90px; /* Increase height */
 }
 
-.active-btn {
-  background-color: #ff5722; /* Example: Change background color */
-  color: #000000; /* Example: Change text color */
-  font-weight: bold; /* Example: Bold font */
-  border-bottom: 2px solid #970000; /* Example: Add a bottom border */
+.options-container {
+  padding-left: 60px; /* Adjust this value to center the options more */
 }
 
+.slider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  background-color: #8B5CF6;
+  transition: transform 0.3s ease, width 0.3s ease;
+  z-index: 0;
+}
+
+.zelo-btn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+
+.text-h4 {
+  font-size: 4rem; /* Increase the font size for the title */
+}
+
+.text-body-1 {
+  font-size: 3rem; /* Increase the font size for the menu items */
+}
+
+.mx-3 {
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
 
 @media (max-width: 959px) {
   .v-app-bar-title {
