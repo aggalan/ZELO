@@ -7,7 +7,7 @@
       <v-list-item
         v-for="(item, i) in items"
         :key="i"
-        @click="selectItem(i)"
+        @click="selectItem(item,i)"
         :class="{ 'selected-item': useSelectedText && selectedItem === i }"
       >
         <v-row class="d-flex flex-row w-100 justify-space-around align-center pa-3" cols="12">
@@ -25,7 +25,7 @@
             </router-link>
             <ActionButton v-else
               v-if="buttonText"
-              @click="selectItem(i)"
+              @click="selectItem(item, i)"
               :color="useSelectedText && selectedItem === i ? selectedColor : buttonColor"
             >
               {{ useSelectedText && selectedItem === i ? selectedText : buttonText }}
@@ -61,8 +61,9 @@ const props = defineProps({
 const selectedItem = ref(null);
 
 // Función para seleccionar un ítem de la lista
-const selectItem = (index) => {
+const selectItem = (item, index) => {
   selectedItem.value = index;
+  props.onButtonClick(item);
 };
 </script>
 
