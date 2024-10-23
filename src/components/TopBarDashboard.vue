@@ -1,19 +1,31 @@
 <template>
-  <v-app-bar app color="#8B5CF6" >
-    <!-- Contenedor para centrar el botón y la barra de búsqueda -->
-    <v-container class="search-container d-flex align-center justify-end ">
+  <v-app-bar app color="#8B5CF6">
+    <v-container class="search-container d-flex align-center">
+      <!-- Icono de búsqueda que actúa como trigger -->
+      <v-btn
+        icon
+        @click="toggleSearch"
+        class="ml-0"
+      >
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
 
-      <v-text-field
-        hide-details
-        prepend-icon="mdi-magnify"
-        placeholder="Buscar en la página"
-        v-model="searchQuery"
-        class="custom-search-field text-black rounded-xl"
-        clearable
-      ></v-text-field>
-
+      <!-- Campo de búsqueda con animación -->
+      <v-slide-x-transition>
+        <v-text-field
+          v-if="isSearchVisible"
+          hide-details
+          placeholder="Buscar en la página"
+          v-model="searchQuery"
+          class="no-underline custom-text-field"
+          clearable
+          rounded
+          @blur="handleBlur"
+          ref="searchInput"
+          @keyup.esc="toggleSearch"
+        ></v-text-field>
+      </v-slide-x-transition>
     </v-container>
-
 
     <v-container class="d-flex flex-row justify-end">
       <v-btn icon>
@@ -24,26 +36,57 @@
         <span class="text-caption grey--text">juanRodriguez@gmail.com</span>
       </div>
     </v-container>
-
   </v-app-bar>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, nextTick } from 'vue';
 
 const searchQuery = ref('');
+const isSearchVisible = ref(false);
+const searchInput = ref(null);
+
+const toggleSearch = async () => {
+  isSearchVisible.value = !isSearchVisible.value;
+
+  if (isSearchVisible.value) {
+    await nextTick();
+    searchInput.value.focus();
+  } else {
+    searchQuery.value = '';
+  }
+};
+
+const handleBlur = (event) => {
+  if (!searchQuery.value) {
+    isSearchVisible.value = false;
+  }
+};
 </script>
 
 <style scoped>
-
-/* Responsive width */
 .custom-search-field {
   width: 100%;
-  max-width: 800px; /* Max width for larger screens */
-  margin: 0 auto; /* Center on small screens */
+  max-width: 800px;
+  transition: all 0.3s ease;
 }
 
 .v-btn {
   text-transform: none;
+}
+
+.search-container {
+  transition: all 0.3s ease;
+}
+
+
+.custom-text-field :deep(.v-field__outline) {
+  display: none;
+}
+
+
+
+.v-app-bar .v-container {
+  padding-left: 16px;
 }
 </style>
