@@ -1,5 +1,5 @@
 <template>
-  <v-card class="pa-6">
+  <v-card class="my-card pa-6">
     <v-form @submit.prevent="submitTransfer">
       <v-text-field
         v-model="cbuAlias"

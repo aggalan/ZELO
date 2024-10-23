@@ -1,33 +1,27 @@
 <template>
-  <v-card>
-    <v-card-title>Contactos</v-card-title>
-    <v-card-text>
+  <v-card class="rounded-lg bg-grey-lighten-4">
+    <slot/>
+    <v-card-text class="pa-4">
       <v-text-field
-        v-model="search"
-        append-icon="mdi-magnify"
+        prepend-inner-icon="mdi-magnify"
         label="Buscar"
         single-line
         hide-details
-        outlined
-        dense
+        class="mb-4 rounded-pill"
+        bg-color="white"
+        density="comfortable"
       ></v-text-field>
-      <v-list two-line>
-        <v-list-item v-for="contact in filteredContacts" :key="contact.id">
-          <v-list-item-avatar :color="contact.color">
-            <span class="white--text text-h6">{{ contact.initials }}</span>
-          </v-list-item-avatar>
-          <v-list-item-content>
-            <v-list-item-title>{{ contact.name }}</v-list-item-title>
-          </v-list-item-content>
-          <v-list-item-action>
-            <v-btn
-              color="#8B5CF6"
-              text
-              @click="completeTransfer(contact)"
-            >
-              Completar
-            </v-btn>
-          </v-list-item-action>
+      <v-list class="rounded-lg bg-grey-lighten-4">
+        <v-list-item v-for="contact in contacts" :key="contact.name" class="py-2">
+          <template v-slot:prepend>
+            <v-avatar :color="contact.color || 'grey-lighten-2'" size="40">
+              <span class="text-h6 white--text">{{ contact.avatar }}</span>
+            </v-avatar>
+          </template>
+          <v-list-item-title class="font-weight-medium">{{ contact.name }}</v-list-item-title>
+          <template v-slot:append>
+            <ActionButton  customClass="text-none px-6">Transferir</ActionButton>
+          </template>
         </v-list-item>
       </v-list>
     </v-card-text>
@@ -36,14 +30,13 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
+const props = defineProps({
+  contacts: { type: Array, default: [] }
+})
 
 const search = ref('')
-const contacts = ref([
-  { id: 1, name: 'Jose', initials: 'J', color: '#8B5CF6' },
-  { id: 2, name: 'Martin', initials: 'M', color: '#8B5CF6' },
-  { id: 3, name: 'Miguel', initials: 'M', color: '#8B5CF6' },
-  { id: 4, name: 'Juan', initials: 'J', color: '#8B5CF6' },
-])
+
 
 const filteredContacts = computed(() => {
   return contacts.value.filter(contact =>

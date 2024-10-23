@@ -4,6 +4,7 @@ import { ref } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import RecentTransactions from "@/components/dashboard/RecentTransactions.vue";
 import { useRouter } from 'vue-router'
+import ContactsList from "@/components/transference/ContactsList.vue";
 const router = useRouter()
 
 const transferOptions = ref([
@@ -26,6 +27,7 @@ const frequentContacts = ref([
 ])
 const selectTransferOption = (option) => {
   if(option.title === 'CONTACTOS') {
+    router.push({path: '/transference/contacts'});
   } else if(option.title === 'CBU, CVU O ALIAS') {
     router.push({path: '/transference/cbu'});
   } else {
@@ -61,33 +63,9 @@ const selectTransferOption = (option) => {
             <RecentTransactions/>
           </v-col>
           <v-col cols="12" md="6">
-            <v-card class="rounded-lg bg-grey-lighten-4">
+            <ContactsList :contacts="frequentContacts">
               <v-card-title class="text-h6 font-weight-bold pa-4">Frecuentes</v-card-title>
-              <v-card-text class="pa-4">
-                <v-text-field
-                  prepend-inner-icon="mdi-magnify"
-                  label="Buscar"
-                  single-line
-                  hide-details
-                  class="mb-4 rounded-pill"
-                  bg-color="white"
-                  density="comfortable"
-                ></v-text-field>
-                <v-list class="rounded-lg bg-grey-lighten-4">
-                  <v-list-item v-for="contact in frequentContacts" :key="contact.name" class="py-2">
-                    <template v-slot:prepend>
-                      <v-avatar :color="contact.color || 'grey-lighten-2'" size="40">
-                        <span class="text-h6 white--text">{{ contact.avatar }}</span>
-                      </v-avatar>
-                    </template>
-                    <v-list-item-title class="font-weight-medium">{{ contact.name }}</v-list-item-title>
-                    <template v-slot:append>
-                      <ActionButton  customClass="text-none px-6">Transferir</ActionButton>
-                    </template>
-                  </v-list-item>
-                </v-list>
-              </v-card-text>
-            </v-card>
+            </ContactsList>
           </v-col>
         </v-row>
       </v-container>

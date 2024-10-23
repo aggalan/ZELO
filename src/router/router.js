@@ -19,6 +19,7 @@ import {useUsersStore} from "@/store/usersStore";
 import Settings from "@/components/settings/settings.vue";
 import EnterMoneyPage from "@/components/dashboard/enterMoney/EnterMoneyPage.vue";
 import TransferWithCBU from "@/components/transference/TransferWithCBU.vue";
+import MyContactsPage from "@/components/transference/MyContactsPage.vue";
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true , authProtected: false  } },
@@ -33,6 +34,7 @@ const routes = [
   { path: '/dashboard', component: Dashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/transference', component: Transference, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true} },
   {path: '/transference/cbu', component: TransferWithCBU, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true}},
+  {path: '/transference/contacts', component: MyContactsPage, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true}},
   { path: '/investment', component: InvestmentDashboard, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true} },
   { path: '/cards', component: Cards, meta: { showNavbar: false, showSidebar: true , applyBackground: false, authProtected: true} },
   { path: '/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },

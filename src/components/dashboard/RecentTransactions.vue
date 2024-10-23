@@ -1,7 +1,7 @@
 <template>
-  <div class="my-card">
+  <v-card class="my-card">
+    <v-card-title>{{ title }}</v-card-title>
     <v-card-text>
-
       <v-row v-for="(transaction, index) in displayedTransactions" :key="index" class="transaction-row align-center ">
         <v-col cols="2">
           <v-list-item>
@@ -17,7 +17,7 @@
       </v-row>
       <v-pagination v-if="showPagination" v-model="page" :length="pageCount" class="mt-4"></v-pagination>
     </v-card-text>
-  </div>
+  </v-card>
 </template>
 
 <script setup>
