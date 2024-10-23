@@ -1,9 +1,9 @@
 <template>
-  <v-container fluid class="main background-cards h-100">
+  <v-container fluid class="main background-cards pa-4">
+    <h1 class="text-h4 mb-6 mt-6 ml-2">Tarjetas</h1>
     <v-container fluid class="pa-10">
-      <v-row class="mb-6 d-flex flex-row" align="center">
+      <v-row class=" d-flex flex-row" align="center">
         <v-col cols="12" sm="6" class="d-flex flex-row">
-          <h1 class="text-h4 text-black mr-4">Tarjetas</h1>
           <ActionButton @click="toggleDialog" height="40" elevation="0">
             AGREGAR TARJETA +
           </ActionButton>
