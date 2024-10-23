@@ -26,7 +26,7 @@ import ServicesAndBalances from './ServicesAndBalances.vue'
 <style>
 
 .main-container {
-  margin-top: 10gitpx; /* Ajusta este valor según tus necesidades */
+  margin-top: 10px; /* Ajusta este valor según tus necesidades */
 }
 
 .v-application {
