@@ -5,6 +5,8 @@ import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import RecentTransactions from "@/components/dashboard/RecentTransactions.vue";
 import { useRouter } from 'vue-router'
 import ContactsList from "@/components/transference/ContactsList.vue";
+import { useUsersStore } from "@/store/usersStore";
+
 const router = useRouter()
 
 const transferOptions = ref([
@@ -13,18 +15,10 @@ const transferOptions = ref([
   { title: 'CANCELAR', color: 'deep-purple' }
 ])
 
-const transferHistory = ref([
-  { name: 'Jose', amount: 10000, time: 'Ahora' },
-  { name: 'Fran', amount: 8000, time: '3h' },
-  { name: 'Miguel', amount: 3000, time: '6h' }
-])
 
-const frequentContacts = ref([
-  { name: 'Jose', avatar: 'J' },
-  { name: 'Martin', avatar: 'M', color: 'deep-purple' },
-  { name: 'Miguel', avatar: 'M' },
-  { name: 'Juan', avatar: 'J' }
-])
+
+const frequentContacts = useUsersStore().getContacts()
+
 const selectTransferOption = (option) => {
   if(option.title === 'CONTACTOS') {
     router.push({path: '/transference/contacts'});

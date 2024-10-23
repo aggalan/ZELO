@@ -30,7 +30,7 @@
 
     <v-dialog v-model="dialogContact" max-width="500">
       <template v-slot:default="dialogContact">
-        <AddContactForm />
+        <AddContactForm  />
       </template>
     </v-dialog>
 

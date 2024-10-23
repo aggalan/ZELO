@@ -2,19 +2,33 @@
 import { defineStore } from 'pinia';
 import {computed, ref} from 'vue';
 import {useBalanceStore} from "@/store/balanceStore";
-import {useTransactionsStore} from "@/store/transactionStore";
-import {useInvestmentsStore} from "@/store/investmentStore";
 import router from "@/router/router";
 
 
 export const useUsersStore = defineStore('users', () => {
-  const users = ref([{id: 1, email: 'nicolaskoron@gmail.com', passwordHash: 'bmNvZGFkb3M=', name: 'Nicolas'}]);
+  const users = ref([
+    {id: 1, email: 'nicolaskoron@gmail.com', passwordHash: 'bmNvZGFkb3M=', name: 'Nicolas', cbu: 10 , contacts: [{name: 'Santiago',email: 'smaffeo@itba.edu.ar',  cbu: 20}, {name: 'Juan', email: 'juan@itba.edu.ar', cbu: 30}]},
+    {id: 2, email: 'smaffeo@itba.edu.ar', passwordHash: 'c21hZmZlbw==', name: 'Santiago', cbu: 20, contacts: [{name: 'Nicolas',email: 'nicolaskoron@gmail.com',  cbu: 10}, {name: 'Juan', email: 'juan@itba.edu.ar', cbu: 30}]},
+    {id: 3, email: 'jbenegaslynch@itba.edu.ar', passwordHash: 'amJlbmVnYXNseW5jaA==', name: 'Juan', cbu: 30, contacts: []},
+    {id: 4, email: 'aggalan@itba.edu.ar', passwordHash: 'YWdnYWxhbg==', name: 'Agustin', cbu: 40, contacts: []},
+  ]);
+
   const balances = useBalanceStore();
   const isAuthenticated = computed(() =>userId.value !== null);
   const userId = ref(1);
   const errorMessage = ref('');
 
+  const getContacts = () => {
+    return computed(()=> users.value.find(user => user.id === userId.value).contacts);
+  }
 
+  const addContact = (contact) => {
+    if(!contact.email || !contact.name || !contact.cbu) {
+      errorMessage.value = 'Email, nombre y cbu son requeridos'
+      return false;
+    }
+    users.value.find(user => user.id === userId.value).contacts.push(contact);
+  }
   // Agregar usuario
   const addUser = (user) => {
     if(!user.email || !user.passwordHash) {
@@ -88,6 +102,8 @@ export const useUsersStore = defineStore('users', () => {
     logout,
     userId,
     isAuthenticated,
+    getContacts,
+    addContact,
   };
 });
 

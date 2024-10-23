@@ -19,13 +19,9 @@
 
 import ContactsList from './ContactsList.vue'
 import AddContactForm from './AddContactForm.vue'
+import {useUsersStore} from "@/store/usersStore";
 import {ref} from "vue";
-const myContacts = ref([
-  { id: 1, name: 'Jose', initials: 'J', color: '#8B5CF6' },
-  { id: 2, name: 'Martin', initials: 'M', color: '#8B5CF6' },
-  { id: 3, name: 'Miguel', initials: 'M', color: '#8B5CF6' },
-  { id: 4, name: 'Juan', initials: 'J', color: '#8B5CF6' },
-])
+const myContacts = useUsersStore().getContacts()
 
 </script>
 

@@ -24,14 +24,13 @@
           label="CBU/Alias"
           required
         ></v-text-field>
-        <v-btn
-          color="#8B5CF6"
+        <ActionButton
           dark
           type="submit"
           block
         >
           Agregar contacto
-        </v-btn>
+        </ActionButton>
       </v-form>
     </v-card-text>
   </v-card>
@@ -39,6 +38,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import {useUsersStore} from "@/store/usersStore";
 
 const newContact = ref({
   name: '',
@@ -50,7 +51,9 @@ const newContact = ref({
 const addContact = () => {
   // Handle adding new contact
   console.log('Adding new contact:', newContact.value)
+  useUsersStore().addContact(newContact.value)
   // Reset form after submission
   newContact.value = { name: '', email: '', phone: '', cbu: '' }
+
 }
 </script>
