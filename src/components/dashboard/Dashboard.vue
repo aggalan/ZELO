@@ -1,17 +1,16 @@
 <template>
-      <v-container fluid class="bg-white">
-        <v-row>
-          <v-col cols="12" md="5">
-            <BalanceCard />
-            <QuickActions />
-            <RecentTransactions />
-          </v-col>
-          <v-col cols="12" md="7">
-            <InvestmentPrices />
-            <ServicesAndBalances />
-          </v-col>
-        </v-row>
-      </v-container>
+  <v-container fluid class="bg-white">
+    <v-row>
+      <v-col cols="12" md="5">
+        <BalanceCard />
+        <QuickActions />
+        <Analytics />
+      </v-col>
+      <v-col cols="12" md="7">
+        <RecentTransactions :max-transactions="4" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup>
@@ -19,15 +18,12 @@ import BalanceCard from '@/components/dashboard/BalanceCard.vue'
 import QuickActions from '@/components/dashboard/QuickActions.vue'
 import RecentTransactions from '@/components/dashboard/RecentTransactions.vue'
 import InvestmentPrices from './InvestmentPrices.vue'
-import ServicesAndBalances from './ServicesAndBalances.vue'
-
+import Analytics from "@/components/dashboard/Analytics.vue";
 </script>
 
 <style>
-
 .v-application {
   font-family: 'Roboto', sans-serif;
   background-color: #f0f0f0;
 }
-
 </style>

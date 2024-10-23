@@ -44,14 +44,14 @@ const router = createRouter({
 });
 
 
-router.beforeEach((to,from) => {
-  const user = useUsersStore()
-  if(to.matched.some(route => route.meta.authProtected) && !user.isAuthenticated) {
-    return {
-      path: '/login',
-      query: { redirect: to.fullPath },
-    }
-  }
-})
+// router.beforeEach((to,from) => {
+//   const user = useUsersStore()
+//   if(to.matched.some(route => route.meta.authProtected) && !user.isAuthenticated) {
+//     return {
+//       path: '/login',
+//       query: { redirect: to.fullPath },
+//     }
+//   }
+// })
 
 export default router;
