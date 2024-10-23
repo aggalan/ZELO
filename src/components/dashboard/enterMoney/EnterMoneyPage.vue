@@ -2,11 +2,11 @@
       <v-container fluid class="pa-6">
         <h1 class="text-h4 mb-6">Ingresar Dinero</h1>
         <v-row>
-          <v-col cols="12" md="8">
+          <v-col cols="12" md="8" sm="7">
             <BankTransferSection class="ma-2 mb-5" />
             <PaymentLinkSection class="ma-2"/>
           </v-col>
-          <v-col cols="12" md="4">
+          <v-col cols="12" md="4" sm="5">
             <RecentTransactions />
           </v-col>
         </v-row>

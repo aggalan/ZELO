@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import TopBarDashboard from '../TopBarDashboard.vue'
-import SideBar from '../SideBar.vue'
+
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import RecentTransactions from "@/components/dashboard/RecentTransactions.vue";
+import { useRouter } from 'vue-router'
+const router = useRouter()
 
 const transferOptions = ref([
   { title: 'CBU, CVU O ALIAS', color: 'grey-darken-2' },
@@ -22,6 +24,15 @@ const frequentContacts = ref([
   { name: 'Miguel', avatar: 'M' },
   { name: 'Juan', avatar: 'J' }
 ])
+const selectTransferOption = (option) => {
+  if(option.title === 'CONTACTOS') {
+  } else if(option.title === 'CBU, CVU O ALIAS') {
+    router.push({path: '/transference/cbu'});
+  } else {
+    console.log('Cancelling transfer')
+    router.push({path: '/dashboard'});
+  }
+}
 </script>
 
 <template>
@@ -37,6 +48,7 @@ const frequentContacts = ref([
               height="64"
               class="text-none text-subtitle-1 font-weight-bold rounded-lg"
               elevation="2"
+              @click="selectTransferOption(option)"
             >
               {{ option.title }}
               <v-icon end>mdi-chevron-right</v-icon>
@@ -46,28 +58,7 @@ const frequentContacts = ref([
 
         <v-row>
           <v-col cols="12" md="6">
-            <v-card class="rounded-lg bg-grey-lighten-4">
-              <v-card-title class="text-h6 font-weight-bold pa-4">Historial</v-card-title>
-              <v-card-text class="pa-0">
-                <v-list class="rounded-lg bg-grey-lighten-4">
-                  <v-list-item v-for="transfer in transferHistory" :key="transfer.name" class="py-4">
-                    <template v-slot:prepend>
-                      <v-avatar color="grey-lighten-2" size="48">
-                        <span class="text-h6">{{ transfer.name[0] }}</span>
-                      </v-avatar>
-                    </template>
-                    <v-list-item-title class="font-weight-bold">{{ transfer.name }}</v-list-item-title>
-                    <v-list-item-subtitle>
-                      Te transfirió ${{ transfer.amount.toLocaleString() }}
-                    </v-list-item-subtitle>
-                    <template v-slot:append>
-                      <v-chip color="deep-purple-lighten-4" size="small" class="font-weight-medium">{{ transfer.time }}</v-chip>
-                      <v-btn color="deep-purple" variant="text" class="ml-2 text-none">Detalles</v-btn>
-                    </template>
-                  </v-list-item>
-                </v-list>
-              </v-card-text>
-            </v-card>
+            <RecentTransactions/>
           </v-col>
           <v-col cols="12" md="6">
             <v-card class="rounded-lg bg-grey-lighten-4">

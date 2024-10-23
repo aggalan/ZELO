@@ -6,13 +6,6 @@
           <h2 class="text-h5">{{ title }}</h2>
         </v-col>
       </v-row>
-      <v-row class="transaction-header align-center">
-        <v-col cols="2">Icon</v-col>
-        <v-col cols="2">Nombre</v-col>
-        <v-col cols="3">Acción</v-col>
-        <v-col cols="2">Hora</v-col>
-        <v-col cols="3">Detalles</v-col>
-      </v-row>
       <v-row v-for="(transaction, index) in displayedTransactions" :key="index" class="transaction-row align-center">
         <v-col cols="2">
           <v-list-item>

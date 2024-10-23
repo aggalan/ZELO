@@ -32,8 +32,8 @@
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
       <div class="d-flex flex-column">
-        <span>Juan Rodriguez</span>
-        <span class="text-caption grey--text">juanRodriguez@gmail.com</span>
+        <span>{{user.name}}</span>
+        <span class="text-caption grey--text">{{user.email}}</span>
       </div>
     </v-container>
   </v-app-bar>
@@ -41,10 +41,13 @@
 
 <script setup>
 import { ref, nextTick } from 'vue';
+import {useUsersStore} from "@/store/usersStore";
 
 const searchQuery = ref('');
 const isSearchVisible = ref(false);
 const searchInput = ref(null);
+const userStore = useUsersStore();
+const user = userStore.getUserById(userStore.userId);
 
 const toggleSearch = async () => {
   isSearchVisible.value = !isSearchVisible.value;
