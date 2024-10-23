@@ -1,12 +1,8 @@
 <template>
   <div class="my-card">
     <v-card-text>
-      <v-row>
-        <v-col cols="12">
-          <h2 class="text-h5">{{ title }}</h2>
-        </v-col>
-      </v-row>
-      <v-row v-for="(transaction, index) in displayedTransactions" :key="index" class="transaction-row align-center">
+
+      <v-row v-for="(transaction, index) in displayedTransactions" :key="index" class="transaction-row align-center ">
         <v-col cols="2">
           <v-list-item>
             <v-icon :color="transaction.color">{{ transaction.icon }}</v-icon>
