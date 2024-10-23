@@ -1,6 +1,6 @@
 <template>
   <p class="login-link">
-    ¿Ya tienes una cuenta? <a href="/login">Inicia sesión</a>
+    ¿Ya tienes una cuenta? <RouterLink to="/login">Inicia sesión</RouterLink>
   </p>
 </template>
 

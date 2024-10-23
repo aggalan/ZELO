@@ -1,6 +1,6 @@
 <template>
   <p class="register-link">
-    ¿No tienes una cuenta? <a href="/signup">Registrarse</a>
+    ¿No tienes una cuenta? <RouterLink to='/signup'>Registrarse</RouterLink>
   </p>
 </template>
 
