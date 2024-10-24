@@ -21,6 +21,10 @@ import EnterMoneyPage from "@/components/dashboard/enterMoney/EnterMoneyPage.vue
 import TransferWithCBU from "@/components/transference/TransferWithCBU.vue";
 import MyContactsPage from "@/components/transference/MyContactsPage.vue";
 import TransactionDetailsPage from "@/components/transference/TransactionDetails/TransactionDetailsPage.vue";
+import AccessibilityContent from "@/components/profile/AccessibilityContent.vue";
+import AccountDataContent from "@/components/profile/AccountDataContent.vue";
+import PersonalInfoContent from "@/components/profile/PersonalInfoContent.vue";
+import PrivacyContent from "@/components/profile/PrivacyContent.vue";
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true , authProtected: false  } },
@@ -43,7 +47,11 @@ const routes = [
   { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/settings', component: Settings, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
-  { path: '/dashboard/enter', component: EnterMoneyPage, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/accessibility', component: AccessibilityContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/account-data', component: AccountDataContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/personal-info', component: PersonalInfoContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/privacy', component: PrivacyContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+
 
 ];
 

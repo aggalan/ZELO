@@ -1,6 +1,6 @@
 <template>
   <div class="settings-page">
-    <v-app-bar flat color="transparent" class="mb-4">
+    <v-app-bar flat color="#F3F4F6" class="mb-4">
       <v-btn
         icon
         @click="goBack"
