@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="handleSubmit">
+  <form @submit.prevent="handleSubmit" class >
     <InputField
       id="email"
       label="Correo Electronico*"
