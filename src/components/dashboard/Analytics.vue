@@ -1,35 +1,36 @@
 <template>
-  <v-card class="analytics-card pa-4 mx-auto">
-    <v-card-title class="text-h5 font-weight-bold mb-2">Analiticas</v-card-title>
+  <v-card class="analytics-card">
     <v-card-text>
+      <h2 class="text-h6 font-weight-bold mb-4">Analíticas</h2>
       <v-row justify="center" align="center" class="mb-4">
-        <v-progress-circular
-          :rotate="270"
-          :size="150"
-          :width="15"
-          :model-value="13"
-          color="#8B5CF6"
-        >
-          13%
-        </v-progress-circular>
-      </v-row>
-      <v-row class="mb-4">
-        <v-col cols="12">
-          <div class="text-subtitle-1 mb-1">Total Gastado</div>
-          <div class="text-h4 font-weight-bold">$50.000</div>
+        <v-col cols="6">
+          <v-progress-circular
+            :rotate="270"
+            :size="100"
+            :width="15"
+            :model-value="spendingPercentage"
+            color="primary"
+          >
+            {{ spendingPercentage }}%
+          </v-progress-circular>
+        </v-col>
+        <v-col cols="6">
+          <div class="text-subtitle-2 mb-1">Total Gastado</div>
+          <div class="text-h5 font-weight-bold">${{ totalSpent.toLocaleString() }}</div>
         </v-col>
       </v-row>
       <v-row>
         <v-col cols="12">
+          <h3 class="text-subtitle-2 font-weight-medium mb-2">Categorías principales</h3>
           <v-chip
             v-for="category in categories"
             :key="category.name"
             :color="category.color"
             class="mr-2 mb-2"
             label
-            text-color="white"
+            size="small"
           >
-            <v-icon start :icon="category.icon"></v-icon>
+            <v-icon start :icon="category.icon" size="16"></v-icon>
             {{ category.name }}
           </v-chip>
         </v-col>
@@ -39,28 +40,30 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+
+const totalSpent = ref(50000)
+const budget = ref(100000)
+
+const spendingPercentage = computed(() => Math.round((totalSpent.value / budget.value) * 100))
 
 const categories = ref([
-  { name: 'Comida', icon: 'mdi-food', color: '#F472B6' },
-  { name: 'Transporte', icon: 'mdi-car', color: '#8B5CF6' },
-  { name: 'Ocio', icon: 'mdi-gamepad-variant', color: '#60A5FA' },
-  { name: 'Servicios', icon: 'mdi-lightning-bolt', color: '#34D399' },
+  { name: 'Comida', icon: 'mdi-food', color: 'pink' },
+  { name: 'Transporte', icon: 'mdi-car', color: 'purple' },
+  { name: 'Ocio', icon: 'mdi-gamepad-variant', color: 'blue' },
+  { name: 'Servicios', icon: 'mdi-lightning-bolt', color: 'green' },
 ])
 </script>
 
 <style scoped>
 .analytics-card {
-  max-width: 800px;
-  margin: auto;
-  background-color: #f3f4f6;
-  border-radius: 8px;
+  background-color: white;
+  border-radius: 16px;
+  height: 100%;
 }
-
 .v-progress-circular {
   font-weight: bold;
 }
-
 .v-chip {
   font-weight: 500;
 }
