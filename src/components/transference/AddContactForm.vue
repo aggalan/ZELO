@@ -50,7 +50,6 @@ const newContact = ref({
 
 const addContact = () => {
   // Handle adding new contact
-  console.log('Adding new contact:', newContact.value)
   useUsersStore().addContact(newContact.value)
   // Reset form after submission
   newContact.value = { name: '', email: '', phone: '', cbu: '' }

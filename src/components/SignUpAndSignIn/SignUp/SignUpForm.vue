@@ -87,7 +87,7 @@ const handleSubmit = () => {
 
   if (passwordsMatch.value) {
     console.log('Sign up with:', email.value, password.value);
-    users.register(email.value, password.value);
+    users.register(email.value, password.value, firstName.value || '', lastName.value || '', DNI.value);
    // users.register(email.value, firstName.value || '', lastName.value || '', password.value, DNI.value);
     if (users.isAuthenticated) {
       router.push('/dashboard');

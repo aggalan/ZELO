@@ -33,8 +33,27 @@
         <AddContactForm  />
       </template>
     </v-dialog>
-
+    <v-dialog v-model="dialogData" max-width="500">
+      <template v-slot:default="dialogData">
+        <v-card class="my-card">
+          <v-card-title>
+            <span class="text-h5"> Mis datos </span>
+          </v-card-title>
+          <v-card-text>
+              CBU: {{ user.cbu }}
+              <br>
+              Alias: {{ user.alias }}
+          </v-card-text>
+          <v-card-actions>
+            <v-spacer></v-spacer>
+            <v-btn color="deep-purple" @click="toggleDialogData">Cerrar</v-btn>
+          </v-card-actions>
+        </v-card>
+      </template>
+    </v-dialog>
   </v-card>
+
+
 </template>
 
 <script setup>
@@ -42,6 +61,8 @@ import { ref } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import PaymentLinkSection from "@/components/dashboard/enterMoney/PaymentLinkSection.vue";
 import AddContactForm from "@/components/transference/AddContactForm.vue";
+import MyInformation from "@/components/dashboard/MyInformation.vue";
+import {useUsersStore} from "@/store/usersStore";
 
 const quickActions = ref([
   { text: 'link de cobro', icon: 'mdi-link' },
@@ -49,14 +70,19 @@ const quickActions = ref([
   { text: 'Añadir contacto', icon: 'mdi-account-plus' },
 ])
 const dialogLink = ref(false)
-
+const dialogData = ref(false)
 const dialogContact = ref(false)
 
+const userStore = useUsersStore()
+const user = userStore.getUserById(userStore.userId)
+const toggleDialogData= ()=>{
+  dialogData.value = !dialogData.value
+}
 const handleAction = (actionText) => {
   if (actionText === 'link de cobro') {
     dialogLink.value = true
   } else if (actionText === 'Tus datos') {
-    console.log('Tus datos')
+    toggleDialogData()
   } else if (actionText === 'Añadir contacto') {
     dialogContact.value = true
   }

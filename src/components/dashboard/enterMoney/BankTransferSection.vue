@@ -21,18 +21,7 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-alert
-        border="left"
-        colored-border
-        type="info"
-        elevation="2"
-        class="mb-4"
-        color="grey-lighten-3"
-      >
-        <strong>Cuenta de la cual transferir:</strong><br>
-        CBU: {{ accountDetails.cbu }}<br>
-        Alias: {{ accountDetails.alias }}
-      </v-alert>
+      <my-information show-popup title="" :account-details="accountDetails" />
       <v-row>
         <v-col class="d-flex justify-end">
           <v-btn
@@ -96,6 +85,7 @@
 import {ref, reactive, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
 import { useBalanceStore } from "@/store/balanceStore"
+import MyInformation from "@/components/dashboard/MyInformation.vue";
 
 const balanceStore = useBalanceStore()
 
