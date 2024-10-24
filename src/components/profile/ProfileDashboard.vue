@@ -1,5 +1,6 @@
 <template>
-  <v-container fluid class="bg-background d-flex justify-center align-center profile-container">
+  <v-container fluid class="bg-background d-flex justify-center profile-container">
+    <h1 class="text-h4 mb-6 mt-6 ml-2">Perfil</h1>
     <v-row class="d-flex justify-center align-center">
       <v-col cols="12" md="8">
         <ProfileSection />
@@ -22,8 +23,7 @@ const toggleHelpSection = () => {
 
 <style>
 
-.profile-container {
-  margin-top: 50px; /* Ajusta este valor según tus necesidades */
+.profile-container { /* Ajusta este valor según tus necesidades */
 }
 .v-application {
   font-family: 'Roboto', sans-serif;

@@ -1,8 +1,8 @@
 <template>
-  <div class="help-page">
     <v-container>
+      <h1 class="text-h4 mb-6 mt-6 left-aligned">Ayuda</h1>
 
-      <h1 class="text-h4 mb-6">Ayuda</h1>
+      <div class="help-page">
       <p class="text-subtitle-1 mb-4">¿Con qué podemos ayudarte?</p>
 
       <div>
@@ -35,8 +35,8 @@
           </v-card>
         </v-col>
       </v-row>
+      </div>
     </v-container>
-  </div>
 </template>
 
 <script setup>
@@ -65,6 +65,10 @@ const cancelAccount = () => {
   min-height: 100vh;
   max-width: 900px; /* Set a maximum width */
   margin: 0 auto; /* Center the container */
+}
+
+.left-aligned {
+  margin:0;
 }
 
 .category-button {
