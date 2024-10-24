@@ -17,13 +17,20 @@
             {{ `${transaction.type === 'pago' ? 'Pagaste' : 'Recibiste'} $${transaction.amount}` }}
           </v-list-item-subtitle>
           <template v-slot:append>
-            <action-button>
+            <action-button @click="viewDetails(transaction)" variant="text">
               Ver
             </action-button>
           </template>
         </v-list-item>
       </v-list>
     </v-card-text>
+    <v-pagination
+      v-if="showPagination"
+      v-model="page"
+      :length="pageCount"
+      class="mt-4"
+      rounded="circle"
+    ></v-pagination>
   </v-card>
 </template>
 
@@ -36,8 +43,17 @@ import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const props = defineProps({
   title: { type: String, default: 'Transacciones Recientes' },
-  maxTransactions: { type: Number, default: 5 }
+  maxTransactions: { type: Number, default: Infinity }
 })
+const itemsPerPage = computed(() => props.maxTransactions === Infinity ? 5 : props.maxTransactions)
+const page = ref(1)
+const displayedTransactions = computed(() => {
+  const start = (page.value - 1) * itemsPerPage.value
+    const end = start + itemsPerPage.value
+    return transactions.value.slice(start, end)
+  })
+const pageCount = computed(() => Math.ceil(transactions.value.length / itemsPerPage.value))
+const showPagination = computed(() => props.maxTransactions === Infinity && transactions.value.length > itemsPerPage.value)
 
 const userStore = useUsersStore()
 const transactionsStore = useTransactionsStore()
@@ -45,7 +61,6 @@ const router = useRouter()
 
 const transactions = computed(() => transactionsStore.getTransactionsByUserId(userStore.userId))
 
-const displayedTransactions = computed(() => transactions.value.slice(0, props.maxTransactions))
 
 const viewDetails = (transaction) => {
   transactionsStore.setSelectedTransaction(transaction.id)
