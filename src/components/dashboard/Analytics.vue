@@ -9,7 +9,7 @@
             :size="100"
             :width="15"
             :model-value="spendingPercentage"
-            color="primary"
+            color="var(--primary)"
           >
             {{ spendingPercentage }}%
           </v-progress-circular>

@@ -3,12 +3,12 @@
     <v-card-text>
       <div class="d-flex justify-space-between align-center mb-4">
         <h2 class="text-h6 font-weight-bold">{{ title }}</h2>
-        <v-btn color="primary" variant="text" size="small">Ver todas</v-btn>
+        <v-btn color="var(--primary)" variant="text" size="small">Ver todas</v-btn>
       </div>
       <v-list>
         <v-list-item v-for="(transaction, index) in displayedTransactions" :key="index" class="mb-2 transaction-item">
           <template v-slot:prepend>
-            <v-avatar :color="transaction.color || 'primary'" size="40">
+            <v-avatar :color="'var(--primary)'" size="40">
               <v-icon :color="transaction.iconColor || 'white'" size="24">{{ transaction.icon || 'mdi-account' }}</v-icon>
             </v-avatar>
           </template>

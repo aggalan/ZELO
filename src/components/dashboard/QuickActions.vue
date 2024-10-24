@@ -56,9 +56,9 @@ import MyInformation from "@/components/dashboard/MyInformation.vue";
 import {useUsersStore} from "@/store/usersStore";
 
 const quickActions = ref([
-  { text: 'Link de cobro', icon: 'mdi-link', color: 'primary' },
-  { text: 'Tus datos', icon: 'mdi-account', color: 'secondary' },
-  { text: 'Añadir contacto', icon: 'mdi-account-plus', color: 'success' },
+  { text: 'Link de cobro', icon: 'mdi-link', color: 'purple' },
+  { text: 'Tus datos', icon: 'mdi-account', color: 'purple' },
+  { text: 'Añadir contacto', icon: 'mdi-account-plus', color: 'purple' },
 ])
 const dialogLink = ref(false)
 const dialogData = ref(false)
