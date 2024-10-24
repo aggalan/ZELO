@@ -51,6 +51,7 @@ const routes = [
   { path: '/account-data', component: AccountDataContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/personal-info', component: PersonalInfoContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/privacy', component: PrivacyContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/dashboard/enter', component: EnterMoneyPage, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
 
 
 ];

@@ -79,7 +79,7 @@ const verifyAndShowConfirmationDialog = () => {
 
 // Confirmar la transferencia desde el popup
 const confirmTransfer = () => {
-  balanceStore.withdrawMoney(parseFloat(amount.value));
+  balanceStore.withdrawMoney(parseFloat(amount.value), {to:{category:"transfer", concept: concept.value, cbu: cbuAlias.value}});
   console.log('Transferencia confirmada:', {
     cbuAlias: cbuAlias.value,
     amount: amount.value,
