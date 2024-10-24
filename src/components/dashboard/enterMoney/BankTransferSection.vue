@@ -27,7 +27,7 @@
         type="info"
         elevation="2"
         class="mb-4"
-        color="grey-lighten-3"
+        color="var(--background-color)"
       >
         <strong>Cuenta de la cual transferir:</strong><br>
         CBU: {{ accountDetails.cbu }}<br>
@@ -40,7 +40,7 @@
             block
             large
             @click="startDeposit"
-            color = "deep-purple"
+            color = "var(--primary)"
             :loading="loading"
           >
             INICIAR INGRESO
@@ -78,7 +78,7 @@
               <v-col cols="auto">
                 <v-btn
                   icon
-                  color="deep-purple"
+                  color="var(--primary)"
                   @click.stop="repeatDeposit(deposit)"
                 >
                   <v-icon>mdi-repeat</v-icon>
