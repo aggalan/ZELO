@@ -1,45 +1,64 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue'
+import {onBeforeMount, ref, watch} from 'vue'
 import '@mdi/font/css/materialdesignicons.css'
 import router from "@/router/router";
-import {useRoute} from "vue-router";
-import {useUsersStore} from "@/store/usersStore";
+import { useRoute } from "vue-router";
+import { useUsersStore } from "@/store/usersStore";
 
-const route= useRoute()
-const users = useUsersStore()
+const route = useRoute();
+const users = useUsersStore();
 
 const menuItems = ref([
   { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', route: '/dashboard' },
   { title: 'Tarjetas', icon: 'mdi-credit-card-outline', route: '/cards' },
   { title: 'Movimientos', icon: 'mdi-swap-horizontal', route: '/movements' },
   { title: 'Inversiones', icon: 'mdi-chart-line', route: '/investment' },
-])
+]);
 
 const bottomItems = ref([
   { title: 'Perfil', icon: 'mdi-account-outline', route: '/profile' },
-  { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' }
-])
+  { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' },
+]);
+
 // Iniciar selectedItem según la ruta actual
 const selectedItem = ref(menuItems.value.find(item => item.route === route.path)?.title || '');
 
+const getFirstRouteSegment = (path: string) => {
+  // Dividir el path por "/"
+  const segments = path.split('/').filter(Boolean) // `filter(Boolean)` elimina los valores vacíos
+  return segments.length > 0 ? segments[0] : ''
+}
+
+// Observar cambios en la ruta para actualizar la primera parte
+const firstRouteSegment = ref(getFirstRouteSegment(route.path))
+
 // Observar cambios en la ruta para actualizar selectedItem
 watch(route, (newRoute) => {
-  const foundItem = menuItems.value.find(item => item.route === newRoute.path);
-  if (foundItem) {
-    selectedItem.value = foundItem.title;
+  firstRouteSegment.value = getFirstRouteSegment(newRoute.path)
+  console.log(firstRouteSegment.value)
+  let foundItem = menuItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
+  if(!foundItem){
+    foundItem = bottomItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   }
+  selectedItem.value = foundItem ? foundItem.title : ''; // Actualizar selectedItem
 });
-console.log(selectedItem.value)
+onBeforeMount(() => {
+  let foundItem = menuItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
+  if(!foundItem){
+    foundItem = bottomItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
+  }
+  selectedItem.value = foundItem ? foundItem.title : ''; // Actualizar selectedItem
+});
 
 const handleItemClick = (item) => {
-  if(item.title === selectedItem.value) return;
-  if(item.title === 'Cerrar Sesión') {
+  if (item.title === 'Cerrar Sesión') {
     users.logout();
-    return
+    return;
   }
-  selectedItem.value = item.title
-  router.push(item.route)
-}
+  selectedItem.value = item.title;
+  router.push(item.route);
+};
+
 </script>
 
 <template>
@@ -47,7 +66,7 @@ const handleItemClick = (item) => {
     <div class="d-flex justify-center pa-4">
       <div class="d-flex justify-center pa-4">
         <v-avatar size="80" class="mb-4">
-          <img src="@/assets/logo.png" alt="Logo" class="avatar-img"/>
+          <img src="@/assets/logo.png" alt="Logo" class="avatar-img" />
         </v-avatar>
       </div>
     </div>
@@ -55,8 +74,7 @@ const handleItemClick = (item) => {
       <v-list-item
         v-for="item in menuItems"
         :key="item.title"
-        :value="item.title"
-        :class="{ 'selected-item': item.title === selectedItem && $route.path !== '/help' }"
+        :class="{ 'selected-item': item.title === selectedItem }"
         @click="handleItemClick(item)"
         class="mb-2"
       >
@@ -71,8 +89,8 @@ const handleItemClick = (item) => {
         <v-list-item
           v-for="item in bottomItems"
           :key="item.title"
-          :value="item.title"
           @click="handleItemClick(item)"
+          :class="{ 'selected-item': item.title === selectedItem }"
           class="mb-2"
         >
           <template v-slot:prepend>
