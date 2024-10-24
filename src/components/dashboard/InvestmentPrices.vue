@@ -1,26 +1,29 @@
 <template>
-  <v-card class="mb-4 crypto-card">
+  <v-card class="investment-prices-card">
+    <v-card-title class="text-grey-darken-3">Precios de Inversiones</v-card-title>
     <v-card-text>
       <v-row>
-        <v-col v-for="(inv, i) in investments" :key="i" cols="6">
-          <div class="d-flex align-center">
-            <v-icon left :color="inv.iconColor">{{ inv.icon }}</v-icon>
-            <div>
-              <div class="text-subtitle-1 font-weight-medium text-black">{{ inv.name }}</div>
-              <div class="text-caption grey--text text-grey">{{ inv.symbol }}</div>
+        <v-col v-for="(inv, i) in investments" :key="i" cols="12" sm="6">
+          <v-card flat class="pa-2">
+            <div class="d-flex align-center">
+              <v-icon :color="inv.iconColor" size="36" class="mr-3">{{ inv.icon }}</v-icon>
+              <div>
+                <div class="text-subtitle-1 font-weight-medium">{{ inv.name }}</div>
+                <div class="text-caption text-grey">{{ inv.symbol }}</div>
+              </div>
+              <v-spacer></v-spacer>
+              <div class="text-right">
+                <div class="text-subtitle-1 font-weight-medium">${{ inv.price }}</div>
+                <v-sparkline
+                  :value="inv.trend"
+                  :color="inv.trendColor"
+                  height="20"
+                  width="60"
+                  stroke-linecap="round"
+                ></v-sparkline>
+              </div>
             </div>
-            <v-spacer></v-spacer>
-            <div class="text-right">
-              <div class="text-subtitle-1 font-weight-medium text-black">${{ inv.price }}</div>
-              <v-sparkline
-                :value="inv.trend"
-                :color="inv.trendColor"
-                height="20"
-                width="60"
-                stroke-linecap="round"
-              ></v-sparkline>
-            </div>
-          </div>
+          </v-card>
         </v-col>
       </v-row>
     </v-card-text>
@@ -39,12 +42,8 @@ const investments = ref([
 </script>
 
 <style scoped>
-.crypto-card {
-  border-radius: 12px;
-  background-color: #F3F4F6;
-}
-.v-icon {
-  margin-right: 12px;
+.investment-prices-card {
+  background-color: #f3f4f6;
 }
 .v-sparkline {
   margin-top: -10px;

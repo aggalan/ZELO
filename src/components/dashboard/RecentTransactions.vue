@@ -1,83 +1,83 @@
 <template>
-  <v-card class="my-card">
-    <v-card-title>{{ title }}</v-card-title>
+  <v-card class="recent-transactions-card">
     <v-card-text>
-      <v-row v-for="(transaction, index) in displayedTransactions" :key="index" class="transaction-row align-center ">
-        <v-col cols="2">
-          <v-list-item>
-            <v-icon :color="transaction.color || purple">{{ transaction.icon || 'mdi-account' }}</v-icon>
-          </v-list-item>
-        </v-col>
-        <v-col cols="2">{{ transaction.to }}</v-col>
-        <v-col cols="3">{{ `${transaction.type === 'pago'? 'Pagaste':'Recibiste'} $${transaction.amount}` }}</v-col>
-        <v-col cols="2">{{ transaction.timeSince }}</v-col>
-        <v-col cols="3">
-          <action-button @click="viewDetails(transaction)">Ver Detalles</action-button>
-        </v-col>
-      </v-row>
-      <v-pagination v-if="showPagination" v-model="page" :length="pageCount" class="mt-4"></v-pagination>
+      <h2 class="text-h6 font-weight-bold mb-4">{{ title }}</h2>
+      <v-list>
+        <v-list-item v-for="(transaction, index) in displayedTransactions" :key="index" class="mb-2 transaction-item">
+          <template v-slot:prepend>
+            <v-avatar :color="transaction.color || 'primary'" size="40">
+              <v-icon :color="transaction.iconColor || 'white'" size="24">{{ transaction.icon || 'mdi-account' }}</v-icon>
+            </v-avatar>
+          </template>
+          <v-list-item-title>{{ transaction.to }}</v-list-item-title>
+          <v-list-item-subtitle>
+            {{ `${transaction.type === 'pago' ? 'Pagaste' : 'Recibiste'} $${transaction.amount}` }}
+          </v-list-item-subtitle>
+          <template v-slot:append>
+            <v-btn @click="viewDetails(transaction)" variant="text" color="primary" size="small">
+              Ver Detalles
+            </v-btn>
+          </template>
+        </v-list-item>
+      </v-list>
+      <v-pagination
+        v-if="showPagination"
+        v-model="page"
+        :length="pageCount"
+        class="mt-4"
+        rounded="circle"
+      ></v-pagination>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
-import {ref, computed} from 'vue'
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
-import {useTransactionsStore} from "@/store/transactionStore";
-import {useUsersStore} from "@/store/usersStore";
-import router from "@/router/router";
+import { ref, computed } from 'vue'
+import { useTransactionsStore } from "@/store/transactionStore";
+import { useUsersStore } from "@/store/usersStore";
+import { useRouter } from 'vue-router';
 
 const props = defineProps({
-  title: {type: String, default: 'Transacciones Recientes'},
-  maxTransactions: {type: Number, default: Infinity}
+  title: { type: String, default: 'Transacciones Recientes' },
+  maxTransactions: { type: Number, default: Infinity }
 })
-const purple = '#7E57C2'
 
 const userStore = useUsersStore()
-const transactions = useTransactionsStore().getTransactionsByUserId(userStore.userId)
+const transactionsStore = useTransactionsStore()
+const router = useRouter()
 
-const itemsPerPage = computed(() => props.maxTransactions === Infinity ? 8 : props.maxTransactions)
+const transactions = computed(() => transactionsStore.getTransactionsByUserId(userStore.userId))
+
+const itemsPerPage = computed(() => props.maxTransactions === Infinity ? 5 : props.maxTransactions)
 const page = ref(1)
 
 const displayedTransactions = computed(() => {
   const start = (page.value - 1) * itemsPerPage.value
   const end = start + itemsPerPage.value
-  return transactions.slice(start, end)
+  return transactions.value.slice(start, end)
 })
 
-const pageCount = computed(() => {
-  return Math.ceil(transactions.length / itemsPerPage.value)
-})
+const pageCount = computed(() => Math.ceil(transactions.value.length / itemsPerPage.value))
 
-const showPagination = computed(() => {
-  return props.maxTransactions === Infinity && transactions.length > itemsPerPage.value
-})
+const showPagination = computed(() => props.maxTransactions === Infinity && transactions.value.length > itemsPerPage.value)
 
 const viewDetails = (transaction) => {
-  // Implement the logic to view details of the transaction
-  console.log('Viewing details for:', transaction)
-  useTransactionsStore().setSelectedTransaction(transaction.id)
+  transactionsStore.setSelectedTransaction(transaction.id)
   router.push({path: '/movements/details'})
 }
 </script>
 
 <style scoped>
-.transaction-header {
-  font-weight: bold;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 8px;
+.recent-transactions-card {
+  background: white;
+  border-radius: 16px;
 }
 
-.transaction-row {
-  border-bottom: 1px solid #eee;
-  padding: 8px 0;
+.transaction-item {
+  transition: background-color 0.3s ease;
 }
 
-.v-list-item__avatar {
-  background-color: #EDE9FE;
-}
-
-.v-list-item__avatar .v-icon {
-  font-size: 20px;
+.transaction-item:hover {
+  background-color: #f5f5f5;
 }
 </style>

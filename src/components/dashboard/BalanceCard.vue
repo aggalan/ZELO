@@ -1,18 +1,37 @@
 <template>
-  <v-card class="mb-4 balance-card">
-    <v-card-title class="text-grey-darken-3"> Balance
-      <div class="text-h2 text-black align-center balance-text">
-        {{ formattedBalance }}
-        <v-icon @click="toggleViewInfo()" color="black" size="40">{{ icon }}</v-icon>
-      </div>
-    </v-card-title>
+  <v-card class="balance-card">
     <v-card-text>
-      <v-row class="mt-4">
-        <v-col>
-          <ActionButton color="#49475A" :action="goToTransference" block customClass="transfer-btn">Transferir</ActionButton>
+      <div class="d-flex justify-space-between align-center mb-4">
+        <h2 class="text-h6 font-weight-bold">Balance</h2>
+        <v-btn icon @click="toggleViewInfo">
+          <v-icon>{{ icon }}</v-icon>
+        </v-btn>
+      </div>
+      <div class="text-h3 font-weight-bold mb-6">
+        {{ formattedBalance }}
+      </div>
+      <v-row>
+        <v-col cols="6">
+          <v-btn
+            color="primary"
+            block
+            @click="goToTransference"
+            class="action-btn"
+            prepend-icon="mdi-bank-transfer"
+          >
+            Transferir
+          </v-btn>
         </v-col>
-        <v-col>
-          <ActionButton color="#49475A" :action="goToEnter" block customClass="transfer-btn">Ingresar</ActionButton>
+        <v-col cols="6">
+          <v-btn
+            color="secondary"
+            block
+            @click="goToEnter"
+            class="action-btn"
+            prepend-icon="mdi-cash-plus"
+          >
+            Ingresar
+          </v-btn>
         </v-col>
       </v-row>
     </v-card-text>
@@ -20,58 +39,41 @@
 </template>
 
 <script setup>
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
-import router from "@/router/router";
 import { computed, ref } from "vue";
 import { useBalanceStore } from "@/store/balanceStore";
 import { useUsersStore } from "@/store/usersStore";
+import { useRouter } from 'vue-router';
 
 const balanceStore = useBalanceStore();
 const userStore = useUsersStore();
-const goToTransference = () => {
-  router.push("/transference");
-};
-const goToEnter = () => {
-  router.push("/dashboard/enter");
-};
+const router = useRouter();
+
+const goToTransference = () => router.push("/transference");
+const goToEnter = () => router.push("/dashboard/enter");
 
 const balance = balanceStore.getBalanceByUserId(userStore.userId);
 
 const viewInfo = ref(true);
-
-const toggleViewInfo = () => {
-  viewInfo.value = !viewInfo.value;
-};
+const toggleViewInfo = () => viewInfo.value = !viewInfo.value;
 
 const maskBalance = "$****";
-const icon = computed(() => (viewInfo.value ? "mdi-eye" : "mdi-eye-off"));
+const icon = computed(() => viewInfo.value ? "mdi-eye-off" : "mdi-eye");
 
-const formattedBalance = computed(() => {
-  return viewInfo.value ? `$${balance.value.toLocaleString()}` : maskBalance;
-});
+const formattedBalance = computed(() =>
+  viewInfo.value ? `$${balance.value.toLocaleString()}` : maskBalance
+);
 </script>
 
 <style scoped>
 .balance-card {
-  background: #f3f4f6;
-  border-radius: 12px;
-  mso-border-shadow: yes;
+  background: white;
+  border-radius: 16px;
 }
-.transfer-btn, .deposit-btn {
+
+.action-btn {
   text-transform: none;
   height: 48px;
   font-size: 16px;
-  border-color: #f3f4f6;
-  border-radius: 12px;
-  background: #49475a;
-}
-.balance-text {
-  font-weight: 500;
-  text-align: center;
-}
-.custom-logo {
-  width: 60px; /* Ajusta el tamaño deseado */
-  height: auto; /* Mantiene la proporción de la imagen */
-  display: block;
+  border-radius: 8px;
 }
 </style>
