@@ -1,63 +1,126 @@
+<template>
+  <v-container fluid class="bg-white pa-4">
+    <h1 class="text-h4 mb-6 mt-6 ml-2">Transferencias</h1>
+    <v-row justify="center">
+      <v-col cols="12" md="10" lg="8">
+        <v-card class="pa-4">
+
+          <v-card class="mb-6 rounded-lg" flat>
+            <v-card-text class="pa-0">
+              <v-row justify="center" class="mb-4">
+                <v-col v-for="option in transferOptions" :key="option.title" cols="12" sm="4">
+                  <v-btn
+                    :color="option.color"
+                    block
+                    height="48"
+                    class="text-none text-body-1 font-weight-medium"
+                    variant="flat"
+                    rounded
+                    @click="selectTransferOption(option)"
+                  >
+                    {{ option.title }}
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+
+          <v-card class="mb-6 rounded-0" flat>
+            <v-card-title class="text-h6 font-weight-medium pa-4">
+              Repetir transferencias
+            </v-card-title>
+            <v-card-text class="pa-0">
+              <v-list>
+                <v-list-item v-for="transfer in recentTransfers" :key="transfer.id" class="py-2">
+                  <template v-slot:prepend>
+                    <v-avatar :color="transfer.color" size="40">
+                      <span class="text-subtitle-2 white--text">{{ transfer.avatar }}</span>
+                    </v-avatar>
+                  </template>
+                  <v-list-item-title class="text-body-1">{{ transfer.name }}</v-list-item-title>
+                  <v-list-item-subtitle class="text-body-2">${{ transfer.amount }} - {{ transfer.date }}</v-list-item-subtitle>
+                  <template v-slot:append>
+                    <v-btn
+                      color="deep-purple"
+                      icon="mdi-refresh"
+                      variant="text"
+                      @click="repeatTransfer(transfer)"
+                    ></v-btn>
+                  </template>
+                </v-list-item>
+              </v-list>
+            </v-card-text>
+          </v-card>
+
+          <v-card class="rounded-0" flat>
+            <v-card-text class="pa-0">
+              <ContactsList :contacts="frequentContacts">
+                <v-card-title class="text-h6 font-weight-bold pa-4">Frecuentes</v-card-title>
+              </ContactsList>
+            </v-card-text>
+          </v-card>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
-
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
-import RecentTransactions from "@/components/dashboard/RecentTransactions.vue";
 import { useRouter } from 'vue-router'
+import { useUsersStore } from '@/store/usersStore'
 import ContactsList from "@/components/transference/ContactsList.vue";
-import { useUsersStore } from "@/store/usersStore";
 
 const router = useRouter()
+const usersStore = useUsersStore()
 
 const transferOptions = ref([
-  { title: 'CBU, CVU O ALIAS', color: 'grey-darken-2' },
-  { title: 'CONTACTOS', color: 'grey-darken-2' },
-  { title: 'CANCELAR', color: 'deep-purple' }
+  { title: 'CBU, CVU O ALIAS', color: "var(--primary)" },
+  { title: 'CONTACTOS', color: "var(--primary)" },
+  { title: 'CANCELAR', color: "var(--on-surface-light)" }
 ])
 
-
+const recentTransfers = ref([
+  { id: 1, name: 'María López', amount: '500.00', date: '15 de mayo de 2023', color: 'deep-purple', avatar: 'ML' },
+  { id: 2, name: 'Carlos Rodríguez', amount: '1200.00', date: '10 de mayo de 2023', color: 'teal', avatar: 'CR' },
+  { id: 3, name: 'Ana Martínez', amount: '750.00', date: '5 de mayo de 2023', color: 'orange', avatar: 'AM' },
+])
 
 const frequentContacts = useUsersStore().getContacts()
 
+
 const selectTransferOption = (option) => {
-  if(option.title === 'CONTACTOS') {
-    router.push({path: '/transference/contacts'});
-  } else if(option.title === 'CBU, CVU O ALIAS') {
-    router.push({path: '/transference/cbu'});
-  } else {
-    console.log('Cancelling transfer')
-    router.push({path: '/dashboard'});
+  switch (option.title) {
+    case 'CONTACTOS':
+      router.push({ path: '/transference/contacts' })
+      break
+    case 'CBU, CVU O ALIAS':
+      router.push({ path: '/transference/cbu' })
+      break
+    default:
+      console.log('Cancelling transfer')
+      router.push({ path: '/dashboard' })
   }
+}
+
+const repeatTransfer = (transfer) => {
+  console.log('Repeating transfer for:', transfer.name)
+  // Implement repeat transfer logic here
+}
+
+const selectContact = (contact) => {
+  console.log('Selected contact:', contact.name)
+  // Implement contact selection logic here
 }
 </script>
 
-<template>
+<style scoped>
+.v-btn {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
 
-  <v-container fluid class="bg-white pa-4">
-    <h1 class="text-h4 mb-6 mt-6 ml-2">Transferencias</h1>
-
-        <v-row class="mb-6">
-          <v-col v-for="option in transferOptions" :key="option.title" cols="12" sm="4">
-            <v-btn
-              :color="option.color"
-              block
-              height="64"
-              class="text-none text-subtitle-1 font-weight-bold rounded-lg"
-              elevation="2"
-              @click="selectTransferOption(option)"
-            >
-              {{ option.title }}
-              <v-icon end>mdi-chevron-right</v-icon>
-            </v-btn>
-          </v-col>
-        </v-row>
-
-        <v-row>
-          <v-col cols="12" md="6">
-            <ContactsList :contacts="frequentContacts">
-              <v-card-title class="text-h6 font-weight-bold pa-4">Frecuentes</v-card-title>
-            </ContactsList>
-          </v-col>
-        </v-row>
-      </v-container>
-    </template>
+.content-container {
+  margin-top: 50px; /* Adjust this value to move the content lower */
+}
+</style>
