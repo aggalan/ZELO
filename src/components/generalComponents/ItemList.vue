@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mt-4 reusable-card">
+  <v-card class="mt-4 my-card">
     <slot>
     </slot>
     <v-list two-line class ="list-body">
@@ -40,14 +40,8 @@ const black = 'black'
 </script>
 
 <style scoped>
-.reusable-card {
-  background: #f3f4f6;
-  border-radius: 12px;
-  color: black;
-}
-.list-body {
-  background: #f3f4f6;
-}
+
+
 
 .v-list-item__action-text {
   color: rgba(0, 0, 0, 0.6);

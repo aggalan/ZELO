@@ -50,7 +50,7 @@ const paymentLink = ref('')
 const generateLink = () => {
   // In a real application, this would call an API to generate the link
   paymentLink.value = `https://payment.example.com/${Math.random().toString(36).substr(2, 9)}`
-  balanceStore.enterMoney(amount.value)
+  balanceStore.enterMoney(amount.value, 'Juan')
 }
 
 const copyToClipboard = () => {

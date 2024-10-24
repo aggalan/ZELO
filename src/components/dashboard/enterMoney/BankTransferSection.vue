@@ -6,8 +6,8 @@
         <v-col cols="12" md="6">
           <v-select
             v-model="selectedBank"
-            :items="banks"
-            label="Selecciona tu banco"
+            :items="bankNames"
+          label="Selecciona tu banco"
             outlined
           ></v-select>
         </v-col>
@@ -65,7 +65,7 @@
           @click="repeatDeposit(deposit)"
           class="px-0"
         >
-          <v-list-item-content>
+          <v-list-item>
             <v-row align="center" no-gutters>
               <v-col>
                 <v-list-item-title class="text-subtitle-1">
@@ -85,7 +85,7 @@
                 </v-btn>
               </v-col>
             </v-row>
-          </v-list-item-content>
+          </v-list-item>
         </v-list-item>
       </v-list>
     </v-card-text>
@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import {ref, reactive, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
 import { useBalanceStore } from "@/store/balanceStore"
 
@@ -104,14 +104,14 @@ const amount = ref('')
 const loading = ref(false)
 const confirmation = ref(false)
 const banks = [
-  'Banco Nación',
-  'Banco Galicia',
-  'Banco Santander',
-  'Banco BBVA',
-  'Banco Macro',
-  'Banco HSBC',
+  {name: 'Banco Nación', cbu: '0000000000000222000000', alias: 'mi.nacion.alias'},
+  {name:'Banco Galicia', cbu: '0000000000000222330000', alias: 'mi.galicia.alias'},
+  {name:'Banco Santander', cbu: '0000000000000222330055', alias: 'mi.santander.alias'},
+  {name:'Banco BBVA', cbu: '0000000000000222334400', alias: 'mi.bbva.alias'},
+  {name: 'Banco Macro', cbu: '0000000000001222334400', alias: 'mi.macro.alias'},
+  {name: 'Banco HSBC', cbu: '0000000000001222334431', alias: 'mi.hsbc.alias'},
 ]
-
+const bankNames = computed(() => banks.map(bank => bank.name))
 const accountDetails = reactive({
   cbu: '0000000000000000000000',
   alias: 'mi.cuenta.alias'
@@ -127,7 +127,7 @@ const startDeposit = () => {
   loading.value = true
   confirmation.value = false
   setTimeout(() => {
-    balanceStore.enterMoney(amount.value)
+    balanceStore.enterMoney(amount.value, {name: selectedBank.value})
     loading.value = false
     confirmation.value = true
     console.log('Starting deposit:', { bank: selectedBank.value, amount: amount.value })

@@ -31,7 +31,7 @@ export const useBalanceStore = defineStore('balance', () => {
     } else {
       balances.value.push({ userId: userStore.userId, amount: parsedAmount });
     }
-    transactions.addTransaction(userStore.userId, { type: 'ingreso', amount: parsedAmount, time: Date.now(), to:from || '' });
+    transactions.addTransaction(userStore.userId, { type: 'ingreso', amount: parsedAmount, time: Date.now(), to: from.name || '', cbu: from.cbu || '', category: from.category || '' });
   };
   const canWithdraw = (amount) => {
     const parsedAmount = Number(amount);
@@ -54,7 +54,7 @@ export const useBalanceStore = defineStore('balance', () => {
     const userBalance = balances.value.find(balance => balance.userId === userStore.userId);
     if (userBalance && userBalance.amount >= amount) {
       userBalance.amount -= parsedAmount;
-      transactions.addTransaction(userStore.userId, { type: 'pago', amount: parsedAmount, time: Date.now(), to: to.name|| '', category: to.category || '' })
+      transactions.addTransaction(userStore.userId, { type: 'pago', amount: parsedAmount, time: Date.now(), to: to.name|| '', category: to.category || '' , cbu: to.cbu || '' });
       return true
     } else {
       console.log('No tienes suficiente saldo');

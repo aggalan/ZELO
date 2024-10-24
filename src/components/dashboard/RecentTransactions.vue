@@ -25,6 +25,7 @@ import {ref, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import {useTransactionsStore} from "@/store/transactionStore";
 import {useUsersStore} from "@/store/usersStore";
+import router from "@/router/router";
 
 const props = defineProps({
   title: {type: String, default: 'Transacciones Recientes'},
@@ -55,6 +56,8 @@ const showPagination = computed(() => {
 const viewDetails = (transaction) => {
   // Implement the logic to view details of the transaction
   console.log('Viewing details for:', transaction)
+  useTransactionsStore().setSelectedTransaction(transaction.id)
+  router.push({path: '/movements/details'})
 }
 </script>
 

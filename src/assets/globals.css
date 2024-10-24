@@ -244,5 +244,8 @@ p {
   mso-border-shadow: yes;
   color: #1f2937;
 }
+.list-body {
+  background: var(--surface);
+}
 
 .hidden { display: none; }
