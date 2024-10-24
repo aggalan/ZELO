@@ -35,10 +35,7 @@ const goToEnter = () => {
   router.push("/dashboard/enter");
 };
 
-const balance = computed(() => {
-  const userBalance = balanceStore.getBalanceByUserId(userStore.userId);
-  return typeof userBalance === 'number' ? userBalance : 0;
-});
+const balance = balanceStore.getBalanceByUserId(userStore.userId);
 
 const viewInfo = ref(true);
 
