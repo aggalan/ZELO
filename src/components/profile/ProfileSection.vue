@@ -1,7 +1,6 @@
 <template>
   <div class="profile-container">
     <div class="d-flex justify-space-between align-center mb-6">
-      <h1 class="text-h4">Perfil</h1>
       <v-btn
         icon
         color="#8B5CF6"
