@@ -49,15 +49,16 @@ const togglePassword = () => {
 }
 
 const handleSubmit = () => {
-  const loginSuccessful = users.login(email.value, password.value);
-  if (!loginSuccessful) {
-    errorMessage.value = 'No se pudo iniciar sesión. Por favor, verifique sus credenciales.'
-    errorVisible.value = true
-  } else {
-    errorVisible.value = false
-    const redirect = route.query.redirect || '/dashboard';
-    console.log('Sign in with:', email.value, password.value, keepLoggedIn.value)
-    router.push({ path:  redirect })
-  }
+  router.push('/dashboard');
+  // const loginSuccessful = users.login(email.value, password.value);
+  // if (!loginSuccessful) {
+  //   errorMessage.value = 'No se pudo iniciar sesión. Por favor, verifique sus credenciales.'
+  //   errorVisible.value = true
+  // } else {
+  //   errorVisible.value = false
+  //   const redirect = route.query.redirect || '/dashboard';
+  //   console.log('Sign in with:', email.value, password.value, keepLoggedIn.value)
+  //   router.push({ path:  redirect })
+  // }
 }
 </script>

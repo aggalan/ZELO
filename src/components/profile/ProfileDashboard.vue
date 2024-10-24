@@ -1,5 +1,5 @@
 <template>
-  <v-container fluid class="bg-background d-flex justify-center profile-container">
+  <v-container fluid class="bg-background d-flex flex-column justify-center profile-container">
     <h1 class="text-h4 mb-6 mt-6 ml-2">Perfil</h1>
     <v-row class="d-flex justify-center align-center">
       <v-col cols="12" md="8">
