@@ -38,6 +38,7 @@ import SpendingGoals from "@/components/dashboard/SpendingGoals.vue"
 <style scoped>
 .dashboard-container {
   background-color: #f3f4f6;
+  height: 100%;
   max-width: 100%;
 }
 

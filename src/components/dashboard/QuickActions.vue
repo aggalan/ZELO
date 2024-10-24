@@ -56,7 +56,7 @@ const handleAction = (actionText) => {
 .quick-actions-card {
   background: white;
   border-radius: 16px;
-  height: auto;
+  height: 194px;
   padding-bottom: 40px;
 }
 

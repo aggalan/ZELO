@@ -1,54 +1,73 @@
 <template>
-  <v-card class="spending-goals-card">
+  <v-card class="investment-analytics-card">
     <v-card-text>
       <div class="d-flex justify-space-between align-center mb-4">
-        <h2 class="text-h6 font-weight-bold">Restricciones de Gastos</h2>
-        <v-btn color="primary" variant="text" size="small" @click="addNewGoal">
-          Agregar
-        </v-btn>
+        <h2 class="text-h6 font-weight-bold">Análisis de Inversiones</h2>
+        <v-select
+          v-model="selectedInvestment"
+          :items="investmentOptions"
+          item-title="name"
+          item-value="id"
+          density="compact"
+          hide-details
+          class="investment-select"
+        ></v-select>
       </div>
-      <v-list>
-        <v-list-item v-for="(goal, index) in spendingGoals" :key="index" class="mb-3">
-          <template v-slot:prepend>
-            <v-icon :color="goal.color" size="24">{{ goal.icon }}</v-icon>
-          </template>
-          <v-list-item-title class="text-subtitle-2">{{ goal.name }}</v-list-item-title>
-          <v-list-item-subtitle class="text-caption">
-            ${{ goal.current.toLocaleString() }} / ${{ goal.target.toLocaleString() }}
-          </v-list-item-subtitle>
-          <template v-slot:append>
-            <v-progress-linear
-              :model-value="(goal.current / goal.target) * 100"
-              :color="goal.color"
-              height="8"
-              rounded
-            ></v-progress-linear>
-          </template>
-        </v-list-item>
-      </v-list>
+      <div class="chart-container">
+        <v-chart class="chart" :option="currentChartOption" autoresize />
+      </div>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {ref, computed, watch} from 'vue'
+import {useInvestmentsStore} from '@/store/investmentStore'
+import {useUsersStore} from '@/store/usersStore'
+import {use} from 'echarts/core'
+import {CanvasRenderer} from 'echarts/renderers'
+import {LineChart} from 'echarts/charts'
+import {GridComponent, TooltipComponent} from 'echarts/components'
+import VChart, {THEME_KEY} from 'vue-echarts'
 
-const spendingGoals = ref([
-  { name: 'Comida', current: 5000, target: 10000, color: 'success', icon: 'mdi-food'   },
-  { name: 'Vacaciones', current: 2000, target: 5000, color: 'info', icon: 'mdi-airplane' },
-  { name: 'Tecnología', current: 800, target: 1500, color: 'warning', icon: 'mdi-laptop' },
-])
+use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
 
-const addNewGoal = () => {
-  // Implement logic to add a new spending goal
-  console.log('Add new spending goal')
-}
+const investmentsStore = useInvestmentsStore()
+const userStore = useUsersStore()
+
+const userInvestments = investmentsStore.getInvestmentsByUserId(userStore.userId)
+const investmentOptions = userInvestments.value.map(inv => ({id: inv.id, name: inv.name}))
+
+const selectedInvestment = ref(userInvestments.value[0]?.id)
+
+const currentInvestment = computed(() =>
+  userInvestments.value.find(inv => inv.id === selectedInvestment.value) || userInvestments.value[0]
+)
+
+const currentChartOption = computed(() => currentInvestment.value?.chartOption || {})
+
+watch(selectedInvestment, (newValue) => {
+  investmentsStore.setCurrentInvestment(newValue)
+})
 </script>
 
 <style scoped>
-.spending-goals-card {
+.investment-analytics-card {
   background-color: white;
   border-radius: 16px;
-  height: 100%;
+  height: 320px;
+}
+
+.chart-container {
+  height: 200px;
+}
+
+.chart {
+  height: 230px;
+  width: 100%;
+}
+
+.investment-select {
+  max-width: 200px;
 }
 </style>

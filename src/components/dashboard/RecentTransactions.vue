@@ -55,10 +55,15 @@ const viewDetails = (transaction) => {
 
 <style scoped>
 .recent-transactions-card {
-  //margin-top: -100px;
   background: white;
   border-radius: 16px;
   height: 100%;
+  padding-bottom: 100px;
+}
+@media (min-width: 1280px) {
+  .recent-transactions-card {
+    margin-top: -100px;
+  }
 }
 .transaction-item {
   transition: background-color 0.3s ease;

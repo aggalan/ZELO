@@ -13,7 +13,7 @@
       <v-row dense>
         <v-col cols="6">
           <v-btn
-            color="primary"
+            color="var(--primary)"
             block
             @click="goToTransference"
             class="action-btn"
@@ -69,6 +69,7 @@ const formattedBalance = computed(() =>
   //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 16px;
   color: white;
+  height: auto;
 }
 .action-btn {
   text-transform: none;
