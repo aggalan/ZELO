@@ -5,12 +5,12 @@
       <v-row v-for="(transaction, index) in displayedTransactions" :key="index" class="transaction-row align-center ">
         <v-col cols="2">
           <v-list-item>
-            <v-icon :color="transaction.color">{{ transaction.icon }}</v-icon>
+            <v-icon :color="transaction.color || purple">{{ transaction.icon || 'mdi-account' }}</v-icon>
           </v-list-item>
         </v-col>
-        <v-col cols="2">{{ transaction.name }}</v-col>
-        <v-col cols="3">{{ transaction.description }}</v-col>
-        <v-col cols="2">{{ transaction.time }}</v-col>
+        <v-col cols="2">{{ transaction.to }}</v-col>
+        <v-col cols="3">{{ `${transaction.type === 'pago'? 'Pagaste':'Recibiste'} $${transaction.amount}` }}</v-col>
+        <v-col cols="2">{{ transaction.timeSince }}</v-col>
         <v-col cols="3">
           <action-button @click="viewDetails(transaction)">Ver Detalles</action-button>
         </v-col>
@@ -23,23 +23,17 @@
 <script setup>
 import {ref, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import {useTransactionsStore} from "@/store/transactionStore";
+import {useUsersStore} from "@/store/usersStore";
 
 const props = defineProps({
   title: {type: String, default: 'Transacciones Recientes'},
   maxTransactions: {type: Number, default: Infinity}
 })
+const purple = '#7E57C2'
 
-const transactions = ref([
-  {name: 'Jose', description: 'Te transfirió $10.000', time: 'Ahora', icon: 'mdi-account', color: '#8B5CF6'},
-  {name: 'Open 25', description: 'Pagaste $3000', time: '15m', image: '/placeholder.svg', icon: 'mdi-account'},
-  {name: 'Miguel', description: 'Enviaste $3.000', time: '6h', icon: 'mdi-account', color: '#8B5CF6'},
-  {name: 'Jose', description: 'Te transfirió $10.000', time: 'Ahora', icon: 'mdi-account', color: '#8B5CF6'},
-  {name: 'Open 25', description: 'Pagaste $3000', time: '15m', image: '/placeholder.svg', icon: 'mdi-account'},
-  {name: 'Miguel', description: 'Enviaste $3.000', time: '6h', icon: 'mdi-account', color: '#8B5CF6'},
-  {name: 'Jose', description: 'Te transfirió $10.000', time: 'Ahora', icon: 'mdi-account', color: '#8B5CF6'},
-  {name: 'Open 25', description: 'Pagaste $3000', time: '15m', image: '/placeholder.svg', icon: 'mdi-account'},
-  {name: 'Miguel', description: 'Enviaste $3.000', time: '6h', icon: 'mdi-account', color: '#8B5CF6'},
-])
+const userStore = useUsersStore()
+const transactions = useTransactionsStore().getTransactionsByUserId(userStore.userId)
 
 const itemsPerPage = computed(() => props.maxTransactions === Infinity ? 8 : props.maxTransactions)
 const page = ref(1)
@@ -47,15 +41,15 @@ const page = ref(1)
 const displayedTransactions = computed(() => {
   const start = (page.value - 1) * itemsPerPage.value
   const end = start + itemsPerPage.value
-  return transactions.value.slice(start, end)
+  return transactions.slice(start, end)
 })
 
 const pageCount = computed(() => {
-  return Math.ceil(transactions.value.length / itemsPerPage.value)
+  return Math.ceil(transactions.length / itemsPerPage.value)
 })
 
 const showPagination = computed(() => {
-  return props.maxTransactions === Infinity && transactions.value.length > itemsPerPage.value
+  return props.maxTransactions === Infinity && transactions.length > itemsPerPage.value
 })
 
 const viewDetails = (transaction) => {

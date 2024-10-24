@@ -33,8 +33,8 @@ const selectTransferOption = (option) => {
 
 <template>
 
-      <v-container fluid class="pa-8 bg-white">
-        <h1 class="text-h4 font-weight-bold mb-6">Transferencias</h1>
+  <v-container fluid class="bg-white pa-4">
+    <h1 class="text-h4 mb-6 mt-6 ml-2">Transferencias</h1>
 
         <v-row class="mb-6">
           <v-col v-for="option in transferOptions" :key="option.title" cols="12" sm="4">
@@ -54,9 +54,6 @@ const selectTransferOption = (option) => {
 
         <v-row>
           <v-col cols="12" md="6">
-            <RecentTransactions/>
-          </v-col>
-          <v-col cols="12" md="6">
             <ContactsList :contacts="frequentContacts">
               <v-card-title class="text-h6 font-weight-bold pa-4">Frecuentes</v-card-title>
             </ContactsList>
@@ -64,22 +61,3 @@ const selectTransferOption = (option) => {
         </v-row>
       </v-container>
     </template>
-
-<style scoped>
-.v-btn {
-  text-transform: none;
-  letter-spacing: 0.5px;
-}
-
-.v-card {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-}
-
-:deep(.v-list-item__prepend) {
-  padding-right: 16px;
-}
-
-:deep(.v-list-item__append) {
-  padding-left: 16px;
-}
-</style>
