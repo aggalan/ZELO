@@ -6,9 +6,9 @@
         <v-col cols="12" sm="6">
           <v-btn
             block
-            color="primary"
+            color="var(--primary)"
             variant="elevated"
-            class="text-none"
+            class="action-btn invertir-btn"
             height="48"
             @click="openInvestDialog"
           >
@@ -19,9 +19,9 @@
         <v-col cols="12" sm="6">
           <v-btn
             block
-            color="secondary"
+            color="var(--on-surface-light)"
             variant="elevated"
-            class="text-none"
+            class="invertir-btn"
             height="48"
             @click="openWithdrawDialog"
           >
@@ -88,7 +88,7 @@ const investDialog = ref(false)
 const withdrawDialog = ref(false)
 const investAmount = ref('')
 const withdrawAmount = ref('')
-const  investTerm = ref('')
+const investTerm = ref('')
 const termOptions = [30, 60, 90, 180, 360]
 
 const openInvestDialog = () => {
@@ -100,18 +100,19 @@ const openWithdrawDialog = () => {
 }
 
 const confirmInvest = () => {
-  // Add logic to process investment
   console.log(`Investing $${investAmount.value} for ${investTerm.value} days`)
-  // Here you would typically call a method on your investment store to update the investment
-  // investmentStore.addInvestment(investAmount.value, investTerm.value)
   investDialog.value = false
 }
 
 const confirmWithdraw = () => {
-  // Add logic to process withdrawal
   console.log(`Withdrawing $${withdrawAmount.value}`)
-  // Here you would typically call a method on your investment store to update the investment
-  // investmentStore.withdrawInvestment(withdrawAmount.value)
   withdrawDialog.value = false
 }
 </script>
+
+
+<style scoped>
+.invertir-btn {
+  color: white; /* Use your desired color */
+}
+</style>
