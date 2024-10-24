@@ -35,13 +35,13 @@ const firstRouteSegment = ref(getFirstRouteSegment(route.path))
 // Observar cambios en la ruta para actualizar selectedItem
 watch(route, (newRoute) => {
   firstRouteSegment.value = getFirstRouteSegment(newRoute.path)
-  console.log(firstRouteSegment.value)
   let foundItem = menuItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   if(!foundItem){
     foundItem = bottomItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   }
   selectedItem.value = foundItem ? foundItem.title : ''; // Actualizar selectedItem
 });
+
 onBeforeMount(() => {
   let foundItem = menuItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   if(!foundItem){
