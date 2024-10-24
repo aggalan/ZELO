@@ -1,7 +1,10 @@
 <template>
   <v-card class="recent-transactions-card">
     <v-card-text>
-      <h2 class="text-h6 font-weight-bold mb-4">{{ title }}</h2>
+      <div class="d-flex justify-space-between align-center mb-4">
+        <h2 class="text-h6 font-weight-bold">{{ title }}</h2>
+        <v-btn color="primary" variant="text" size="small">Ver todas</v-btn>
+      </div>
       <v-list>
         <v-list-item v-for="(transaction, index) in displayedTransactions" :key="index" class="mb-2 transaction-item">
           <template v-slot:prepend>
@@ -9,24 +12,17 @@
               <v-icon :color="transaction.iconColor || 'white'" size="24">{{ transaction.icon || 'mdi-account' }}</v-icon>
             </v-avatar>
           </template>
-          <v-list-item-title>{{ transaction.to }}</v-list-item-title>
-          <v-list-item-subtitle>
+          <v-list-item-title class="text-subtitle-2">{{ transaction.to }}</v-list-item-title>
+          <v-list-item-subtitle class="text-caption">
             {{ `${transaction.type === 'pago' ? 'Pagaste' : 'Recibiste'} $${transaction.amount}` }}
           </v-list-item-subtitle>
           <template v-slot:append>
-            <v-btn @click="viewDetails(transaction)" variant="text" color="primary" size="small">
-              Ver Detalles
-            </v-btn>
+            <action-button>
+              Ver
+            </action-button>
           </template>
         </v-list-item>
       </v-list>
-      <v-pagination
-        v-if="showPagination"
-        v-model="page"
-        :length="pageCount"
-        class="mt-4"
-        rounded="circle"
-      ></v-pagination>
     </v-card-text>
   </v-card>
 </template>
@@ -36,10 +32,11 @@ import { ref, computed } from 'vue'
 import { useTransactionsStore } from "@/store/transactionStore";
 import { useUsersStore } from "@/store/usersStore";
 import { useRouter } from 'vue-router';
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const props = defineProps({
   title: { type: String, default: 'Transacciones Recientes' },
-  maxTransactions: { type: Number, default: Infinity }
+  maxTransactions: { type: Number, default: 5 }
 })
 
 const userStore = useUsersStore()
@@ -48,35 +45,24 @@ const router = useRouter()
 
 const transactions = computed(() => transactionsStore.getTransactionsByUserId(userStore.userId))
 
-const itemsPerPage = computed(() => props.maxTransactions === Infinity ? 5 : props.maxTransactions)
-const page = ref(1)
-
-const displayedTransactions = computed(() => {
-  const start = (page.value - 1) * itemsPerPage.value
-  const end = start + itemsPerPage.value
-  return transactions.value.slice(start, end)
-})
-
-const pageCount = computed(() => Math.ceil(transactions.value.length / itemsPerPage.value))
-
-const showPagination = computed(() => props.maxTransactions === Infinity && transactions.value.length > itemsPerPage.value)
+const displayedTransactions = computed(() => transactions.value.slice(0, props.maxTransactions))
 
 const viewDetails = (transaction) => {
   transactionsStore.setSelectedTransaction(transaction.id)
-  router.push({path: '/movements/details'})
+  router.push({ path: '/movements/details' })
 }
 </script>
 
 <style scoped>
 .recent-transactions-card {
+  //margin-top: -100px;
   background: white;
   border-radius: 16px;
+  height: 100%;
 }
-
 .transaction-item {
   transition: background-color 0.3s ease;
 }
-
 .transaction-item:hover {
   background-color: #f5f5f5;
 }

@@ -7,15 +7,21 @@
     </v-row>
     <v-row>
       <v-col cols="12" md="6" lg="4">
-        <BalanceCard class="mb-6" />
-        <QuickActions class="mb-6" />
+        <BalanceCard class="mb-4" />
       </v-col>
       <v-col cols="12" md="6" lg="4">
-        <RecentTransactions :max-transactions="5" class="mb-6" />
+        <QuickActions class="mb-4" />
       </v-col>
-      <v-col cols="12" md="12" lg="4">
-        <Analytics class="mb-6" />
-        <SpendingGoals class="mb-6" />
+      <v-col cols="12" md="6" lg="4">
+        <Analytics class="mb-4" />
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col cols="12" lg="8">
+        <RecentTransactions :max-transactions="5" class="mb-4" />
+      </v-col>
+      <v-col cols="12" lg="4">
+        <SpendingGoals class="mb-4" />
       </v-col>
     </v-row>
   </v-container>
@@ -32,15 +38,13 @@ import SpendingGoals from "@/components/dashboard/SpendingGoals.vue"
 <style scoped>
 .dashboard-container {
   background-color: #f3f4f6;
+  max-width: 100%;
 }
 
-.v-col {
-  transition: all 0.3s ease;
-}
-
-@media (max-width: 960px) {
-  .v-col {
-    padding: 8px;
+@media (min-width: 1904px) {
+  .dashboard-container {
+    max-width: 1785px;
+    margin: 0 auto;
   }
 }
 </style>

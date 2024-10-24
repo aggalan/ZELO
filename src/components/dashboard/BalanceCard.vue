@@ -1,16 +1,16 @@
 <template>
   <v-card class="balance-card">
     <v-card-text>
-      <div class="d-flex justify-space-between align-center mb-4">
-        <h2 class="text-h6 font-weight-bold">Balance</h2>
-        <v-btn icon @click="toggleViewInfo">
-          <v-icon>{{ icon }}</v-icon>
+      <div class="d-flex justify-space-between align-center mb-2">
+        <h2 class="text-h6 font-weight-bold text-black">Balance</h2>
+        <v-btn icon @click="toggleViewInfo" size="small">
+          <v-icon class="text-black">{{ icon }}</v-icon>
         </v-btn>
       </div>
-      <div class="text-h3 font-weight-bold mb-6">
+      <div class="text-h3 font-weight-bold mb-4 text-black">
         {{ formattedBalance }}
       </div>
-      <v-row>
+      <v-row dense>
         <v-col cols="6">
           <v-btn
             color="primary"
@@ -24,7 +24,7 @@
         </v-col>
         <v-col cols="6">
           <v-btn
-            color="secondary"
+            color="var(--primary)"
             block
             @click="goToEnter"
             class="action-btn"
@@ -57,7 +57,7 @@ const viewInfo = ref(true);
 const toggleViewInfo = () => viewInfo.value = !viewInfo.value;
 
 const maskBalance = "$****";
-const icon = computed(() => viewInfo.value ? "mdi-eye-off" : "mdi-eye");
+const icon = computed(() => !viewInfo.value ? "mdi-eye-off" : "mdi-eye");
 
 const formattedBalance = computed(() =>
   viewInfo.value ? `$${balance.value.toLocaleString()}` : maskBalance
@@ -66,14 +66,14 @@ const formattedBalance = computed(() =>
 
 <style scoped>
 .balance-card {
-  background: white;
+  //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border-radius: 16px;
+  color: white;
 }
-
 .action-btn {
   text-transform: none;
-  height: 48px;
-  font-size: 16px;
+  height: 40px;
+  font-size: 14px;
   border-radius: 8px;
 }
 </style>
