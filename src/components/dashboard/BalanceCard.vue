@@ -22,9 +22,9 @@
 <script setup>
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import router from "@/router/router";
-import { computed, ref } from "vue";
-import { useBalanceStore } from "@/store/balanceStore";
-import { useUsersStore } from "@/store/usersStore";
+import {computed, ref} from "vue";
+import {useBalanceStore} from "@/store/balanceStore";
+import {useUsersStore} from "@/store/usersStore";
 
 const balanceStore = useBalanceStore();
 const userStore = useUsersStore();
@@ -37,6 +37,7 @@ const goToEnter = () => {
 
 const balance = computed(() => {
   const userBalance = balanceStore.getBalanceByUserId(userStore.userId);
+  console.log("User Balance:", userBalance); // Debugging log
   return typeof userBalance === 'number' ? userBalance : 0;
 });
 
@@ -50,7 +51,10 @@ const maskBalance = "$****";
 const icon = computed(() => (viewInfo.value ? "mdi-eye" : "mdi-eye-off"));
 
 const formattedBalance = computed(() => {
-  return viewInfo.value ? `$${balance.value.toLocaleString()}` : maskBalance;
+  console.log("Balance:", balance.value.toString()); // Debugging log
+  const formatted = viewInfo.value ? `$${balance.value.toLocaleString()}` : maskBalance;
+  console.log("Formatted Balance:", formatted); // Debugging log
+  return formatted;
 });
 </script>
 
@@ -58,8 +62,8 @@ const formattedBalance = computed(() => {
 .balance-card {
   background: #f3f4f6;
   border-radius: 12px;
-  mso-border-shadow: yes;
 }
+
 .transfer-btn, .deposit-btn {
   text-transform: none;
   height: 48px;
@@ -68,10 +72,12 @@ const formattedBalance = computed(() => {
   border-radius: 12px;
   background: #49475a;
 }
+
 .balance-text {
   font-weight: 500;
   text-align: center;
 }
+
 .custom-logo {
   width: 60px; /* Ajusta el tamaño deseado */
   height: auto; /* Mantiene la proporción de la imagen */

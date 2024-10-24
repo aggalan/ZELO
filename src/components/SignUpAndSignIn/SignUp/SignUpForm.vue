@@ -79,14 +79,21 @@ const toggleConfirmPassword = () => {
 }
 
 const handleSubmit = () => {
+  const dniPattern = /^\d+$/;
+  if (!dniPattern.test(DNI.value)) {
+    alert('El DNI debe contener solo números');
+    return;
+  }
+
   if (passwordsMatch.value) {
-    console.log('Sign up with:', email.value, password.value)
-    users.register(email.value, firstName.value || '', lastName.value || '', password.value)
-    if(users.isAuthenticated) {
-      router.push('/dashboard')
+    console.log('Sign up with:', email.value, password.value);
+    users.register(email.value, password.value);
+   // users.register(email.value, firstName.value || '', lastName.value || '', password.value, DNI.value);
+    if (users.isAuthenticated) {
+      router.push('/dashboard');
     }
   }
-}
+};
 </script>
 
 <style scoped>
