@@ -4,7 +4,6 @@
     <v-row justify="center">
       <v-col cols="12" md="10" lg="8">
         <v-card class="pa-4">
-
           <v-card class="mb-6 rounded-lg" flat>
             <v-card-text class="pa-0">
               <v-row justify="center" class="mb-4">
@@ -62,6 +61,9 @@
         </v-card>
       </v-col>
     </v-row>
+    <v-dialog v-model="showDialog" max-width="500">
+      <TransferForm @cancel="showDialog=false" :cbu-alias="repeatedTransfer.cbu" :amount="repeatedTransfer.amount"/>
+    </v-dialog>
   </v-container>
 </template>
 
@@ -70,6 +72,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUsersStore } from '@/store/usersStore'
 import ContactsList from "@/components/transference/ContactsList.vue";
+import TransferForm from "@/components/transference/TransferForm.vue";
 
 const router = useRouter()
 const usersStore = useUsersStore()
@@ -81,13 +84,14 @@ const transferOptions = ref([
 ])
 
 const recentTransfers = ref([
-  { id: 1, name: 'María López', amount: '500.00', date: '15 de mayo de 2023', color: 'deep-purple', avatar: 'ML' },
-  { id: 2, name: 'Carlos Rodríguez', amount: '1200.00', date: '10 de mayo de 2023', color: 'teal', avatar: 'CR' },
-  { id: 3, name: 'Ana Martínez', amount: '750.00', date: '5 de mayo de 2023', color: 'orange', avatar: 'AM' },
+  { id: 1, cbu:10, name: 'María López', amount: '500.00', date: '15 de mayo de 2023', color: 'deep-purple', avatar: 'ML' },
+  { id: 2, cbu:20, name: 'Carlos Rodríguez', amount: '1200.00', date: '10 de mayo de 2023', color: 'teal', avatar: 'CR' },
+  { id: 3, cbu:30, name: 'Ana Martínez', amount: '750.00', date: '5 de mayo de 2023', color: 'orange', avatar: 'AM' },
 ])
 
 const frequentContacts = useUsersStore().getContacts()
 
+const repeatedTransfer = ref(null)
 
 const selectTransferOption = (option) => {
   switch (option.title) {
@@ -102,9 +106,12 @@ const selectTransferOption = (option) => {
       router.push({ path: '/dashboard' })
   }
 }
+const showDialog = ref(false)
 
 const repeatTransfer = (transfer) => {
+  repeatedTransfer.value = transfer
   console.log('Repeating transfer for:', transfer.name)
+  showDialog.value =true
   // Implement repeat transfer logic here
 }
 

@@ -37,7 +37,7 @@
         color="#4B5563"
         dark
         large
-        @click="goToTransference"
+        @click="cancel"
       >
         Cancelar
       </ActionButton>
@@ -55,7 +55,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {onMounted, ref} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import {useRouter } from "vue-router";
 import {useBalanceStore} from "@/store/balanceStore";
@@ -68,6 +68,34 @@ const amount = ref('')
 const concept = ref('')
 const showConfirmationDialog = ref(false); // Para controlar el popup
 
+const emit = defineEmits([ 'cancel'])
+const props = defineProps({
+  cbuAlias: {
+    type: String,
+  },
+  amount: {
+    type: String,
+  },
+  concept: {
+    type: String,
+  },
+})
+const cancel = () => {
+  emit('cancel')
+}
+onMounted(() => {
+  if (props.cbuAlias) {
+    console.log('props.cbuAlias:', props.cbuAlias);
+    cbuAlias.value = props.cbuAlias;
+  }
+  if (props.amount) {
+    amount.value = props.amount;
+  }
+  if (props.concept) {
+    concept.value = props.concept;
+  }
+});
+
 const verifyAndShowConfirmationDialog = () => {
   if (cbuAlias.value && balanceStore.canWithdraw( amount.value)) {
     showConfirmationDialog.value = true; // Mostrar el popup
@@ -79,6 +107,9 @@ const verifyAndShowConfirmationDialog = () => {
 
 // Confirmar la transferencia desde el popup
 const confirmTransfer = () => {
+  if(!cbuAlias.value || !amount.value){
+    return;
+  }
   balanceStore.withdrawMoney(parseFloat(amount.value), {to:{category:"transfer", concept: concept.value, cbu: cbuAlias.value}});
   console.log('Transferencia confirmada:', {
     cbuAlias: cbuAlias.value,
@@ -91,7 +122,5 @@ const confirmTransfer = () => {
   concept.value = '';
   goToTransference();
 }
-const goToTransference = () => {
-  router.push({path: '/transference'});
-}
+
 </script>

@@ -21,6 +21,7 @@ import ContactsList from './ContactsList.vue'
 import AddContactForm from './AddContactForm.vue'
 import {useUsersStore} from "@/store/usersStore";
 import {ref} from "vue";
+import TransferForm from "@/components/transference/TransferForm.vue";
 const myContacts = useUsersStore().getContacts()
 
 </script>

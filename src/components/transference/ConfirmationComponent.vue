@@ -9,7 +9,7 @@
       </v-card-text>
       <v-col>
         <v-row class="d-flex align-center justify-center ma-2 mr-8 ml-8"><ActionButton block @click="confirm">Confirmar</ActionButton></v-row>
-        <v-row class="d-flex align-center justify-center ma-2 mr-8 ml-8"><ActionButton block color="amber" @click="cancel">Cancelar</ActionButton></v-row>
+        <v-row class="d-flex align-center justify-center ma-2 mr-8 ml-8"><ActionButton block color="var(--on-surface-light)" @click="cancel">Cancelar</ActionButton></v-row>
       </v-col>
 
     </v-card>

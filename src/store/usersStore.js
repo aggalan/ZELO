@@ -49,6 +49,9 @@ export const useUsersStore = defineStore('users', () => {
     // Idealmente, esto debería hacerse en el backend, aquí es solo una simulación
     return btoa(password); // Esta es una forma muy débil de "hash", solo un ejemplo.
   };
+  const getUser = () => {
+    return users.value.find(user => user.id === userId.value);
+  }
 
   // Lógica para iniciar sesión
   const login = (email, password) => {
@@ -107,6 +110,7 @@ export const useUsersStore = defineStore('users', () => {
     isAuthenticated,
     getContacts,
     addContact,
+    getUser
   };
 });
 

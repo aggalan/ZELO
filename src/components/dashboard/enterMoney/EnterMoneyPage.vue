@@ -10,14 +10,9 @@
 </template>
 
 <script setup>
-import { defineComponent } from 'vue'
 
 import BankTransferSection from './BankTransferSection.vue'
-import RecentDeposits from "@/components/dashboard/enterMoney/RecentDeposits.vue";
 
-defineComponent({
-  name: 'EnterMoneyPage',
-})
 </script>
 
 <style>

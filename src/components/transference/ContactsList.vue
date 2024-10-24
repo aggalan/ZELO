@@ -21,23 +21,32 @@
           </template>
           <v-list-item-title class="font-weight-medium">{{ contact.name }}</v-list-item-title>
           <template v-slot:append>
-            <ActionButton @click="$emit('complete-transfer', contact)" customClass="text-none px-6">Transferir</ActionButton>
+            <ActionButton @click="completeTransfer(contact)" customClass="text-none px-6">Transferir</ActionButton>
           </template>
         </v-list-item>
       </v-list>
     </v-card-text>
   </v-card>
+  <v-dialog v-model="showDialog" max-width="500">
+    <TransferForm @cancel="showDialog=false" :cbu-alias="currentContactCbu"/>
+  </v-dialog>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
+import TransferForm from "@/components/transference/TransferForm.vue";
 
 const props = defineProps({
   contacts: { type: Array, default: () => [] }
 })
+const currentContactCbu = ref(null)
+const showDialog = ref(false)
 
-const emit = defineEmits(['complete-transfer'])
+const completeTransfer = (contact) => {
+  currentContactCbu.value = contact.cbu
+  showDialog.value = true
+}
 
 const search = ref('')
 

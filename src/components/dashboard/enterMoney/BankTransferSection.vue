@@ -24,16 +24,15 @@
       <my-information show-popup title="" :account-details="accountDetails" />
       <v-row>
         <v-col class="d-flex justify-end">
-          <v-btn
+          <ActionButton
             dark
             block
             large
             @click="startDeposit"
-            color = "deep-purple"
             :loading="loading"
           >
             INICIAR INGRESO
-          </v-btn>
+          </ActionButton>
         </v-col>
       </v-row>
       <v-alert
@@ -65,13 +64,12 @@
                 </v-list-item-subtitle>
               </v-col>
               <v-col cols="auto">
-                <v-btn
+                <ActionButton
                   icon
-                  color="deep-purple"
                   @click.stop="repeatDeposit(deposit)"
                 >
                   <v-icon>mdi-repeat</v-icon>
-                </v-btn>
+                </ActionButton>
               </v-col>
             </v-row>
           </v-list-item>
@@ -86,6 +84,7 @@ import {ref, reactive, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
 import { useBalanceStore } from "@/store/balanceStore"
 import MyInformation from "@/components/dashboard/MyInformation.vue";
+import {useUsersStore} from "@/store/usersStore";
 
 const balanceStore = useBalanceStore()
 
@@ -102,9 +101,10 @@ const banks = [
   {name: 'Banco HSBC', cbu: '0000000000001222334431', alias: 'mi.hsbc.alias'},
 ]
 const bankNames = computed(() => banks.map(bank => bank.name))
-const accountDetails = reactive({
-  cbu: '0000000000000000000000',
-  alias: 'mi.cuenta.alias'
+const user = useUsersStore().getUser()
+const accountDetails = ref({
+  cbu: user.cbu,
+  alias: user.alias,
 })
 
 const lastDeposits = ref([
