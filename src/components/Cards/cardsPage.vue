@@ -14,7 +14,7 @@
         <v-card class ="my-card">
           <v-card-title class="text-h5 grey lighten-2 d-flex justify-space-between">
             Agrega una tarjeta
-              <v-icon @click="toggleDialog" class="bg-transparent" size="30">mdi-close</v-icon>
+            <v-icon @click="toggleDialog" class="bg-transparent" size="30">mdi-close</v-icon>
           </v-card-title>
           <v-card-text>
             <v-form @submit.prevent="addCard">
@@ -64,7 +64,7 @@
             v-for="card in cards"
             :key="card.id"
             :cols="12"
-            class="d-flex flex-column mx-3"
+            class="d-flex flex-column cards"
             sm="6"
             md="4"
           >
@@ -165,7 +165,7 @@ const toggleDialog = () => {
 };
 
 const toggleViewInfo = (id: number) => {
- cardStore.toggleCardViewInfo(id)
+  cardStore.toggleCardViewInfo(id)
 };
 
 const formatCardNumber = (number: string): string => {
@@ -249,6 +249,10 @@ const addCard = () => {
 .scroll-container {
   display: inline-flex;
   gap: 16px;
+}
+
+.cards {
+  margin-right: calc(85vw - 100%);
 }
 
 .aux {
