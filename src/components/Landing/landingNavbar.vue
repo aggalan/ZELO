@@ -17,11 +17,18 @@
       </div>
 
       <router-link
-        class="text-white text-body-1 font-weight-medium no-underline"
+        class="text-white text-body-1 font-weight-medium no-underline custom-margin"
         to="/login"
         @click.native="resetSlider"
       >
         Iniciar Sesión
+      </router-link>
+      <router-link
+        class="text-white text-body-1 font-weight-medium no-underline custom-margin"
+        to="/signup"
+        @click.native="resetSlider"
+      >
+        Registrarse
       </router-link>
     </div>
   </v-app-bar>
@@ -62,6 +69,10 @@ const sliderStyle = computed(() => ({
   text-transform: none;
   position: relative;
   z-index: 1;
+}
+
+.custom-margin {
+  margin-left: 1rem; /* Adjust the value as needed */
 }
 
 .v-app-bar {
