@@ -14,7 +14,7 @@
         @click="navigateToCategory(category)"
       >
         <v-list-item-icon class="left-icon">
-          <v-icon :color="primaryColor">{{ category.icon }}</v-icon>
+          <v-icon :color="primaryColor" size="35px">{{ category.icon }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title class="font-weight-medium">{{ category.title }}</v-list-item-title>
@@ -49,12 +49,14 @@ const navigateToCategory = (category) => {
 </script>
 <style scoped>
 .category-button {
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   text-align: left;
   padding: 32px;
-  margin: 8px auto; /* Reduce the margin to decrease space between buttons */
+  margin-bottom: 0; /* Reduce the margin to decrease space between buttons */
+  margin-top: 0;
   background-color: white;
   border: 1px solid #e0e0e0;
   border-radius: 8px;

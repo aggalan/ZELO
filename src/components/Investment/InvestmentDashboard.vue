@@ -1,51 +1,34 @@
 <template>
-  <v-container fluid class="bg-white pa-4">
+  <v-container fluid class="pa-4">
+    <h1 class="text-h4 mb-6 mt-6 ml-2">Inversiones</h1>
     <v-row>
-      <v-col cols="12">
-        <h1 class="text-h4 font-weight-bold text-grey-darken-3 mb-6">Inversiones</h1>
+      <v-col cols="12" md="4">
+        <v-row>
+          <v-col cols="12">
+            <YourPosition />
+          </v-col>
+          <v-col cols="12">
+            <OperateButtons />
+          </v-col>
+          <v-col cols="12">
+            <InvestmentSummary />
+          </v-col>
+        </v-row>
       </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="120">
-        <YourPosition class="mb-6" />
-      </v-col>
-    </v-row>
-
-    <v-row align="center" class = "ml-3">
-        <OperateButtons class="mb-6" />
-        <InvestmentChart class="chart" />
-    </v-row>
-
-    <v-row>
-      <v-col cols="10">
-        <InvestmentPerformance />
+      <v-col cols="12" md="8">
+        <v-row>
+          <v-col cols="12">
+            <InvestmentChart />
+          </v-col>
+        </v-row>
       </v-col>
     </v-row>
   </v-container>
 </template>
 
 <script setup>
-import YourPosition from '@/components/investment/YourPosition.vue'
-import InvestmentPerformance from '@/components/investment/InvestmentPerformance.vue'
-import OperateButtons from '@/components/investment/OperateButtons.vue'
-import InvestmentChart from "@/components/Investment/InvestmentChart.vue";
+import YourPosition from './YourPosition.vue'
+import InvestmentSummary from './NextInvestment.vue'
+import InvestmentChart from './InvestmentChart.vue'
+import OperateButtons from './OperateButtons.vue'
 </script>
-
-<style scoped>
-.v-row {
-  margin: 0;
-}
-
-.chart {
-  height: 100px;
-  width: 700px;
-  display: flex;
-  margin-left: 20px;
-}
-
-
-.v-col {
-  padding: 12px;
-}
-</style>

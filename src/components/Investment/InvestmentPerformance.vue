@@ -1,33 +1,50 @@
 <template>
-  <v-card class="my-card">
-    <v-card-title  class = "ml-3 mt-4" >Rendimientos</v-card-title>
-    <v-card-text class = "mb-5">
-      <v-chart class="chart" :option="useInvestmentsStore().currentInvestment.chartOption" />
+  <v-card class="elevation-2">
+    <v-card-title class="pa-4">Rendimientos</v-card-title>
+    <v-card-text>
+      <v-data-table
+        :headers="headers"
+        :items="performanceData"
+        :items-per-page="5"
+        class="elevation-1"
+      >
+        <template v-slot:item.yield="{ item }">
+          <v-chip
+            :color="item.yield > 0 ? 'success' : 'error'"
+            :text-color="item.yield > 0 ? 'white' : 'white'"
+            size="small"
+          >
+            {{ item.yield }}%
+          </v-chip>
+        </template>
+      </v-data-table>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { use } from 'echarts/core'
-import { CanvasRenderer } from 'echarts/renderers'
-import { LineChart } from 'echarts/charts'
-import { GridComponent, TooltipComponent } from 'echarts/components'
-import  VChart  from 'vue-echarts'; // Asegúrate de importar el componente ECharts
+import { ref, computed } from 'vue'
 import { useInvestmentsStore } from '@/store/investmentStore'
 
-use([CanvasRenderer, LineChart, GridComponent, TooltipComponent])
+const investmentsStore = useInvestmentsStore()
+const currentInvestment = computed(() => investmentsStore.currentInvestment)
 
+const headers = [
+  { title: 'Fecha', align: 'start', key: 'date' },
+  { title: 'Monto', align: 'end', key: 'amount' },
+  { title: 'Rendimiento', align: 'end', key: 'yield' },
+]
 
-onMounted(() => {
-  // Any additional setup if needed
+const performanceData = computed(() => {
+  if (!currentInvestment.value || !currentInvestment.value.chartOption) {
+    return []
+  }
+  const dates = currentInvestment.value.chartOption.xAxis.data
+  const values = currentInvestment.value.chartOption.series[0].data
+  return dates.map((date, index) => ({
+    date,
+    amount: `$${values[index].toLocaleString()}`,
+    yield: ((values[index] - values[index - 1]) / values[index - 1] * 100).toFixed(2) || 0,
+  }))
 })
 </script>
-
-<style scoped>
-.chart {
-  height: 400px;
-  width: 100%;
-  display: flex;
-}
-</style>

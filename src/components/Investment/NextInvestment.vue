@@ -1,45 +1,52 @@
 <template>
-  <ItemListWithButton class="mt-3" :items="investments" useLink buttonColor="primary" buttonText="Mas informacion">
-    <v-card-title>
-      <v-text-field
-        v-model="search"
-        prepend-icon="mdi-magnify"
-        label="Busca tu siguiente inversión"
-        single-line
-        hide-details
-        filled
-        rounded
-        dense
-        class="custom-text-field"
-      ></v-text-field>
-    </v-card-title>
-  </ItemListWithButton>
+  <v-card class="elevation-2">
+    <v-card-title class="pa-4">Resumen de Inversión</v-card-title>
+    <v-card-text>
+      <v-row align="center" no-gutters class="mb-4">
+        <v-col cols="12" sm="6" class="text-center pa-2">
+          <div class="text-overline">Inversión Total</div>
+          <div class="text-h5 font-weight-bold">${{ currentInvestment.amount }}</div>
+        </v-col>
+        <v-col cols="12" sm="6" class="text-center pa-2">
+          <div class="text-overline">Rendimiento</div>
+          <div class="text-h5 font-weight-bold" :class="{'text-success': currentYield > 0, 'text-error': currentYield < 0}">
+            {{ currentYield }}%
+          </div>
+        </v-col>
+      </v-row>
+      <v-row align="center" no-gutters>
+        <v-col cols="12" sm="6" class="text-center pa-2">
+          <div class="text-overline">Plazo</div>
+          <div class="text-h5 font-weight-bold">{{ currentInvestment.description }}</div>
+        </v-col>
+        <v-col cols="12" sm="6" class="text-center pa-2">
+          <div class="text-overline">Vencimiento</div>
+          <div class="text-h5 font-weight-bold">{{ maturityDate }}</div>
+        </v-col>
+      </v-row>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import ItemListWithButton from "@/components/generalComponents/ItemListWithButton.vue";
+import { computed } from 'vue'
+import { useInvestmentsStore } from '@/store/investmentStore'
 
-const search = ref('')
-const investments = ref([
-  { name: 'Ripple', amount: '503.12', icon: 'mdi-currency-xrp', iconColor: '#23292F' },
-  { name: 'Litecoin', amount: '503.12', icon: 'mdi-litecoin', iconColor: '#345D9D' },
-  { name: 'Amazon', amount: '503.12', icon: 'mdi-amazon', iconColor: '#FF9900' },
-  { name: 'Bitcoin', amount: '503.12', icon: 'mdi-bitcoin', iconColor: '#F7931A' },
-  { name: 'Ethereum', amount: '503.12', icon: 'mdi-ethereum', iconColor: '#627EEA' },
-])
+const investmentStore = useInvestmentsStore()
+const currentInvestment = computed(() => investmentStore.currentInvestment)
+
+const currentYield = computed(() => {
+  const trend = currentInvestment.value.trend
+  if (trend.length < 2) return 0
+  const firstValue = trend[0]
+  const lastValue = trend[trend.length - 1]
+  return ((lastValue - firstValue) / firstValue * 100).toFixed(2)
+})
+
+const maturityDate = computed(() => {
+  // This is a placeholder. You should calculate the actual maturity date based on your data
+  const date = new Date()
+  date.setMonth(date.getMonth() + 6)
+  return date.toLocaleDateString()
+})
 </script>
-
-<style scoped>
-.v-list-item__avatar {
-  background-color: #EDE9FE;
-}
-
-.custom-text-field :deep(.v-field__outline) {
-  display: none;
-}
-
-.v-list-item__avatar .v-icon {
-  font-size: 24px;
-}
-</style>
