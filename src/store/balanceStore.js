@@ -33,6 +33,7 @@ export const useBalanceStore = defineStore('balance', () => {
     }
     transactions.addTransaction(userStore.userId, { type: 'ingreso', amount: parsedAmount, time: Date.now(), to: from.name || '', cbu: from.cbu || '', category: from.category || '' });
   };
+
   const canWithdraw = (amount) => {
     const parsedAmount = Number(amount);
     // Si parsedAmount no es un número, devuelve o maneja el error

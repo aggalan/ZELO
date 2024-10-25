@@ -22,8 +22,7 @@
         class="mb-4"
         :rules="[
           v => !!v || 'Monto es requerido',
-          v => (v && parseFloat(v) > 0) || 'El monto debe ser mayor que 0',
-          v => (v && parseFloat(v) <= selectedPaymentMethod.balance) || 'Saldo insuficiente'
+          v => (v  &&  parseFloat(v) <= selectedPaymentMethod.balance || selectedPaymentMethod.id !== 'account') || 'Saldo insuficiente'
         ]"
       ></v-text-field>
 
@@ -66,12 +65,11 @@
           v-for="method in paymentMethods"
           :key="method.id"
           :value="method.id"
-          v-slot="{ isSelected, toggle }"
         >
           <v-card
-            :class="['payment-method-card', { 'selected': isSelected }]"
-            @click="toggle"
-            :color="method.id === 'account' ? 'grey-lighten-3' : method.color"
+            :class="['payment-method-card', { 'selected': selectedPaymentMethodId === method.id }]"
+            @click="selectedPaymentMethodId = method.id"
+            :color="method.color"
           >
             <v-card-text :class="['d-flex flex-column justify-space-between h-100 pa-4', { 'white--text': method.id !== 'account' }]">
               <div class="d-flex justify-space-between align-center">
@@ -114,6 +112,7 @@ import { useCardsStore } from "@/store/cardsStore"
 import { useUsersStore } from "@/store/usersStore"
 import ConfirmationComponent from "@/components/transference/ConfirmationComponent.vue"
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
+import {grey} from "vuetify/util/colors";
 
 const router = useRouter()
 const balanceStore = useBalanceStore()
@@ -136,6 +135,7 @@ const paymentMethods = computed(() => [
     icon: 'mdi-bank',
     balance: accountBalance.value,
     type: 'Dinero Disponible',
+    color: grey.lighten3
   },
   ...userCards.value.map(card => ({
     id: card.id,
@@ -240,7 +240,7 @@ const formatCardNumber = (number) => {
 }
 
 .payment-method-card.selected {
-  border: 2px solid white;
+  border: 2px solid black;
   box-shadow: 0 0 0 2px;
 }
 
