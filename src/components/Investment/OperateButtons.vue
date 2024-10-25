@@ -4,9 +4,8 @@
     <v-card-text>
       <v-row>
         <v-col cols="12" sm="6">
-          <v-btn
+          <ActionButton
             block
-            color="var(--primary)"
             variant="elevated"
             class="action-btn invertir-btn"
             height="48"
@@ -14,10 +13,10 @@
           >
             <v-icon left class="mr-2">mdi-cash-plus</v-icon>
             Invertir
-          </v-btn>
+          </ActionButton>
         </v-col>
         <v-col cols="12" sm="6">
-          <v-btn
+          <ActionButton
             block
             color="var(--on-surface-light)"
             variant="elevated"
@@ -27,7 +26,7 @@
           >
             <v-icon left class="mr-2">mdi-cash-minus</v-icon>
             Rescatar
-          </v-btn>
+          </ActionButton>
         </v-col>
       </v-row>
     </v-card-text>
@@ -49,11 +48,8 @@
             suffix="días"
           ></v-select>
         </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" @click="confirmInvest">Confirmar</v-btn>
-          <v-btn color="grey" @click="investDialog = false">Cancelar</v-btn>
-        </v-card-actions>
+          <ActionButton  class="ma-3 mb-0" @click="confirmInvest">Confirmar</ActionButton>
+          <ActionButton class="ma-3"  color="var(--on-surface-light)" @click="investDialog = false">Cancelar</ActionButton>
       </v-card>
     </v-dialog>
 
@@ -68,11 +64,8 @@
             type="number"
           ></v-text-field>
         </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="secondary" @click="confirmWithdraw">Confirmar</v-btn>
-          <v-btn color="grey" @click="withdrawDialog = false">Cancelar</v-btn>
-        </v-card-actions>
+          <ActionButton class="ma-3 mb-0" @click="confirmWithdraw">Confirmar</ActionButton>
+          <ActionButton class="ma-3"  color="var(--on-surface-light)" @click="withdrawDialog = false">Cancelar</ActionButton>
       </v-card>
     </v-dialog>
   </v-card>
@@ -81,6 +74,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useInvestmentsStore } from '@/store/investmentStore'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const investmentStore = useInvestmentsStore()
 
@@ -101,11 +95,16 @@ const openWithdrawDialog = () => {
 
 const confirmInvest = () => {
   console.log(`Investing $${investAmount.value} for ${investTerm.value} days`)
+  investmentStore.addInvestment({
+    amount: investAmount.value,
+    term: investTerm.value
+  })
   investDialog.value = false
 }
 
 const confirmWithdraw = () => {
   console.log(`Withdrawing $${withdrawAmount.value}`)
+  investmentStore.removeInvestment(withdrawAmount.value)
   withdrawDialog.value = false
 }
 </script>

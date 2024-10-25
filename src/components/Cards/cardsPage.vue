@@ -45,14 +45,13 @@
                 type="password"
                 required
               ></v-text-field>
-              <v-btn
-                color="#8B5CF6"
+              <ActionButton
                 class="white--text"
                 block
                 type="submit"
               >
                 Añadir +
-              </v-btn>
+              </ActionButton>
             </v-form>
           </v-card-text>
         </v-card>
