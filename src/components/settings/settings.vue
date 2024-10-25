@@ -13,7 +13,7 @@
 
     <v-container class="d-flex flex-column align-center mt-0">
       <v-card class="v-car-align w-100">
-        <h1 class="text-h4 mb-6 mt-5">Wallet Settings</h1>
+        <h1 class="text-h4 mb-6 mt-5">Configuracion de billetera</h1>
       </v-card>
 
       <v-card fluid class="settings-container pa-4 rounded-lg ma-0 w-100">
@@ -55,7 +55,7 @@
       elevation="24"
       rounded="pill"
     >
-      Settings saved successfully!
+      Ajustes guardados exitosamente!
       <template v-slot:action="{ attrs }">
         <v-btn
           color="white"
@@ -84,10 +84,10 @@ const prevTab = ref(0)
 const snackbar = ref(false)
 
 const tabs = [
-  {title: 'Wallet', icon: 'mdi-wallet', value: 0, component: WalletSettings},
-  {title: 'Security', icon: 'mdi-shield-lock', value: 1, component: SecuritySettings},
-  {title: 'Notifications', icon: 'mdi-bell', value: 2, component: NotificationSettings},
-  {title: 'Privacy', icon: 'mdi-eye-off', value: 3, component: PrivacySettings},
+  {title: 'Biletera', icon: 'mdi-wallet', value: 0, component: WalletSettings},
+  {title: 'Seguridad', icon: 'mdi-shield-lock', value: 1, component: SecuritySettings},
+  {title: 'Notificaciones', icon: 'mdi-bell', value: 2, component: NotificationSettings},
+  {title: 'Privacidad', icon: 'mdi-eye-off', value: 3, component: PrivacySettings},
 ]
 
 const isForward = computed(() => activeTab.value > prevTab.value)

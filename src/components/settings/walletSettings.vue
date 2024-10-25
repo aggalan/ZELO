@@ -6,33 +6,33 @@
           <v-select
             v-model="defaultCurrency"
             :items="currencies"
-            label="Default Currency"
+            label="Moneda"
             outlined
             dense
-            :rules="[v => !!v || 'Default currency is required']"
+            :rules="[v => !!v || 'Se requiere una moneda']"
           ></v-select>
         </v-col>
         <v-col cols="12" md="6">
           <v-select
             v-model="transactionLimit"
             :items="transactionLimits"
-            label="Daily Transaction Limit"
+            label="Limite de Transacciones Diario"
             outlined
             dense
-            :rules="[v => !!v || 'Transaction limit is required']"
+            :rules="[v => !!v || 'Se requiere un limite de transacciones']"
           ></v-select>
         </v-col>
         <v-col cols="12" md="6">
           <v-switch
             v-model="autoConvert"
-            label="Auto-convert to default currency"
+            label="Convertir a moneda seleccionada automaticamente"
             color="#8B5CF6"
           ></v-switch>
         </v-col>
         <v-col cols="12" md="6">
           <v-switch
             v-model="instantTransfers"
-            label="Enable instant transfers"
+            label="Habilitar transferencias instantaneas"
             color="#8B5CF6"
           ></v-switch>
         </v-col>
@@ -44,7 +44,7 @@
         type="submit"
         :loading="loading"
       >
-        Save Wallet Settings
+        Actualizar Configuracion de Billetera
       </v-btn>
     </v-form>
   </v-card-text>
