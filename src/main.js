@@ -29,6 +29,17 @@ import './assets/globals.css'
 import router from './router/router'
 
 const vuetify = createVuetify({
+  theme: {
+    themes: {
+      light: {
+        colors: {
+          primary: '#8B5CF6',
+          secondary: '#F65CE5',
+          // Add other colors as needed
+        },
+      },
+    },
+  },
   components,
   directives,
 })
