@@ -4,7 +4,7 @@
         <h1 class="text-h4 mb-6">Transferencias</h1>
         <v-row>
           <v-col cols="12" md="8">
-            <TransferForm @cancel="goToTransference"/>
+            <TransferForm :cbu-alias="cbu" :amount="amount"/>
           </v-col>
           <v-col cols="12" md="4">
             <ContactsList />
@@ -17,7 +17,11 @@
 
 import TransferForm from './TransferForm.vue'
 import ContactsList from './ContactsList.vue'
-import router from '@/router/router'
+import {useRoute} from 'vue-router'
+
+const route = useRoute()
+const cbu= route.query.cbu || ''
+const amount = route.query.amount || ''
 
 const goToTransference = () => {
   router.push({path: '/transference'});

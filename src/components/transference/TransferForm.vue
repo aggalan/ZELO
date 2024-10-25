@@ -57,18 +57,16 @@
 <script setup>
 import {onMounted, ref} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
-import {useRouter } from "vue-router";
+import router from "@/router/router";
 import {useBalanceStore} from "@/store/balanceStore";
 import ConfirmationComponent from "@/components/transference/ConfirmationComponent.vue";
 
 const balanceStore = useBalanceStore();
-const router = useRouter();
 const cbuAlias = ref('')
 const amount = ref('')
 const concept = ref('')
 const showConfirmationDialog = ref(false); // Para controlar el popup
 
-const emit = defineEmits([ 'cancel'])
 const props = defineProps({
   cbuAlias: {
     type: String,
@@ -81,7 +79,7 @@ const props = defineProps({
   },
 })
 const cancel = () => {
-  emit('cancel')
+  router.back()
 }
 onMounted(() => {
   if (props.cbuAlias) {

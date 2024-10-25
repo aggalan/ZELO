@@ -27,25 +27,20 @@
       </v-list>
     </v-card-text>
   </v-card>
-  <v-dialog v-model="showDialog" max-width="500">
-    <TransferForm @cancel="showDialog=false" :cbu-alias="currentContactCbu"/>
-  </v-dialog>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
 import TransferForm from "@/components/transference/TransferForm.vue";
+import router from "@/router/router";
 
 const props = defineProps({
   contacts: { type: Array, default: () => [] }
 })
-const currentContactCbu = ref(null)
-const showDialog = ref(false)
 
 const completeTransfer = (contact) => {
-  currentContactCbu.value = contact.cbu
-  showDialog.value = true
+  router.push({ path: '/transference/cbu', query: { cbu: contact.cbu } })
 }
 
 const search = ref('')

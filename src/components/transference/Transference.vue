@@ -61,9 +61,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <v-dialog v-model="showDialog" max-width="500">
-      <TransferForm @cancel="showDialog=false" :cbu-alias="repeatedTransfer.cbu" :amount="repeatedTransfer.amount"/>
-    </v-dialog>
   </v-container>
 </template>
 
@@ -106,13 +103,11 @@ const selectTransferOption = (option) => {
       router.push({ path: '/dashboard' })
   }
 }
-const showDialog = ref(false)
 
 const repeatTransfer = (transfer) => {
   repeatedTransfer.value = transfer
-  console.log('Repeating transfer for:', transfer.name)
-  showDialog.value =true
   // Implement repeat transfer logic here
+  router.push({path: '/transference/cbu', query: { cbu: transfer.cbu, amount: transfer.amount }})
 }
 
 const selectContact = (contact) => {

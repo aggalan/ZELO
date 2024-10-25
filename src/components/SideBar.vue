@@ -35,6 +35,9 @@ const firstRouteSegment = ref(getFirstRouteSegment(route.path))
 // Observar cambios en la ruta para actualizar selectedItem
 watch(route, (newRoute) => {
   firstRouteSegment.value = getFirstRouteSegment(newRoute.path)
+  if(firstRouteSegment.value === 'transference'){
+    firstRouteSegment.value = 'dashboard';
+  }
   let foundItem = menuItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   if(!foundItem){
     foundItem = bottomItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
@@ -43,6 +46,7 @@ watch(route, (newRoute) => {
 });
 
 onBeforeMount(() => {
+  firstRouteSegment.value === 'transference' ? firstRouteSegment.value = 'dashboard' : firstRouteSegment.value;
   let foundItem = menuItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   if(!foundItem){
     foundItem = bottomItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
