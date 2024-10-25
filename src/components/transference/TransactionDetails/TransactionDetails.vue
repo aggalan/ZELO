@@ -3,24 +3,24 @@
     <v-card-title class="text-h5 d-flex justify-space-between align-center pa-4 bg-primary">
       <span class="white--text">Detalles de la Transacción</span>
       <v-chip
-        :color="transaction.type === 'incoming' ? 'light-green-accent-4' : 'deep-orange-accent-4'"
+        :color="transaction.type === 'ingreso' ? 'light-green-accent-4' : 'deep-orange-accent-4'"
         text-color="white"
         class="font-weight-bold"
         elevation="2"
       >
-        {{ transaction.type === 'incoming' ? 'Ingreso' : 'Egreso' }}
+        {{ transaction.type === 'ingreso' ? 'Ingreso' : 'Pago' }}
       </v-chip>
     </v-card-title>
     <v-card-text class="pa-4">
       <v-row>
         <v-col cols="12" sm="6">
           <p class="text-h4 font-weight-bold primary--text">${{ transaction.amount.toFixed(2) }}</p>
-          <p class="text-subtitle-1">{{ formatDate(transaction.date) }}</p>
+          <p class="text-subtitle-1">{{ formatDate(transaction.creationTime) }}</p>
         </v-col>
         <v-col cols="12" sm="6" class="text-sm-right">
           <p class="text-subtitle-1">ID: {{ transaction.id }}</p>
-          <p class="text-subtitle-1 font-weight-medium" :class="{'success--text': transaction.status === 'completed', 'warning--text': transaction.status !== 'completed'}">
-            Estado: {{ transaction.status === 'completed' ? 'Completado' : 'Pendiente' }}
+          <p class="text-subtitle-1 font-weight-medium success--text">
+            Estado: Completado
           </p>
         </v-col>
       </v-row>
@@ -28,13 +28,13 @@
       <v-row>
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Remitente</h3>
-          <p>{{ transaction.sender.name }}</p>
-          <p class="text-caption">CBU: {{ transaction.sender.account }}</p>
+          <p>{{ currentUser.name }}</p>
+          <p class="text-caption">CBU: {{ transaction.cbu }}</p>
         </v-col>
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Destinatario</h3>
-          <p>{{ transaction.recipient.name }}</p>
-          <p class="text-caption">CBU: {{ transaction.recipient.account }}</p>
+          <p>{{ transaction.to }}</p>
+          <p class="text-caption">CBU: N/A</p>
         </v-col>
       </v-row>
       <v-divider class="my-4"></v-divider>
@@ -63,18 +63,20 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue'
+import { computed } from 'vue'
+import { useTransactionsStore } from '@/store/transactionStore'
+import { useUsersStore } from '@/store/usersStore'
 
-const props = defineProps({
-  transaction: {
-    type: Object,
-    required: true
-  }
-})
+const transactionsStore = useTransactionsStore()
+const usersStore = useUsersStore()
 
-const formatDate = (dateString) => {
+const transaction = computed(() => transactionsStore.getSelectedTransaction())
+const currentUser = computed(() => usersStore.getUserById(usersStore.userId))
+
+const formatDate = (timestamp) => {
+  const date = new Date(timestamp)
   const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
-  return new Date(dateString).toLocaleDateString('es-ES', options)
+  return date.toLocaleDateString('es-ES', options)
 }
 </script>
 
