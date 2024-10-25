@@ -1,6 +1,5 @@
 <template>
-  <p class="login-link">¿Recordaste tu contraseña? <a href="/login">Inicia Sesión</a>
-  </p>
+  <p class="login-link">¿Recordaste tu contraseña? <RouterLink to="/login">Inicia Sesión</RouterLink></p>
 </template>
 
 <style scoped>

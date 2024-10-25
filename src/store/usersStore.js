@@ -105,6 +105,30 @@ export const useUsersStore = defineStore('users', () => {
   };
 
 
+  const updatePassword = (email, newPassword) => {
+    const user = users.value.find(user => user.email === email);
+    if (user) {
+      user.passwordHash = btoa(newPassword); // Simple hash for demonstration
+      return true;
+    } else {
+      return false;
+    }
+  };
+
+  const emailForReset = ref('');
+
+  const setEmailForReset = (email) => {
+     emailForReset.value = email;
+   };
+
+
+  const printAllUserEmails = () => {
+    users.value.forEach(user => {
+      console.log(user.email);
+      console.log(user.id);
+    });
+  };
+
   return {
     users,
     register,
@@ -118,6 +142,10 @@ export const useUsersStore = defineStore('users', () => {
     getUser,
     editAlias,
     editName,
+    updatePassword,
+    emailForReset,
+    setEmailForReset,
+    printAllUserEmails,
   };
 });
 

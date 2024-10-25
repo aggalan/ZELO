@@ -18,40 +18,55 @@
     </div>
 
     <ErrorMessageSignUpSignIn :visible="!passwordsMatch" message="Las contraseñas no coinciden" />
+    <SuccessMessage :visible="showSuccess" :message="successMessage" />
     <SubmitButton text="Restablecer" class="submit-button"/>
   </form>
 </template>
 
 <script setup>
-import {computed, ref, watch} from 'vue'
+import { computed, ref } from 'vue'
+import { useUsersStore } from '@/store/usersStore'
 import PasswordInput from './PasswordInput.vue'
 import SubmitButton from '../SubmitButton.vue'
-import ErrorMessageSignUpSignIn from "@/components/SignUpAndSignIn/errorMessageSignUpSignIn.vue";
+import ErrorMessageSignUpSignIn from "@/components/SignUpAndSignIn/errorMessageSignUpSignIn.vue"
+import SuccessMessage from "@/components/SignUpAndSignIn/successMessage.vue"
 
 const newPassword = ref('')
 const confirmPassword = ref('')
+const showError = ref(false)
 const errorMessage = ref('')
+const showSuccess = ref(false)
+const successMessage = ref('')
+
+const usersStore = useUsersStore()
 
 const passwordsMatch = computed(() => newPassword.value === confirmPassword.value)
 
-
 const handleSubmit = () => {
-  if (newPassword.value === confirmPassword.value) {
-    console.log('Password reset with:', newPassword.value)
-    errorMessage.value = ''
+  if (passwordsMatch.value) {
+    const email = usersStore.emailForReset
+
+    const success = usersStore.updatePassword(email, newPassword.value)
+    usersStore.printAllUserEmails()
+    if (success) {
+      successMessage.value = 'Contraseña actualizada con éxito'
+      showSuccess.value = true
+      showError.value = false
+    } else {
+      errorMessage.value = "Hubo un error al restablecer la contraseña. Por favor, inténtelo de nuevo."
+      showError.value = true
+      showSuccess.value = false
+    }
   } else {
-    errorMessage.value = 'las contraseñas no coinciden'
+    errorMessage.value = 'Las contraseñas no coinciden'
+    showError.value = true
+    showSuccess.value = false
   }
 }
-
-watch(newPassword, (newValue) => {
-  console.log('Password changed:', newValue)
-})
 </script>
 
 <style scoped>
 .submit-button {
   margin-top: 2.5rem; /* Adjust the value as needed */
 }
-
 </style>

@@ -8,7 +8,7 @@ import InvestmentDashboard from "@/components/Investment/InvestmentDashboard.vue
 import Cards from "@/components/Cards/cardsPage.vue";
 import MovementsDashboard from "@/components/movements/MovementsDashboard.vue";
 import ProfileDashboard from "@/components/profile/ProfileDashboard.vue";
-import PasswordReset from "@/components/SignUpAndSignIn/PasswordReset/PasswordResetPage.vue";
+import PasswordResetMail from "@/components/SignUpAndSignIn/PasswordReset/PasswordResetMail.vue";
 import Help from "@/components/help/HelpPage.vue";
 import Legales from "@/components/Landing/Home/Legales.vue";
 import faq  from "@/components/Landing/Home/faq.vue"
@@ -25,12 +25,15 @@ import AccessibilityContent from "@/components/profile/AccessibilityContent.vue"
 import AccountDataContent from "@/components/profile/AccountDataContent.vue";
 import PersonalInfoContent from "@/components/profile/PersonalInfoContent.vue";
 import PrivacyContent from "@/components/profile/PrivacyContent.vue";
+import PasswordReset from "@/components/SignUpAndSignIn/PasswordReset/PasswordResetPage.vue";
+
 
 const routes = [
   { path: '/', component: HomePage, meta: { showNavbar: true, showSidebar: false,applyBackground: true , authProtected: false  } },
   { path: '/signup', component: SignUp, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false  } },
   { path: '/login', component: SignIn, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false  } },
-  { path: '/reset-password', component: PasswordReset, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false } },
+  { path: '/reset-password', component: PasswordResetMail, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false } },
+  { path: '/reset-password-input', component: PasswordReset, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false } },
   {path : '/legales', component: Legales, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }}
   ,{path : '/faq', component: faq, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }}
   ,{path : '/sobre-nosotros', component: SobreNosotros, meta: { showNavbar: true, showSidebar: false, applyBackground: true, authProtected: false }}
