@@ -155,7 +155,10 @@ const selectedPaymentMethod = computed(() =>
 )
 
 const isFormValid = computed(() => {
-  if (!form.value) return false
+  if(!selectedPaymentMethod.value  || !form.value) return false
+  if(selectedPaymentMethod.value.id === 'account') {
+    return form.value.validate() && balanceStore.canWithdraw(parseFloat(amount.value))
+  }
   return form.value.validate()
 })
 
@@ -166,6 +169,7 @@ const props = defineProps({
 })
 
 onMounted(() => {
+  console.log('Transferencia props:', props)
   if (props.cbuAlias) cbuAlias.value = props.cbuAlias
   if (props.amount) amount.value = props.amount
   if (props.concept) concept.value = props.concept

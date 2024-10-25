@@ -1,7 +1,7 @@
 <template>
   <v-text-field
     :value="myValue"
-    :readonly="!canEdit"
+    readonly
     filled
     rounded
     dense
@@ -10,9 +10,6 @@
   >
     <template v-slot:append>
       <div class="d-flex align-center">
-        <v-btn v-if="canEdit" icon small @click="$emit('edit', myValue)">
-          <v-icon small>mdi-pencil</v-icon>
-        </v-btn>
         <v-btn icon small @click="$emit('copy')">
           <v-icon small>mdi-content-copy</v-icon>
         </v-btn>

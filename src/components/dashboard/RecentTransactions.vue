@@ -1,12 +1,14 @@
 <template>
-  <v-card class="recent-transactions-card">
+  <v-card :class=" {'recent-transactions-card':true, 'recent-transactions-card-height':showPagination} ">
     <v-card-text>
-      <div class="d-flex justify-space-between align-center mb-4">
-        <h2 class="text-h6 font-weight-bold">{{ title }}</h2>
-        <v-btn color="var(--primary)" variant="text" size="small">Ver todas</v-btn>
-      </div>
+
+        <div class="d-flex justify-space-between align-center mb-4">
+          <h2 class="text-h6 font-weight-bold">{{ title }}</h2>
+          <slot/>
+        </div>
+      <slot name="search"/>
       <v-list>
-        <v-list-item v-for="(transaction, index) in displayedTransactions" :key="index" class="mb-2 transaction-item">
+        <v-list-item v-for="(transaction, index) in displayedTransactions" :key="index" class="mb-3 transaction-item">
           <template v-slot:prepend>
             <v-avatar :color="'var(--primary)'" size="40">
               <v-icon :color="transaction.iconColor || 'white'" size="24">{{ transaction.icon || 'mdi-account' }}</v-icon>
@@ -73,10 +75,12 @@ const viewDetails = (transaction) => {
   background: white;
   border-radius: 16px;
   padding-bottom: 8px;
-  min-height: 70vh; /* Altura mínima del 30% de la pantalla */
-  max-height: 70vh; /* Altura máxima del 60% de la pantalla */
   display: flex;
   flex-direction: column;
+}
+.recent-transactions-card-height{
+  min-height: 77vh; /* Altura mínima del 30% de la pantalla */
+  max-height: 77vh;
 }
 @media (min-width: 1280px) {
   .recent-transactions-card {

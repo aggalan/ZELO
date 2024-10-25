@@ -1,7 +1,7 @@
 <template>
-  <v-card class="analytics-card">
+  <v-card class="my-card">
     <v-card-text>
-      <h2 class="text-h6 font-weight-bold mb-4">Analíticas</h2>
+      <h2 class="text-h6 font-weight-bold mb-4">Gastos recientes</h2>
       <v-row justify="center" align="center" class="mb-4">
         <v-col cols="6">
           <v-progress-circular
@@ -56,11 +56,7 @@ const categories = ref([
 </script>
 
 <style scoped>
-.analytics-card {
-  background-color: white;
-  border-radius: 16px;
-  height: 100%;
-}
+
 .v-progress-circular {
   font-weight: bold;
 }

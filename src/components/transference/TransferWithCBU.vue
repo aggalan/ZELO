@@ -1,12 +1,9 @@
 <template>
-  <v-container fluid class="pa-6 w-100">
+  <v-container fluid class="pa-6 w-100 ">
     <h1 class="text-h4 mb-6">Transferencias</h1>
-    <v-row>
+    <v-row class="d-flex justify-center">
       <v-col cols="12" lg="8" md="8" sm="12">
         <TransferForm :cbu-alias="cbu" :amount="amount" class="transfer-form" />
-      </v-col>
-      <v-col cols="12" lg="4" md="4" sm="12">
-        <ContactsList class="contacts-list" />
       </v-col>
     </v-row>
   </v-container>
@@ -14,24 +11,18 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import {onBeforeRouteUpdate, useRoute, useRouter} from 'vue-router'
 import TransferForm from './TransferForm.vue'
 import ContactsList from './ContactsList.vue'
+import router from '@/router/router'
 
 const route = useRoute()
-const router = useRouter()
 
-const cbu = ref('')
-const amount = ref('')
+const cbu = route.query.cbu
+const amount = route.query.amount
 
-onMounted(() => {
-  cbu.value = route.query.cbu || ''
-  amount.value = route.query.amount || ''
-})
 
-const goToTransference = () => {
-  router.push({ path: '/transference' })
-}
+
 </script>
 
 <style scoped>

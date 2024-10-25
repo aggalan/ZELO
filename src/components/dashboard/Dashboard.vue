@@ -14,7 +14,9 @@
     </v-row>
     <v-row>
       <v-col cols="12" lg="8">
-        <RecentTransactions :max-transactions="5" class="mb-4" />
+        <RecentTransactions :max-transactions="5" class="mb-4">
+          <v-btn @click="router.push({path:'/movements'})" color="var(--primary)" variant="text" size="small">Ver todas</v-btn>
+        </RecentTransactions>
       </v-col>
       <v-col cols="12" lg="4">
         <InvestmentSummary class="mb-4" />
@@ -29,6 +31,7 @@ import QuickActions from '@/components/dashboard/QuickActions.vue'
 import RecentTransactions from '@/components/dashboard/RecentTransactions.vue'
 import Analytics from "@/components/dashboard/Analytics.vue"
 import InvestmentSummary from "@/components/dashboard/InvestmentSummary.vue"
+import router from "@/router/router";
 </script>
 
 <style scoped>

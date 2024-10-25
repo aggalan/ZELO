@@ -3,8 +3,8 @@
     <h1 class="text-h4 mb-6 mt-6 ml-2">Movimientos</h1>
     <v-row>
       <v-col cols="12" md="8">
-        <RecentTransactions class = "mt-4">
-          <v-card-title>
+        <RecentTransactions class = "mt-4" title="Tu actividad" >
+          <template v-slot:search>
             <v-text-field
               v-model="search"
               prepend-icon="mdi-magnify"
@@ -16,8 +16,7 @@
               dense
               class="custom-text-field"
             ></v-text-field>
-          </v-card-title>
-          <v-card-title class="text-grey-darken-3 mt-2">Tu actividad reciente</v-card-title>
+          </template>
         </RecentTransactions>
       </v-col>
       <v-col cols="12" md="4" class="mb-600000">

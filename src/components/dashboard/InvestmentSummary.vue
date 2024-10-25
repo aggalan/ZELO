@@ -1,5 +1,5 @@
 <template>
-  <v-card class="investment-analytics-card">
+  <v-card class="investment-analytics-card my-card">
     <v-card-text>
       <div class="d-flex justify-space-between align-center mb-4">
         <h2 class="text-h6 font-weight-bold">Análisis de Inversiones</h2>
@@ -53,8 +53,6 @@ watch(selectedInvestment, (newValue) => {
 
 <style scoped>
 .investment-analytics-card {
-  background-color: white;
-  border-radius: 16px;
   height: 320px;
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="balance-card">
+  <v-card class="my-card balance-card">
     <v-card-text>
       <div class="d-flex justify-space-between align-center mb-2">
         <h2 class="text-h6 font-weight-bold text-black">Balance</h2>
@@ -67,7 +67,6 @@ const formattedBalance = computed(() =>
 <style scoped>
 .balance-card {
   //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 16px;
   color: white;
   height: auto;
 }

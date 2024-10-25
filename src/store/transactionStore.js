@@ -7,10 +7,10 @@ export const useTransactionsStore = defineStore('transactions', () => {
     {id:1,cbu:10, to: 'Jose', type: 'ingreso', amount: 10000, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de alquiler', category: 'Alquiler'},
     {id:2,cbu:10, to: 'Open 25', type: 'pago', amount: 20000, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa'},
     {id:3,cbu:10, to: 'Miguel', type: 'ingreso', amount: 1000 ,creationTime: Date.now(), icon: 'mdi-account', userId: 1,description: 'Pago de servicios', category: 'Servicios'},
-    {id:4,cbu:10, to: 'Jose', type: 'ingreso', amount: 11400, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de alquiler', category: 'Comida'},
+    {id:4,cbu:10, to: 'McDonalds', type: 'ingreso', amount: 11400, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'McDonalds', category: 'Comida'},
     {id:5,cbu:10, to: 'Open 25', type: 'pago', amount: 10500, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa'},
-    {id:6,cbu:10, to: 'Miguel',type: 'ingreso', amount: 100000, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de servicios', category: 'Comida'},
-    {id:7,cbu:10, to: 'Jose',type: 'pago', amount: 100, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de alquiler', category: 'Comida'},
+    {id:6,cbu:10, to: 'KFC',type: 'ingreso', amount: 100000, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'KFC', category: 'Comida'},
+    {id:7,cbu:10, to: 'SushiPop',type: 'pago', amount: 100, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'SushiPop', category: 'Comida'},
     {id:8,cbu:10, to: 'Open 25', type: 'ingreso', amount: 90000, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa'},
     {id:9,cbu:10, to: 'Miguel',type: 'ingreso', amount: 1900,creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de servicios', category: 'Servicios'},
   ]);
