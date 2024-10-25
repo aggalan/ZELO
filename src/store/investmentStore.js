@@ -6,10 +6,11 @@ import {useBalanceStore} from "@/store/balanceStore";
 export const useInvestmentsStore = defineStore('investments', () => {
   const userStore = useUsersStore();
   const balanceStore = useBalanceStore();
-  let lastId = 3;
+  let lastId = 6;
   const investments = ref([
 
-      { id:1, name: 'Plazo fijo 19/3/24', description: '6 meses', amount: 20000, icon: 'mdi-cash', iconColor: 'black', action: 'Ver', userId: 1, trend:[8,9,7,8,9,6,7,8,5,7,8,9,7,6,7], chartOption: {
+      { id:1, name: 'Plazo fijo 19/3/24', description: '6 meses', amount: 20000, icon: 'mdi-cash', iconColor: 'black', action: 'Ver', userId: 1, trend:[8,9,7,8,9,6,7,8,5,7,8,9,7,6,7], interest: 0.2,
+        chartOption: {
           xAxis: {
             type: 'category',
             data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
@@ -39,7 +40,8 @@ export const useInvestmentsStore = defineStore('investments', () => {
             trigger: 'axis'
           }
         } },
-      { id:2, name: 'Plazo Fijo 04/06/24', description: '4 meses', amount: 15000, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], chartOption: {
+      { id:2, name: 'Plazo Fijo 04/06/24', description: '4 meses', amount: 15000, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], interest: 0.1,
+        chartOption: {
           xAxis: {
             type: 'category',
             data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
@@ -69,7 +71,8 @@ export const useInvestmentsStore = defineStore('investments', () => {
             trigger: 'axis'
           }
         }},
-      {id:3, name: 'Plazo Fijo 30/08/24', description: '2 meses', amount: 1000000.00, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [8,9,7,4,1,6,7,8,5,7,8,9,7,6,7], chartOption: {
+      {id:3, name: 'Plazo Fijo 30/08/24', description: '2 meses', amount: 1000000.00, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [8,9,7,4,1,6,7,8,5,7,8,9,7,6,7], interest: 0.3,
+        chartOption: {
           xAxis: {
             type: 'category',
             data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
@@ -99,7 +102,9 @@ export const useInvestmentsStore = defineStore('investments', () => {
             trigger: 'axis'
           }
         } },
-    { id:4, name: 'Plazo Fijo 04/06/24', description: '4 meses', amount: 15000, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], chartOption: {
+    { id:4, name: 'Plazo Fijo 04/06/24', description: '4 meses', amount: 15000, icon: 'mdi-cash',
+      iconColor: '#00000', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], interest: 0.15,
+      chartOption: {
         xAxis: {
           type: 'category',
           data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
@@ -129,7 +134,9 @@ export const useInvestmentsStore = defineStore('investments', () => {
           trigger: 'axis'
         }
       }},
-    {id:5, name: 'Plazo Fijo 30/08/24', description: '2 meses', amount: 1000000.00, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [8,9,7,4,1,6,7,8,5,7,8,9,7,6,7], chartOption: {
+    {id:5, name: 'Plazo Fijo 30/08/24', description: '2 meses', amount: 1000000.00,
+      icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', interest: 0.3,
+      userId: 1, trend: [8,9,7,4,1,6,7,8,5,7,8,9,7,6,7], chartOption: {
         xAxis: {
           type: 'category',
           data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
@@ -159,7 +166,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
           trigger: 'axis'
         }
       } },
-    { id:6, name: 'Plazo Fijo 04/06/24', description: '4 meses', amount: 15000, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], chartOption: {
+    { id:6, interest:0.22, name: 'Plazo Fijo 04/06/24', description: '4 meses', amount: 15000, icon: 'mdi-cash', iconColor: '#00000', action: 'Ver', userId: 1, trend: [7,8,9,7,8,9,6,7,8,5,9,7,6,2,1], chartOption: {
         xAxis: {
           type: 'category',
           data: ['2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021', '2022', '2023'],
@@ -191,7 +198,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
       }},
   ]);
   // Agregar inversión para un usuario
-  const addInvestment = ( investment,userId = userStore.userId) => {
+  const addInvestment = ( investment, userId = userStore.userId) => {
     if(investment.amount > balanceStore.getBalanceByUserId(userId)){
       return; //error
     }
@@ -253,6 +260,9 @@ export const useInvestmentsStore = defineStore('investments', () => {
     }
     balanceStore.enterMoney( amount, {name: 'Inversión', category: 'Inversión', cbu: '0000', concept: 'Retiro de inversión'});
   }
+  const getCurrentInvestment = () => {
+    return currentInvestment.value
+  }
 
   const setCurrentInvestment = (investmentId) => {
     const aux = investments.value.find(investment => investment.id === investmentId);
@@ -265,6 +275,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
     investments,
     addInvestment,
     getInvestmentsByUserId,
+    getCurrentInvestment,
     currentInvestment,
     setCurrentInvestment,
     removeInvestment

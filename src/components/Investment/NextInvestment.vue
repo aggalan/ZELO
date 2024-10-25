@@ -11,8 +11,8 @@
         <div class="stat-card">
           <div class="text-overline">Rendimiento</div>
           <div class="text-h5 font-weight-bold"
-               :class="{'text-success': currentYield > 0, 'text-error': currentYield < 0}">
-            {{ currentYield }}%
+               :class="{'text-success': currentInvestment.interest > 0, 'text-error': currentInvestment.interest < 0}">
+            {{ currentInvestment.interest * 100 }}%
           </div>
         </div>
 
@@ -37,11 +37,8 @@ import { computed } from 'vue'
 import { useInvestmentsStore } from '@/store/investmentStore'
 
 const investmentStore = useInvestmentsStore()
-const currentInvestment = computed(() => investmentStore.currentInvestment)
+const currentInvestment = computed(() => investmentStore.getCurrentInvestment())
 
-const currentYield = computed(() => {
-return;
-})
 
 const maturityDate = computed(() => {
   // This is a placeholder. You should calculate the actual maturity date based on your data
@@ -58,7 +55,7 @@ const maturityDate = computed(() => {
   text-align: center;
   padding: 16px;
   border-radius: 8px;
-  background-color: rgba(var(--v-theme-surface), 0.5);
+  background-color: rgba(var(--surface), 0.5);
 }
 
 .gap-4 {

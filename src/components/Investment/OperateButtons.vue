@@ -97,7 +97,8 @@ const confirmInvest = () => {
   console.log(`Investing $${investAmount.value} for ${investTerm.value} days`)
   investmentStore.addInvestment({
     amount: investAmount.value,
-    term: investTerm.value
+    description: investTerm.value + ' días',
+    interest: (Math.random() /4).toFixed(2)
   })
   investDialog.value = false
 }
