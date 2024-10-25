@@ -1,29 +1,35 @@
 <template>
   <v-card class="elevation-2">
-    <v-card-title class="pa-4">Resumen de Inversión</v-card-title>
+    <v-card-title class="pa-4">Resumen</v-card-title>
     <v-card-text>
-      <v-row align="center" no-gutters class="mb-4">
-        <v-col cols="12" sm="6" class="text-center pa-2">
+      <div class="d-flex flex-nowrap overflow-x-auto gap-4">
+        <!-- Inversión Total -->
+        <div class="stat-card">
           <div class="text-overline">Inversión Total</div>
           <div class="text-h5 font-weight-bold">${{ currentInvestment.amount }}</div>
-        </v-col>
-        <v-col cols="12" sm="6" class="text-center pa-2">
+        </div>
+
+        <!-- Rendimiento -->
+        <div class="stat-card">
           <div class="text-overline">Rendimiento</div>
-          <div class="text-h5 font-weight-bold" :class="{'text-success': currentYield > 0, 'text-error': currentYield < 0}">
+          <div class="text-h5 font-weight-bold"
+               :class="{'text-success': currentYield > 0, 'text-error': currentYield < 0}">
             {{ currentYield }}%
           </div>
-        </v-col>
-      </v-row>
-      <v-row align="center" no-gutters>
-        <v-col cols="12" sm="6" class="text-center pa-2">
+        </div>
+
+        <!-- Plazo -->
+        <div class="stat-card">
           <div class="text-overline">Plazo</div>
           <div class="text-h5 font-weight-bold">{{ currentInvestment.description }}</div>
-        </v-col>
-        <v-col cols="12" sm="6" class="text-center pa-2">
+        </div>
+
+        <!-- Vencimiento -->
+        <div class="stat-card">
           <div class="text-overline">Vencimiento</div>
           <div class="text-h5 font-weight-bold">{{ maturityDate }}</div>
-        </v-col>
-      </v-row>
+        </div>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -50,3 +56,38 @@ const maturityDate = computed(() => {
   return date.toLocaleDateString()
 })
 </script>
+
+<style scoped>
+.stat-card {
+  min-width: 200px;
+  flex: 1;
+  text-align: center;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: rgba(var(--v-theme-surface), 0.5);
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+/* Estilos para el scrollbar */
+.overflow-x-auto {
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.overflow-x-auto::-webkit-scrollbar {
+  height: 6px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+.overflow-x-auto::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 3px;
+}
+</style>

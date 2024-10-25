@@ -1,11 +1,7 @@
 <template>
   <v-card class="elevation-2">
     <v-card-title class="d-flex justify-space-between align-center pa-4">
-      <span class="text-h6 font-weight-bold">Evolución de la Inversión</span>
-      <v-chip :color="trendColor" :text-color="trendTextColor">
-        <v-icon start :icon="trendIcon"></v-icon>
-        {{ trendPercentage }}%
-      </v-chip>
+      <span class="text-h6 font-weight-bold">Evolución</span>
     </v-card-title>
     <v-card-text>
       <v-row>

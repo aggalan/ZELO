@@ -1,23 +1,15 @@
 <template>
-  <v-card class="mb-4 elevation-2">
-    <v-card-title class="d-flex justify-space-between align-center pa-4">
+  <v-card class="mb-1 elevation-2 position-card">
+    <v-card-title class="d-flex align-center pa-5">
       <span class="text-h6 font-weight-bold">{{ title }}</span>
-      <v-btn
-        variant="text"
-        color="primary"
-        :to="'/investment/all'"
-        class="text-none"
-      >
-        Ver todas
-        <v-icon right>mdi-chevron-right</v-icon>
-      </v-btn>
     </v-card-title>
     <v-card-text>
       <v-list>
         <v-list-item
-          v-for="investment in investments"
+          v-for="investment in paginatedInvestments"
           :key="investment.id"
           :class="{ 'bg-primary-lighten-5': investment.id === currentInvestmentId }"
+          class="mb-4"
           @click="setAsCurrentInvestment(investment)"
         >
           <template v-slot:prepend>
@@ -43,12 +35,23 @@
           </template>
         </v-list-item>
       </v-list>
+
+      <!-- Paginación -->
+      <div class="d-flex justify-center">
+        <v-pagination
+          v-model="currentPage"
+          :length="totalPages"
+          :total-visible="5"
+          rounded="circle"
+          color="#8B5CF6"
+        ></v-pagination>
+      </div>
     </v-card-text>
   </v-card>
 </template>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useInvestmentsStore } from "@/store/investmentStore"
 import { useUsersStore } from "@/store/usersStore"
 
@@ -58,6 +61,18 @@ const usersStore = useUsersStore()
 const investments = investmentsStore.getInvestmentsByUserId(usersStore.userId)
 const currentInvestmentId = computed(() => investmentsStore.currentInvestment?.id)
 const title = "Tu posición"
+
+// Paginación
+const itemsPerPage = 5
+const currentPage = ref(1)
+
+const totalPages = computed(() => Math.ceil(investments.value.length / itemsPerPage))
+
+const paginatedInvestments = computed(() => {
+  const start = (currentPage.value - 1) * itemsPerPage
+  const end = start + itemsPerPage
+  return investments.value.slice(start, end)
+})
 
 const setAsCurrentInvestment = (investment) => {
   investmentsStore.setCurrentInvestment(investment.id)
@@ -79,5 +94,9 @@ const getInvestmentTrendColor = (trend) => {
 <style scoped>
 .text-purple {
   color: #8B5CF6;
+}
+
+.position-card{
+  height: 482px;
 }
 </style>

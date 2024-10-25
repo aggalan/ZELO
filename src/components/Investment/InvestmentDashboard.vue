@@ -10,15 +10,15 @@
           <v-col cols="12">
             <OperateButtons />
           </v-col>
-          <v-col cols="12">
-            <InvestmentSummary />
-          </v-col>
         </v-row>
       </v-col>
       <v-col cols="12" md="8">
         <v-row>
           <v-col cols="12">
             <InvestmentChart />
+          </v-col>
+          <v-col cols="12">
+            <InvestmentSummary />
           </v-col>
         </v-row>
       </v-col>
