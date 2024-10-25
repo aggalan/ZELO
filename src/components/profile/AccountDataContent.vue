@@ -10,7 +10,6 @@
       <v-spacer></v-spacer>
     </v-container>
 
-
     <v-container class="d-flex flex-column align-center mt-0">
       <v-card class="v-car-align w-100">
         <h1 class="text-h4 mb-6 mt-5">Datos de tu cuenta</h1>
@@ -19,6 +18,14 @@
         <v-row>
           <v-col cols="12">
             <v-form @submit.prevent="updatePersonalInfo">
+              <v-alert
+                v-if="successMessage"
+                type="success"
+                dismissible
+                class="mb-4"
+              >
+                {{ successMessage }}
+              </v-alert>
               <v-text-field
                 v-model="user.name"
                 label="Nombre"
@@ -34,52 +41,64 @@
                 label="Correo Electrónico"
                 :aria-label="'Correo Electrónico'"
               ></v-text-field>
+              <v-text-field
+                v-model="user.alias"
+                label="Alias"
+                :aria-label="'Alias'"
+                type="Alias"
+                :error-messages="aliasError"
+              ></v-text-field>
               <v-btn type="submit" color="primary" class="mt-4">Actualizar información</v-btn>
             </v-form>
           </v-col>
         </v-row>
       </v-card>
     </v-container>
-
-    <v-snackbar
-      v-model="snackbar"
-      :timeout="3000"
-      color="#8B5CF6"
-      elevation="24"
-      rounded="pill"
-    >
-      ¡Configuración guardada con éxito!
-      <template v-slot:action="{ attrs }">
-        <v-btn
-          color="white"
-          text
-          v-bind="attrs"
-          @click="snackbar = false"
-        >
-          Cerrar
-        </v-btn>
-      </template>
-    </v-snackbar>
   </v-container>
 </template>
 
 <script setup>
-import {ref} from 'vue'
-import {useRouter} from 'vue-router'
-import {useUsersStore} from '@/store/usersStore'
+import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
+import { useUsersStore } from '@/store/usersStore'
 
 const router = useRouter()
 const snackbar = ref(false)
+const aliasError = ref('')
+const successMessage = ref('')
 const userStore = useUsersStore();
-const user = userStore.getUserById(userStore.userId);
+const user = ref({
+  name: '',
+  surname: '',
+  email: '',
+  alias: ''
+});
+
+onMounted(() => {
+  const fetchedUser = userStore.getUserById(userStore.userId);
+  if (fetchedUser) {
+    user.value = fetchedUser;
+  }
+});
+
+const validateInput = (input) => {
+  const regex = /^(?:\w+)(?:\.\w+){0,2}$/;
+  return regex.test(input);
+};
 
 const updatePersonalInfo = () => {
+  if (!validateInput(user.value.alias)) {
+    aliasError.value = 'Alias inválido. Debe ser palabra, palabra.palabra2 o palabra.palabra2.palabra3';
+    return;
+  }
+  aliasError.value = '';
   userStore.updateUser({
     name: user.value.name,
     surname: user.value.surname,
     email: user.value.email,
+    alias: user.value.alias,
   });
-  snackbar.value = true;
+  successMessage.value = 'Información actualizada con éxito';
 }
 
 const goBack = () => {
