@@ -56,7 +56,7 @@ const calculateReturn = (trend) => {
 }
 
 const trendPercentage = computed(() => {
-  return calculateReturn(currentInvestment.value.trend)
+  return calculateReturn(currentInvestment.value)
 })
 
 const trendColor = computed(() => {
