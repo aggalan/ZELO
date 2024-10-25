@@ -36,32 +36,33 @@
           </v-list-item>
         </v-list>
       </v-card-text>
-      <v-card-actions class="pa-4">
-        <v-btn
-          color="primary"
-          block
-          class="mb-2"
-          @click="confirm"
-          :loading="loading"
-        >
-          Confirmar
-        </v-btn>
-        <v-btn
-          color="grey-darken-1"
-          variant="outlined"
-          block
-          @click="cancel"
-          :disabled="loading"
-        >
-          Cancelar
-        </v-btn>
-      </v-card-actions>
+        <v-col>
+          <ActionButton
+            block
+            class="mb-2"
+            @click="confirm"
+            :loading="loading"
+          >
+            CONFIRMAR
+          </ActionButton>
+          <ActionButton
+            color="grey-darken-1"
+            variant="outlined"
+            block
+            @click="cancel"
+            :disabled="loading"
+          >
+            Cancelar
+          </ActionButton>
+        </v-col>
+
     </v-card>
   </v-dialog>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const props = defineProps({
   modelValue: Boolean,

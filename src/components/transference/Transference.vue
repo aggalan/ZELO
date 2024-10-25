@@ -8,7 +8,7 @@
             <v-card-text class="pa-0">
               <v-row justify="center" class="mb-4">
                 <v-col v-for="option in transferOptions" :key="option.title" cols="12" sm="4">
-                  <v-btn
+                  <ActionButton
                     :color="option.color"
                     block
                     height="48"
@@ -18,7 +18,7 @@
                     @click="selectTransferOption(option)"
                   >
                     {{ option.title }}
-                  </v-btn>
+                  </ActionButton>
                 </v-col>
               </v-row>
             </v-card-text>
@@ -33,11 +33,11 @@
                 <v-list-item v-for="transfer in recentTransfers" :key="transfer.id" class="py-2">
                   <template v-slot:prepend>
                     <v-avatar :color="transfer.color" size="40">
-                      <span class="text-subtitle-2 white--text">{{ transfer.avatar }}</span>
+                      <v-icon class="text-subtitle-2 white--text">{{ transfer.icon }}</v-icon>
                     </v-avatar>
                   </template>
-                  <v-list-item-title class="text-body-1">{{ transfer.name }}</v-list-item-title>
-                  <v-list-item-subtitle class="text-body-2">${{ transfer.amount }} - {{ transfer.date }}</v-list-item-subtitle>
+                  <v-list-item-title class="text-body-1">{{ transfer.to }}</v-list-item-title>
+                  <v-list-item-subtitle class="text-body-2">${{ transfer.amount }} - {{ transfer.time }}</v-list-item-subtitle>
                   <template v-slot:append>
                     <v-btn
                       color="deep-purple"
@@ -69,7 +69,9 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUsersStore } from '@/store/usersStore'
 import ContactsList from "@/components/transference/ContactsList.vue";
+import { useTransactionsStore } from "@/store/transactionStore";
 import TransferForm from "@/components/transference/TransferForm.vue";
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const router = useRouter()
 const usersStore = useUsersStore()
@@ -80,11 +82,7 @@ const transferOptions = ref([
   { title: 'CANCELAR', color: "var(--on-surface-light)" }
 ])
 
-const recentTransfers = ref([
-  { id: 1, cbu:10, name: 'María López', amount: '500.00', date: '15 de mayo de 2023', color: 'deep-purple', avatar: 'ML' },
-  { id: 2, cbu:20, name: 'Carlos Rodríguez', amount: '1200.00', date: '10 de mayo de 2023', color: 'teal', avatar: 'CR' },
-  { id: 3, cbu:30, name: 'Ana Martínez', amount: '750.00', date: '5 de mayo de 2023', color: 'orange', avatar: 'AM' },
-])
+const recentTransfers = useTransactionsStore().getIncomesByUserId()
 
 const frequentContacts = useUsersStore().getContacts()
 
