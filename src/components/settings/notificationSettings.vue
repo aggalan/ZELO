@@ -3,8 +3,8 @@
     <v-list>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Transaction Notifications</v-list-item-title>
-          <v-list-item-subtitle>Receive notifications for all transactions</v-list-item-subtitle>
+          <v-list-item-title>Notificaciones de transacciones</v-list-item-title>
+          <v-list-item-subtitle>Recibir notificaciones por todas las transacciones</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-switch v-model="transactionNotifications" color="#8B5CF6"></v-switch>
@@ -12,8 +12,8 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Balance Alerts</v-list-item-title>
-          <v-list-item-subtitle>Receive alerts when your balance is low</v-list-item-subtitle>
+          <v-list-item-title>Alertas de balance</v-list-item-title>
+          <v-list-item-subtitle>Recibir alertas cuando mi balance esta bajo</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-switch v-model="balanceAlerts" color="#8B5CF6"></v-switch>
@@ -21,8 +21,8 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Security Alerts</v-list-item-title>
-          <v-list-item-subtitle>Receive notifications about security-related events</v-list-item-subtitle>
+          <v-list-item-title>Alertas de seguridad</v-list-item-title>
+          <v-list-item-subtitle>Recibir notificaciones de eventos relacionados a mi seguridad</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-switch v-model="securityAlerts" color="#8B5CF6"></v-switch>
@@ -30,8 +30,8 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Promotional Notifications</v-list-item-title>
-          <v-list-item-subtitle>Receive updates about new features and offers</v-list-item-subtitle>
+          <v-list-item-title>Notificaciones Promocionales</v-list-item-title>
+          <v-list-item-subtitle>Recibir actualizaciones sobre nuevas funciones y ofertas</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-switch v-model="promotionalNotifications" color="#8B5CF6"></v-switch>
@@ -45,7 +45,7 @@
       @click="saveSettings"
       :loading="loading"
     >
-      Save Notification Preferences
+     Actualizar Configuracion de Seguridad
     </v-btn>
   </v-card-text>
 </template>

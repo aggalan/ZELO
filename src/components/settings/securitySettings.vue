@@ -5,44 +5,44 @@
         <v-col cols="12" md="6">
           <v-text-field
             v-model="currentPin"
-            label="Current PIN"
+            label="PIN actual"
             type="password"
             outlined
             dense
-            :rules="[v => !!v || 'Current PIN is required']"
+            :rules="[v => !!v || 'PIN es requerido']"
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field
             v-model="newPin"
-            label="New PIN"
+            label="Nuevo PIN"
             type="password"
             outlined
             dense
-            :rules="[v => !!v || 'New PIN is required', v => v.length === 4 || 'PIN must be 4 digits']"
+            :rules="[v => !!v || 'Nuevo PIN es requerido', v => v.length === 4 || 'El PIN debe tener 4 digitos']"
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field
             v-model="confirmPin"
-            label="Confirm New PIN"
+            label="Confirmar nuevo PIN"
             type="password"
             outlined
             dense
-            :rules="[v => !!v || 'Please confirm your PIN', v => v === newPin || 'PINs do not match']"
+            :rules="[v => !!v || 'Por favor confirme su nuevo PIN', v => v === newPin || 'Los PIN no coinciden']"
           ></v-text-field>
         </v-col>
         <v-col cols="12" md="6">
           <v-switch
             v-model="twoFactor"
-            label="Enable Two-Factor Authentication"
+            label="Habilitar autenticacion en 2 pasos"
             color="#8B5CF6"
           ></v-switch>
         </v-col>
         <v-col cols="12" md="6">
           <v-switch
             v-model="biometricAuth"
-            label="Enable Biometric Authentication"
+            label="Habilitar autenticacion biometrica"
             color="#8B5CF6"
           ></v-switch>
         </v-col>
@@ -54,7 +54,7 @@
         type="submit"
         :loading="loading"
       >
-        Update Security Settings
+        Actualizar Configuracion de Seguridad
       </v-btn>
     </v-form>
   </v-card-text>

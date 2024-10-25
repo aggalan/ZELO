@@ -3,8 +3,8 @@
     <v-list>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Transaction History Visibility</v-list-item-title>
-          <v-list-item-subtitle>Control who can see your transaction history</v-list-item-subtitle>
+          <v-list-item-title>Visibilidad de historial de transacciones</v-list-item-title>
+          <v-list-item-subtitle>Controla quién puede ver tu historial de transacciones</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-select
@@ -18,8 +18,8 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Balance Visibility</v-list-item-title>
-          <v-list-item-subtitle>Control who can see your wallet balance</v-list-item-subtitle>
+          <v-list-item-title>Visibilidad de balance</v-list-item-title>
+          <v-list-item-subtitle>Controla quien puede ver tu balance de cuenta</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-select
@@ -33,8 +33,8 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Data Sharing for Improvements</v-list-item-title>
-          <v-list-item-subtitle>Allow us to use your data to improve our services</v-list-item-subtitle>
+          <v-list-item-title>Compartir datos para mejoras</v-list-item-title>
+          <v-list-item-subtitle>Permítenos usar tus datos para mejorar nuestros servicios</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-switch v-model="dataSharing" color="#8B5CF6"></v-switch>
@@ -42,8 +42,8 @@
       </v-list-item>
       <v-list-item>
         <v-list-item-content>
-          <v-list-item-title>Third-Party Integrations</v-list-item-title>
-          <v-list-item-subtitle>Allow third-party apps to access your wallet data</v-list-item-subtitle>
+          <v-list-item-title>Integraciones de Terceros</v-list-item-title>
+          <v-list-item-subtitle>Permitir que aplicaciones de terceros accedan a los datos de tu billetera</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-switch v-model="thirdPartyAccess" color="#8B5CF6"></v-switch>
@@ -57,7 +57,7 @@
       @click="saveSettings"
       :loading="loading"
     >
-      Update Privacy Settings
+      Actualizar Configuracion de Privacidad
     </v-btn>
   </v-card-text>
 
@@ -66,9 +66,9 @@
 <script setup>
 import { ref } from 'vue'
 
-const transactionVisibility = ref('Only Me')
-const balanceVisibility = ref('Only Me')
-const visibilityOptions = ['Only Me', 'Friends', 'Public']
+const transactionVisibility = ref('Solo yo')
+const balanceVisibility = ref('Solo yo')
+const visibilityOptions = ['Solo yo', 'Contactos', 'Publico']
 const dataSharing = ref(false)
 const thirdPartyAccess = ref(false)
 const loading = ref(false)
