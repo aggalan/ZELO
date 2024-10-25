@@ -1,79 +1,86 @@
 <template>
-  <v-card v-if="transaction" class="mb-6 my-card">
-    <v-card-title class="text-h5 d-flex justify-space-between align-center">
-      Detalles de la Transacción
+  <v-card v-if="transaction" class="mb-6 rounded-lg elevation-3 mt-5">
+    <v-card-title class="text-h5 d-flex justify-space-between align-center pa-4 bg-primary">
+      <span class="white--text">Detalles de la Transacción</span>
       <v-chip
-        :color="transaction.type === 'incoming' ? 'success' : 'error'"
+        :color="transaction.type === 'incoming' ? 'light-green-accent-4' : 'deep-orange-accent-4'"
         text-color="white"
+        class="font-weight-bold"
+        elevation="2"
       >
         {{ transaction.type === 'incoming' ? 'Ingreso' : 'Egreso' }}
       </v-chip>
     </v-card-title>
-    <v-card-text>
+    <v-card-text class="pa-4">
       <v-row>
         <v-col cols="12" sm="6">
-          <p class="text-h6 font-weight-bold">${{ transaction.amount.toFixed(2) }}</p>
-          <p class="text-subtitle-1">{{ formatDate(transaction.time) }}</p>
+          <p class="text-h4 font-weight-bold primary--text">${{ transaction.amount.toFixed(2) }}</p>
+          <p class="text-subtitle-1">{{ formatDate(transaction.date) }}</p>
         </v-col>
-        <v-col cols="12" sm="6" class="text-right">
+        <v-col cols="12" sm="6" class="text-sm-right">
           <p class="text-subtitle-1">ID: {{ transaction.id }}</p>
+          <p class="text-subtitle-1 font-weight-medium" :class="{'success--text': transaction.status === 'completed', 'warning--text': transaction.status !== 'completed'}">
+            Estado: {{ transaction.status === 'completed' ? 'Completado' : 'Pendiente' }}
+          </p>
         </v-col>
       </v-row>
       <v-divider class="my-4"></v-divider>
       <v-row>
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Remitente</h3>
-          <p>{{ user.name }}</p>
-          <p>CBU: {{ user.cbu }}</p>
+          <p>{{ transaction.sender.name }}</p>
+          <p class="text-caption">CBU: {{ transaction.sender.account }}</p>
         </v-col>
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Destinatario</h3>
-          <p>{{ transaction.to }}</p>
-          <p>CBU: {{ transaction.cbu }}</p>
+          <p>{{ transaction.recipient.name }}</p>
+          <p class="text-caption">CBU: {{ transaction.recipient.account }}</p>
         </v-col>
       </v-row>
       <v-divider class="my-4"></v-divider>
       <v-row>
-        <v-col cols="12">
+        <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Descripción</h3>
           <p>{{ transaction.description }}</p>
         </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="12">
+        <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Categoría</h3>
-          <p>{{ transaction.category }}</p>
+          <v-chip color="secondary" text-color="white">{{ transaction.category }}</v-chip>
         </v-col>
       </v-row>
     </v-card-text>
-    <v-card-actions>
-      <ActionButton text color="#8B5CF6">Descargar comprobante</ActionButton>
-      <ActionButton text color="#8B5CF6">Reportar un problema</ActionButton>
+    <v-card-actions class="pa-4">
+      <v-btn color="primary" text class="text-capitalize">
+        <v-icon left>mdi-download</v-icon>
+        Descargar comprobante
+      </v-btn>
+      <v-btn color="secondary" text class="text-capitalize">
+        <v-icon left>mdi-alert-circle</v-icon>
+        Reportar un problema
+      </v-btn>
     </v-card-actions>
   </v-card>
 </template>
 
 <script setup>
-import {useTransactionsStore} from "@/store/transactionStore";
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
-import {useUsersStore} from "@/store/usersStore";
-import router from "@/router/router";
-import {onBeforeMount} from "vue";
+import { defineProps } from 'vue'
 
-const transaction = useTransactionsStore().getSelectedTransaction()
-const userStore = useUsersStore()
-
-onBeforeMount(() => {
-  if (!transaction) {
-    router.push('/movements');  // Redirige a la página "movements" si no hay transacción
+const props = defineProps({
+  transaction: {
+    type: Object,
+    required: true
   }
-});
-
-
-const user = userStore.getUserById(userStore.userId)
+})
 
 const formatDate = (dateString) => {
   const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
   return new Date(dateString).toLocaleDateString('es-ES', options)
 }
 </script>
+
+<style scoped>
+.v-chip {
+  font-size: 0.9rem;
+  padding: 0 12px;
+}
+</style>

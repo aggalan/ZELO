@@ -1,20 +1,18 @@
 <template>
-      <v-container fluid class="pa-6">
-        <v-row>
-          <v-col cols="12" md="8">
-            <TransactionDetails :transaction="selectedTransaction" />
-          </v-col>
-          <v-col cols="12" md="4">
-            <RelatedTransactions :transactions="relatedTransactions" />
-          </v-col>
-        </v-row>
-      </v-container>
-
+  <v-container fluid class="pa-4 bg-surface">
+    <v-row>
+      <v-col cols="12" lg="8">
+        <TransactionDetails :transaction="selectedTransaction" />
+      </v-col>
+      <v-col cols="12" lg="4">
+        <RelatedTransactions :transactions="relatedTransactions" />
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-
+import {ref} from 'vue'
 import TransactionDetails from './TransactionDetails.vue'
 import RelatedTransactions from './RelatedTransactions.vue'
 
@@ -57,4 +55,7 @@ const relatedTransactions = ref([
 </script>
 
 <style>
+.bg-surface {
+  background-color: #f5f5f5;
+}
 </style>
