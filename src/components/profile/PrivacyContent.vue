@@ -1,39 +1,42 @@
 <template>
-  <div class="settings-page">
-    <v-app-bar flat color= #F3F4F6 class="mb-4">
+  <v-container fluid class="settings-page">
+    <v-container color="#Ffffff" fluid class="d-flex flex-column">
       <v-btn
         icon
         @click="goBack"
-        color="#8B5CF6"
       >
-        <v-icon>mdi-arrow-left</v-icon>
+        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-    </v-app-bar>
+    </v-container>
 
-    <v-container fluid class="settings-container pa-4">
-      <v-row>
-        <v-col cols="12">
-          <h1 class="text-h4 mb-6">Privacidad</h1>
-          <v-form @submit.prevent="updatePersonalInfo">
-            <v-list>
-              <v-list-item>
-                <v-list-item-title>Perfil público</v-list-item-title>
-                <v-switch v-model="publicProfile" color="primary" :aria-label="'Hacer perfil público'"></v-switch>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>Compartir datos de uso</v-list-item-title>
-                <v-switch v-model="shareUsageData" color="primary" :aria-label="'Compartir datos de uso'"></v-switch>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>Recibir notificaciones</v-list-item-title>
-                <v-switch v-model="receiveNotifications" color="primary" :aria-label="'Recibir notificaciones'"></v-switch>
-              </v-list-item>
-            </v-list>
-            <v-btn type="submit" color="primary" class="mt-4">Actualizar información</v-btn>
-          </v-form>
-        </v-col>
-      </v-row>
+    <v-container class="d-flex flex-column align-center mt-0">
+      <v-card class="v-car-align w-100">
+        <h1 class="text-h4 mb-6 mt-5">Privacidad</h1>
+      </v-card>
+      <v-card class="settings-container pa-4">
+        <v-row>
+          <v-col cols="12">
+            <v-form @submit.prevent="updatePersonalInfo">
+              <v-list>
+                <v-list-item>
+                  <v-list-item-title>Perfil público</v-list-item-title>
+                  <v-switch v-model="publicProfile" color="primary" :aria-label="'Hacer perfil público'"></v-switch>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>Compartir datos de uso</v-list-item-title>
+                  <v-switch v-model="shareUsageData" color="primary" :aria-label="'Compartir datos de uso'"></v-switch>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>Recibir notificaciones</v-list-item-title>
+                  <v-switch v-model="receiveNotifications" color="primary" :aria-label="'Recibir notificaciones'"></v-switch>
+                </v-list-item>
+              </v-list>
+              <v-btn type="submit" color="primary" class="mt-4">Actualizar información</v-btn>
+            </v-form>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
 
     <v-snackbar
@@ -55,7 +58,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script setup>
@@ -86,11 +89,12 @@ const goBack = () => {
 <style scoped>
 .settings-page {
   min-height: 100vh;
-  background-color: #F3F4F6;
+  background-color: #ffffff;
 }
 
 .settings-container {
-  max-width: 1000px;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
 }
 
@@ -98,6 +102,11 @@ const goBack = () => {
   border-radius: 12px;
   background-color: white;
   transition: all 0.3s ease;
+}
+
+.v-car-align {
+  max-width: 900px;
+  box-shadow: none;
 }
 
 .v-tab {
