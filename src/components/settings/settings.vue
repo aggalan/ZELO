@@ -1,46 +1,51 @@
 <template>
-  <div class="settings-page">
-    <v-app-bar flat color="#F3F4F6" class="mb-4">
+  <v-container fluid class="settings-page ma-0">
+    <v-container color="#Ffffff" fluid class="d-flex flex-column">
       <v-btn
         icon
         @click="goBack"
-        color="#8B5CF6"
       >
-        <v-icon>mdi-arrow-left</v-icon>
+        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-    </v-app-bar>
+    </v-container>
 
-    <v-container fluid class="settings-container pa-4">
-      <v-row>
-        <v-col cols="12">
-          <h1 class="text-h4 mb-6">Wallet Settings</h1>
-          <v-tabs
-            v-model="activeTab"
-            background-color="transparent"
-            color="#8B5CF6"
-            grow
-            slider-color="#8B5CF6"
-          >
-            <v-tab v-for="tab in tabs" :key="tab.value">
-              <v-icon left>{{ tab.icon }}</v-icon>
-              {{ tab.title }}
-            </v-tab>
-          </v-tabs>
-          <v-card class="mt-4 settings-card" flat>
-            <v-window v-model="activeTab">
-              <v-window-item
-                v-for="tab in tabs"
-                :key="tab.value"
-                :transition="isForward ? 'slide-x-transition' : 'slide-x-reverse-transition'"
-                :reverse-transition="isForward ? 'slide-x-reverse-transition' : 'slide-x-transition'"
-              >
-                <component :is="tab.component" @save="showSnackbar" />
-              </v-window-item>
-            </v-window>
-          </v-card>
-        </v-col>
-      </v-row>
+
+    <v-container class="d-flex flex-column align-center mt-0">
+      <v-card class="v-car-align w-100">
+        <h1 class="text-h4 mb-6 mt-5">Wallet Settings</h1>
+      </v-card>
+
+      <v-card fluid class="settings-container pa-4 rounded-lg ma-0 w-100">
+        <v-row>
+          <v-col cols="12">
+            <v-tabs
+              v-model="activeTab"
+              background-color="transparent"
+              color="#8B5CF6"
+              grow
+              slider-color="#8B5CF6"
+            >
+              <v-tab v-for="tab in tabs" :key="tab.value">
+                <v-icon left>{{ tab.icon }}</v-icon>
+                {{ tab.title }}
+              </v-tab>
+            </v-tabs>
+            <v-card class="mt-4 settings-card" flat>
+              <v-window v-model="activeTab">
+                <v-window-item
+                  v-for="tab in tabs"
+                  :key="tab.value"
+                  :transition="isForward ? 'slide-x-transition' : 'slide-x-reverse-transition'"
+                  :reverse-transition="isForward ? 'slide-x-reverse-transition' : 'slide-x-transition'"
+                >
+                  <component :is="tab.component" @save="showSnackbar" />
+                </v-window-item>
+              </v-window>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
 
     <v-snackbar
@@ -62,7 +67,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script setup>
@@ -102,13 +107,18 @@ watch(activeTab, (newVal) => {
 
 <style scoped>
 .settings-page {
-  min-height: 100vh;
-  background-color: #F3F4F6;
+  padding: 16px;
+  background-color: #ffffff;
 }
 
 .settings-container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.v-car-align {
+  max-width: 900px;
+  box-shadow: none;
 }
 
 .settings-card {

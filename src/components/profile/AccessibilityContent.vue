@@ -1,46 +1,49 @@
 <template>
-  <div class="settings-page">
-    <v-app-bar flat color= #F3F4F6 class="mb-4">
+  <v-container fluid class="settings-page">
+    <v-container color="#Ffffff" fluid class="d-flex flex-column">
       <v-btn
         icon
         @click="goBack"
-        color="#8B5CF6"
       >
-        <v-icon>mdi-arrow-left</v-icon>
+        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-    </v-app-bar>
+    </v-container>
 
-    <v-container fluid class="settings-container pa-4">
-      <v-row>
-        <v-col cols="12">
-          <h1 class="text-h4 mb-6">Accesibilidad</h1>
-          <v-form @submit.prevent="updatePersonalInfo">
-            <v-list>
-              <v-list-item>
-                <v-list-item-title>Tamaño de fuente</v-list-item-title>
-                <v-slider
-                  v-model="fontSize"
-                  :min="12"
-                  :max="24"
-                  :step="2"
-                  thumb-label
-                  :aria-label="'Tamaño de fuente: ' + fontSize + ' píxeles'"
-                ></v-slider>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>Contraste alto</v-list-item-title>
-                <v-switch v-model="highContrast" color="primary" :aria-label="'Activar contraste alto'"></v-switch>
-              </v-list-item>
-              <v-list-item>
-                <v-list-item-title>Lector de pantalla</v-list-item-title>
-                <v-switch v-model="screenReader" color="primary" :aria-label="'Activar lector de pantalla'"></v-switch>
-              </v-list-item>
-            </v-list>
-            <v-btn type="submit" color="primary" class="mt-4">Actualizar información</v-btn>
-          </v-form>
-        </v-col>
-      </v-row>
+    <v-container class="d-flex flex-column align-center mt-0">
+      <v-card class="v-car-align w-100">
+        <h1 class="text-h4 mb-6 mt-5">Accesibilidad</h1>
+      </v-card>
+      <v-card fluid class="settings-container pa-4 w-100">
+        <v-row>
+          <v-col cols="12">
+            <v-form @submit.prevent="updatePersonalInfo">
+              <v-list>
+                <v-list-item>
+                  <v-list-item-title>Tamaño de fuente</v-list-item-title>
+                  <v-slider
+                    v-model="fontSize"
+                    :min="12"
+                    :max="24"
+                    :step="2"
+                    thumb-label
+                    :aria-label="'Tamaño de fuente: ' + fontSize + ' píxeles'"
+                  ></v-slider>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>Contraste alto</v-list-item-title>
+                  <v-switch v-model="highContrast" color="primary" :aria-label="'Activar contraste alto'"></v-switch>
+                </v-list-item>
+                <v-list-item>
+                  <v-list-item-title>Lector de pantalla</v-list-item-title>
+                  <v-switch v-model="screenReader" color="primary" :aria-label="'Activar lector de pantalla'"></v-switch>
+                </v-list-item>
+              </v-list>
+              <v-btn type="submit" color="primary" class="mt-4">Actualizar información</v-btn>
+            </v-form>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
 
     <v-snackbar
@@ -62,7 +65,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script setup>
@@ -92,12 +95,17 @@ const goBack = () => {
 <style scoped>
 .settings-page {
   min-height: 100vh;
-  background-color: #F3F4F6;
+  background-color: #ffffff;
 }
 
 .settings-container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.v-car-align {
+  max-width: 900px;
+  box-shadow: none;
 }
 
 .settings-card {

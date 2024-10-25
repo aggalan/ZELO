@@ -1,42 +1,45 @@
 <template>
-  <div class="settings-page">
-    <v-app-bar flat color= #F3F4F6 class="mb-4">
+  <v-container fluid class="settings-page">
+    <v-container color="#Ffffff" fluid class="d-flex flex-column">
       <v-btn
         icon
         @click="goBack"
-        color="#8B5CF6"
       >
-        <v-icon>mdi-arrow-left</v-icon>
+        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
-    </v-app-bar>
+    </v-container>
 
-    <v-container fluid class="settings-container pa-4">
-      <v-row>
-        <v-col cols="12">
-          <h1 class="text-h4 mb-6">Informacion Personal</h1>
-          <v-form>
-            <v-text-field
-              v-model="user.dni"
-              label="DNI"
-              :aria-label="'DNI'"
-              readonly
-            ></v-text-field>
-            <v-text-field
-              v-model="taxId"
-              label="Identificación fiscal (cuit/cuil)"
-              :aria-label="'Identificación fiscal'"
-              readonly
-            ></v-text-field>
-            <v-text-field
-              v-model="country"
-              label="País de residencia"
-              :aria-label="'País de residencia'"
-              readonly
-            ></v-text-field>
-          </v-form>
-        </v-col>
-      </v-row>
+    <v-container class="d-flex flex-column align-center mt-0">
+      <v-card class="v-car-align w-100">
+        <h1 class="text-h4 mb-6 mt-5">Informacion Personal</h1>
+      </v-card>
+      <v-card fluid class="settings-container pa-4 w-100">
+        <v-row>
+          <v-col cols="12">
+            <v-form>
+              <v-text-field
+                v-model="user.dni"
+                label="DNI"
+                :aria-label="'DNI'"
+                readonly
+              ></v-text-field>
+              <v-text-field
+                v-model="taxId"
+                label="Identificación fiscal (cuit/cuil)"
+                :aria-label="'Identificación fiscal'"
+                readonly
+              ></v-text-field>
+              <v-text-field
+                v-model="country"
+                label="País de residencia"
+                :aria-label="'País de residencia'"
+                readonly
+              ></v-text-field>
+            </v-form>
+          </v-col>
+        </v-row>
+      </v-card>
     </v-container>
 
     <v-snackbar
@@ -58,7 +61,7 @@
         </v-btn>
       </template>
     </v-snackbar>
-  </div>
+  </v-container>
 </template>
 
 <script setup>
@@ -92,12 +95,17 @@ const goBack = () => {
 <style scoped>
 .settings-page {
   min-height: 100vh;
-  background-color: #F3F4F6;
+  background-color: #ffffff;
 }
 
 .settings-container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.v-car-align {
+  max-width: 900px;
+  box-shadow: none;
 }
 
 .settings-card {
