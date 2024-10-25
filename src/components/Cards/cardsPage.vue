@@ -210,7 +210,7 @@ const addCard = () => {
     expiry: newCard.value.expiry,
     name: newCard.value.name,
     color: 'purple', // You might want to randomize this or let the user choose
-    cvv: parseInt(newCard.value.cvv),
+    cvv: newCard.value.cvv,
     viewInfo: false,
     icon: 'mdi-eye-closed'
   };
