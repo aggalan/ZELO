@@ -28,7 +28,7 @@
     </v-container>
 
     <v-container class="d-flex flex-row justify-end">
-      <v-btn icon>
+      <v-btn icon to="/profile">
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
       <div class="d-flex flex-column">
