@@ -3,13 +3,11 @@
     <v-card-title class="pa-4">Resumen</v-card-title>
     <v-card-text>
       <div class="d-flex flex-nowrap overflow-x-auto gap-4">
-        <!-- Inversión Total -->
         <div class="stat-card">
           <div class="text-overline">Inversión Total</div>
           <div class="text-h5 font-weight-bold">${{ currentInvestment.amount }}</div>
         </div>
 
-        <!-- Rendimiento -->
         <div class="stat-card">
           <div class="text-overline">Rendimiento</div>
           <div class="text-h5 font-weight-bold"
@@ -42,11 +40,7 @@ const investmentStore = useInvestmentsStore()
 const currentInvestment = computed(() => investmentStore.currentInvestment)
 
 const currentYield = computed(() => {
-  const trend = currentInvestment.value.trend
-  if (trend.length < 2) return 0
-  const firstValue = trend[0]
-  const lastValue = trend[trend.length - 1]
-  return ((lastValue - firstValue) / firstValue * 100).toFixed(2)
+return;
 })
 
 const maturityDate = computed(() => {

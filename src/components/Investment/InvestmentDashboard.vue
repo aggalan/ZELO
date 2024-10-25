@@ -8,7 +8,7 @@
             <YourPosition />
           </v-col>
           <v-col cols="12">
-            <OperateButtons />
+            <OperateButtons class="operate-buttons" />
           </v-col>
         </v-row>
       </v-col>
@@ -32,3 +32,10 @@ import InvestmentSummary from './NextInvestment.vue'
 import InvestmentChart from './InvestmentChart.vue'
 import OperateButtons from './OperateButtons.vue'
 </script>
+
+<style scoped>
+.operate-buttons {
+  height: 173px; /* Adjust the height as needed */
+  margin-top: -4px;
+}
+</style>
