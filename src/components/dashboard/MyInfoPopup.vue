@@ -9,48 +9,74 @@
       </v-card-title>
       <v-card-text class="pa-4">
         <v-form>
-          <span>Nombre y Apellido</span>
-          <data-field
-            can-edit
-            @edit="editName"
-            :value="userData.name + ' ' +  userData.surname"
-            @copy="copyToClipboard(userData.name, 'name')"
-          />
-          <span>Alias</span>
-          <data-field
-            can-edit
-            @edit="editAlias"
-            :value="userData.alias"
-            @copy="copyToClipboard(userData.alias, 'alias')"
-            :has-red-dot="true"
-          />
-          <span>CBU</span>
-          <data-field
-            :value="userData.cbu"
-            @copy="copyToClipboard(userData.cbu, 'cbu')"
-          />
-          <span>DNI</span>
-          <data-field
-            :value="userData.dni"
-            @copy="copyToClipboard(userData.dni, 'dni')"
-          />
+          <div class="field-container mb-4">
+            <span class="field-title">Nombre y Apellido</span>
+            <div class="field-content">
+              <v-text-field
+                v-model="userData.name"
+                readonly
+                class="rounded-input"
+              />
+              <v-btn class = "mb-5 ml-2" icon @click="copyToClipboard(userData.name)">
+                <v-icon>mdi-content-copy</v-icon>
+              </v-btn>
+            </div>
+          </div>
+          <div class="field-container mb-4">
+            <span class="field-title">Alias</span>
+            <div class="field-content">
+              <v-text-field
+                v-model="userData.alias"
+                readonly
+                class="rounded-input"
+              />
+              <v-btn class = "mb-5 ml-2" icon @click="copyToClipboard(userData.alias)">
+                <v-icon>mdi-content-copy</v-icon>
+              </v-btn>
+            </div>
+          </div>
+          <div class="field-container mb-4">
+            <span class="field-title">CBU</span>
+            <div class="field-content">
+              <v-text-field
+                v-model="userData.cbu"
+                readonly
+                class="rounded-input"
+              />
+              <v-btn class = "mb-5 ml-2" icon @click="copyToClipboard(userData.cbu)">
+                <v-icon>mdi-content-copy</v-icon>
+              </v-btn>
+            </div>
+          </div>
+          <div class="field-container mb-4">
+            <span class="field-title">DNI</span>
+            <div class="field-content">
+              <v-text-field
+                v-model="userData.dni"
+                readonly
+                class="rounded-input"
+              />
+              <v-btn icon class = "mb-5 ml-2" @click="copyToClipboard(userData.dni)">
+                <v-icon>mdi-content-copy</v-icon>
+              </v-btn>
+            </div>
+          </div>
         </v-form>
       </v-card-text>
-        <ActionButton
-
-          color="#8B5CF6"
-          class="text-capitalize font-weight-bold ma-3"
-          height="48"
-          @click="shareData"
-        >
-          COMPARTIR
-        </ActionButton>
+      <ActionButton
+        color="#8B5CF6"
+        class="text-capitalize font-weight-bold ma-3"
+        height="48"
+        @click="shareData"
+      >
+        COMPARTIR
+      </ActionButton>
     </v-card>
   </v-dialog>
 </template>
 
 <script setup>
-import {ref, watch,} from 'vue';
+import {ref, watch} from 'vue';
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 import {useUsersStore} from "@/store/usersStore";
 
@@ -73,46 +99,45 @@ const closeDialog = () => {
   emit('update:modelValue', false);
 };
 
-const copyToClipboard = (text, field) => {
+const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text);
 };
 
-const editAlias = (alias) => {
-  useUsersStore().editAlias(alias);
-};
-
-const editName = (name) => {
-  useUsersStore().editName(name);
-}
-
 const shareData = () => {
-  // Implement share functionality
   console.log('Sharing data:', props.userData);
 };
 
-// Watch for changes in the modelValue prop
 watch(() => props.modelValue, (newValue) => {
   dialog.value = newValue;
 });
 
-// Emit changes in the dialog value
 watch(dialog, (newValue) => {
   emit('update:modelValue', newValue);
 });
 </script>
 
-<script>
-import DataField from './DataField.vue';
-
-export default {
-  components: {
-    DataField,
-  },
-};
-</script>
-
 <style scoped>
 .v-card {
   border-radius: 16px;
+}
+
+.field-container {
+  margin-bottom: var(--spacing-4);
+}
+
+.field-title {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.field-content {
+  display: flex;
+  align-items: center;
+}
+
+.rounded-input .v-input__control {
+  border-radius: var(--border-radius);
+  flex-grow: 1;
 }
 </style>

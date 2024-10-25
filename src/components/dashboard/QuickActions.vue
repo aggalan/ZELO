@@ -20,10 +20,10 @@
       </v-row>
     </v-card-text>
     <v-dialog v-model="dialogLink" max-width="500">
-      <PaymentLinkSection />
+      <PaymentLinkSection v-model="dialogLink" />
     </v-dialog>
     <v-dialog v-model="dialogContact" max-width="500">
-      <AddContactForm />
+      <AddContactForm v-model="dialogContact" :showCloseButton="true" />
     </v-dialog>
     <my-info-popup :user-data="user" v-model="dialogData" />
   </v-card>
@@ -58,7 +58,7 @@ const handleAction = (actionText) => {
   if (actionText === 'Link de cobro') {
     dialogLink.value = true
   } else if (actionText === 'Tus datos') {
-    toggleDialogData()
+    dialogData.value = true
   } else if (actionText === 'Añadir contacto') {
     dialogContact.value = true
   }
