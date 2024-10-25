@@ -25,24 +25,7 @@
     <v-dialog v-model="dialogContact" max-width="500">
       <AddContactForm />
     </v-dialog>
-    <v-dialog v-model="dialogData" max-width="500">
-      <template v-slot:default="dialogData">
-        <v-card class="my-card">
-          <v-card-title>
-            <span class="text-h5"> Mis datos </span>
-          </v-card-title>
-          <v-card-text>
-              CBU: {{ user.cbu }}
-              <br>
-              Alias: {{ user.alias }}
-          </v-card-text>
-          <v-card-actions>
-            <v-spacer></v-spacer>
-            <v-btn color="deep-purple" @click="toggleDialogData">Cerrar</v-btn>
-          </v-card-actions>
-        </v-card>
-      </template>
-    </v-dialog>
+    <my-info-popup :user-data="user" v-model="dialogData" />
   </v-card>
 
 
@@ -54,6 +37,7 @@ import PaymentLinkSection from "@/components/dashboard/enterMoney/PaymentLinkSec
 import AddContactForm from "@/components/transference/AddContactForm.vue";
 import MyInformation from "@/components/dashboard/MyInformation.vue";
 import {useUsersStore} from "@/store/usersStore";
+import MyInfoPopup from "@/components/dashboard/MyInfoPopup.vue";
 
 const quickActions = ref([
   { text: 'Link de cobro', icon: 'mdi-link', color: 'purple' },
@@ -65,7 +49,7 @@ const dialogData = ref(false)
 const dialogContact = ref(false)
 
 const userStore = useUsersStore()
-const user = userStore.getUserById(userStore.userId)
+const user = userStore.getUser()
 const toggleDialogData= ()=>{
   dialogData.value = !dialogData.value
 }
