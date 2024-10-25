@@ -9,7 +9,7 @@
         </v-list-item-content>
       </v-col>
       <v-col class="d-flex align-center justify-end" cols="auto">
-        <v-btn icon to="/help">
+        <v-btn icon to="/profile/help">
           <v-icon>mdi-chevron-right</v-icon>
         </v-btn>
       </v-col>

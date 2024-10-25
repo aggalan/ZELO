@@ -57,7 +57,7 @@
             <v-row align="center" no-gutters>
               <v-col>
                 <v-list-item-title class="text-subtitle-1">
-                  {{ deposit.bank }} - ${{ deposit.amount }}
+                  {{ deposit.to }} - ${{ deposit.amount }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
                   {{ formatDate(deposit.date) }}
@@ -80,11 +80,12 @@
 </template>
 
 <script setup>
-import {ref, reactive, computed} from 'vue'
+import {ref, computed} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
 import { useBalanceStore } from "@/store/balanceStore"
 import MyInformation from "@/components/dashboard/MyInformation.vue";
 import {useUsersStore} from "@/store/usersStore";
+import {useTransactionsStore} from "@/store/transactionStore";
 
 const balanceStore = useBalanceStore()
 
@@ -107,11 +108,7 @@ const accountDetails = ref({
   alias: user.alias,
 })
 
-const lastDeposits = ref([
-  { bank: 'Banco Nación', amount: 1000, date: new Date(2023, 4, 15) },
-  { bank: 'Banco Galicia', amount: 500, date: new Date(2023, 4, 10) },
-  { bank: 'Banco Santander', amount: 2000, date: new Date(2023, 4, 5) },
-])
+const lastDeposits = useTransactionsStore().getTransactionsByUserId()
 
 const startDeposit = () => {
   loading.value = true

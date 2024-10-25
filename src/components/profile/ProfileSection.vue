@@ -47,7 +47,7 @@ const profileItems = ref([
   { icon: 'mdi-account-details', title: 'Datos de tu cuenta', subtitle: 'Valida y consulta los datos de tu cuenta', route: '/account-data' },
   { icon: 'mdi-card-account-details', title: 'Información personal', subtitle: 'Información de tu documento de identidad y de tu actividad fiscal', route: '/personal-info' },
   { icon: 'mdi-shield-lock', title: 'Privacidad', subtitle: 'Preferencias y control sobre el uso de tus datos', route: '/privacy' },
-  { icon: 'mdi-help-circle', title: 'Ayuda', subtitle: 'Obtenga ayuda sobre su cuenta', route: '/help' },
+  { icon: 'mdi-help-circle', title: 'Ayuda', subtitle: 'Obtenga ayuda sobre su cuenta', route: 'profile/help' },
 ])
 
 const goToSettings = () => {

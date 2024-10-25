@@ -40,7 +40,7 @@ const route = useRoute()
 const menuItems = ref([
   { title: 'Dashboard', icon: 'mdi-view-dashboard', to: '/' },
   { title: 'Perfil', icon: 'mdi-account', to: '/profile' },
-  { title: 'Ayuda', icon: 'mdi-help-circle', to: '/help' },
+  { title: 'Ayuda', icon: 'mdi-help-circle', to: 'profile/help' },
 ])
 
 const isProfileActive = computed(() => route.path === '/profile')

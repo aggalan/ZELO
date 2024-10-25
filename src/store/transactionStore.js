@@ -56,7 +56,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const getTransactionsByUserId = (userId= useUserStore.userId) => {
     return transactions.value
       .filter(transaction => transaction.userId === userId)
-      .sort((a, b) => b.time - a.time) // Ordenar de más reciente a más antigua
+      .sort((a, b) => b.creationTime - a.creationTime) // Ordenar de más reciente a más antigua
       .map(transaction => ({
         ...transaction,
         time: timeSinceEvent(transaction.creationTime)//gregar el tiempo transcurrido a cada transacción
@@ -65,7 +65,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const getPaymentsByUserId = (userId= useUserStore.userId) => {
     return transactions.value
       .filter(transaction => transaction.userId === userId && transaction.type === 'pago')
-      .sort((a, b) => b.time - a.time) // Ordenar de más reciente a más antigua
+      .sort((a, b) => b.creationTime - a.creationTime) // Ordenar de más reciente a más antigua
       .map(transaction => ({
         ...transaction,
         time: timeSinceEvent(transaction.creationTime)//gregar el tiempo transcurrido a cada transacción
@@ -75,7 +75,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const getIncomesByUserId = (userId= useUserStore.userId) => {
     return transactions.value
       .filter(transaction => transaction.userId === userId && transaction.type === 'ingreso')
-      .sort((a, b) => b.time - a.time) // Ordenar de más reciente a más antigua
+      .sort((a, b) => b.creationTime - a.creationTime) // Ordenar de más reciente a más antigua
       .map(transaction => ({
         ...transaction,
         time: timeSinceEvent(transaction.creationTime)//gregar el tiempo transcurrido a cada transacción

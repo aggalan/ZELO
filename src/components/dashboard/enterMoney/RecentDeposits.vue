@@ -42,24 +42,24 @@
 
       <v-expansion-panels v-if="lastDeposits.length > 0">
         <v-expansion-panel>
-          <v-expansion-panel-header>
+          <v-expansion-panel>
             Últimos depósitos
-          </v-expansion-panel-header>
-          <v-expansion-panel-content>
+          </v-expansion-panel>
+          <v-expansion-panel>
             <v-list>
               <v-list-item
                 v-for="(deposit, index) in lastDeposits"
                 :key="index"
                 @click="repeatDeposit(deposit)"
               >
-                <v-list-item-content>
+                <v-list-item>
                   <v-list-item-title>
                     {{ deposit.bank }} - ${{ deposit.amount }}
                   </v-list-item-title>
                   <v-list-item-subtitle>
                     {{ formatDate(deposit.date) }}
                   </v-list-item-subtitle>
-                </v-list-item-content>
+                </v-list-item>
                 <v-list-item-action>
                   <v-btn
                     icon
@@ -70,18 +70,17 @@
                 </v-list-item-action>
               </v-list-item>
             </v-list>
-          </v-expansion-panel-content>
+          </v-expansion-panel>
         </v-expansion-panel>
       </v-expansion-panels>
     </v-card>
   </v-container>
 </template>
 
-<script>
+<script setup>
 import { ref, reactive } from 'vue'
+import {useTransactionsStore} from "@/store/transactionStore";
 
-export default {
-  setup() {
     const selectedBank = ref('')
     const amount = ref('')
     const banks = ['Banco 1', 'Banco 2', 'Banco 3']
@@ -90,11 +89,7 @@ export default {
       alias: 'mi.cuenta.alias'
     })
 
-    const lastDeposits = ref([
-      { bank: 'Banco 1', amount: 1000, date: new Date(2023, 4, 15) },
-      { bank: 'Banco 2', amount: 500, date: new Date(2023, 4, 10) },
-      { bank: 'Banco 3', amount: 2000, date: new Date(2023, 4, 5) },
-    ])
+    const lastDeposits = useTransactionsStore().getIncomesByUserId()
 
     const startDeposit = () => {
       // Implement deposit logic here
@@ -114,19 +109,6 @@ export default {
         day: 'numeric'
       }).format(date)
     }
-
-    return {
-      selectedBank,
-      amount,
-      banks,
-      accountDetails,
-      lastDeposits,
-      startDeposit,
-      repeatDeposit,
-      formatDate
-    }
-  }
-}
 </script>
 
 <style scoped>

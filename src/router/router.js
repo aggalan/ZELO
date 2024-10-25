@@ -48,7 +48,7 @@ const routes = [
   { path: '/movements', component: MovementsDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/movements/details', component: TransactionDetailsPage, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
-  { path: '/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/profile/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/settings', component: Settings, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/accessibility', component: AccessibilityContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/account-data', component: AccountDataContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
