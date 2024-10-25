@@ -247,5 +247,11 @@ p {
 .list-body {
   background: var(--surface);
 }
+.pagination-fixed {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
 
 .hidden { display: none; }

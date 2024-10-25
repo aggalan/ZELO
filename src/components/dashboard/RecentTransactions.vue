@@ -72,8 +72,11 @@ const viewDetails = (transaction) => {
 .recent-transactions-card {
   background: white;
   border-radius: 16px;
-  height: 100%;
-  padding-bottom: 100px;
+  padding-bottom: 8px;
+  min-height: 70vh; /* Altura mínima del 30% de la pantalla */
+  max-height: 70vh; /* Altura máxima del 60% de la pantalla */
+  display: flex;
+  flex-direction: column;
 }
 @media (min-width: 1280px) {
   .recent-transactions-card {

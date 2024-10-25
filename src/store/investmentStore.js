@@ -191,12 +191,15 @@ export const useInvestmentsStore = defineStore('investments', () => {
       }},
   ]);
   // Agregar inversión para un usuario
-  const addInvestment = (userId = userStore.userId, investment) => {
+  const addInvestment = ( investment,userId = userStore.userId) => {
     if(investment.amount > balanceStore.getBalanceByUserId(userId)){
       return; //error
     }
+    const fechaActual = new Date(Date.now());
+    const fechaFormateada = fechaActual.toLocaleDateString('es-ES'); // Formato dd/mm/yyyy
+
     investments.value.push({
-      ...investment, userId, id: lastId +1,
+      ...investment, userId, id: lastId +1,  icon: 'mdi-cash', name: 'Plazo fijo ' + fechaFormateada,
       chartOption: {
         xAxis: {
           type: 'category',

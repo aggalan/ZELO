@@ -43,7 +43,7 @@
           :length="totalPages"
           :total-visible="5"
           rounded="circle"
-          color="#8B5CF6"
+          class="pagination-fixed"
         ></v-pagination>
       </div>
     </v-card-text>
@@ -95,6 +95,11 @@ const getInvestmentTrendColor = (trend) => {
 .text-purple {
   color: #8B5CF6;
 }
+ .contenedor-principal {
+   position: relative;
+   min-height: 300px; /* Ajusta según el espacio necesario */
+ }
+
 
 .position-card{
   height: 482px;
