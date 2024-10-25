@@ -15,29 +15,25 @@
       <v-row>
         <v-col cols="12">
           <h1 class="text-h4 mb-6">Informacion Personal</h1>
-          <v-form @submit.prevent="updatePersonalInfo">
+          <v-form>
             <v-text-field
-              v-model="fullName"
-              label="Nombre completo"
-              :aria-label="'Nombre completo'"
-            ></v-text-field>
-            <v-text-field
-              v-model="idNumber"
-              label="Número de identificación"
-              :aria-label="'Número de identificación'"
+              v-model="user.dni"
+              label="DNI"
+              :aria-label="'DNI'"
+              readonly
             ></v-text-field>
             <v-text-field
               v-model="taxId"
-              label="Identificación fiscal"
+              label="Identificación fiscal (cuit/cuil)"
               :aria-label="'Identificación fiscal'"
+              readonly
             ></v-text-field>
-            <v-select
+            <v-text-field
               v-model="country"
-              :items="countries"
               label="País de residencia"
               :aria-label="'País de residencia'"
-            ></v-select>
-            <v-btn type="submit" color="primary" class="mt-4">Actualizar información</v-btn>
+              readonly
+            ></v-text-field>
           </v-form>
         </v-col>
       </v-row>
@@ -68,15 +64,16 @@
 <script setup>
 import {ref, computed, watch} from 'vue'
 import {useRouter} from 'vue-router'
+import {useUsersStore} from "@/store/usersStore";
 
 const router = useRouter()
 
 const snackbar = ref(false)
-const fullName = ref('Juan Rodriguez')
-const idNumber = ref('123456789')
+const userStore = useUsersStore();
+const user = userStore.getUserById(userStore.userId);
+
+const country = ref('Argentina')
 const taxId = ref('ABCD1234567')
-const country = ref('España')
-const countries = ['España', 'México', 'Argentina', 'Colombia', 'Chile']
 
 
 

@@ -11,20 +11,26 @@
       <v-spacer></v-spacer>
     </v-app-bar>
 
+
     <v-container fluid class="settings-container pa-4">
       <v-row>
         <v-col cols="12">
           <h1 class="text-h4 mb-6">Datos de tu cuenta</h1>
           <v-form @submit.prevent="updatePersonalInfo">
             <v-text-field
-              v-model="userName"
-              label="Nombre de Usuario"
-              :aria-label="'Nombre de Usuario'"
+              v-model="user.name"
+              label="Nombre"
+              :aria-label="'Nombre'"
             ></v-text-field>
             <v-text-field
-              v-model="email"
-              label="Correo Electronico"
-              :aria-label="'Correo Electronico'"
+              v-model="user.surname"
+              label="Apellido"
+              :aria-label="'Apellido'"
+            ></v-text-field>
+            <v-text-field
+              v-model="user.email"
+              label="Correo Electrónico"
+              :aria-label="'Correo Electrónico'"
             ></v-text-field>
             <v-btn type="submit" color="primary" class="mt-4">Actualizar información</v-btn>
           </v-form>
@@ -39,7 +45,7 @@
       elevation="24"
       rounded="pill"
     >
-      Settings saved successfully!
+      ¡Configuración guardada con éxito!
       <template v-slot:action="{ attrs }">
         <v-btn
           color="white"
@@ -47,7 +53,7 @@
           v-bind="attrs"
           @click="snackbar = false"
         >
-          Close
+          Cerrar
         </v-btn>
       </template>
     </v-snackbar>
@@ -55,27 +61,27 @@
 </template>
 
 <script setup>
-import {ref, computed, watch} from 'vue'
+import {ref} from 'vue'
 import {useRouter} from 'vue-router'
+import {useUsersStore} from '@/store/usersStore'
 
 const router = useRouter()
-
 const snackbar = ref(false)
-const userName = ref('JuanRodriguez1')
-const email = ref('juanrodriguez6@gmail.com')
-
-
+const userStore = useUsersStore();
+const user = userStore.getUserById(userStore.userId);
 
 const updatePersonalInfo = () => {
-  // Here you would implement the logic to update personal information
-  console.log('Actualizando información personal...')
+  userStore.updateUser({
+    name: user.value.name,
+    surname: user.value.surname,
+    email: user.value.email,
+  });
+  snackbar.value = true;
 }
-
 
 const goBack = () => {
   router.push('/profile')
 }
-
 </script>
 
 <style scoped>

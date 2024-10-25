@@ -3,11 +3,11 @@
     <v-card class="mb-6 profile-card elevation-2">
       <v-card-text class="d-flex align-center">
         <v-avatar color="var(--primary)" size="48" class="mr-4">
-          <span class="text-h5 text-white">JR</span>
+          <span class="text-h5 text-white">{{ initials }}</span>
         </v-avatar>
         <div>
-          <div class="text-h6">Juan Rodriguez</div>
-          <div class="text-subtitle-1 grey--text">juanrodriguez@gmail.com</div>
+          <div class="text-h6">{{ user.name }} {{ user.surname }}</div>
+          <div class="text-subtitle-1 grey--text">{{ user.email }}</div>
         </div>
         <v-spacer></v-spacer>
         <v-btn
@@ -26,11 +26,21 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import ItemList from "@/components/generalComponents/SectionList.vue";
+import { useUsersStore } from "@/store/usersStore";
 
 const router = useRouter()
+
+const userStore = useUsersStore();
+const user = userStore.getUserById(userStore.userId);
+
+const initials = computed(() => {
+  const nameInitial = user.name ? user.name.charAt(0).toUpperCase() : '';
+  const surnameInitial = user.surname ? user.surname.charAt(0).toUpperCase() : '';
+  return nameInitial + surnameInitial;
+});
 
 const profileItems = ref([
   { icon: 'mdi-account-check', title: 'Accesibilidad', subtitle: 'Accede a las funciones de accesibilidad de la app', route: '/accessibility' },

@@ -32,7 +32,7 @@
         <v-icon>mdi-account-circle</v-icon>
       </v-btn>
       <div class="d-flex flex-column">
-        <span>{{user.name}}</span>
+        <span>{{user.name}} {{user.surname}}</span>
         <span class="text-caption grey--text">{{user.email}}</span>
       </div>
     </v-container>

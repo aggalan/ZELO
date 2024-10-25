@@ -13,7 +13,7 @@
           <data-field
             can-edit
             @edit="editName"
-            :value="userData.name"
+            :value="userData.name + ' ' +  userData.surname"
             @copy="copyToClipboard(userData.name, 'name')"
           />
           <span>Alias</span>
