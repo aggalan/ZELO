@@ -44,7 +44,5 @@ const filteredExpenses = computed(() => {
   display: none;
 }
 
-.v-btn {
-  text-transform: none;
-}
+
 </style>

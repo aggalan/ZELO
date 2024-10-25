@@ -12,7 +12,7 @@
                     :color="option.color"
                     block
                     height="48"
-                    class="text-none text-body-1 font-weight-medium"
+                    class="text-body-1 font-weight-medium"
                     variant="flat"
                     rounded
                     @click="selectTransferOption(option)"

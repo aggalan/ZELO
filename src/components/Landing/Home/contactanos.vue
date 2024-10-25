@@ -37,7 +37,7 @@
               rows="3"
             ></v-textarea>
 
-            <v-btn
+            <ActionButton
               type="submit"
               color="purple-darken-2"
               class="mt-4"
@@ -45,7 +45,7 @@
               block
             >
               Enviar mensaje
-            </v-btn>
+            </ActionButton>
           </v-form>
         </v-card-text>
       </v-card>
@@ -70,6 +70,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const form = ref(null)
 const name = ref('')

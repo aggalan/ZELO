@@ -38,7 +38,6 @@
       </v-card-text>
         <ActionButton
 
-          color="#8B5CF6"
           class="text-capitalize font-weight-bold ma-3"
           height="48"
           @click="shareData"

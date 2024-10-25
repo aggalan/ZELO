@@ -36,7 +36,6 @@ const handleClick = () => {
 
 <style scoped>
 .pay-btn {
-  text-transform: none;
   font-size: 12px;
 }
 </style>

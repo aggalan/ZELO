@@ -22,16 +22,15 @@
           <v-list-item-subtitle>${{ investment.amount }}</v-list-item-subtitle>
 
           <template v-slot:append>
-            <v-btn
-              :color="investment.id === currentInvestmentId ? 'grey' : '#8B5CF6'"
+            <ActionButton
+              :color="investment.id === currentInvestmentId ? 'grey' : 'primary'"
               :variant="investment.id === currentInvestmentId ? 'text' : 'flat'"
-              class="text-none"
               @click.stop="setAsCurrentInvestment(investment)"
             >
               <span :class="{ 'text-purple': investment.id === currentInvestmentId }">
                 {{ investment.id === currentInvestmentId ? 'Viendo' : 'Ver' }}
               </span>
-            </v-btn>
+            </ActionButton>
           </template>
         </v-list-item>
       </v-list>
@@ -54,6 +53,7 @@
 import { computed, ref } from 'vue'
 import { useInvestmentsStore } from "@/store/investmentStore"
 import { useUsersStore } from "@/store/usersStore"
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const investmentsStore = useInvestmentsStore()
 const usersStore = useUsersStore()
@@ -93,7 +93,7 @@ const getInvestmentTrendColor = (trend) => {
 
 <style scoped>
 .text-purple {
-  color: #8B5CF6;
+  color: var(--primary);
 }
  .contenedor-principal {
    position: relative;
