@@ -25,16 +25,21 @@
               <v-icon :icon="investment.icon" :color="investment.iconColor"></v-icon>
             </v-avatar>
           </template>
+
           <v-list-item-title class="font-weight-bold">{{ investment.name }}</v-list-item-title>
           <v-list-item-subtitle>${{ investment.amount }}</v-list-item-subtitle>
+
           <template v-slot:append>
-            <v-chip
-              :color="getInvestmentTrendColor(investment.trend)"
-              :text-color="getInvestmentTrendColor(investment.trend) === 'success' ? 'white' : 'white'"
-              size="small"
+            <v-btn
+              :color="investment.id === currentInvestmentId ? 'grey' : '#8B5CF6'"
+              :variant="investment.id === currentInvestmentId ? 'text' : 'flat'"
+              class="text-none"
+              @click.stop="setAsCurrentInvestment(investment)"
             >
-              {{ calculateReturn(investment.trend) }}%
-            </v-chip>
+              <span :class="{ 'text-purple': investment.id === currentInvestmentId }">
+                {{ investment.id === currentInvestmentId ? 'Viendo' : 'Ver' }}
+              </span>
+            </v-btn>
           </template>
         </v-list-item>
       </v-list>
@@ -70,3 +75,9 @@ const getInvestmentTrendColor = (trend) => {
   return returnValue > 0 ? 'success' : returnValue < 0 ? 'error' : 'info'
 }
 </script>
+
+<style scoped>
+.text-purple {
+  color: #8B5CF6;
+}
+</style>

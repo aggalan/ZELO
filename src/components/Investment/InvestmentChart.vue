@@ -9,30 +9,7 @@
     </v-card-title>
     <v-card-text>
       <v-row>
-        <v-col cols="12" md="4">
-          <v-list>
-            <v-list-item>
-              <template v-slot:prepend>
-                <v-icon color="primary">mdi-currency-usd</v-icon>
-              </template>
-              <v-list-item-title>Monto Actual</v-list-item-title>
-              <v-list-item-subtitle class="text-h6 font-weight-bold">
-                ${{ currentInvestment.amount }}
-              </v-list-item-subtitle>
-            </v-list-item>
-            <v-list-item>
-              <template v-slot:prepend>
-                <v-icon color="primary">mdi-chart-line</v-icon>
-              </template>
-              <v-list-item-title>Rendimiento</v-list-item-title>
-              <v-list-item-subtitle class="text-h6 font-weight-bold">
-                {{ calculateReturn(currentInvestment.trend) }}%
-              </v-list-item-subtitle>
-            </v-list-item>
-          </v-list>
-        </v-col>
-        <v-col cols="12" md="8">
-          <v-sheet class="pa-4 rounded">
+          <v-sheet class="pa-4 rounded mt-16">
             <v-sparkline
               :value="currentInvestment.trend"
               :gradient="['#8B5CF6', '#8B5CF6']"
@@ -43,7 +20,6 @@
               height="100"
             ></v-sparkline>
           </v-sheet>
-        </v-col>
       </v-row>
       <v-row class="negative-margin">
         <v-col cols="12">
@@ -62,6 +38,7 @@ import {LineChart} from 'echarts/charts'
 import {GridComponent, TooltipComponent, LegendComponent} from 'echarts/components'
 import VChart from 'vue-echarts'
 import {useInvestmentsStore} from '@/store/investmentStore'
+import OperateButtons from "@/components/Investment/OperateButtons.vue";
 
 use([CanvasRenderer, LineChart, GridComponent, TooltipComponent, LegendComponent])
 
