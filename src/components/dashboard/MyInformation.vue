@@ -16,8 +16,6 @@
 </template>
 
 <script setup>
-import { ref, defineProps } from 'vue'
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const props = defineProps({
   accountDetails: {

@@ -2,11 +2,13 @@
   <v-card class="pa-4">
     <v-card-title class="text-h5">Ingreso por Banco</v-card-title>
     <v-card-text>
+      <v-form @submit.prevent="startDeposit">
       <v-row>
         <v-col cols="12" md="6">
           <v-select
             v-model="selectedBank"
             :items="bankNames"
+            :rules="[v => !!v || 'El banco es requerido']"
             label="Selecciona tu banco"
             outlined
           ></v-select>
@@ -17,6 +19,7 @@
             label="Monto a ingresar"
             prefix="$"
             outlined
+            :rules="[v => !!v || 'El monto es requerido', v => !isNaN(v) || 'El monto debe ser un número']"
             type="number"
           ></v-text-field>
         </v-col>
@@ -28,7 +31,7 @@
             dark
             block
             large
-            @click="startDeposit"
+            type="submit"
             :loading="loading"
           >
             INICIAR INGRESO
@@ -42,6 +45,7 @@
       >
         Depósito realizado con éxito.
       </v-alert>
+      </v-form>
     </v-card-text>
 
     <v-card-text v-if="lastDeposits.length > 0">
@@ -114,6 +118,9 @@ const lastDeposits = computed(() => {
 })
 
 const startDeposit = () => {
+  if (!selectedBank.value || !amount.value) {
+    return
+  }
   loading.value = true
   confirmation.value = false
   setTimeout(() => {
