@@ -52,12 +52,12 @@
                     <v-list-item-title class="text-body-1">{{ transfer.to }}</v-list-item-title>
                     <v-list-item-subtitle class="text-body-2">${{ transfer.amount }} - {{ transfer.time }}</v-list-item-subtitle>
                     <template v-slot:append>
-                      <v-btn
-                        color="deep-purple"
-                        icon="mdi-refresh"
-                        variant="text"
-                        @click="repeatTransfer(transfer)"
-                      ></v-btn>
+                      <ActionButton
+                        icon
+                        @click.stop="repeatTransfer(transfer)"
+                      >
+                        <v-icon>mdi-repeat</v-icon>
+                      </ActionButton>
                     </template>
                   </v-list-item>
                 </v-list>

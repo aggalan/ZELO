@@ -55,7 +55,7 @@ export const useBalanceStore = defineStore('balance', () => {
     const userBalance = balances.value.find(balance => balance.userId === userStore.userId);
     if (userBalance && userBalance.amount >= amount) {
       userBalance.amount -= parsedAmount;
-      transactions.addTransaction(userStore.userId, { type: 'pago', amount: parsedAmount, time: Date.now(), to: to.name|| '', category: to.category || '' , cbu: to.cbu || '', description: to.concept || '' });
+      transactions.addTransaction(userStore.userId, { type: 'pago', amount: parsedAmount, creationTime: Date.now(), to: to.name|| '', category: to.category || '' , cbu: to.cbu || '', description: to.concept || '' });
       return true
     } else {
       console.log('No tienes suficiente saldo');

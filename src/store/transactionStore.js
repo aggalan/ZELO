@@ -18,7 +18,7 @@ export const useTransactionsStore = defineStore('transactions', () => {
   const useUserStore = useUsersStore()
   // Agregar transacción
   const addTransaction = (userId, transaction) => {
-    transactions.value.push({ ...transaction, userId, id: transactions.value.length + 1 });
+    transactions.value.push({ ...transaction, userId, id: transactions.value.length + 1, icon: 'mdi-account' });
   };
   const  timeSinceEvent = ( eventTimestamp) => {
     const now = Date.now(); // Tiempo actual en milisegundos
