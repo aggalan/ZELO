@@ -4,7 +4,7 @@
       <span class="text-h6 font-weight-bold">{{ title }}</span>
     </v-card-title>
     <v-card-text>
-      <v-list>
+      <v-list v-if="paginatedInvestments.length > 0">
         <v-list-item
           v-for="investment in paginatedInvestments"
           :key="investment.id"
@@ -35,8 +35,13 @@
         </v-list-item>
       </v-list>
 
+      <v-sheet v-else class="d-flex flex-column align-center justify-center pa-6 mt-16">
+        <v-icon icon="mdi-cash-remove" size="64" color="grey" class="mb-4"></v-icon>
+        <p class="text-h6 text-center mb-4">No tienes inversiones activas</p>
+      </v-sheet>
+
       <!-- Paginación -->
-      <div class="d-flex justify-center">
+      <div v-if="paginatedInvestments.length > 0" class="d-flex justify-center">
         <v-pagination
           v-model="currentPage"
           :length="totalPages"
@@ -53,10 +58,12 @@
 import { computed, ref } from 'vue'
 import { useInvestmentsStore } from "@/store/investmentStore"
 import { useUsersStore } from "@/store/usersStore"
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import { useRouter } from 'vue-router'
+import ActionButton from "@/components/generalComponents/ActionButton.vue"
 
 const investmentsStore = useInvestmentsStore()
 const usersStore = useUsersStore()
+const router = useRouter()
 
 const investments = investmentsStore.getInvestmentsByUserId(usersStore.userId)
 const currentInvestmentId = computed(() => investmentsStore.currentInvestment?.id)
@@ -78,6 +85,10 @@ const setAsCurrentInvestment = (investment) => {
   investmentsStore.setCurrentInvestment(investment.id)
 }
 
+const goToNewInvestment = () => {
+  router.push('/investments/new')
+}
+
 const calculateReturn = (trend) => {
   if (trend.length < 2) return 0
   const firstValue = trend[0]
@@ -95,12 +106,11 @@ const getInvestmentTrendColor = (trend) => {
 .text-purple {
   color: var(--primary);
 }
- .contenedor-principal {
-   position: relative;
-   min-height: 300px; /* Ajusta según el espacio necesario */
- }
-
-.position-card{
+.contenedor-principal {
+  position: relative;
+  min-height: 300px;
+}
+.position-card {
   height: 482px;
 }
 </style>
