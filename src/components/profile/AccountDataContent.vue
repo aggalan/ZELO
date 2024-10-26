@@ -108,7 +108,7 @@ const goBack = () => {
 
 <style scoped>
 .settings-page {
-  min-height: 100vh;
+  min-height: 100%;
   background-color: #ffffff;
 }
 
