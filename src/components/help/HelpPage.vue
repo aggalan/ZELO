@@ -1,8 +1,17 @@
 <template>
   <v-container fluid class="help-page">
-    <h1 class="text-h4 mb-6 mt-6">Ayuda</h1>
+    <v-container color="#Ffffff" fluid class="d-flex flex-column">
+      <v-btn
+        icon
+        @click="goBack"
+      >
+        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+    </v-container>
     <v-container class="god">
-      <h3 class="mb-4 font-weight-regular text-grey-darken-4">¿Con qué podemos ayudarte?</h3>
+      <h1 class="text-h4 mt-6 mb-2">Ayuda</h1>
+      <h3 class="mb-4 font-weight-regular text-grey-darken-4 mt-0">¿Con qué podemos ayudarte?</h3>
 
       <ItemList :items="helpCategories" @itemClick="handleCategoryClick" />
 
@@ -63,6 +72,10 @@ const contactSupport = () => {
 const cancelAccount = () => {
   console.log('Cancelling account...')
   // Implement account cancellation logic here
+}
+
+const goBack = () => {
+  router.back();
 }
 </script>
 
