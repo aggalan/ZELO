@@ -36,7 +36,7 @@ import router from "@/router/router";
 const myContacts = useUsersStore().getContacts()
 
 const goBack = () => {
-  router.push('/transference')
+  router.back();
 }
 </script>
 
