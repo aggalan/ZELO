@@ -1,7 +1,7 @@
 <template>
   <v-card class="my-card" elevation="2">
     <v-card-title class="d-flex justify-space-between align-center">
-      <span class="text-h5 mt-2">Link de Pago</span>
+      <span class="text-h5 mt-2">Link de Cobro</span>
       <v-btn icon @click="closeDialog" class="close-btn">
         <v-icon>mdi-close</v-icon>
       </v-btn>

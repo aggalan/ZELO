@@ -17,7 +17,7 @@
           <v-card class="mb-6 rounded-lg" flat>
             <v-card-text class="pa-0">
               <v-row justify="center" class="mb-4">
-                <v-col v-for="option in transferOptions" :key="option.title" cols="12" sm="4">
+                <v-col class ="text-white" v-for="option in transferOptions" :key="option.title" cols="12" sm="4">
                   <ActionButton
                     :color="option.color"
                     block
