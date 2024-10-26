@@ -23,11 +23,12 @@
 
           <template v-slot:append>
             <ActionButton
-              :color="investment.id === currentInvestmentId ? 'grey' : 'primary'"
+              :color="investment.id === currentInvestmentId ? 'grey' : 'transparent'"
               :variant="investment.id === currentInvestmentId ? 'text' : 'flat'"
               @click.stop="setAsCurrentInvestment(investment)"
+              class="text-purple"
             >
-              <span :class="{ 'text-purple': investment.id === currentInvestmentId }">
+              <span :class="{ 'text-grey': investment.id === currentInvestmentId }">
                 {{ investment.id === currentInvestmentId ? 'Viendo' : 'Ver' }}
               </span>
             </ActionButton>
@@ -93,14 +94,19 @@ const getInvestmentTrendColor = (trend) => {
 
 <style scoped>
 .text-purple {
-  color: var(--primary);
+  color: #8B5CF6; /* Adjust this color to a lighter shade if needed */
 }
- .contenedor-principal {
-   position: relative;
-   min-height: 300px; /* Ajusta según el espacio necesario */
- }
 
-.position-card{
+.text-grey {
+  color: gray;
+}
+
+.contenedor-principal {
+  position: relative;
+  min-height: 300px; /* Adjust according to the necessary space */
+}
+
+.position-card {
   height: 482px;
 }
 </style>
