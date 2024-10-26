@@ -49,11 +49,11 @@ const routes = [
   { path: '/movements/details', component: TransactionDetailsPage, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/profile', component: ProfileDashboard, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/profile/help', component: Help, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
-  { path: '/settings', component: Settings, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
-  { path: '/accessibility', component: AccessibilityContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
-  { path: '/account-data', component: AccountDataContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
-  { path: '/personal-info', component: PersonalInfoContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
-  { path: '/privacy', component: PrivacyContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/profile/settings', component: Settings, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/profile/accessibility', component: AccessibilityContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/profile/account-data', component: AccountDataContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/profile/personal-info', component: PersonalInfoContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
+  { path: '/profile/privacy', component: PrivacyContent, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
   { path: '/dashboard/enter', component: EnterMoneyPage, meta: { showNavbar: false, showSidebar: true, applyBackground: false, authProtected: true } },
 
 

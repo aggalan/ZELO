@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-2">
+  <v-card class="my-card">
     <v-card-title class="pa-4">Rendimientos</v-card-title>
     <v-card-text>
       <v-data-table

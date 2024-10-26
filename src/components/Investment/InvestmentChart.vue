@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-2">
+  <v-card class=" my-card">
     <v-card-title class="d-flex justify-space-between align-center pa-4">
       <span class="text-h6 font-weight-bold">Evolución</span>
     </v-card-title>

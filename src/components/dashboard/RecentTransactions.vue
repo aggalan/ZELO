@@ -1,7 +1,6 @@
 <template>
   <v-card :class=" {'recent-transactions-card':true, 'recent-transactions-card-height':showPagination} ">
     <v-card-text>
-
         <div class="d-flex justify-space-between align-center mb-4">
           <h2 class="text-h6 font-weight-bold">{{ title }}</h2>
           <slot/>

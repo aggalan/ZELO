@@ -65,9 +65,12 @@ const formattedBalance = computed(() =>
 
 <style scoped>
 .balance-card {
-  //background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  //background: linear-gradient(135deg, #f5f7fc, #d8d9f1);
+  background: linear-gradient(135deg, #f8f9fc, #e3e4f1); /* Degradado suave con tinte violeta */
   color: white;
   height: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra más oscura y extendida */
+  transition: box-shadow 0.3s ease;
 }
 .action-btn {
   height: 40px;

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="mb-1 elevation-2 position-card">
+  <v-card class="mb-1 my-card position-card">
     <v-card-title class="d-flex align-center pa-5">
       <span class="text-h6 font-weight-bold">{{ title }}</span>
     </v-card-title>
@@ -99,7 +99,6 @@ const getInvestmentTrendColor = (trend) => {
    position: relative;
    min-height: 300px; /* Ajusta según el espacio necesario */
  }
-
 
 .position-card{
   height: 482px;

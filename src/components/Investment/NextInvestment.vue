@@ -1,5 +1,5 @@
 <template>
-  <v-card class="elevation-2">
+  <v-card class="my-card">
     <v-card-title class="pa-4">Resumen</v-card-title>
     <v-card-text>
       <div class="d-flex flex-nowrap overflow-x-auto gap-4">
