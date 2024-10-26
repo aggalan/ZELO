@@ -89,7 +89,7 @@ const sliderStyle = computed(() => ({
   bottom: 0;
   left: 0;
   height: 4px;
-  background-color: #8B5CF6;
+  background-color: var(--primary);
   transition: transform 0.3s ease, width 0.3s ease;
   z-index: 0;
 }

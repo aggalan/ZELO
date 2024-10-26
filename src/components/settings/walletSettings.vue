@@ -37,21 +37,21 @@
           ></v-switch>
         </v-col>
       </v-row>
-      <v-btn
-        color="#8B5CF6"
+      <ActionButton
         class="mt-4"
         dark
         type="submit"
         :loading="loading"
       >
         Actualizar Configuracion de Billetera
-      </v-btn>
+      </ActionButton>
     </v-form>
   </v-card-text>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const defaultCurrency = ref('USD')
 const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'AUD']

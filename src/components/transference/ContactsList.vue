@@ -12,7 +12,7 @@
         bg-color="white"
         density="comfortable"
       ></v-text-field>
-      <v-list class="rounded-lg bg-grey-lighten-4">
+      <v-list class="rounded-lg">
         <v-list-item v-for="contact in filteredContacts" :key="contact.name" class="py-2">
           <template v-slot:prepend>
             <v-avatar :color="contact.color || 'grey-lighten-2'" size="40">
@@ -21,7 +21,7 @@
           </template>
           <v-list-item-title class="font-weight-medium">{{ contact.name }}</v-list-item-title>
           <template v-slot:append>
-            <ActionButton @click="completeTransfer(contact)" customClass="text-none px-6">Transferir</ActionButton>
+            <ActionButton @click="completeTransfer(contact)" customClass=" px-6">Transferir</ActionButton>
           </template>
         </v-list-item>
       </v-list>

@@ -50,14 +50,14 @@
       </v-row>
     </v-card-text>
     <v-card-actions class="pa-4">
-      <v-btn color="primary" text class="text-capitalize">
+      <ActionButton color="primary" text class="text-capitalize">
         <v-icon left>mdi-download</v-icon>
         Descargar comprobante
-      </v-btn>
-      <v-btn color="secondary" text class="text-capitalize">
+      </ActionButton>
+      <ActionButton color="secondary" text class="text-capitalize">
         <v-icon left>mdi-alert-circle</v-icon>
         Reportar un problema
-      </v-btn>
+      </ActionButton>
     </v-card-actions>
   </v-card>
 </template>
@@ -66,6 +66,7 @@
 import { computed } from 'vue'
 import { useTransactionsStore } from '@/store/transactionStore'
 import { useUsersStore } from '@/store/usersStore'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const transactionsStore = useTransactionsStore()
 const usersStore = useUsersStore()

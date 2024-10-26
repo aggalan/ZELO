@@ -26,12 +26,12 @@
         </v-card-title>
         <v-card-text>
           <p class="mb-4">Contáctanos y te responderemos lo antes posible.</p>
-          <v-btn
+          <ActionButton
             color="purple-darken-2"
             @click="scrollToContact"
           >
             Contáctanos
-          </v-btn>
+          </ActionButton>
         </v-card-text>
       </v-card>
     </v-main>
@@ -44,6 +44,7 @@
 
 <script setup>
 import { ref, computed } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const faqItems = ref([
   {

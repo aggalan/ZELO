@@ -29,7 +29,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
             smooth: true,
             showSymbol: false,
             areaStyle: {
-              opacity: 0.8,
+              opacity: 0.5,
               color: '#8B5CF6'
             },
             lineStyle: {
@@ -60,7 +60,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
             smooth: true,
             showSymbol: false,
             areaStyle: {
-              opacity: 0.8,
+              opacity: 0.5,
               color: '#8B5CF6'
             },
             lineStyle: {
@@ -91,7 +91,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
             smooth: true,
             showSymbol: false,
             areaStyle: {
-              opacity: 0.8,
+              opacity: 0.5,
               color: '#8B5CF6'
             },
             lineStyle: {
@@ -123,7 +123,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
           smooth: true,
           showSymbol: false,
           areaStyle: {
-            opacity: 0.8,
+            opacity: 0.5,
             color: '#8B5CF6'
           },
           lineStyle: {
@@ -155,7 +155,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
           smooth: true,
           showSymbol: false,
           areaStyle: {
-            opacity: 0.8,
+            opacity: 0.5,
             color: '#8B5CF6'
           },
           lineStyle: {
@@ -185,7 +185,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
           smooth: true,
           showSymbol: false,
           areaStyle: {
-            opacity: 0.8,
+            opacity: 0.5,
             color: '#8B5CF6'
           },
           lineStyle: {
@@ -226,7 +226,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
           smooth: true,
           showSymbol: false,
           areaStyle: {
-            opacity: 0.8,
+            opacity: 0.5,
             color: '#8B5CF6'
           },
           lineStyle: {

@@ -112,7 +112,5 @@ import {useTransactionsStore} from "@/store/transactionStore";
 </script>
 
 <style scoped>
-.v-btn {
-  text-transform: none;
-}
+
 </style>

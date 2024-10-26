@@ -12,26 +12,24 @@
       </div>
       <v-row dense>
         <v-col cols="6">
-          <v-btn
-            color="var(--primary)"
+          <ActionButton
             block
             @click="goToTransference"
             class="action-btn"
             prepend-icon="mdi-bank-transfer"
           >
             Transferir
-          </v-btn>
+          </ActionButton>
         </v-col>
         <v-col cols="6">
-          <v-btn
-            color="var(--primary)"
+          <ActionButton
             block
             @click="goToEnter"
             class="action-btn"
             prepend-icon="mdi-cash-plus"
           >
             Ingresar
-          </v-btn>
+          </ActionButton>
         </v-col>
       </v-row>
     </v-card-text>
@@ -43,6 +41,7 @@ import { computed, ref } from "vue";
 import { useBalanceStore } from "@/store/balanceStore";
 import { useUsersStore } from "@/store/usersStore";
 import { useRouter } from 'vue-router';
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const balanceStore = useBalanceStore();
 const userStore = useUsersStore();
@@ -71,9 +70,6 @@ const formattedBalance = computed(() =>
   height: auto;
 }
 .action-btn {
-  text-transform: none;
   height: 40px;
-  font-size: 14px;
-  border-radius: 8px;
 }
 </style>

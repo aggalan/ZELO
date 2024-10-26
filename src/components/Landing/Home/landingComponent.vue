@@ -11,8 +11,8 @@
           {{ description }}
         </p>
         <div class="d-flex align-center flex-wrap">
-          <v-btn
-            color="#8B5CF6"
+          <ActionButton
+            color="primary"
             x-large
             class="text-capitalize font-weight-bold mr-4 px-8 d-flex align-center justify-center py-6 mb-2"
             elevation="0"
@@ -21,15 +21,15 @@
             @click="openAccount"
           >
             Abrir una cuenta
-          </v-btn>
-          <v-btn
+          </ActionButton>
+          <ActionButton
             class="text-body-2 bg-transparent text-white mb-2"
             @click="downloadApp"
             elevation="0"
             to="/dashboard"
           >
             Descarga la app
-          </v-btn>
+          </ActionButton>
         </div>
       </v-col>
       <v-col cols="12" md="5" class="d-flex justify-center align-center">
@@ -50,6 +50,7 @@
 
 <script setup lang="ts">
 import { ref, computed } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const description = ref('Zelo es la revolución de las billeteras virtuales, con su impecable y sencilla interfaz gráfica y la seguridad en tus operación la hacen la mejor billetera vitual del mercado.')
 const logoUrl = ref('./src/assets/logo.png')
