@@ -9,9 +9,10 @@
       </v-btn>
       <v-spacer></v-spacer>
     </v-container>
-    <h1 class="text-h4 mb-6 mt-4 ml-2">Ingresar dinero</h1>
+
     <v-row class="d-flex justify-center align-center">
       <v-col cols="12" md="8" sm="7">
+        <h1 class="text-h4 mb-6 mt-4 ml-2">Ingresar dinero</h1>
         <BankTransferSection class="ma-2 mb-5" />
       </v-col>
     </v-row>
