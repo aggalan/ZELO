@@ -128,7 +128,7 @@ const selectContact = (contact) => {
 }
 
 const goBack = () => {
-  router.push('/dashboard')
+  router.back();
 }
 </script>
 

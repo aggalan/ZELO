@@ -25,9 +25,11 @@ import { ref, onMounted } from 'vue'
 import {onBeforeRouteUpdate, useRoute, useRouter} from 'vue-router'
 import TransferForm from './TransferForm.vue'
 import ContactsList from './ContactsList.vue'
-import router from '@/router/router'
+
+const router = useRouter();
+
 const goBack = () => {
-  router.push('/transference')
+  router.back()
 }
 
 const route = useRoute()

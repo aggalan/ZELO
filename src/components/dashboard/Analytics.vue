@@ -30,12 +30,12 @@
           <v-chip
             v-for="category in categories"
             :key="category.name"
-            :color="category.color"
+            :color="getCategoryColor(category.name)"
             class="mr-2 mb-2"
             label
             size="small"
           >
-            <v-icon start :icon="category.icon" size="16"></v-icon>
+            <v-icon start :icon="getCategoryIcon(category.name)" size="16"></v-icon>
             {{ category.name }}
           </v-chip>
         </v-col>
@@ -45,25 +45,69 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import {ref, computed} from 'vue'
+import {useTransactionsStore} from "@/store/transactionStore"
+import {useUsersStore} from "@/store/usersStore"
 
-const totalSpent = ref(50000)
-const budget = ref(100000)
+const transactionsStore = useTransactionsStore()
+const usersStore = useUsersStore()
 
-const spendingPercentage = computed(() => Math.round((totalSpent.value / budget.value) * 100))
+const transactions = computed(() => transactionsStore.getPaymentsByUserId)
 
-const categories = ref([
-  { name: 'Comida', icon: 'mdi-food', color: 'pink' },
-  { name: 'Transporte', icon: 'mdi-car', color: 'purple' },
-  { name: 'Ocio', icon: 'mdi-gamepad-variant', color: 'blue' },
-  { name: 'Servicios', icon: 'mdi-lightning-bolt', color: 'green' },
-])
+const totalSpent = computed(() => {
+  return transactions.value.reduce((total, transaction) => total + transaction.amount, 0)
+})
+
+const budget = ref(100000) // You might want to replace this with a real budget from a store if available
+
+const spendingPercentage = computed(() => {
+  if (budget.value === 0) return 0
+  return Math.min(Math.round((totalSpent.value / budget.value) * 100), 100)
+})
+
+const categories = computed(() => {
+  const categoryMap = new Map()
+  transactions.value.forEach(transaction => {
+    if (categoryMap.has(transaction.category)) {
+      categoryMap.set(transaction.category, categoryMap.get(transaction.category) + transaction.amount)
+    } else {
+      categoryMap.set(transaction.category, transaction.amount)
+    }
+  })
+
+  return Array.from(categoryMap, ([name, amount]) => ({name, amount}))
+    .sort((a, b) => b.amount - a.amount)
+    .slice(0, 4) // Get top 4 categories
+})
+
+const getCategoryColor = (categoryName) => {
+  const colors = {
+    'Alquiler': 'blue',
+    'Ropa': 'pink',
+    'Servicios': 'green',
+    'Comida': 'orange',
+    'default': 'grey'
+  }
+  return colors[categoryName] || colors.default
+}
+
+const getCategoryIcon = (categoryName) => {
+  const icons = {
+    'Alquiler': 'mdi-home',
+    'Ropa': 'mdi-hanger',
+    'Servicios': 'mdi-lightning-bolt',
+    'Comida': 'mdi-food',
+    'default': 'mdi-cash'
+  }
+  return icons[categoryName] || icons.default
+}
 </script>
 
 <style scoped>
 .v-progress-circular {
   font-weight: bold;
 }
+
 .v-chip {
   font-weight: 500;
 }
