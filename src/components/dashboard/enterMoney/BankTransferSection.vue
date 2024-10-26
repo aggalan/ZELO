@@ -7,7 +7,7 @@
           <v-select
             v-model="selectedBank"
             :items="bankNames"
-          label="Selecciona tu banco"
+            label="Selecciona tu banco"
             outlined
           ></v-select>
         </v-col>
@@ -49,7 +49,7 @@
       <v-list>
         <v-list-item
           v-for="(deposit, index) in lastDeposits"
-          :key="index"
+          :key="deposit.id || index"
           @click="repeatDeposit(deposit)"
           class="px-0"
         >
@@ -60,7 +60,7 @@
                   {{ deposit.to }} - ${{ deposit.amount }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
-                  {{ formatDate(deposit.date) }}
+                  {{ formatDate(deposit.creationTime) }}
                 </v-list-item-subtitle>
               </v-col>
               <v-col cols="auto">
@@ -80,14 +80,15 @@
 </template>
 
 <script setup>
-import {ref, computed} from 'vue'
+import {ref, computed, watch} from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
-import { useBalanceStore } from "@/store/balanceStore"
+import {useBalanceStore} from "@/store/balanceStore"
 import MyInformation from "@/components/dashboard/MyInformation.vue";
 import {useUsersStore} from "@/store/usersStore";
 import {useTransactionsStore} from "@/store/transactionStore";
 
 const balanceStore = useBalanceStore()
+const transactionsStore = useTransactionsStore()
 
 const selectedBank = ref('')
 const amount = ref('')
@@ -95,9 +96,9 @@ const loading = ref(false)
 const confirmation = ref(false)
 const banks = [
   {name: 'Banco Nación', cbu: '0000000000000222000000', alias: 'mi.nacion.alias'},
-  {name:'Banco Galicia', cbu: '0000000000000222330000', alias: 'mi.galicia.alias'},
-  {name:'Banco Santander', cbu: '0000000000000222330055', alias: 'mi.santander.alias'},
-  {name:'Banco BBVA', cbu: '0000000000000222334400', alias: 'mi.bbva.alias'},
+  {name: 'Banco Galicia', cbu: '0000000000000222330000', alias: 'mi.galicia.alias'},
+  {name: 'Banco Santander', cbu: '0000000000000222330055', alias: 'mi.santander.alias'},
+  {name: 'Banco BBVA', cbu: '0000000000000222334400', alias: 'mi.bbva.alias'},
   {name: 'Banco Macro', cbu: '0000000000001222334400', alias: 'mi.macro.alias'},
   {name: 'Banco HSBC', cbu: '0000000000001222334431', alias: 'mi.hsbc.alias'},
 ]
@@ -108,8 +109,9 @@ const accountDetails = ref({
   alias: user.alias,
 })
 
-let lastDeposits = useTransactionsStore().getIncomesByUserId
-
+const lastDeposits = computed(() => {
+  return transactionsStore.getIncomesByUserId.slice(0, 5) // Get only the last 5 deposits
+})
 
 const startDeposit = () => {
   loading.value = true
@@ -118,14 +120,14 @@ const startDeposit = () => {
     balanceStore.enterMoney(amount.value, {name: selectedBank.value})
     loading.value = false
     confirmation.value = true
-    console.log('Starting deposit:', { bank: selectedBank.value, amount: amount.value })
-    lastDeposits = useTransactionsStore().getIncomesByUserId
+    console.log('Starting deposit:', {bank: selectedBank.value, amount: amount.value})
+    // The lastDeposits will automatically update due to the computed property
   }, 2000)
 }
 
 const repeatDeposit = (deposit) => {
-  selectedBank.value = deposit.bank
-  amount.value = deposit.amount
+  selectedBank.value = deposit.to
+  amount.value = deposit.amount.toString()
   console.log('Repeating deposit:', deposit)
 }
 
@@ -134,8 +136,13 @@ const formatDate = (date) => {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
-  }).format(date)
+  }).format(new Date(date))
 }
+
+// Watch for changes in the transactions store
+watch(() => transactionsStore.transactions, () => {
+  // This will trigger a re-computation of lastDeposits
+}, {deep: true})
 </script>
 
 <style scoped>
