@@ -3,12 +3,12 @@
     <v-card-title class="text-h5 d-flex justify-space-between align-center pa-4 bg-primary">
       <span class="white--text">Detalles de la Transacción</span>
       <v-chip
-        :color="transaction.type === 'ingreso' ? 'light-green-accent-4' : 'deep-orange-accent-4'"
+        :color="chipColor"
         text-color="white"
-        class="font-weight-bold"
+        class="font-weight-bold transaction-type-chip"
         elevation="2"
       >
-        {{ transaction.type === 'ingreso' ? 'Ingreso' : 'Pago' }}
+        {{ transaction.type === 'ingreso' ? 'INGRESO' : 'PAGO' }}
       </v-chip>
     </v-card-title>
     <v-card-text class="pa-4">
@@ -74,16 +74,24 @@ const usersStore = useUsersStore()
 const transaction = computed(() => transactionsStore.getSelectedTransaction())
 const currentUser = computed(() => usersStore.getUserById(usersStore.userId))
 
+const chipColor = 'white';
+
 const formatDate = (timestamp) => {
   const date = new Date(timestamp)
-  const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' }
+  const options = {year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'}
   return date.toLocaleDateString('es-ES', options)
 }
 </script>
 
 <style scoped>
-.v-chip {
+.transaction-type-chip {
   font-size: 0.9rem;
   padding: 0 12px;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.v-chip.v-chip--variant-elevated {
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 </style>
