@@ -2,7 +2,7 @@
   <v-card class="my-card">
     <v-card-title class="pa-4">Operar en plazo fijo</v-card-title>
     <v-card-text>
-      <v-row>
+      <v-row class="mt-1">
         <v-col cols="12" sm="6">
           <ActionButton
             block
