@@ -17,7 +17,7 @@
                 readonly
                 class="rounded-input"
               />
-              <v-btn class = "mb-5 ml-2" icon @click="copyToClipboard(userData.name)">
+              <v-btn class="mb-5 ml-2" icon @click="copyToClipboard(userData.name, 'Nombre y Apellido')">
                 <v-icon>mdi-content-copy</v-icon>
               </v-btn>
             </div>
@@ -30,7 +30,7 @@
                 readonly
                 class="rounded-input"
               />
-              <v-btn class = "mb-5 ml-2" icon @click="copyToClipboard(userData.alias)">
+              <v-btn class="mb-5 ml-2" icon @click="copyToClipboard(userData.alias, 'Alias')">
                 <v-icon>mdi-content-copy</v-icon>
               </v-btn>
             </div>
@@ -43,7 +43,7 @@
                 readonly
                 class="rounded-input"
               />
-              <v-btn class = "mb-5 ml-2" icon @click="copyToClipboard(userData.cbu)">
+              <v-btn class="mb-5 ml-2" icon @click="copyToClipboard(userData.cbu, 'CBU')">
                 <v-icon>mdi-content-copy</v-icon>
               </v-btn>
             </div>
@@ -56,7 +56,7 @@
                 readonly
                 class="rounded-input"
               />
-              <v-btn icon class = "mb-5 ml-2" @click="copyToClipboard(userData.dni)">
+              <v-btn icon class="mb-5 ml-2" @click="copyToClipboard(userData.dni, 'DNI')">
                 <v-icon>mdi-content-copy</v-icon>
               </v-btn>
             </div>
@@ -72,12 +72,30 @@
       </ActionButton>
     </v-card>
   </v-dialog>
+
+  <v-snackbar
+    v-model="snackbar"
+    :timeout="3000"
+    color="success"
+    rounded="pill"
+  >
+    {{ snackbarText }}
+    <template v-slot:actions>
+      <v-btn
+        color="white"
+        text
+        @click="snackbar = false"
+      >
+        Cerrar
+      </v-btn>
+    </template>
+  </v-snackbar>
 </template>
 
 <script setup>
-import {ref, watch} from 'vue';
+import { ref, watch } from 'vue';
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
-import {useUsersStore} from "@/store/usersStore";
+import { useUsersStore } from "@/store/usersStore";
 
 const props = defineProps({
   modelValue: {
@@ -93,13 +111,22 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue']);
 
 const dialog = ref(props.modelValue);
+const snackbar = ref(false);
+const snackbarText = ref('');
 
 const closeDialog = () => {
   emit('update:modelValue', false);
 };
 
-const copyToClipboard = (text) => {
-  navigator.clipboard.writeText(text);
+const copyToClipboard = (text, fieldName) => {
+  navigator.clipboard.writeText(text).then(() => {
+    snackbarText.value = `${fieldName} copiado al portapapeles`;
+    snackbar.value = true;
+  }).catch(err => {
+    console.error('Error al copiar: ', err);
+    snackbarText.value = 'Error al copiar al portapapeles';
+    snackbar.value = true;
+  });
 };
 
 const shareData = () => {
