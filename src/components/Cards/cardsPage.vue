@@ -148,6 +148,10 @@ interface CreditCard {
   viewInfo: boolean
 }
 
+const isValidCardNumber = (number: string): boolean => {
+  return /^\d{16}$/.test(number);
+};
+
 const dialog = ref(false);
 const newCard = ref({
   number: '',
@@ -200,6 +204,11 @@ const removeCard = (id: number) => {
 const addCard = () => {
   if (!newCard.value.number || !newCard.value.name || !newCard.value.expiry || !newCard.value.cvv) {
     alert('Todos los campos son obligatorios.');
+    return;
+  }
+
+  if (!isValidCardNumber(newCard.value.number)) {
+    alert('El número de tarjeta debe tener 16 dígitos.');
     return;
   }
 

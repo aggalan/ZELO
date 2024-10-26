@@ -1,6 +1,11 @@
 <template>
   <v-card class="my-card" elevation="2">
-    <v-card-title class="text-h5">Link de Pago</v-card-title>
+    <v-card-title class="d-flex justify-space-between align-center">
+      <span class="text-h5 mt-2">Link de Cobro</span>
+      <v-btn icon @click="closeDialog" class="close-btn">
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-card-title>
     <v-card-text>
       <v-text-field
         v-model="amount"
@@ -14,7 +19,7 @@
         label="Descripción (opcional)"
         outlined
       ></v-text-field>
-      <ActionButton  dark block large @click="generateLink">
+      <ActionButton dark block large @click="generateLink">
         Generar Link de Pago
       </ActionButton>
       <v-expand-transition>
@@ -48,14 +53,12 @@ const description = ref('')
 const paymentLink = ref('')
 
 const generateLink = () => {
-  // In a real application, this would call an API to generate the link
   paymentLink.value = `https://payment.example.com/${Math.random().toString(36).substr(2, 9)}`
   balanceStore.enterMoney(amount.value, 'Juan')
 }
 
 const copyToClipboard = () => {
   navigator.clipboard.writeText(paymentLink.value)
-  // You might want to show a snackbar or toast here to confirm the copy action
 }
 
 const shareLink = () => {
@@ -66,9 +69,21 @@ const shareLink = () => {
       url: paymentLink.value,
     })
   } else {
-    // Fallback for browsers that don't support Web Share API
     copyToClipboard()
-    // Show a message to the user that the link has been copied
   }
 }
+
+const emit = defineEmits(['update:modelValue']);
+
+const closeDialog = () => {
+  emit('update:modelValue', false);
+};
 </script>
+
+<style scoped>
+.close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+}
+</style>

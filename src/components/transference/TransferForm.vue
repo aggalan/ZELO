@@ -46,7 +46,7 @@
 
         <ActionButton
           color="var(--on-surface-light)"
-          class="flex-grow-1 ml-2 mb-2 py-6 d-flex align-cente"
+          class="flex-grow-1 ml-2 mb-2 py-6 d-flex align-cente text-white"
           @click="cancel"
         >
           Cancelar

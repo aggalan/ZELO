@@ -1,5 +1,15 @@
 <template>
   <v-container fluid class="pa-6 w-100 ">
+    <v-container color="#Ffffff" fluid class="d-flex flex-column">
+      <v-btn
+        icon
+        @click="goBack"
+      >
+        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
+      </v-btn>
+      <v-spacer></v-spacer>
+    </v-container>
+
     <h1 class="text-h4 mb-6">Transferencias</h1>
     <v-row class="d-flex justify-center">
       <v-col cols="12" lg="8" md="8" sm="12">
@@ -15,6 +25,9 @@ import {onBeforeRouteUpdate, useRoute, useRouter} from 'vue-router'
 import TransferForm from './TransferForm.vue'
 import ContactsList from './ContactsList.vue'
 import router from '@/router/router'
+const goBack = () => {
+  router.push('/transference')
+}
 
 const route = useRoute()
 
