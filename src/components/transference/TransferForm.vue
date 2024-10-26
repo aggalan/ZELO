@@ -113,6 +113,7 @@ import { useUsersStore } from "@/store/usersStore"
 import ConfirmationComponent from "@/components/transference/ConfirmationComponent.vue"
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
 import {grey} from "vuetify/util/colors";
+import {useTransactionsStore} from "@/store/transactionStore";
 
 const router = useRouter()
 const balanceStore = useBalanceStore()
@@ -176,6 +177,7 @@ onMounted(() => {
 })
 
 const cancel = () => router.back()
+const transactions = useTransactionsStore()
 
 const verifyAndShowConfirmationDialog = () => {
   if (isFormValid.value) {
@@ -192,6 +194,9 @@ const confirmTransfer = () => {
       from: selectedPaymentMethod.value.name
     })
   } else {
+    const parsedAmount = parseFloat(amount.value)
+    transactions.addTransaction(userStore.userId, { type: 'pago', method: selectedPaymentMethod.value, amount: parsedAmount, time: Date.now(), to: 'Tarjeta' || '', category: 'Tarjeta' || '' , cbu: cbuAlias.value || '', description: concept.value || '' });
+
     // Handle credit card payment logic here
     console.log('Credit card payment:', {
       cardId: selectedPaymentMethod.value.id,

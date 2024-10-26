@@ -108,7 +108,8 @@ const accountDetails = ref({
   alias: user.alias,
 })
 
-const lastDeposits = useTransactionsStore().getTransactionsByUserId()
+let lastDeposits = useTransactionsStore().getIncomesByUserId
+
 
 const startDeposit = () => {
   loading.value = true
@@ -118,6 +119,7 @@ const startDeposit = () => {
     loading.value = false
     confirmation.value = true
     console.log('Starting deposit:', { bank: selectedBank.value, amount: amount.value })
+    lastDeposits = useTransactionsStore().getIncomesByUserId
   }, 2000)
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <v-card class="my-card">
+  <v-card class="my-card contact-list-card">
     <slot/>
     <v-card-text class="pa-4">
       <v-text-field
@@ -51,3 +51,9 @@ const filteredContacts = computed(() => {
   )
 })
 </script>
+
+<style scoped>
+.contact-list-card {
+  margin: 0 auto;
+}
+</style>

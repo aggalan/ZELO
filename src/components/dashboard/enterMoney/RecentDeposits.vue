@@ -78,7 +78,7 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue'
+import {ref, reactive, computed} from 'vue'
 import {useTransactionsStore} from "@/store/transactionStore";
 
     const selectedBank = ref('')
@@ -89,11 +89,13 @@ import {useTransactionsStore} from "@/store/transactionStore";
       alias: 'mi.cuenta.alias'
     })
 
-    const lastDeposits = useTransactionsStore().getIncomesByUserId()
+    const lastDeposits = useTransactionsStore().getIncomesByUserId
+
 
     const startDeposit = () => {
       // Implement deposit logic here
       console.log('Starting deposit:', { bank: selectedBank.value, amount: amount.value })
+
     }
 
     const repeatDeposit = (deposit) => {

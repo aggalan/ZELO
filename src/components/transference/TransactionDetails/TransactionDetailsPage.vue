@@ -25,7 +25,7 @@ const relatedTransactions = computed(() => {
   const selectedTransaction = transactionsStore.getSelectedTransaction()
   if (!selectedTransaction) return []
 
-  return transactionsStore.getTransactionsByUserId(usersStore.userId)
+  return transactionsStore.getTransactionsByUserId
     .filter(transaction => transaction.id !== selectedTransaction.id)
     .slice(0, 2) // Limit to 2 related transactions
 })

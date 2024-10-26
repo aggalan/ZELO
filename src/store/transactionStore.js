@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import {computed, ref} from 'vue';
 import {useUsersStore} from "@/store/usersStore";
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const transactions = ref([
-    {id:1,cbu:10, to: 'Jose', type: 'ingreso', amount: 10000, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de alquiler', category: 'Alquiler', color: 'primary'},
+    {id:1,cbu:10, to: 'Jose', type: 'ingreso', amount: 10000, creationTime: Date.now() - 100, icon: 'mdi-account', userId: 1, description: 'Pago de alquiler', category: 'Alquiler', color: 'primary'},
     {id:2,cbu:10, to: 'Open 25', type: 'pago', amount: 20000, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa',color: 'primary'},
     {id:3,cbu:10, to: 'Miguel', type: 'ingreso', amount: 1000 ,creationTime: Date.now(), icon: 'mdi-account', userId: 1,description: 'Pago de servicios', category: 'Servicios',color: 'secondary'},
     {id:4,cbu:10, to: 'McDonalds', type: 'ingreso', amount: 11400, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'McDonalds', category: 'Comida',color: 'primary'},
@@ -53,34 +53,34 @@ export const useTransactionsStore = defineStore('transactions', () => {
   }
 
   // Obtener transacciones por ID de usuario
-  const getTransactionsByUserId = (userId= useUserStore.userId) => {
+  const getTransactionsByUserId = computed(() => {
     return transactions.value
-      .filter(transaction => transaction.userId === userId)
+      .filter(transaction => transaction.userId === useUserStore.userId)
+      .sort((a, b) => b.creationTime - a.creationTime) // Ordenar de más reciente a más antigua
+      .map(transaction => ({
+        ...transaction,
+        time: timeSinceEvent(transaction.creationTime) // Agregar el tiempo transcurrido a cada transacción
+      }));
+  });
+  const getPaymentsByUserId = computed(()=> {
+    return transactions.value
+      .filter(transaction => transaction.userId === useUserStore.userId && transaction.type === 'pago')
       .sort((a, b) => b.creationTime - a.creationTime) // Ordenar de más reciente a más antigua
       .map(transaction => ({
         ...transaction,
         time: timeSinceEvent(transaction.creationTime)//gregar el tiempo transcurrido a cada transacción
       }));
-  };
-  const getPaymentsByUserId = (userId= useUserStore.userId) => {
-    return transactions.value
-      .filter(transaction => transaction.userId === userId && transaction.type === 'pago')
-      .sort((a, b) => b.creationTime - a.creationTime) // Ordenar de más reciente a más antigua
-      .map(transaction => ({
-        ...transaction,
-        time: timeSinceEvent(transaction.creationTime)//gregar el tiempo transcurrido a cada transacción
-      }));
-  };
+  });
 
-  const getIncomesByUserId = (userId= useUserStore.userId) => {
+  const getIncomesByUserId =computed(() => {
     return transactions.value
-      .filter(transaction => transaction.userId === userId && transaction.type === 'ingreso')
+      .filter(transaction => transaction.userId === useUserStore.userId && transaction.type === 'ingreso')
       .sort((a, b) => b.creationTime - a.creationTime) // Ordenar de más reciente a más antigua
       .map(transaction => ({
         ...transaction,
         time: timeSinceEvent(transaction.creationTime)//gregar el tiempo transcurrido a cada transacción
       }));
-  }
+  })
 
   return {
     transactions,

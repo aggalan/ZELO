@@ -65,7 +65,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref,computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { useUsersStore } from '@/store/usersStore'
 import ContactsList from "@/components/transference/ContactsList.vue";
@@ -82,7 +82,7 @@ const transferOptions = ref([
   { title: 'CANCELAR', color: "var(--on-surface-light)" }
 ])
 
-const recentTransfers = useTransactionsStore().getIncomesByUserId()
+const recentTransfers = useTransactionsStore().getPaymentsByUserId
 
 const frequentContacts = useUsersStore().getContacts()
 

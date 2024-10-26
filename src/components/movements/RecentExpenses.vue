@@ -25,7 +25,7 @@ const categories = ref([
   {name: 'Servicios', icon: 'mdi-lightning-bolt'},
 ])
 const transactionsStore = useTransactionsStore()
-const foodExpenses = transactionsStore.getTransactionsByUserId()
+const foodExpenses = transactionsStore.getTransactionsByUserId
 
 const selectedCategory = ref(categories.value[0])
 

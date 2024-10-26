@@ -52,16 +52,16 @@ const page = ref(1)
 const displayedTransactions = computed(() => {
   const start = (page.value - 1) * itemsPerPage.value
     const end = start + itemsPerPage.value
-    return transactions.value.slice(start, end)
+    return transactions.slice(start, end)
   })
-const pageCount = computed(() => Math.ceil(transactions.value.length / itemsPerPage.value))
-const showPagination = computed(() => props.maxTransactions === Infinity && transactions.value.length > itemsPerPage.value)
+const pageCount = computed(() => Math.ceil(transactions.length / itemsPerPage.value))
+const showPagination = computed(() => props.maxTransactions === Infinity && transactions.length > itemsPerPage.value)
 
 const userStore = useUsersStore()
 const transactionsStore = useTransactionsStore()
 const router = useRouter()
 
-const transactions = computed(() => transactionsStore.getTransactionsByUserId(userStore.userId))
+const transactions = transactionsStore.getTransactionsByUserId
 
 
 const viewDetails = (transaction) => {
