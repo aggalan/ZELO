@@ -158,9 +158,9 @@ const selectedPaymentMethod = computed(() =>
 const isFormValid = computed(() => {
   if(!selectedPaymentMethod.value  || !form.value) return false
   if(selectedPaymentMethod.value.id === 'account') {
-    return form.value.validate() && balanceStore.canWithdraw(parseFloat(amount.value))
+    return form.value.validate() && balanceStore.canWithdraw(parseFloat(amount.value)) && amount.value > 0;
   }
-  return form.value.validate()
+  return form.value.validate() && amount.value > 0
 })
 
 const props = defineProps({
