@@ -14,6 +14,11 @@ const userStore = useUsersStore()
 const transactionsStore = useTransactionsStore()
 const router = useRouter()
 const search = ref('')
+const searchInput = ref(null);
+
+const focus = () => {
+  searchInput.value.focus();
+}
 
 const transactions = ref([])
 const page = ref(1)
@@ -62,11 +67,13 @@ const filteredMovements = computed(() => {
       <v-text-field v-if="maxTransactions === Infinity"
                     v-model="search"
                     prepend-icon="mdi-magnify"
+                    @click:prepend="focus"
                     label="Buscar"
                     single-line
                     hide-details
                     filled
                     rounded
+                    ref="searchInput"
                     dense
                     class="custom-text-field mb-4"
       ></v-text-field>
