@@ -19,7 +19,7 @@
           <div class="text-h5 font-weight-bold">${{ totalSpent.toLocaleString() }}</div>
         </v-col>
       </v-row>
-      <v-sheet v-else class="d-flex flex-column align-center justify-center" height="150">
+      <v-sheet v-else class="d-flex flex-column align-center justify-center" height="200">
         <v-icon size="64" color="grey lighten-1">mdi-chart-arc</v-icon>
         <p class="text-body-1 text-center mt-4">No hay datos de gastos disponibles</p>
         <p class="text-caption text-center">Los gastos se mostrarán aquí una vez que realices transacciones</p>

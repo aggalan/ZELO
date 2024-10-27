@@ -13,8 +13,8 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" lg="8">
-        <RecentTransactions :max-transactions="5" class="mb-4 mt-2">
+      <v-col cols="12" lg="8" >
+        <RecentTransactions :max-transactions="5" class="mb-4">
           <ActionButton @click="router.push({path:'/movements'})" color="var(--primary)" variant="text" size="small">Ver todas</ActionButton>
         </RecentTransactions>
       </v-col>
