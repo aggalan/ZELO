@@ -22,7 +22,7 @@
         class="mb-4"
         :rules="[
           v => !!v || 'Monto es requerido',
-          v => (v  &&  parseFloat(v) <= selectedPaymentMethod.balance || selectedPaymentMethod.id !== 'account') || 'Saldo insuficiente'
+          v => (v && parseFloat(v) <= selectedPaymentMethod.balance || selectedPaymentMethod.id !== 'account') || 'Saldo insuficiente'
         ]"
       ></v-text-field>
 
@@ -46,7 +46,7 @@
 
         <ActionButton
           color="var(--on-surface-light)"
-          class="flex-grow-1 ml-2 mb-2 py-6 d-flex align-cente text-white"
+          class="flex-grow-1 ml-2 mb-2 py-6 d-flex align-center text-white"
           @click="cancel"
         >
           Cancelar
@@ -112,8 +112,8 @@ import { useCardsStore } from "@/store/cardsStore"
 import { useUsersStore } from "@/store/usersStore"
 import ConfirmationComponent from "@/components/transference/ConfirmationComponent.vue"
 import ActionButton from "@/components/generalComponents/ActionButton.vue"
-import {grey} from "vuetify/util/colors";
-import {useTransactionsStore} from "@/store/transactionStore";
+import { grey } from "vuetify/util/colors"
+import { useTransactionsStore } from "@/store/transactionStore"
 
 const router = useRouter()
 const balanceStore = useBalanceStore()
@@ -156,21 +156,20 @@ const selectedPaymentMethod = computed(() =>
 )
 
 const isFormValid = computed(() => {
-  if(!selectedPaymentMethod.value  || !form.value) return false
-  if(selectedPaymentMethod.value.id === 'account') {
-    return form.value.validate() && balanceStore.canWithdraw(parseFloat(amount.value)) && amount.value > 0;
+  if (!selectedPaymentMethod.value || !form.value || !cbuAlias.value) return false
+  if (selectedPaymentMethod.value.id === 'account') {
+    return form.value.validate() && balanceStore.canWithdraw(parseFloat(amount.value)) && amount.value > 0
   }
   return form.value.validate() && amount.value > 0
 })
 
 const props = defineProps({
-  cbuAlias: { type: String },
-  amount: { type: String },
-  concept: { type: String },
+  cbuAlias: {type: String},
+  amount: {type: String},
+  concept: {type: String},
 })
 
 onMounted(() => {
-  console.log('Transferencia props:', props)
   if (props.cbuAlias) cbuAlias.value = props.cbuAlias
   if (props.amount) amount.value = props.amount
   if (props.concept) concept.value = props.concept
@@ -190,27 +189,29 @@ const confirmTransfer = () => {
 
   if (selectedPaymentMethod.value.id === 'account') {
     balanceStore.withdrawMoney(parseFloat(amount.value), {
-      to: { category: "transfer", concept: concept.value, cbu: cbuAlias.value },
+      to: {category: "transfer", concept: concept.value, cbu: cbuAlias.value},
       from: selectedPaymentMethod.value.name
     })
   } else {
     const parsedAmount = parseFloat(amount.value)
-    transactions.addTransaction(userStore.userId, { type: 'pago', method: selectedPaymentMethod.value, amount: parsedAmount, time: Date.now(), to: 'Tarjeta' || '', category: 'Tarjeta' || '' , cbu: cbuAlias.value || '', description: concept.value || '' });
+    transactions.addTransaction(userStore.userId, {
+      type: 'pago',
+      method: selectedPaymentMethod.value,
+      amount: parsedAmount,
+      time: Date.now(),
+      to: 'Tarjeta',
+      category: 'Tarjeta',
+      cbu: cbuAlias.value,
+      description: concept.value
+    })
 
     // Handle credit card payment logic here
     console.log('Credit card payment:', {
       cardId: selectedPaymentMethod.value.id,
-      amount: parseFloat(amount.value),
-      to: { category: "transfer", concept: concept.value, cbu: cbuAlias.value }
+      amount: parsedAmount,
+      to: {category: "transfer", concept: concept.value, cbu: cbuAlias.value}
     })
   }
-
-  console.log('Transferencia confirmada:', {
-    cbuAlias: cbuAlias.value,
-    amount: amount.value,
-    concept: concept.value,
-    paymentMethod: selectedPaymentMethod.value.name
-  })
 
   showConfirmationDialog.value = false
   cbuAlias.value = ''

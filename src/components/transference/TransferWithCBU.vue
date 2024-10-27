@@ -1,15 +1,11 @@
 <template>
-  <v-container fluid class="pa-6 w-100 ">
+  <v-container fluid class="pa-6 w-100">
     <v-container color="#Ffffff" fluid class="d-flex flex-column mb-10">
-      <v-btn
-        icon
-        @click="goBack"
-      >
+      <v-btn icon @click="goBack">
         <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
     </v-container>
-
 
     <v-row class="d-flex justify-center">
       <v-col cols="12" lg="8" md="8" sm="12">
@@ -21,24 +17,19 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import {onBeforeRouteUpdate, useRoute, useRouter} from 'vue-router'
+import { ref } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import TransferForm from './TransferForm.vue'
-import ContactsList from './ContactsList.vue'
 
-const router = useRouter();
+const router = useRouter()
+const route = useRoute()
+
+const cbu = ref(route.query.cbu || '')
+const amount = ref(route.query.amount || '')
 
 const goBack = () => {
   router.back()
 }
-
-const route = useRoute()
-
-const cbu = route.query.cbu
-const amount = route.query.amount
-
-
-
 </script>
 
 <style scoped>
@@ -50,16 +41,5 @@ const amount = route.query.amount
 .transfer-form {
   max-width: 100%;
   margin: 0 auto;
-}
-
-.contacts-list {
-  max-height: calc(100vh - 200px);
-  overflow-y: auto;
-}
-
-@media (max-width: 959px) {
-  .contacts-list {
-    max-height: 400px;
-  }
 }
 </style>
