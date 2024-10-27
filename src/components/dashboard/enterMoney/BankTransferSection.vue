@@ -61,7 +61,7 @@
             <v-row align="center" no-gutters>
               <v-col>
                 <v-list-item-title class="text-subtitle-1">
-                  {{ deposit.to }} - ${{ deposit.amount }}
+                  {{ deposit.name }} - ${{ deposit.amount }}
                 </v-list-item-title>
                 <v-list-item-subtitle>
                   {{ formatDate(deposit.creationTime) }}
@@ -133,7 +133,7 @@ const startDeposit = () => {
 }
 
 const repeatDeposit = (deposit) => {
-  selectedBank.value = deposit.to
+  selectedBank.value = deposit.name
   amount.value = deposit.amount.toString()
   console.log('Repeating deposit:', deposit)
 }

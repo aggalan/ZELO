@@ -42,7 +42,7 @@ const filteredItems = computed(() => {
     return investments.value.map(investment => ({
       ...investment,
       category: 'Inversiones',
-      to: investment.name,
+      name: investment.name,
       amount: investment.amount,
       type: 'inversión',
       date: new Date(investment.id) // Assuming id is a timestamp or can be converted to a date

@@ -34,6 +34,14 @@
         class="mb-6"
       ></v-text-field>
 
+      <v-text-field
+        v-model="category"
+        label="Categoría"
+        placeholder="Transferencia"
+        variant="outlined"
+        class="mb-6">
+      </v-text-field>
+
       <div class="d-flex flex-wrap justify-space-between">
         <ActionButton
           class="flex-grow-1 mr-2 mb-2 py-6 d-flex align-center"
@@ -97,6 +105,7 @@
       :cbuAlias="cbuAlias"
       :amount="amount"
       :concept="concept"
+      :category="category"
       :paymentMethod="selectedPaymentMethod.name"
       @confirm="confirmTransfer"
       @cancel="showConfirmationDialog = false"
@@ -123,6 +132,7 @@ const userStore = useUsersStore()
 const cbuAlias = ref('')
 const amount = ref('')
 const concept = ref('')
+const category = ref('')
 const showConfirmationDialog = ref(false)
 const form = ref(null)
 
@@ -189,22 +199,23 @@ const confirmTransfer = () => {
 
   if (selectedPaymentMethod.value.id === 'account') {
     balanceStore.withdrawMoney(parseFloat(amount.value), {
-      to: {category: "transfer", concept: concept.value, cbu: cbuAlias.value},
-      from: selectedPaymentMethod.value.name
-    })
+      category: category.value || "transfer",
+      concept: concept.value,
+      cbu: cbuAlias.value,
+      name: `Persona con CBU: ${cbuAlias.value}`},
+    )
   } else {
     const parsedAmount = parseFloat(amount.value)
     transactions.addTransaction(userStore.userId, {
       type: 'pago',
       method: selectedPaymentMethod.value,
       amount: parsedAmount,
-      time: Date.now(),
-      to: 'Tarjeta',
-      category: 'Tarjeta',
+      creationTime: Date.now(),
+      name: 'Persona con CBU: ' + cbuAlias.value,
+      category: category.value || 'Tarjeta',
       cbu: cbuAlias.value,
       description: concept.value
     })
-
 
     console.log('Credit card payment:', {
       cardId: selectedPaymentMethod.value.id,

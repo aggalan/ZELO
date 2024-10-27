@@ -34,6 +34,13 @@
             <v-list-item-title class="text-subtitle-2">Método de Pago</v-list-item-title>
             <v-list-item-subtitle class="text-body-1">{{ paymentMethod }}</v-list-item-subtitle>
           </v-list-item>
+          <v-list-item v-if="category">
+            <template v-slot:prepend>
+              <v-icon color="yellow">mdi-label</v-icon>
+            </template>
+            <v-list-item-title class="text-subtitle-2">Categoría</v-list-item-title>
+            <v-list-item-subtitle class="text-body-1">{{ category }}</v-list-item-subtitle>
+          </v-list-item>
         </v-list>
       </v-card-text>
         <v-col>
@@ -69,6 +76,7 @@ const props = defineProps({
   cbuAlias: String,
   amount: [String, Number],
   concept: String,
+  category: String,
   paymentMethod: String,
 })
 

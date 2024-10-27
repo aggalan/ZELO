@@ -46,7 +46,7 @@ const viewDetails = (transaction) => {
 
 const filteredMovements = computed(() => {
   return transactions.value.filter(transaction =>
-    transaction.to.toLowerCase().includes(search.value.toLowerCase()) ||
+    transaction.name.toLowerCase().includes(search.value.toLowerCase()) ||
     transaction.description.toLowerCase().includes(search.value.toLowerCase())
   )
 })
@@ -94,7 +94,7 @@ watchEffect(() => {
               <v-icon :color="transaction.iconColor || 'white'" size="24">{{ transaction.icon || 'mdi-account' }}</v-icon>
             </v-avatar>
           </template>
-          <v-list-item-title class="text-subtitle-2">{{ transaction.to }}</v-list-item-title>
+          <v-list-item-title class="text-subtitle-2">{{ transaction.name }}</v-list-item-title>
           <v-list-item-subtitle class="text-caption">
             {{ `${transaction.type === 'pago' ? 'Pagaste' : 'Recibiste'} $${transaction.amount}` }}
           </v-list-item-subtitle>

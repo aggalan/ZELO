@@ -49,7 +49,7 @@
                         <v-icon class="text-subtitle-2 white--text">{{ transfer.icon }}</v-icon>
                       </v-avatar>
                     </template>
-                    <v-list-item-title class="text-body-1">{{ transfer.to }}</v-list-item-title>
+                    <v-list-item-title class="text-body-1">{{ transfer.name }}</v-list-item-title>
                     <v-list-item-subtitle class="text-body-2">${{ transfer.amount }} - {{ transfer.time }}</v-list-item-subtitle>
                     <template v-slot:append>
                       <ActionButton
@@ -97,6 +97,7 @@ const transferOptions = ref([
 ])
 
 const recentTransfers = useTransactionsStore().getPaymentsByUserId
+console.log(recentTransfers)
 
 const frequentContacts = useUsersStore().getContacts()
 

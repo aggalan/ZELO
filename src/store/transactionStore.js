@@ -4,15 +4,15 @@ import {useUsersStore} from "@/store/usersStore";
 
 export const useTransactionsStore = defineStore('transactions', () => {
   const transactions = ref([
-    {id:1,cbu:10, to: 'Jose', type: 'ingreso', amount: 10000, creationTime: Date.now() - 100, icon: 'mdi-account', userId: 1, description: 'Pago de alquiler', category: 'Alquiler', color: 'primary'},
-    {id:2,cbu:10, to: 'Open 25', type: 'pago', amount: 20000, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa',color: 'primary'},
-    {id:3,cbu:10, to: 'Miguel', type: 'ingreso', amount: 1000 ,creationTime: Date.now(), icon: 'mdi-account', userId: 1,description: 'Pago de servicios', category: 'Servicios',color: 'secondary'},
-    {id:4,cbu:10, to: 'McDonalds', type: 'ingreso', amount: 11400, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'McDonalds', category: 'Comida',color: 'primary'},
-    {id:5,cbu:10, to: 'Open 25', type: 'pago', amount: 10500, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa',color: 'tertiary'},
-    {id:6,cbu:10, to: 'KFC',type: 'ingreso', amount: 100000, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'KFC', category: 'Comida', color: "tertiary"},
-    {id:7,cbu:10, to: 'SushiPop',type: 'pago', amount: 100, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'SushiPop', category: 'Comida'},
-    {id:8,cbu:10, to: 'Open 25', type: 'ingreso', amount: 90000, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa'},
-    {id:9,cbu:10, to: 'Miguel',type: 'ingreso', amount: 1900,creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de servicios', category: 'Servicios'},
+    {id:1,cbu:10, name: 'Jose', type: 'ingreso', amount: 10000, creationTime: Date.now() - 100, icon: 'mdi-account', userId: 1, description: 'Pago de alquiler', category: 'Alquiler', color: 'primary'},
+    {id:2,cbu:10, name: 'Open 25', type: 'pago', amount: 20000, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa',color: 'primary'},
+    {id:3,cbu:10, name: 'Miguel', type: 'ingreso', amount: 1000 ,creationTime: Date.now(), icon: 'mdi-account', userId: 1,description: 'Pago de servicios', category: 'Servicios',color: 'secondary'},
+    {id:4,cbu:10, name: 'McDonalds', type: 'ingreso', amount: 11400, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'McDonalds', category: 'Comida',color: 'primary'},
+    {id:5,cbu:10, name: 'Open 25', type: 'pago', amount: 10500, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa',color: 'tertiary'},
+    {id:6,cbu:10, name: 'KFC',type: 'ingreso', amount: 100000, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'KFC', category: 'Comida', color: "tertiary"},
+    {id:7,cbu:10, name: 'SushiPop',type: 'pago', amount: 100, creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'SushiPop', category: 'Comida'},
+    {id:8,cbu:10, name: 'Open 25', type: 'ingreso', amount: 90000, creationTime: Date.now(), image: '/placeholder.svg', icon: 'mdi-account', userId: 2, description: 'Compra de ropa', category: 'Ropa'},
+    {id:9,cbu:10, name: 'Miguel',type: 'ingreso', amount: 1900,creationTime: Date.now(), icon: 'mdi-account', userId: 1, description: 'Pago de servicios', category: 'Servicios'},
   ]);
   const selectedTransaction = ref(null);
   const useUserStore = useUsersStore()

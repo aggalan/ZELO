@@ -31,14 +31,13 @@ export const useBalanceStore = defineStore('balance', () => {
     } else {
       balances.value.push({ userId: userStore.userId, amount: parsedAmount });
     }
-    transactions.addTransaction(userStore.userId, { type: 'ingreso', amount: parsedAmount, creationTime: Date.now(), to: from.name || '', cbu: from.cbu || '', category: from.category || '' });
+    transactions.addTransaction(userStore.userId, { type: 'ingreso', amount: parsedAmount, creationTime: Date.now(), name: from.name || '', cbu: from.cbu || '', category: from.category || '' });
   };
 
   const canWithdraw = (amount) => {
     const parsedAmount = Number(amount);
     // Si parsedAmount no es un número, devuelve o maneja el error
     if ( isNaN(parsedAmount)) {
-      console.error("El monto proporcionado no es un número válido.");
       return false;
     }
     const userBalance = balances.value.find(balance => balance.userId === userStore.userId);
@@ -55,7 +54,7 @@ export const useBalanceStore = defineStore('balance', () => {
     const userBalance = balances.value.find(balance => balance.userId === userStore.userId);
     if (userBalance && userBalance.amount >= amount) {
       userBalance.amount -= parsedAmount;
-      transactions.addTransaction(userStore.userId, { type: 'pago', amount: parsedAmount, creationTime: Date.now(), to: to.name|| '', category: to.category || '' , cbu: to.cbu || '', description: to.concept || '' });
+      transactions.addTransaction(userStore.userId, { type: 'pago', amount: parsedAmount, creationTime: Date.now(), name: to.name || '', category: to.category || '' , cbu: to.cbu || '', description: to.concept || '' });
       return true
     } else {
       console.log('No tienes suficiente saldo');
