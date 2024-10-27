@@ -5,7 +5,7 @@ import router from "@/router/router";
 
 export const useUsersStore = defineStore('users', () => {
   const users = ref([
-    { id: 1, alias: Math.random().toString(36).substring(2, 10), email: 'nicolaskoron@gmail.com', passwordHash: 'bmNvZGFkb3M=', name: 'Nicolas', surname: "Koron", cbu: 10, dni: 45238451, contacts: [{ name: 'Santiago', email: 'smaffeo@itba.edu.ar', cbu: 20 }, { name: 'Juan', email: 'juan@itba.edu.ar', cbu: 30 }] },
+    { id: 1, alias: Math.random().toString(36).substring(2, 10), email: 'nicolaskoron@gmail.com', passwordHash: 'MTIzNA==', name: 'Nicolas', surname: "Koron", cbu: 10, dni: 45238451, contacts: [{ name: 'Santiago', email: 'smaffeo@itba.edu.ar', cbu: 20 }, { name: 'Juan', email: 'juan@itba.edu.ar', cbu: 30 }] },
     { id: 2, alias: Math.random().toString(36).substring(2, 10), email: 'smaffeo@itba.edu.ar', passwordHash: 'c21hZmZlbw==', name: 'Santiago', cbu: 20, contacts: [{ name: 'Nicolas', email: 'nicolaskoron@gmail.com', cbu: 10 }, { name: 'Juan', email: 'juan@itba.edu.ar', cbu: 30 }] },
     { id: 3, alias: Math.random().toString(36).substring(2, 10), email: 'jbenegaslynch@itba.edu.ar', passwordHash: 'amJlbmVnYXNseW5jaA==', name: 'Juan', cbu: 30, contacts: [] },
     { id: 4, alias: Math.random().toString(36).substring(2, 10), email: 'aggalan@itba.edu.ar', passwordHash: 'YWdnYWxhbg==', name: 'Agustin', cbu: 40, contacts: [] },
@@ -13,7 +13,7 @@ export const useUsersStore = defineStore('users', () => {
 
   const balances = useBalanceStore();
   const isAuthenticated = computed(() => userId.value !== null);
-  const userId = ref(1);
+  const userId = ref(null);
   const errorMessage = ref('');
 
   const getContacts = () => {
