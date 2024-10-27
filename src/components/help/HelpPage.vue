@@ -19,9 +19,9 @@
         <v-col cols="12" sm="6" class="pb-2">
           <v-btn
             block
-            color="primary"
+            color="white"
             variant="outlined"
-            class="action-button"
+            class="action-button bg-primary"
             @click="contactSupport"
           >
             <v-icon start>mdi-headphones</v-icon>
@@ -31,9 +31,9 @@
         <v-col cols="12" sm="6" class="pb-2">
           <v-btn
             block
-            color="error"
+            color="white"
             variant="outlined"
-            class="action-button"
+            class="action-button bg-error"
             @click="cancelAccount"
           >
             <v-icon start>mdi-close-circle</v-icon>

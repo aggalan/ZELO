@@ -2,7 +2,7 @@
   <v-container class="profile-container">
     <v-card class="mb-6 profile-card elevation-2">
       <v-card-text class="d-flex align-center">
-        <v-avatar color="var(--primary)" size="48" class="mr-4">
+        <v-avatar color="primary" size="48" class="mr-4">
           <span class="text-h5 text-white">{{ initials }}</span>
         </v-avatar>
         <div>
@@ -12,7 +12,7 @@
         <v-spacer></v-spacer>
         <v-btn
           icon
-          color="var(--primary)"
+          color="primary"
           @click="goToSettings"
           class="settings-btn"
         >
