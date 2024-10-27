@@ -1,6 +1,6 @@
 <template>
   <v-card class="rounded-lg elevation-3 mt-5">
-    <v-card-title class="text-h6 pa-4 bg-secondary white--text">Transacciones Relacionadas</v-card-title>
+    <v-card-title class="text-h6 pa-4 bg-primary white--text">Transacciones Relacionadas</v-card-title>
     <v-list two-line>
       <v-list-item v-for="transaction in transactions" :key="transaction.id" class="py-3">
         <v-list-item-avatar>
