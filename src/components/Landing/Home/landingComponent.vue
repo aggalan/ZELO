@@ -78,8 +78,6 @@ const downloadApp = () => {
 <style scoped>
 
 .main {
-  //background: linear-gradient(to bottom right, #bc3ed8, #7b61ff);
-  //background: #19181E;
   height: 100vh;
   padding: 0;
 }

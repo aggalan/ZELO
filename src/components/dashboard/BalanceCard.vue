@@ -65,7 +65,6 @@ const formattedBalance = computed(() =>
 
 <style scoped>
 .balance-card {
-  //background: linear-gradient(135deg, #f5f7fc, #d8d9f1);
   background: linear-gradient(135deg, #f8f9fc, #e3e4f1); /* Degradado suave con tinte violeta */
   color: white;
   height: auto;

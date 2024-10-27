@@ -49,9 +49,6 @@ label {
 
 .input-wrapper {
   position: relative;
-  //border: 1px solid var(--input-border);
-  //border-radius: 1rem;
-  //background-color: var(--input-background);
 }
 
 input {
