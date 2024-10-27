@@ -37,6 +37,9 @@ const vuetify = createVuetify({
           secondary: '#F65CE5',
           // Add other colors as needed
         },
+        typography: {
+          fontFamily: 'Roboto, sans-serif',
+        },
       },
     },
   },

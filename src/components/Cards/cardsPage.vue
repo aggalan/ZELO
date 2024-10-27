@@ -332,7 +332,7 @@ export default {
 }
 
 .remove-card-btn {
-  background-color: #49475A;
+  background-color: var(--on-surface-light);
 }
 .v-card:hover {
   transform: translateY(-5px);
