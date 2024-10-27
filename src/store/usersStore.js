@@ -110,7 +110,7 @@ export const useUsersStore = defineStore('users', () => {
       name,
       surname,
       dni,
-      cbu: Math.floor(Math.random() * 1e22).toString().padStart(22, '0'),
+      cbu: Math.floor(Math.random() * 1e21).toString().padStart(22, '0'),
       alias: Math.random().toString(36).substring(2, 10)
     };
     addUser(newUser);
