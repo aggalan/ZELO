@@ -38,6 +38,7 @@
             :src="logoUrl"
             width="200"
             height="200"
+            alt="Zelo logo"
             :class="{ 'zelo-logo-animate': isLogoAnimated }"
             @mouseover="animateLogo"
             @mouseleave="stopLogoAnimation"
