@@ -91,8 +91,8 @@ const router = useRouter()
 const usersStore = useUsersStore()
 
 const transferOptions = ref([
-  { title: 'CBU, CVU O ALIAS', color: "var(--primary)" },
-  { title: 'CONTACTOS', color: "var(--primary)" },
+  { title: 'CBU, CVU O ALIAS', color: "primary" },
+  { title: 'CONTACTOS', color: "primary" },
   { title: 'CANCELAR', color: "var(--on-surface-light)" }
 ])
 
