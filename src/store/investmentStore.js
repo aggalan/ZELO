@@ -239,7 +239,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
       }
     });
     lastId++;
-    balanceStore.withdrawMoney( investment.amount, {name: 'Inversión', category: 'Inversión', cbu: '0000', concept: 'Inversión en ' + investment.name});
+    balanceStore.withdrawMoney( investment.amount, {name: 'Inversión', category: 'Inversión', cbu: '0000', concept: 'Inversión en plazo fijo'});
   }
 
   // Obtener inversiones de un usuario
@@ -251,7 +251,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
     if(amount > currentInvestment.value.amount){
       return;
     }
-    if(amount == currentInvestment.value.amount){
+    if(amount === currentInvestment.value.amount){
       investments.value = investments.value.filter(investment => investment.id !== investmentId);
       currentInvestment.value = investments.value[0];
     } else{

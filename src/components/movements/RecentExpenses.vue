@@ -23,6 +23,7 @@ const categories = ref([
   {name: 'Transporte', icon: 'mdi-car'},
   {name: 'Ocio', icon: 'mdi-gamepad-variant'},
   {name: 'Servicios', icon: 'mdi-lightning-bolt'},
+  {name: 'Inversión', icon: 'mdi-cash'},
 ])
 const transactionsStore = useTransactionsStore()
 const foodExpenses = transactionsStore.getTransactionsByUserId
