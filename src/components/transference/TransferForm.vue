@@ -1,5 +1,5 @@
 <template>
-  <v-card class="transference-card pa-6">
+  <v-card class="transference-card my-card pa-6">
     <h2 class="text-h5 font-weight-bold mb-6">Realizar Transferencia</h2>
 
     <v-form @submit.prevent="verifyAndShowConfirmationDialog" ref="form">
@@ -8,7 +8,7 @@
         label="CBU / ALIAS"
         placeholder="Ingresar..."
         variant="outlined"
-        class="mb-4"
+        class="mb-2"
         :rules="[v => !!v || 'CBU / ALIAS es requerido']"
       ></v-text-field>
 
@@ -19,7 +19,7 @@
         variant="outlined"
         type="number"
         prefix="$"
-        class="mb-4"
+        class="mb-2"
         :rules="[
           v => !!v || 'Monto es requerido',
           v => (v && parseFloat(v) <= selectedPaymentMethod.balance || selectedPaymentMethod.id !== 'account') || 'Saldo insuficiente'
@@ -31,7 +31,7 @@
         label="Concepto"
         placeholder="Varios"
         variant="outlined"
-        class="mb-6"
+        class="mb-2"
       ></v-text-field>
 
       <v-text-field
@@ -39,7 +39,7 @@
         label="Categoría"
         placeholder="Transferencia"
         variant="outlined"
-        class="mb-6">
+        class="mb-2">
       </v-text-field>
 
       <div class="d-flex flex-wrap justify-space-between">
