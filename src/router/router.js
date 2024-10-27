@@ -10,7 +10,7 @@ import MovementsDashboard from "@/components/movements/MovementsDashboard.vue";
 import ProfileDashboard from "@/components/profile/ProfileDashboard.vue";
 import PasswordResetMail from "@/components/SignUpAndSignIn/PasswordReset/PasswordResetMail.vue";
 import Help from "@/components/help/HelpPage.vue";
-import Legales from "@/components/Landing/Home/Legales.vue";
+import Legales from "@/components/Landing/Home/legales.vue";
 import faq  from "@/components/Landing/Home/faq.vue"
 import SobreNosotros  from "@/components/Landing/Home/SobreNosotros.vue"
 import contactanos  from "@/components/Landing/Home/contactanos.vue"
