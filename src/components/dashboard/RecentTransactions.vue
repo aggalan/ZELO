@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watchEffect, onMounted } from 'vue'
+import { ref, computed, watchEffect } from 'vue'
 import { useTransactionsStore } from "@/store/transactionStore"
 import { useUsersStore } from "@/store/usersStore"
 import { useRouter } from 'vue-router'
@@ -50,27 +50,10 @@ const filteredMovements = computed(() => {
     transaction.description.toLowerCase().includes(search.value.toLowerCase())
   )
 })
-
-const cardMarginTop = ref(0)
-
-const updateCardMargin = () => {
-  const baseMargin = 0
-  const transactionCount = displayedTransactions.value.length
-  cardMarginTop.value = `${baseMargin - (transactionCount * 20)}px`
-  console.log(cardMarginTop.value);
-}
-
-onMounted(() => {
-  updateCardMargin()
-})
-
-watchEffect(() => {
-  updateCardMargin()
-})
 </script>
 
 <template>
-  <v-card :class="{'recent-transactions-card': true, 'recent-transactions-card-height': showPagination}">
+  <v-card class="recent-transactions-card">
     <v-card-text>
       <div class="d-flex justify-space-between align-center mb-4">
         <h2 class="text-h6 font-weight-bold">{{ title }}</h2>
@@ -85,7 +68,7 @@ watchEffect(() => {
                     filled
                     rounded
                     dense
-                    class="custom-text-field"
+                    class="custom-text-field mb-4"
       ></v-text-field>
       <v-list v-if="displayedTransactions.length > 0">
         <v-list-item v-for="(transaction, index) in displayedTransactions" :key="index" class="mb-3 transaction-item">
@@ -133,22 +116,15 @@ watchEffect(() => {
   flex-direction: column;
 }
 
-.recent-transactions-card-height {
-  min-height: 80vh;
-  max-height: 100vh;
-}
-
-@media (min-width: 1280px) {
-  .recent-transactions-card {
-    margin-top: v-bind(cardMarginTop);
-  }
-}
-
 .transaction-item {
   transition: background-color 0.3s ease;
 }
 
 .transaction-item:hover {
   background-color: #f5f5f5;
+}
+
+.custom-text-field :deep(.v-field__outline) {
+  display: none;
 }
 </style>
