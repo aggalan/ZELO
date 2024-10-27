@@ -81,7 +81,6 @@ const goBack = () => {
 
 <style scoped>
 .help-page {
-  //max-width: 1000px;
   margin: 0 auto;
   padding: 16px;
 }

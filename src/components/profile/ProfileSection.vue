@@ -61,7 +61,6 @@ const handleItemClick = (item) => {
 
 <style scoped>
 .profile-container {
-  //max-width: 600px;
   margin: 0 auto;
   padding: 16px;
 }
