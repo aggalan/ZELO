@@ -22,8 +22,7 @@
       <ActionButton dark block large @click="generateLink">
         Generar Link de Pago
       </ActionButton>
-      <v-expand-transition>
-        <div v-if="paymentLink">
+      <v-expand-transition v-if="paymentLink">
           <v-divider class="my-4"></v-divider>
           <v-text-field
             :value="paymentLink"
@@ -36,7 +35,6 @@
           <ActionButton @click="shareLink" large>
             Compartir Link
           </ActionButton>
-        </div>
       </v-expand-transition>
     </v-card-text>
   </v-card>

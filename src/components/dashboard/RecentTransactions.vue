@@ -53,7 +53,7 @@ const filteredMovements = computed(() => {
 </script>
 
 <template>
-  <v-card class="recent-transactions-card">
+  <v-card class="recent-transactions-card my-card">
     <v-card-text>
       <div class="d-flex justify-space-between align-center mb-4">
         <h2 class="text-h6 font-weight-bold">{{ title }}</h2>
