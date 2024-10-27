@@ -52,12 +52,6 @@ const appClass = computed(() => applyBackground.value ? 'zelo-app' : 'white-back
   //transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
 }
 
-:root {
-  --checkbox-color: #ffffff;
-  --error-color: #ff0000;
-  --link-color: #92bad6; /* modificar */
-}
-
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
 }

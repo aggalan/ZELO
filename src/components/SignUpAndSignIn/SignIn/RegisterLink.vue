@@ -12,7 +12,7 @@
 }
 
 .register-link a {
-  color: var(--primary-color);
+  color: var(--primary);
   text-decoration: none;
   font-weight: bold;
 }

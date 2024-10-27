@@ -47,8 +47,4 @@ const isProfileActive = computed(() => route.path === '/profile')
 </script>
 
 <style>
-:root {
-  //--primary-color: #6200EA;
-  //--secondary-color: #03DAC6;
-}
 </style>

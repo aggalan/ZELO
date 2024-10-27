@@ -6,7 +6,7 @@
 .submit-btn {
   width: 100%;
   padding: 0.75rem;
-  background-color: var(--primary-color);
+  background-color: var(--primary);
   color: var(--text-color);
   border: none;
   border-radius: 1rem;

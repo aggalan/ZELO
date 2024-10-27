@@ -22,12 +22,6 @@ import Separator from "@/components/SignUpAndSignIn/separator.vue";
 </script>
 
 <style scoped>
-:root {
-  --primary-color: #8B5CF6;
-  --secondary-color: #4B5563;
-  --background-color: #19181E;
-  --text-color: #F3F4F6;
-}
 
 .sign-in-container {
   display: flex;
