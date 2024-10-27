@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="bg-white pa-4">
-    <h1 class="text-h4 mb-6 mt-6 ml-2">Dashboard</h1>
+    <h1 class="text-h4 mb-6 mt-6 ml-2">Inicio</h1>
     <v-row>
       <v-col cols="12" md="6" lg="4">
         <BalanceCard class="mb-4" />
@@ -14,7 +14,7 @@
     </v-row>
     <v-row>
       <v-col cols="12" lg="8">
-        <RecentTransactions :max-transactions="5" class="mb-4">
+        <RecentTransactions :max-transactions="5" class="mb-4 mt-2">
           <ActionButton @click="router.push({path:'/movements'})" color="var(--primary)" variant="text" size="small">Ver todas</ActionButton>
         </RecentTransactions>
       </v-col>

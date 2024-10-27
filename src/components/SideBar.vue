@@ -9,7 +9,7 @@ const route = useRoute();
 const users = useUsersStore();
 
 const menuItems = ref([
-  { title: 'Dashboard', icon: 'mdi-view-dashboard-outline', route: '/dashboard' },
+  { title: 'Inicio', icon: 'mdi-view-dashboard-outline', route: '/dashboard' },
   { title: 'Tarjetas', icon: 'mdi-credit-card-outline', route: '/cards' },
   { title: 'Movimientos', icon: 'mdi-swap-horizontal', route: '/movements' },
   { title: 'Inversiones', icon: 'mdi-chart-line', route: '/investment' },

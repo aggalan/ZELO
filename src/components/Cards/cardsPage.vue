@@ -14,9 +14,11 @@
 
       <v-dialog v-model="dialog" max-width="500px">
         <v-card class="my-card">
-          <v-card-title class="text-h5 grey lighten-2 d-flex justify-space-between">
-            Agrega una tarjeta
-            <v-icon @click="toggleDialog" class="bg-transparent" size="30">mdi-close</v-icon>
+          <v-card-title class="d-flex justify-space-between align-center pa-4">
+            <span class="text-h5 font-weight-bold">Agrega una tarjeta</span>
+            <v-btn icon @click="toggleDialog">
+              <v-icon>mdi-close</v-icon>
+            </v-btn>
           </v-card-title>
           <v-card-text>
             <v-form @submit.prevent="addCard">
@@ -26,12 +28,16 @@
                 placeholder="**** **** **** 2534"
                 required
               ></v-text-field>
+              <errorMessageSignUpSignIn :visible="!!errorMessages.number" :message="errorMessages.number" />
+
               <v-text-field
                 v-model="newCard.name"
                 label="Nombre del titular"
                 placeholder="Juan Perez"
                 required
               ></v-text-field>
+              <errorMessageSignUpSignIn :visible="!!errorMessages.name" :message="errorMessages.name" />
+
               <v-text-field
                 v-model="newCard.expiry"
                 label="Válido hasta"
@@ -40,6 +46,8 @@
                 @input="formatDate"
                 required
               ></v-text-field>
+              <errorMessageSignUpSignIn :visible="!!errorMessages.expiry" :message="errorMessages.expiry" />
+
               <v-text-field
                 v-model="newCard.cvv"
                 label="CVV"
@@ -47,11 +55,9 @@
                 type="password"
                 required
               ></v-text-field>
-              <ActionButton
-                class="white--text"
-                block
-                type="submit"
-              >
+              <errorMessageSignUpSignIn :visible="!!errorMessages.cvv" :message="errorMessages.cvv" />
+
+              <ActionButton class="white--text" block type="submit">
                 Añadir +
               </ActionButton>
             </v-form>
@@ -148,16 +154,24 @@
 <script>
 import { ref } from 'vue'
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import errorMessageSignUpSignIn from "@/components/SignUpAndSignIn/errorMessageSignUpSignIn.vue";
 import { useCardsStore } from "@/store/cardsStore";
 import { useUsersStore } from "@/store/usersStore";
 
 export default {
   components: {
-    ActionButton
+    ActionButton,
+    errorMessageSignUpSignIn
   },
   setup() {
     const dialog = ref(false);
     const newCard = ref({
+      number: '',
+      name: '',
+      expiry: '',
+      cvv: ''
+    });
+    const errorMessages = ref({
       number: '',
       name: '',
       expiry: '',
@@ -181,6 +195,9 @@ export default {
 
     const formatDate = () => {
       const value = newCard.value.expiry.replace(/\D/g, '');
+      if(value.length <3){
+        return;
+      }
       if (value.length > 4) {
         return;
       }
@@ -200,14 +217,46 @@ export default {
       cards.value = cardStore.getCardsByUserId(userStore.userId);
     };
 
+    const isValidExpiryDate = (expiry) => {
+      if (!/^\d{2}\/\d{2}$/.test(expiry)) {
+        return false;
+      }
+      const [month, year] = expiry.split('/').map(Number);
+      if (month < 1 || month > 12) {
+        return false;
+      }
+      const currentYear = new Date().getFullYear() % 100;
+      const currentMonth = new Date().getMonth() + 1;
+      if (year < currentYear || (year === currentYear && month < currentMonth)) {
+        return false;
+      }
+      return true;
+    };
+
     const addCard = () => {
-      if (!newCard.value.number || !newCard.value.name || !newCard.value.expiry || !newCard.value.cvv) {
-        alert('Todos los campos son obligatorios.');
-        return;
+      errorMessages.value = { number: '', name: '', expiry: '', cvv: '' };
+
+      if (!newCard.value.number) {
+        errorMessages.value.number = 'Número de tarjeta es requerido.';
+      } else if (!/^\d{16}$/.test(newCard.value.number)) {
+        errorMessages.value.number = 'El número de tarjeta debe tener 16 dígitos.';
       }
 
-      if (!/^\d{16}$/.test(newCard.value.number)) {
-        alert('El número de tarjeta debe tener 16 dígitos.');
+      if (!newCard.value.name) {
+        errorMessages.value.name = 'Nombre del titular es requerido.';
+      }
+
+      if (!newCard.value.expiry) {
+        errorMessages.value.expiry = 'Fecha de expiración es requerida.';
+      } else if (!isValidExpiryDate(newCard.value.expiry)) {
+        errorMessages.value.expiry = 'Fecha de expiración no es válida.';
+      }
+
+      if (!newCard.value.cvv) {
+        errorMessages.value.cvv = 'CVV es requerido.';
+      }
+
+      if (Object.values(errorMessages.value).some(msg => msg)) {
         return;
       }
 
@@ -232,6 +281,7 @@ export default {
       dialog,
       newCard,
       cards,
+      errorMessages,
       toggleDialog,
       toggleViewInfo,
       formatCardNumber,
