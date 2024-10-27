@@ -2,31 +2,34 @@
   <v-card class="my-card">
     <v-card-title class="pa-4">Resumen</v-card-title>
     <v-card-text>
-      <div class="d-flex flex-nowrap overflow-x-auto gap-4">
+      <div v-if="currentInvestment" class="d-flex flex-nowrap overflow-x-auto gap-4">
         <div class="stat-card">
           <div class="text-overline">Inversión Total</div>
-          <div class="text-h5 font-weight-bold">${{ currentInvestment.amount }}</div>
+          <div class="text-h5 font-weight-bold">${{ currentInvestment.amount.toLocaleString() }}</div>
         </div>
 
         <div class="stat-card">
           <div class="text-overline">Rendimiento</div>
           <div class="text-h5 font-weight-bold"
                :class="{'text-success': currentInvestment.interest > 0, 'text-error': currentInvestment.interest < 0}">
-            {{ currentInvestment.interest * 100 }}%
+            {{ (currentInvestment.interest * 100).toFixed(2) }}%
           </div>
         </div>
 
-        <!-- Plazo -->
         <div class="stat-card">
           <div class="text-overline">Plazo</div>
           <div class="text-h5 font-weight-bold">{{ currentInvestment.description }}</div>
         </div>
 
-        <!-- Vencimiento -->
         <div class="stat-card">
           <div class="text-overline">Vencimiento</div>
           <div class="text-h5 font-weight-bold">{{ maturityDate }}</div>
         </div>
+      </div>
+      <div v-else class="no-investment-message">
+        <v-icon size="64" color="grey lighten-1">mdi-cash-remove</v-icon>
+        <p class="text-h6 mt-4">No tienes inversiones activas</p>
+        <p class="text-subtitle-1 mt-2">Comienza a invertir para ver un resumen aquí</p>
       </div>
     </v-card-text>
   </v-card>
@@ -35,17 +38,23 @@
 <script setup>
 import { computed } from 'vue'
 import { useInvestmentsStore } from '@/store/investmentStore'
+import { useRouter } from 'vue-router'
 
 const investmentStore = useInvestmentsStore()
+const router = useRouter()
+
 const currentInvestment = computed(() => investmentStore.getCurrentInvestment())
 
-
 const maturityDate = computed(() => {
-  // This is a placeholder. You should calculate the actual maturity date based on your data
+  if (!currentInvestment.value) return '-'
   const date = new Date()
   date.setMonth(date.getMonth() + 6)
   return date.toLocaleDateString()
 })
+
+const goToNewInvestment = () => {
+  router.push('/investment/new')
+}
 </script>
 
 <style scoped>
@@ -60,6 +69,17 @@ const maturityDate = computed(() => {
 
 .gap-4 {
   gap: 1rem;
+}
+
+.no-investment-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px;
+  background-color: rgba(var(--surface), 0.5);
+  border-radius: 8px;
 }
 
 /* Estilos para el scrollbar */

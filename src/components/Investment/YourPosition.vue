@@ -4,7 +4,7 @@
       <span class="text-h6 font-weight-bold">{{ title }}</span>
     </v-card-title>
     <v-card-text>
-      <v-list>
+      <v-list v-if="paginatedInvestments.length > 0">
         <v-list-item
           v-for="investment in paginatedInvestments"
           :key="investment.id"
@@ -23,12 +23,11 @@
 
           <template v-slot:append>
             <ActionButton
-              :color="investment.id === currentInvestmentId ? 'grey' : 'transparent'"
+              :color="investment.id === currentInvestmentId ? 'grey' : 'primary'"
               :variant="investment.id === currentInvestmentId ? 'text' : 'flat'"
               @click.stop="setAsCurrentInvestment(investment)"
-              class="text-purple"
             >
-              <span :class="{ 'text-grey': investment.id === currentInvestmentId }">
+              <span :class="{ 'text-purple': investment.id === currentInvestmentId }">
                 {{ investment.id === currentInvestmentId ? 'Viendo' : 'Ver' }}
               </span>
             </ActionButton>
@@ -36,8 +35,14 @@
         </v-list-item>
       </v-list>
 
+      <v-sheet v-else class="d-flex flex-column align-center justify-center pa-6 mt-16">
+        <v-icon icon="mdi-cash-remove" size="64" color="grey" class="mb-4"></v-icon>
+        <p class="text-h6 mt-4">No tienes inversiones activas</p>
+        <p class="text-subtitle-1 mt-2">Comienza a invertir para ver un resumen aquí</p>
+      </v-sheet>
+
       <!-- Paginación -->
-      <div class="d-flex justify-center">
+      <div v-if="paginatedInvestments.length > 0" class="d-flex justify-center">
         <v-pagination
           v-model="currentPage"
           :length="totalPages"
@@ -54,10 +59,12 @@
 import { computed, ref } from 'vue'
 import { useInvestmentsStore } from "@/store/investmentStore"
 import { useUsersStore } from "@/store/usersStore"
-import ActionButton from "@/components/generalComponents/ActionButton.vue";
+import { useRouter } from 'vue-router'
+import ActionButton from "@/components/generalComponents/ActionButton.vue"
 
 const investmentsStore = useInvestmentsStore()
 const usersStore = useUsersStore()
+const router = useRouter()
 
 const investments = investmentsStore.getInvestmentsByUserId(usersStore.userId)
 const currentInvestmentId = computed(() => investmentsStore.currentInvestment?.id)
@@ -79,6 +86,10 @@ const setAsCurrentInvestment = (investment) => {
   investmentsStore.setCurrentInvestment(investment.id)
 }
 
+const goToNewInvestment = () => {
+  router.push('/investments/new')
+}
+
 const calculateReturn = (trend) => {
   if (trend.length < 2) return 0
   const firstValue = trend[0]
@@ -94,18 +105,12 @@ const getInvestmentTrendColor = (trend) => {
 
 <style scoped>
 .text-purple {
-  color: #8B5CF6; /* Adjust this color to a lighter shade if needed */
+  color: var(--primary);
 }
-
-.text-grey {
-  color: gray;
-}
-
 .contenedor-principal {
   position: relative;
-  min-height: 300px; /* Adjust according to the necessary space */
+  min-height: 300px;
 }
-
 .position-card {
   height: 482px;
 }
