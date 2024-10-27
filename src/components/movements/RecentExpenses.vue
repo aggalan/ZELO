@@ -1,5 +1,5 @@
 <template>
-  <ItemList :items="limitedItems" class="my-card pa-2">
+  <ItemList :items="recentItems" class="my-card pa-2">
     <v-select
       v-model="selectedCategory"
       :items="categories"
@@ -44,15 +44,18 @@ const filteredItems = computed(() => {
       category: 'Inversiones',
       to: investment.name,
       amount: investment.amount,
-      type: 'inversión'
+      type: 'inversión',
+      date: new Date(investment.id) // Assuming id is a timestamp or can be converted to a date
     }))
   } else {
     return expenses.value.filter(expense => expense.category === selectedCategory.value.name)
   }
 })
 
-const limitedItems = computed(() => {
-  return filteredItems.value.slice(0, 5)
+const recentItems = computed(() => {
+  return filteredItems.value
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5)
 })
 
 </script>
