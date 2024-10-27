@@ -142,7 +142,7 @@ const paymentMethods = computed(() => [
     id: card.id,
     name: card.bank,
     icon: 'mdi-credit-card',
-    balance: 10000, // Assuming a credit limit, adjust as needed
+    balance: 500000,
     number: card.number,
     type: 'Tarjeta de Crédito',
     color: card.color
@@ -205,7 +205,7 @@ const confirmTransfer = () => {
       description: concept.value
     })
 
-    // Handle credit card payment logic here
+
     console.log('Credit card payment:', {
       cardId: selectedPaymentMethod.value.id,
       amount: parsedAmount,

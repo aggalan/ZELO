@@ -118,13 +118,13 @@ const selectTransferOption = (option) => {
 
 const repeatTransfer = (transfer) => {
   repeatedTransfer.value = transfer
-  // Implement repeat transfer logic here
+
   router.push({path: '/transference/cbu', query: { cbu: transfer.cbu, amount: transfer.amount }})
 }
 
 const selectContact = (contact) => {
   console.log('Selected contact:', contact.name)
-  // Implement contact selection logic here
+
 }
 
 const goBack = () => {
