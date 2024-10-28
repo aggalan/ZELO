@@ -20,7 +20,7 @@
           label="Descripción (opcional)"
           outlined
         ></v-text-field>
-        <ActionButton dark block large @click="generateLink">
+        <ActionButton dark block large @click="generateLink" class="text-white">
           Generar link de cobro
         </ActionButton>
 

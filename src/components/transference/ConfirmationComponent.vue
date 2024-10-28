@@ -46,7 +46,7 @@
         <v-col>
           <ActionButton
             block
-            class="mb-2"
+            class="mb-2 text-white"
             @click="confirm"
             :loading="loading"
           >

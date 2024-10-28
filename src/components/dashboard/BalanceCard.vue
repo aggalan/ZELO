@@ -72,6 +72,7 @@ const formattedBalance = computed(() =>
   transition: box-shadow 0.3s ease;
 }
 .action-btn {
+
   height: 40px;
 }
 </style>

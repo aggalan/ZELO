@@ -64,7 +64,7 @@
         </v-form>
       </v-card-text>
       <ActionButton
-        class="text-capitalize font-weight-bold ma-3"
+        class="text-capitalize font-weight-bold ma-3 text-white"
         height="48"
         @click="shareData"
       >

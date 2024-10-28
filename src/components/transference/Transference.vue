@@ -25,7 +25,7 @@
                       :color="option.color"
                       block
                       height="48"
-                      class="text-body-1 font-weight-medium"
+                      class="text-white font-weight-medium"
                       variant="flat"
                       rounded
                       @click="selectTransferOption(option)"
@@ -53,6 +53,7 @@
                     <v-list-item-subtitle class="text-body-2">${{ transfer.amount }} - {{ transfer.time }}</v-list-item-subtitle>
                     <template v-slot:append>
                       <ActionButton
+                        class="text-white"
                         icon
                         @click.stop="repeatTransfer(transfer)"
                       >

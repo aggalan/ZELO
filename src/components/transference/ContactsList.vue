@@ -23,7 +23,7 @@
           </template>
           <v-list-item-title class="font-weight-medium">{{ contact.name }}</v-list-item-title>
           <template v-slot:append>
-            <ActionButton @click="completeTransfer(contact)" customClass=" px-6">Transferir</ActionButton>
+            <ActionButton @click="completeTransfer(contact)" class="text-white">Transferir</ActionButton>
           </template>
         </v-list-item>
       </v-list>

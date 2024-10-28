@@ -44,7 +44,7 @@
 
       <div class="d-flex flex-wrap justify-space-between">
         <ActionButton
-          class="flex-grow-1 mr-2 mb-2 py-6 d-flex align-center"
+          class="flex-grow-1 mr-2 mb-2 py-6 d-flex align-center text-white"
           type="submit"
           :disabled="!isFormValid"
         >

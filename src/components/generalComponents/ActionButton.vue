@@ -2,7 +2,7 @@
   <v-btn
       :color="color"
       text
-      class="pay-btn rounded-lg text-white"
+      class="pay-btn rounded-lg"
       @click="handleClick"
       :class = "customClass"
   >

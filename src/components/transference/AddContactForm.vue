@@ -37,6 +37,7 @@
           dark
           type="submit"
           block
+          class="text-white"
         >
           Agregar contacto
         </ActionButton>

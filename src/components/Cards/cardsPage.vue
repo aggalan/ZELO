@@ -6,7 +6,7 @@
     <v-container fluid class="pa-10 d-flex flex-column justify-center">
       <v-row class="d-flex flex-row mb-5" align="center">
         <v-col cols="12" sm="6" class="d-flex flex-row">
-          <ActionButton v-if="cards.length !== 0" @click="toggleDialog" height="40" elevation="0" class="aux">
+          <ActionButton v-if="cards.length !== 0" @click="toggleDialog" height="40" elevation="0" class="aux text-white">
             AGREGAR TARJETA +
           </ActionButton>
         </v-col>

@@ -33,6 +33,7 @@
             large
             type="submit"
             :loading="loading"
+            class="text-white"
           >
             INICIAR INGRESO
           </ActionButton>
@@ -69,6 +70,7 @@
               </v-col>
               <v-col cols="auto">
                 <ActionButton
+                  class="text-white"
                   icon
                   @click.stop="repeatDeposit(deposit)"
                 >

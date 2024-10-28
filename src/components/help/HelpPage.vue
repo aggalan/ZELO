@@ -61,7 +61,9 @@ const helpCategories = ref([
 ])
 
 const handleCategoryClick = (category) => {
-  router.push(category.route)
+  if(category.route === '/reset-password') {
+    router.push(category.route)
+  }
 }
 
 const contactSupport = () => {
