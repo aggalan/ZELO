@@ -22,7 +22,7 @@
           <v-list-item-subtitle>${{ investment.amount }}</v-list-item-subtitle>
 
           <template v-slot:append>
-            <action-button @click.stop="setAsCurrentInvestment(investment)" :color="investment.id === currentInvestmentId ? 'grey' : 'primary'" variant="text">
+            <action-button @click.stop="setAsCurrentInvestment(investment)" :color="investment.id === currentInvestmentId ? 'grey' : 'var(--primary)'" variant="text">
               {{ investment.id === currentInvestmentId ? 'Viendo' : 'Ver' }}
             </action-button>
           </template>

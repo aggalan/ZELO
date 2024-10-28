@@ -2,7 +2,7 @@
   <div class="text-center mt-4">
     <v-btn
       text
-      color="primary"
+      color="var(--primary)"
       to="/login"
       class="text-none"
     >
