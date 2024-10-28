@@ -11,7 +11,7 @@
             height="48"
             @click="openInvestDialog"
           >
-            <v-icon left class="mr-2">mdi-cash-plus</v-icon>
+            <v-icon class="mr-2">mdi-cash-plus</v-icon>
             Invertir
           </ActionButton>
         </v-col>
@@ -24,7 +24,7 @@
             height="48"
             @click="openWithdrawDialog"
           >
-            <v-icon left class="mr-2">mdi-cash-minus</v-icon>
+            <v-icon class="mr-2">mdi-cash-minus</v-icon>
             Rescatar
           </ActionButton>
         </v-col>
