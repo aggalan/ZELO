@@ -303,12 +303,8 @@ export default {
   display: inline-block;
 }
 
-.main-cards {
-  background-color: #f9f9f9;
-}
-
 .background-cards {
-  background-color: #ffffff;
+  background-color: var(--background);
 }
 
 .horizontal-scroll {

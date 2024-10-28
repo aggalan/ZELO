@@ -246,7 +246,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
   const getInvestmentsByUserId = (userId) => {
     return computed( () => investments.value.filter(investment => investment.userId === userId));
   };
-  const currentInvestment = ref(getInvestmentsByUserId(userStore.userId).value[0]);
+  const currentInvestment = ref(null);
   const removeInvestment = ( amount,investmentId= currentInvestment.value.id) => {
     if(amount > currentInvestment.value.amount){
       return;
