@@ -26,14 +26,14 @@
           <v-switch
             v-model="autoConvert"
             label="Convertir a moneda seleccionada automaticamente"
-            color="#8B5CF6"
+            color="var(--primary)"
           ></v-switch>
         </v-col>
         <v-col cols="12" md="6">
           <v-switch
             v-model="instantTransfers"
             label="Habilitar transferencias instantaneas"
-            color="#8B5CF6"
+            color="var(--primary)"
           ></v-switch>
         </v-col>
       </v-row>

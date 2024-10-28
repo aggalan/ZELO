@@ -1,11 +1,11 @@
 <template>
   <v-container fluid class="bg-white pa-4">
-    <v-container color="#Ffffff" fluid class="d-flex flex-column">
+    <v-container color="white" fluid class="d-flex flex-column">
       <v-btn
         icon
         @click="goBack"
       >
-        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
+        <v-icon color="var(--primary)">mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
     </v-container>

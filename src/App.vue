@@ -43,7 +43,7 @@ const appClass = computed(() => applyBackground.value ? 'zelo-app' : 'white-back
 
 .custom-search-field {
   border-radius: 30px;
-  background-color: #ffffff;
+  background-color: white;
   padding-left: 15px;
   padding-right: 15px;
   box-shadow: none;
