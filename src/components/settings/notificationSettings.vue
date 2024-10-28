@@ -7,7 +7,7 @@
           <v-list-item-subtitle>Recibir notificaciones por todas las transacciones</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
-          <v-switch v-model="transactionNotifications" color="#8B5CF6"></v-switch>
+          <v-switch v-model="transactionNotifications" color="primary"></v-switch>
         </v-list-item-action>
       </v-list-item>
       <v-list-item>
@@ -16,7 +16,7 @@
           <v-list-item-subtitle>Recibir alertas cuando mi balance esta bajo</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
-          <v-switch v-model="balanceAlerts" color="#8B5CF6"></v-switch>
+          <v-switch v-model="balanceAlerts" color="var(--primary)"></v-switch>
         </v-list-item-action>
       </v-list-item>
       <v-list-item>
@@ -25,7 +25,7 @@
           <v-list-item-subtitle>Recibir notificaciones de eventos relacionados a mi seguridad</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
-          <v-switch v-model="securityAlerts" color="#8B5CF6"></v-switch>
+          <v-switch v-model="securityAlerts" color="var(--primary)"></v-switch>
         </v-list-item-action>
       </v-list-item>
       <v-list-item>
@@ -34,24 +34,24 @@
           <v-list-item-subtitle>Recibir actualizaciones sobre nuevas funciones y ofertas</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
-          <v-switch v-model="promotionalNotifications" color="#8B5CF6"></v-switch>
+          <v-switch v-model="promotionalNotifications" color="var(--primary)"></v-switch>
         </v-list-item-action>
       </v-list-item>
     </v-list>
-    <v-btn
-      color="#8B5CF6"
-      class="mt-4"
+    <ActionButton
+      class="mt-4 text-white"
       dark
       @click="saveSettings"
       :loading="loading"
     >
      Actualizar Configuracion de Seguridad
-    </v-btn>
+    </ActionButton>
   </v-card-text>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const transactionNotifications = ref(true)
 const balanceAlerts = ref(true)
