@@ -18,6 +18,14 @@
         <v-row>
           <v-col cols="12">
             <v-form @submit.prevent="updatePersonalInfo">
+              <v-alert
+                v-if="successMessage"
+                type="success"
+                dismissible
+                class="mb-4"
+              >
+                {{ successMessage }}
+              </v-alert>
               <v-list>
                 <v-list-item>
                   <v-list-item-title>Perfil público</v-list-item-title>
@@ -71,12 +79,15 @@ const snackbar = ref(false)
 const publicProfile = ref(false)
 const shareUsageData = ref(true)
 const receiveNotifications = ref(true)
+const successMessage = ref('')
+
 
 
 
 const updatePersonalInfo = () => {
-  console.log('Actualizando información personal...')
+  successMessage.value = 'Información actualizada con éxito';
 }
+
 
 
 const goBack = () => {
