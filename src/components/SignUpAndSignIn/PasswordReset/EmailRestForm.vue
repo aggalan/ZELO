@@ -71,6 +71,6 @@ const handleSubmit = async () => {
 
 <style scoped>
 .submit-button {
-  margin-top: 2.5rem; /* Adjust the value as needed */
+  margin-top: 2.5rem;
 }
 </style>

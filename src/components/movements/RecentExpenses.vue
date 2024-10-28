@@ -45,7 +45,7 @@ const filteredItems = computed(() => {
       name: investment.name,
       amount: investment.amount,
       type: 'inversión',
-      date: new Date(investment.id) // Assuming id is a timestamp or can be converted to a date
+      date: new Date(investment.id)
     }))
   } else {
     return expenses.value.filter(expense => expense.category === selectedCategory.value.name)

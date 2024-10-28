@@ -68,12 +68,10 @@ const handleCategoryClick = (category) => {
 
 const contactSupport = () => {
   console.log('Contacting support...')
-  // Implement contact support logic here
 }
 
 const cancelAccount = () => {
   console.log('Cancelling account...')
-  // Implement account cancellation logic here
 }
 
 const goBack = () => {

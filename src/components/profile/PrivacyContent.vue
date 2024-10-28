@@ -75,7 +75,6 @@ const receiveNotifications = ref(true)
 
 
 const updatePersonalInfo = () => {
-  // Here you would implement the logic to update personal information
   console.log('Actualizando información personal...')
 }
 

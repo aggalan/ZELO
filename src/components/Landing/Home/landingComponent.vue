@@ -67,12 +67,10 @@ const stopLogoAnimation = () => {
 
 const openAccount = () => {
   console.log('Opening account...')
-  // Implement account opening logic here
 }
 
 const downloadApp = () => {
   console.log('Downloading app...')
-  // Implement app download logic here
 }
 </script>
 

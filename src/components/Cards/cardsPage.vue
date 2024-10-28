@@ -57,7 +57,7 @@
               ></v-text-field>
               <errorMessageSignUpSignIn :visible="!!errorMessages.cvv" :message="errorMessages.cvv" />
 
-              <ActionButton class="white--text" block type="submit">
+              <ActionButton class="text-white" block type="submit">
                 Añadir +
               </ActionButton>
             </v-form>

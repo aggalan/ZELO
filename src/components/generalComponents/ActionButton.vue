@@ -6,7 +6,7 @@
       @click="handleClick"
       :class = "customClass"
   >
-    <slot></slot> <!-- Esto permitirá pasar texto u otros elementos dentro del botón -->
+    <slot></slot>
   </v-btn>
 </template>
 
@@ -15,14 +15,14 @@
 const props = defineProps({
   color: {
     type: String,
-    default: 'var(--primary)' // Color por defecto
+    default: 'var(--primary)'
   },
   action: {
     type: Function,
-    default: null // La acción es obligatoria
+    default: null
   },
   customClass: {
-    type: String, // Puede ser una cadena de clases CSS
+    type: String,
     default: ''
   }
 });
@@ -30,7 +30,6 @@ const props = defineProps({
 const handleClick = () => {
   if(props.action)
     props.action();
-  // Ejecuta la acción pasada como prop
 };
 </script>
 

@@ -66,10 +66,8 @@ export const useCardsStore = defineStore('cards', () => {
       viewInfo: false,
       icon: 'mdi-eye-closed'
     }
-    // ... (other cards)
   ]);
 
-  // Agregar tarjeta a un usuario
   const addCard = (userId, card) => {
     if(!card.number || !card.expiry || !card.cvv) {
       throw new Error('Número de tarjeta, fecha de expiración y CVV son requeridos');

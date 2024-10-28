@@ -81,7 +81,6 @@ const taxId = ref('ABCD1234567')
 
 
 const updatePersonalInfo = () => {
-  // Here you would implement the logic to update personal information
   console.log('Actualizando información personal...')
 }
 

@@ -30,11 +30,11 @@ import Separator from "@/components/SignUpAndSignIn/separator.vue";
 
 <style scoped>
 .password-reset-layout {
-  margin-top: -1.8rem; /* Adjust the value as needed */
+  margin-top: -1.8rem;
 }
 
 .decoration-card {
-  margin-top: 3.7rem; /* Adjust the value as needed */
+  margin-top: 3.7rem;
 }
 
 </style>

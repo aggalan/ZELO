@@ -145,6 +145,6 @@ const goBack = () => {
 }
 
 .content-container {
-  margin-top: 50px; /* Adjust this value to move the content lower */
+  margin-top: 50px;
 }
 </style>

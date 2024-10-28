@@ -34,7 +34,7 @@
               append-icon="mdi-content-copy"
               @click:append="copyToClipboard"
             ></v-text-field>
-            <ActionButton @click="shareLink" large>
+            <ActionButton @click="shareLink" class="text-white" large>
               Compartir Link
             </ActionButton>
           </div>

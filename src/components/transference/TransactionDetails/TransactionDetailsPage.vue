@@ -38,7 +38,7 @@ const relatedTransactions = computed(() => {
 
   return transactionsStore.getTransactionsByUserId
     .filter(transaction => transaction.id !== selectedTransaction.id)
-    .slice(0, 2) // Limit to 2 related transactions
+    .slice(0, 2)
 })
 const goBack = () => {
   router.back();

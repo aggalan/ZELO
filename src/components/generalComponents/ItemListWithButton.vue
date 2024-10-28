@@ -42,7 +42,6 @@
 import { ref } from 'vue';
 import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
-// Props
 const props = defineProps({
   buttonText: { type: String, default: '' },
   buttonIcon: { type: String, default: 'mdi-plus' },
@@ -57,10 +56,8 @@ const props = defineProps({
   useLink: { type: Boolean, default: false },
 });
 
-// Estado reactivo para manejar el ítem seleccionado
 const selectedItem = ref(null);
 
-// Función para seleccionar un ítem de la lista
 const selectItem = (item, index) => {
   selectedItem.value = index;
   props.onButtonClick(item);

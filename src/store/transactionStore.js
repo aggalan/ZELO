@@ -16,7 +16,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
   ]);
   const selectedTransaction = ref(null);
   const useUserStore = useUsersStore()
-  // Agregar transacción
   const addTransaction = (userId, transaction) => {
     transactions.value.push({ ...transaction, userId, id: transactions.value.length + 1, icon: 'mdi-account' });
   };
@@ -24,7 +23,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     const now = Date.now(); // Tiempo actual en milisegundos
     const diff = now - eventTimestamp; // Diferencia en milisegundos
 
-    // Convertir a segundos, minutos, horas y días
     const seconds = Math.floor(diff / 1000);
     const minutes = Math.floor(seconds / 60);
     const hours = Math.floor(minutes / 60);
@@ -52,7 +50,6 @@ export const useTransactionsStore = defineStore('transactions', () => {
     return selectedTransaction.value;
   }
 
-  // Obtener transacciones por ID de usuario
   const getTransactionsByUserId = computed(() => {
     return transactions.value
       .filter(transaction => transaction.userId === useUserStore.userId)

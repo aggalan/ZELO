@@ -113,6 +113,6 @@ const confirmWithdraw = () => {
 
 <style scoped>
 .invertir-btn {
-  color: white; /* Use your desired color */
+  color: white;
 }
 </style>

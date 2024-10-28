@@ -58,7 +58,7 @@ const totalSpent = computed(() => {
   return transactions.value.reduce((total, transaction) => total + transaction.amount, 0)
 })
 
-const budget = ref(100000) // You might want to replace this with a real budget from a store if available
+const budget = ref(100000)
 
 const spendingPercentage = computed(() => {
   if (budget.value === 0) return 0
@@ -77,7 +77,7 @@ const categories = computed(() => {
 
   return Array.from(categoryMap, ([name, amount]) => ({name, amount}))
     .sort((a, b) => b.amount - a.amount)
-    .slice(0, 4) // Get top 4 categories
+    .slice(0, 4)
 })
 
 const getCategoryColor = (categoryName) => {

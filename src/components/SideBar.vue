@@ -20,12 +20,10 @@ const bottomItems = ref([
   { title: 'Cerrar Sesión', icon: 'mdi-logout-variant', route: '/logout' },
 ]);
 
-// Iniciar selectedItem según la ruta actual
 const selectedItem = ref(menuItems.value.find(item => item.route === route.path)?.title || '');
 
 const getFirstRouteSegment = (path: string) => {
-  // Dividir el path por "/"
-  const segments = path.split('/').filter(Boolean) // `filter(Boolean)` elimina los valores vacíos
+  const segments = path.split('/').filter(Boolean)
   return segments.length > 0 ? segments[0] : ''
 }
 
@@ -42,7 +40,7 @@ watch(route, (newRoute) => {
   if(!foundItem){
     foundItem = bottomItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   }
-  selectedItem.value = foundItem ? foundItem.title : ''; // Actualizar selectedItem
+  selectedItem.value = foundItem ? foundItem.title : '';
 });
 
 onBeforeMount(() => {
@@ -51,7 +49,7 @@ onBeforeMount(() => {
   if(!foundItem){
     foundItem = bottomItems.value.find(item => getFirstRouteSegment( item.route) === firstRouteSegment.value);
   }
-  selectedItem.value = foundItem ? foundItem.title : ''; // Actualizar selectedItem
+  selectedItem.value = foundItem ? foundItem.title : '';
 });
 
 const handleItemClick = (item) => {

@@ -35,7 +35,7 @@ import OperateButtons from './OperateButtons.vue'
 
 <style scoped>
 .operate-buttons {
-  height: 173px; /* Adjust the height as needed */
+  height: 173px;
   margin-top: -4px;
 }
 </style>

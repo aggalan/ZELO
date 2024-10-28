@@ -8,7 +8,6 @@ export const useBalanceStore = defineStore('balance', () => {
   const userStore = useUsersStore();
   const transactions = useTransactionsStore();
 
-  // Establecer saldo para un usuario
   const setBalance = ( amount) => {
     const userBalance = balances.value.find(balance => balance.userId === userStore.userId);
     if (userBalance) {
@@ -36,7 +35,6 @@ export const useBalanceStore = defineStore('balance', () => {
 
   const canWithdraw = (amount) => {
     const parsedAmount = Number(amount);
-    // Si parsedAmount no es un número, devuelve o maneja el error
     if ( isNaN(parsedAmount)) {
       return false;
     }
@@ -46,7 +44,6 @@ export const useBalanceStore = defineStore('balance', () => {
 
   const withdrawMoney = ( amount, to) => {
     const parsedAmount = Number(amount);
-    // Si parsedAmount no es un número, devuelve o maneja el error
     if ( isNaN(parsedAmount)) {
       console.error("El monto proporcionado no es un número válido.");
       return ;

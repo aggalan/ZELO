@@ -31,7 +31,7 @@ input[type="checkbox"] {
   appearance: none;
   width: 20px;
   height: 20px;
-  border: 2px solid #ffffff; /* White border */
+  border: 2px solid #ffffff;
   border-radius: 4px;
   margin-right: 0.5rem;
   cursor: pointer;

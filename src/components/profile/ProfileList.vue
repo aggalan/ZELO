@@ -34,7 +34,7 @@ const props = defineProps({
   justify-content: space-between;
   text-align: left;
   width: 100%;
-  padding: 16px; /* Reduced padding */
+  padding: 16px;
   margin-bottom: 12px;
   background-color: white;
   border: 1px solid #e0e0e0;
@@ -45,16 +45,16 @@ const props = defineProps({
 
 
 .v-list-item-title {
-  font-size: 19px; /* Smaller font size */
+  font-size: 19px;
 }
 
 .v-list-item-subtitle {
-  font-size: 12px; /* Smaller font size */
+  font-size: 12px;
 }
 
 
 
 .ml-2 {
-  margin-left: 8px; /* Add some space between the icon and the text */
+  margin-left: 8px;
 }
 </style>

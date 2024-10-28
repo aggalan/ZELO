@@ -64,7 +64,6 @@ const investments = investmentsStore.getInvestmentsByUserId(usersStore.userId)
 const currentInvestmentId = computed(() => investmentsStore.currentInvestment?.id)
 const title = "Tu posición"
 
-// Paginación
 const itemsPerPage = 5
 const currentPage = ref(1)
 

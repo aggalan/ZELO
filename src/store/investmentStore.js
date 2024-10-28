@@ -197,10 +197,9 @@ export const useInvestmentsStore = defineStore('investments', () => {
         }
       }},
   ]);
-  // Agregar inversión para un usuario
   const addInvestment = ( investment, userId = userStore.userId) => {
     if(investment.amount > balanceStore.getBalanceByUserId(userId)){
-      return; //error
+      return;
     }
     const fechaActual = new Date(Date.now());
     const fechaFormateada = fechaActual.toLocaleDateString('es-ES'); // Formato dd/mm/yyyy
@@ -242,7 +241,6 @@ export const useInvestmentsStore = defineStore('investments', () => {
     balanceStore.withdrawMoney( investment.amount, {name: 'Inversión', category: 'Inversión', cbu: '0000', concept: 'Inversión en plazo fijo'});
   }
 
-  // Obtener inversiones de un usuario
   const getInvestmentsByUserId = (userId) => {
     return computed( () => investments.value.filter(investment => investment.userId === userId));
   };

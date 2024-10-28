@@ -69,7 +69,7 @@ const props = defineProps({
 }
 
 .content-col {
-  min-width: 0; /* This ensures that text truncation works properly */
+  min-width: 0;
 }
 
 .text-truncate {
@@ -79,7 +79,6 @@ const props = defineProps({
   max-width: 100%;
 }
 
-/* Custom scrollbar styles */
 .list-body::-webkit-scrollbar {
   width: 8px;
 }

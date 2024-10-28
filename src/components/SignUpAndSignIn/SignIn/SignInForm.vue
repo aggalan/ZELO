@@ -49,7 +49,6 @@ const togglePassword = () => {
 }
 
 const handleSubmit = () => {
-  // router.push('/dashboard');
   const loginSuccessful = users.login(email.value, password.value);
   if (!loginSuccessful) {
     errorMessage.value = 'No se pudo iniciar sesión. Por favor, verifique sus credenciales.'

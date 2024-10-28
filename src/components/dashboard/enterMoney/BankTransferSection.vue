@@ -130,7 +130,6 @@ const startDeposit = () => {
     loading.value = false
     confirmation.value = true
     console.log('Starting deposit:', {bank: selectedBank.value, amount: amount.value})
-    // The lastDeposits will automatically update due to the computed property
   }, 2000)
 }
 
@@ -148,9 +147,7 @@ const formatDate = (date) => {
   }).format(new Date(date))
 }
 
-// Watch for changes in the transactions store
 watch(() => transactionsStore.transactions, () => {
-  // This will trigger a re-computation of lastDeposits
 }, {deep: true})
 </script>
 

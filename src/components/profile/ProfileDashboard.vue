@@ -23,7 +23,7 @@ const toggleHelpSection = () => {
 
 <style>
 
-.profile-container { /* Ajusta este valor según tus necesidades */
+.profile-container {
 }
 .v-application {
   font-family: 'Roboto', sans-serif;
@@ -31,6 +31,6 @@ const toggleHelpSection = () => {
 }
 
 .fill-height {
-  height: 100vh; /* Full viewport height */
+  height: 100vh;
 }
 </style>

@@ -72,16 +72,16 @@ const sliderStyle = computed(() => ({
 }
 
 .custom-margin {
-  margin-left: 1rem; /* Adjust the value as needed */
+  margin-left: 1rem;
 }
 
 .v-app-bar {
-  padding: 30px; /* Increase padding */
-  height: 90px; /* Increase height */
+  padding: 30px;
+  height: 90px;
 }
 
 .options-container {
-  padding-left: 60px; /* Adjust this value to center the options more */
+  padding-left: 60px;
 }
 
 .slider {
@@ -104,11 +104,11 @@ const sliderStyle = computed(() => ({
 }
 
 .text-h4 {
-  font-size: 4rem; /* Increase the font size for the title */
+  font-size: 4rem;
 }
 
 .text-body-1 {
-  font-size: 3rem; /* Increase the font size for the menu items */
+  font-size: 3rem;
 }
 
 .mx-3 {

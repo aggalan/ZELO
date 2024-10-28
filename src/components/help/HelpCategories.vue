@@ -55,14 +55,14 @@ const navigateToCategory = (category) => {
   justify-content: space-between;
   text-align: left;
   padding: 32px;
-  margin-bottom: 0; /* Reduce the margin to decrease space between buttons */
+  margin-bottom: 0;
   margin-top: 0;
   background-color: white;
   border: 1px solid #e0e0e0;
   border-radius: 8px;
   position: relative;
   overflow: hidden;
-  max-width: 400px; /* Set a smaller maximum width */
+  max-width: 400px;
 }
 
 .left-icon {
@@ -70,8 +70,8 @@ const navigateToCategory = (category) => {
 }
 
 .right-icon {
-  position: absolute; /* Position the chevron button absolutely */
-  right: 16px; /* Adjust the value as needed */
+  position: absolute;
+  right: 16px;
 }
 
 .category-button .v-list-item-icon,

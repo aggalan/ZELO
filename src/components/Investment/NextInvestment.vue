@@ -86,7 +86,6 @@ const goToNewInvestment = () => {
   border-radius: 8px;
 }
 
-/* Estilos para el scrollbar */
 .overflow-x-auto {
   scrollbar-width: thin;
   -webkit-overflow-scrolling: touch;

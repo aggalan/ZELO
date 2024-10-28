@@ -1,7 +1,6 @@
 <template>
   <v-app>
     <v-navigation-drawer app v-model="drawer">
-      <!-- Sidebar content -->
       <v-list>
         <v-list-item
           v-for="(item, i) in menuItems"

@@ -72,7 +72,6 @@ const faqItems = ref([
 const currentYear = computed(() => new Date().getFullYear())
 
 const scrollToContact = () => {
-  // Implementar la lógica de desplazamiento a la sección de contacto
   console.log('Desplazarse a la sección de contacto')
 }
 </script>

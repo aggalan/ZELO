@@ -109,14 +109,11 @@ const submitForm = async () => {
 
   if (valid) {
     loading.value = true
-    // Lógica para enviar formulario
     console.log('Formulario enviado', { name: name.value, email: email.value, subject: subject.value, message: message.value })
 
-    // Simulamos una espera de 2 segundos
     await new Promise(resolve => setTimeout(resolve, 2000))
 
     loading.value = false
-    // Mostrar mensaje de éxito o limpiar el formulario
     alert('Mensaje enviado con éxito')
     form.value.reset()
   }
