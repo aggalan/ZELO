@@ -31,7 +31,7 @@ export const useBalanceStore = defineStore('balance', () => {
     } else {
       balances.value.push({ userId: userStore.userId, amount: parsedAmount });
     }
-    transactions.addTransaction(userStore.userId, { type: 'ingreso', amount: parsedAmount, creationTime: Date.now(), name: from.name || '', cbu: from.cbu || '', category: from.category || '' });
+    transactions.addTransaction(userStore.userId, { type: 'ingreso', amount: parsedAmount, creationTime: Date.now(), name: from.name || '', cbu: from.cbu || '', category: from.category || '', description: from.description || '' });
   };
 
   const canWithdraw = (amount) => {

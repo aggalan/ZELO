@@ -29,23 +29,23 @@
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Remitente</h3>
           <p>{{ currentUser.name }}</p>
-          <p class="text-caption">CBU: {{ transaction.cbu }}</p>
+          <p class="text-caption">CBU: {{ currentUser.cbu || 'N / A'}}</p>
         </v-col>
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Destinatario</h3>
-          <p>{{ transaction.to }}</p>
-          <p class="text-caption">CBU: N/A</p>
+          <p>{{ transaction.name }}</p>
+          <p class="text-caption">CBU: {{transaction.cbu || 'N / A'}}</p>
         </v-col>
       </v-row>
       <v-divider class="my-4"></v-divider>
       <v-row>
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Descripción</h3>
-          <p>{{ transaction.description }}</p>
+          <p>{{ transaction.description || 'N/A' }}</p>
         </v-col>
         <v-col cols="12" sm="6">
           <h3 class="text-subtitle-1 font-weight-bold mb-2">Categoría</h3>
-          <v-chip color="secondary" text-color="white">{{ transaction.category }}</v-chip>
+          <v-chip color="secondary" text-color="white">{{ transaction.category || 'N/A' }}</v-chip>
         </v-col>
       </v-row>
     </v-card-text>

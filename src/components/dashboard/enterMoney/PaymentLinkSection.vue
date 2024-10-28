@@ -1,43 +1,47 @@
 <template>
-  <v-card class="my-card" elevation="2">
-    <v-card-title class="d-flex justify-space-between align-center">
-      <span class="text-h5 mt-2">Link de Cobro</span>
-      <v-btn icon @click="closeDialog" class="close-btn">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-    </v-card-title>
-    <v-card-text>
-      <v-text-field
-        v-model="amount"
-        label="Monto a recibir"
-        prefix="$"
-        outlined
-        type="number"
-      ></v-text-field>
-      <v-text-field
-        v-model="description"
-        label="Descripción (opcional)"
-        outlined
-      ></v-text-field>
-      <ActionButton dark block large @click="generateLink">
-        Generar Link de Pago
-      </ActionButton>
-      <v-expand-transition v-if="paymentLink">
-          <v-divider class="my-4"></v-divider>
-          <v-text-field
-            :value="paymentLink"
-            label="Link de Pago"
-            readonly
-            outlined
-            append-icon="mdi-content-copy"
-            @click:append="copyToClipboard"
-          ></v-text-field>
-          <ActionButton @click="shareLink" large>
-            Compartir Link
-          </ActionButton>
-      </v-expand-transition>
-    </v-card-text>
-  </v-card>
+  <v-dialog v-model="dialogLink" max-width="500">
+    <v-card class="my-card" elevation="2">
+      <v-card-title class="d-flex justify-space-between align-center">
+        <span class="text-h5 mt-2">Link de Cobro</span>
+        <v-btn icon @click="closeDialog" class="close-btn">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-card-title>
+      <v-card-text>
+        <v-text-field
+          v-model="amount"
+          label="Monto a recibir"
+          prefix="$"
+          outlined
+          type="number"
+        ></v-text-field>
+        <v-text-field
+          v-model="description"
+          label="Descripción (opcional)"
+          outlined
+        ></v-text-field>
+        <ActionButton dark block large @click="generateLink">
+          Generar link de cobro
+        </ActionButton>
+
+        <v-expand-transition>
+          <div v-if="paymentLink">
+            <v-divider class="my-4"></v-divider>
+            <v-text-field
+              :value="paymentLink"
+              readonly
+              outlined
+              append-icon="mdi-content-copy"
+              @click:append="copyToClipboard"
+            ></v-text-field>
+            <ActionButton @click="shareLink" large>
+              Compartir Link
+            </ActionButton>
+          </div>
+        </v-expand-transition>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup>
@@ -52,7 +56,7 @@ const paymentLink = ref('')
 
 const generateLink = () => {
   paymentLink.value = `https://payment.example.com/${Math.random().toString(36).substr(2, 9)}`
-  balanceStore.enterMoney(amount.value, 'Juan')
+  balanceStore.enterMoney(amount.value, {name:'Juan', description, category: 'Link de cobro'})
 }
 
 const copyToClipboard = () => {
@@ -72,7 +76,6 @@ const shareLink = () => {
 }
 
 const emit = defineEmits(['update:modelValue']);
-
 const closeDialog = () => {
   emit('update:modelValue', false);
 };
