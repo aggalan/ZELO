@@ -8,7 +8,7 @@
         <v-sheet class="pa-4 rounded mt-16">
           <v-sparkline
             :value="currentInvestment.trend"
-            :gradient="['#8B5CF6', '#8B5CF6']"
+            :color="trendColor"
             :smooth="10"
             stroke-linecap="round"
             line-width="3"

@@ -2,7 +2,7 @@
   <v-btn
       :color="color"
       text
-      class="pay-btn rounded-lg"
+      class="pay-btn rounded-lg text-white"
       @click="handleClick"
       :class = "customClass"
   >
@@ -15,7 +15,7 @@
 const props = defineProps({
   color: {
     type: String,
-    default: '#8B5CF6' // Color por defecto
+    default: 'var(--primary)' // Color por defecto
   },
   action: {
     type: Function,

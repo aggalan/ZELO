@@ -5,7 +5,7 @@
         icon
         @click="goBack"
       >
-        <v-icon color="#8B5CF6">mdi-arrow-left</v-icon>
+        <v-icon color="var(--primary)">mdi-arrow-left</v-icon>
       </v-btn>
       <v-spacer></v-spacer>
     </v-container>
