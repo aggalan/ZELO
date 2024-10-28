@@ -84,7 +84,7 @@
                 <div class="text-h6 font-weight-bold">
                   {{ method.name }}
                 </div>
-                <v-icon :color="method.id === 'account' ? 'primary' : 'white'" size="24">
+                <v-icon :color="method.id === 'account' ? 'var(--primary)' : 'var(--backgound)'" size="24">
                   {{ method.icon }}
                 </v-icon>
               </div>

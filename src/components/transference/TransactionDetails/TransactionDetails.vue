@@ -50,11 +50,11 @@
       </v-row>
     </v-card-text>
     <v-card-actions class="pa-4">
-      <ActionButton color="primary" text class="text-capitalize">
+      <ActionButton color="var(--primary)" text class="text-capitalize">
         <v-icon left>mdi-download</v-icon>
         Descargar comprobante
       </ActionButton>
-      <ActionButton color="secondary" text class="text-capitalize">
+      <ActionButton color="var(--secondary)" text class="text-capitalize">
         <v-icon left>mdi-alert-circle</v-icon>
         Reportar un problema
       </ActionButton>
