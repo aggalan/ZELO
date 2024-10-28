@@ -71,7 +71,7 @@
             <v-icon size="64" color="grey lighten-1" class="mb-4">mdi-credit-card-outline</v-icon>
             <h2 class="text-h5 font-weight-bold mb-2">No tienes tarjetas agregadas</h2>
             <p class="text-body-1 mb-4">Agrega una tarjeta para comenzar a gestionar tus pagos</p>
-            <ActionButton @click="toggleDialog">
+            <ActionButton class="text-white" @click="toggleDialog">
               Agregar Tarjeta
             </ActionButton>
           </v-card>
