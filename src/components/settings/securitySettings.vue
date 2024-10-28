@@ -75,7 +75,6 @@ const saveSettings = async () => {
   const isValid = await form.value.validate()
   if (isValid) {
     loading.value = true
-    // Simulate API call
     await new Promise(resolve => setTimeout(resolve, 1000))
     loading.value = false
     emit('save')

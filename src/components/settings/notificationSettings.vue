@@ -61,7 +61,6 @@ const loading = ref(false)
 
 const saveSettings = async () => {
   loading.value = true
-  // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1000))
   loading.value = false
   emit('save')

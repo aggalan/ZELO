@@ -3,7 +3,7 @@
     <v-card-text>
       <h2 class="text-h6 font-weight-bold mb-4">Gastos recientes</h2>
       <v-row v-if="totalSpent > 0" justify="center" align="center" class="mb-4">
-        <v-col cols="6">
+        <v-col cols="12" sm="6" class="text-center">
           <v-progress-circular
             :rotate="270"
             :size="100"
@@ -14,9 +14,10 @@
             {{ spendingPercentage }}%
           </v-progress-circular>
         </v-col>
-        <v-col cols="6">
+        <v-col cols="12" sm="6" class="text-center text-sm-left">
           <div class="text-subtitle-2 mb-1">Total Gastado</div>
           <div class="text-h5 font-weight-bold">${{ totalSpent.toLocaleString() }}</div>
+          <div class="text-caption">de ${{ budget.toLocaleString() }} presupuestados</div>
         </v-col>
       </v-row>
       <v-sheet v-else class="d-flex flex-column align-center justify-center" height="200">
@@ -45,9 +46,9 @@
 </template>
 
 <script setup>
-import {ref, computed} from 'vue'
-import {useTransactionsStore} from "@/store/transactionStore"
-import {useUsersStore} from "@/store/usersStore"
+import { ref, computed } from 'vue'
+import { useTransactionsStore } from "@/store/transactionStore"
+import { useUsersStore } from "@/store/usersStore"
 
 const transactionsStore = useTransactionsStore()
 const usersStore = useUsersStore()
