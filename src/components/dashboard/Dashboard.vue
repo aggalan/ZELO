@@ -46,16 +46,5 @@ const router = useRouter()
 </script>
 
 <style scoped>
-.dashboard-container {
-  background-color: #f3f4f6;
-  height: 100%;
-  max-width: 100%;
-}
 
-@media (min-width: 1904px) {
-  .dashboard-container {
-    max-width: 1785px;
-    margin: 0 auto;
-  }
-}
 </style>

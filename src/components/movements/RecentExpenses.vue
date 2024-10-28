@@ -61,9 +61,6 @@ const recentItems = computed(() => {
 </script>
 
 <style scoped>
-.v-list-item__avatar {
-  background-color: #EDE9FE;
-}
 
 .custom-text-field :deep(.v-field__outline) {
   display: none;
