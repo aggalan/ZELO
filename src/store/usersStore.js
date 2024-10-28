@@ -1,6 +1,8 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 import { useBalanceStore } from "@/store/balanceStore";
+import {useInvestmentsStore} from "@/store/investmentStore";
+import {useTransactionsStore} from "@/store/transactionStore";
 import router from "@/router/router";
 
 export const useUsersStore = defineStore('users', () => {
@@ -93,6 +95,9 @@ export const useUsersStore = defineStore('users', () => {
 
   const logout = () => {
     userId.value = null;
+    useInvestmentsStore().clearCurrentInvestment();
+
+    useTransactionsStore().clearSelectedTransaction();
     router.push('/');
   };
 
@@ -113,6 +118,7 @@ export const useUsersStore = defineStore('users', () => {
       cbu: Math.floor(Math.random() * 1e21).toString().padStart(22, '0'),
       alias: Math.random().toString(36).substring(2, 10)
     };
+    console.log(newUser);
     addUser(newUser);
     login(email, password);
   };

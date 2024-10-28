@@ -246,6 +246,7 @@ export const useInvestmentsStore = defineStore('investments', () => {
   const getInvestmentsByUserId = (userId) => {
     return computed( () => investments.value.filter(investment => investment.userId === userId));
   };
+  const hasInvestments = computed(() => investments.value.filter(investment => investment.userId === userStore.userId).length > 0);
   const currentInvestment = ref(null);
   const removeInvestment = ( amount,investmentId= currentInvestment.value.id) => {
     if(amount > currentInvestment.value.amount){
@@ -263,6 +264,9 @@ export const useInvestmentsStore = defineStore('investments', () => {
   const getCurrentInvestment = () => {
     return currentInvestment.value
   }
+  const clearCurrentInvestment = () => {
+    currentInvestment.value = null;
+  }
 
   const setCurrentInvestment = (investmentId) => {
     const aux = investments.value.find(investment => investment.id === investmentId);
@@ -278,6 +282,8 @@ export const useInvestmentsStore = defineStore('investments', () => {
     getCurrentInvestment,
     currentInvestment,
     setCurrentInvestment,
-    removeInvestment
+    removeInvestment,
+    hasInvestments,
+    clearCurrentInvestment
   };
 });

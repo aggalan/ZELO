@@ -24,7 +24,8 @@
       </v-row>
       <v-sheet v-else class="d-flex flex-column align-center justify-center pa-6">
         <v-icon icon="mdi-chart-line" size="64" color="grey" class="mb-4"></v-icon>
-        <p class="text-h6 text-center">No hay datos de inversión disponibles</p>
+        <p v-if="!useInvestmentsStore().hasInvestments" class="text-h6 text-center">No hay datos de inversión disponibles</p>
+        <p v-else class="text-h6 text-center">Seleccione una inversión para ver su evolución</p>
       </v-sheet>
     </v-card-text>
   </v-card>

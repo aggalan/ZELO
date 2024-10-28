@@ -28,8 +28,12 @@
       </div>
       <div v-else class="no-investment-message">
         <v-icon size="64" color="grey lighten-1">mdi-cash-remove</v-icon>
-        <p class="text-h6 mt-4">No tienes inversiones activas</p>
-        <p class="text-subtitle-1 mt-2">Comienza a invertir para ver un resumen aquí</p>
+        <div v-if=!useInvestmentsStore().hasInvestments>
+          <p  class="text-h6 mt-4">No tienes inversiones activas</p>
+          <p  class="text-subtitle-1 mt-2">Comienza a invertir para ver un resumen aquí</p>
+        </div>
+        <p v-else class="text-h6 text-center">Seleccione una inversión para ver su rendimiento</p>
+
       </div>
     </v-card-text>
   </v-card>
