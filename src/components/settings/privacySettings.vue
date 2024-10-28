@@ -50,7 +50,7 @@
         </v-list-item-action>
       </v-list-item>
     </v-list>
-    <v-btn
+    <ActionButton
       color="#8B5CF6"
       class="mt-4"
       dark
@@ -58,13 +58,14 @@
       :loading="loading"
     >
       Actualizar Configuracion de Privacidad
-    </v-btn>
+    </ActionButton>
   </v-card-text>
 
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const transactionVisibility = ref('Solo yo')
 const balanceVisibility = ref('Solo yo')

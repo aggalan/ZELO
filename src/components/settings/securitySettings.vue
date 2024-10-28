@@ -47,21 +47,21 @@
           ></v-switch>
         </v-col>
       </v-row>
-      <v-btn
-        color="#8B5CF6"
+      <ActionButton
         class="mt-4"
         dark
         type="submit"
         :loading="loading"
       >
         Actualizar Configuracion de Seguridad
-      </v-btn>
+      </ActionButton>
     </v-form>
   </v-card-text>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import ActionButton from "@/components/generalComponents/ActionButton.vue";
 
 const currentPin = ref('')
 const newPin = ref('')

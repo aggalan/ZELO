@@ -1,6 +1,6 @@
 <template>
   <v-container fluid class="help-page">
-    <v-container color="#Ffffff" fluid class="d-flex flex-column">
+    <v-container color="var(--background)" fluid class="d-flex flex-column">
       <v-btn
         icon
         @click="goBack"
